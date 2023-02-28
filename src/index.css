@@ -5,7 +5,8 @@
 }
 
 body {
-  background-color:rgb(64, 162, 254)
+  background-image: url('yosemite.jpg');
+  background-size:cover;
 }
 
 header {
