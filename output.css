@@ -513,6 +513,22 @@ video {
   --tw-backdrop-sepia:  ;
 }
 
+.m-6 {
+  margin: 1.5rem;
+}
+
+.m-0 {
+  margin: 0px;
+}
+
+.box-border {
+  box-sizing: border-box;
+}
+
+.flex {
+  display: flex;
+}
+
 .h-screen {
   height: 100vh;
 }
@@ -521,11 +537,25 @@ video {
   width: 100vw;
 }
 
+.flex-col {
+  flex-direction: column;
+}
+
 .bg-\[url\(\'\/yosemite\.jpg\'\)\] {
   background-image: url('/yosemite.jpg');
 }
 
 .bg-cover {
   background-size: cover;
+}
+
+.text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
+.text-white {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
