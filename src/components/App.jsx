@@ -1,24 +1,18 @@
 import Dashboard from "./Dashboard"
 import InfoDisplay from "./InfoDisplay"
 import axios from "axios"
+import { useState,useEffect } from "react"
 
 const App = () => {
 
-    navigator.geolocation.getCurrentPosition(positionSuccess,positionFail)
+    const [weatherData,setWeatherData] = useState({})
+    const [location,setLocation] = useState({})
+
+    // console.log({weatherData,location})
     
-    function positionSuccess({ coords }) {
-
-        // getCity(
-        //     coords.latitude,
-        //     coords.longitude
-        // )
-
-        getWeatherData(
-            coords.latitude,
-            coords.longitude,
-            Intl.DateTimeFormat().resolvedOptions().timeZone
-        )
-        
+    function positionSuccess({coords}) {
+        let {latitude,longitude} = coords
+        setLocation({latitude,longitude})
     }
 
     function positionFail() {
@@ -27,26 +21,9 @@ const App = () => {
           )
       }
 
-    // const getCity = (lat,long) => {
-    //     const latitude = lat.toString()
-    //     const longitude = long.toString()
-   
-    //     return axios.get(`https://api.geoapify.com/v1/geocode/reverse?lat=${latitude}&lon=${longitude}&format=json&apiKey=5caa923f63af4fb7a20bd70619ca5fbd`, 
-    //     { 
-    //         params: 
-    //         {
-    //             latitude:lat,
-    //             longitude:long 
-    //         } 
-    //         }).then(({data}) => {
-    //         let results = data.results[0]
-    //         return results.city
-    //     })
-    // }
-
-    const getWeatherData = (lat,long,timezone) => {
-       
-        return axios.get('https://api.open-meteo.com/v1/forecast?&daily=weathercode,apparent_temperature_max,sunrise,sunset,precipitation_sum,precipitation_hours,precipitation_probability_max&current_weather=true&temperature_unit=fahrenheit&windspeed_unit=mph&precipitation_unit=inch&timeformat=unixtime&past_days=7',
+    const getWeatherData = async (lat,long,timezone) => {
+        // console.log(lat,long)
+        await axios.get('https://api.open-meteo.com/v1/forecast?&daily=weathercode,apparent_temperature_max,sunrise,sunset,precipitation_sum,precipitation_hours,precipitation_probability_max&current_weather=true&temperature_unit=fahrenheit&windspeed_unit=mph&precipitation_unit=inch&timeformat=unixtime&past_days=7',
         {
             params: {
                 latitude:lat,
@@ -54,15 +31,38 @@ const App = () => {
                 timezone
             }
         }).then(({data}) => {
-            // console.log(data)
+            const parsedData = parseWeatherData(data)
+            // console.log(parsedData)
+            setWeatherData(parsedData)
         })
+        
+    }
+
+    useEffect(() => {
+        navigator.geolocation.getCurrentPosition(positionSuccess,positionFail)
+    },[])
+
+    useEffect(() => {
+        getWeatherData(
+            location.latitude,
+            location.longitude,
+            Intl.DateTimeFormat().resolvedOptions().timeZone
+        )
+    },[location])
+
+    function parseWeatherData(data) {
+        const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        const currentTemp = data.current_weather.temperature
+        const currentDate = Intl.DateTimeFormat(undefined, dateOptions).format(data.current_weather.time * 1000)
+        const weatherCode = data.current_weather.weathercode
+        return {currentTemp,currentDate,weatherCode}
     }
 
     return (
-        <body class="bg-[url('/yosemite.jpg')] bg-cover h-screen w-screen">
-            <Dashboard />
+        <main class="bg-[url('/yosemite.jpg')] bg-cover h-screen w-screen flex flex-col">
+            <Dashboard weatherData={weatherData} location={location}/>
             <InfoDisplay/>
-        </body>
+        </main>
     )
 }
 
