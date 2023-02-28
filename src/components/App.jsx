@@ -7,11 +7,18 @@ const App = () => {
     navigator.geolocation.getCurrentPosition(positionSuccess,positionFail)
     
     function positionSuccess({ coords }) {
+
+        // getCity(
+        //     coords.latitude,
+        //     coords.longitude
+        // )
+
         getWeatherData(
             coords.latitude,
             coords.longitude,
             Intl.DateTimeFormat().resolvedOptions().timeZone
         )
+        
     }
 
     function positionFail() {
@@ -20,9 +27,26 @@ const App = () => {
           )
       }
 
+    // const getCity = (lat,long) => {
+    //     const latitude = lat.toString()
+    //     const longitude = long.toString()
+   
+    //     return axios.get(`https://api.geoapify.com/v1/geocode/reverse?lat=${latitude}&lon=${longitude}&format=json&apiKey=5caa923f63af4fb7a20bd70619ca5fbd`, 
+    //     { 
+    //         params: 
+    //         {
+    //             latitude:lat,
+    //             longitude:long 
+    //         } 
+    //         }).then(({data}) => {
+    //         let results = data.results[0]
+    //         return results.city
+    //     })
+    // }
+
     const getWeatherData = (lat,long,timezone) => {
        
-        return axios.get('https://api.open-meteo.com/v1/forecast?&hourly=temperature_2m,apparent_temperature,precipitation_probability,precipitation,weathercode,windspeed_10m&daily=weathercode,temperature_2m_max,temperature_2m_min,sunrise,sunset,precipitation_sum,precipitation_hours,precipitation_probability_max,windspeed_10m_max&current_weather=true&temperature_unit=fahrenheit&windspeed_unit=mph&precipitation_unit=inch&timeformat=unixtime',
+        return axios.get('https://api.open-meteo.com/v1/forecast?&daily=weathercode,apparent_temperature_max,sunrise,sunset,precipitation_sum,precipitation_hours,precipitation_probability_max&current_weather=true&temperature_unit=fahrenheit&windspeed_unit=mph&precipitation_unit=inch&timeformat=unixtime&past_days=7',
         {
             params: {
                 latitude:lat,
@@ -30,16 +54,15 @@ const App = () => {
                 timezone
             }
         }).then(({data}) => {
-            console.log(data)
+            // console.log(data)
         })
     }
-    // getWeatherData()
 
     return (
-        <>
-            <Dashboard/>
+        <body class="bg-[url('/yosemite.jpg')] bg-cover h-screen w-screen">
+            <Dashboard />
             <InfoDisplay/>
-        </>
+        </body>
     )
 }
 

@@ -1,20 +1,5 @@
-*, *::after,*::before {
-  box-sizing: border-box;
-  margin:0;
-  padding:0;
-}
 
-body {
-  background-image: url('yosemite.jpg');
-  background-size:cover;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-header {
-  background-color: black;
-  font-size:2rem;
-  color:white;
-  display:flex;
-  justify-content: center;
-  align-items: center;
-  padding:10px;
-}
