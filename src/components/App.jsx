@@ -12,6 +12,8 @@ const App = () => {
     
     function positionSuccess({coords}) {
         let {latitude,longitude} = coords
+        latitude = latitude.toString()
+        longitude = longitude.toString()
         setLocation({latitude,longitude})
     }
 
