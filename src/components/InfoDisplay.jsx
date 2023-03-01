@@ -1,8 +1,12 @@
 
 
-const InfoDisplay = () => {
+const InfoDisplay = (props) => {
     return (
-        <div></div>
+        <section class='flex'>
+            {props.weatherData.days.map(item => {
+                return <div class='text-white'>{item}</div>
+            })}
+        </section>
     )
 }
 

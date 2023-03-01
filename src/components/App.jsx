@@ -7,15 +7,16 @@ const App = () => {
 
     const [weatherData,setWeatherData] = useState({})
     const [location,setLocation] = useState({})
-
-    // console.log({weatherData,location})
     
     function positionSuccess({coords}) {
         let {latitude,longitude} = coords
         latitude = latitude.toString()
         longitude = longitude.toString()
+        // console.log({latitude,longitude})
         setLocation({latitude,longitude})
+        // return {latitude,longitude}
     }
+   
 
     function positionFail() {
         alert(
@@ -45,6 +46,7 @@ const App = () => {
     },[])
 
     useEffect(() => {
+        if(!location.latitude || !location.longitude) return
         getWeatherData(
             location.latitude,
             location.longitude,
@@ -53,17 +55,27 @@ const App = () => {
     },[location])
 
     function parseWeatherData(data) {
+        console.log(data)
+        const dailyWeather = data.daily
         const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        const dayOptions = { weekday:'long' }
         const currentTemp = data.current_weather.temperature
         const currentDate = Intl.DateTimeFormat(undefined, dateOptions).format(data.current_weather.time * 1000)
         const weatherCode = data.current_weather.weathercode
-        return {currentTemp,currentDate,weatherCode}
+        let days = dailyWeather.time.map(date => {
+            return Intl.DateTimeFormat(undefined,dayOptions).format(date * 1000)
+        })
+        days = days.slice(0,7)
+        let rainTotal = dailyWeather.precipitation_sum
+        rainTotal = rainTotal.slice(0,7)
+        console.log(rainTotal)
+        return {currentTemp,currentDate,weatherCode,days}
     }
 
     return (
         <main class="bg-[url('/yosemite.jpg')] bg-cover h-screen w-screen flex flex-col">
             <Dashboard weatherData={weatherData} location={location}/>
-            <InfoDisplay/>
+            <InfoDisplay weatherData={weatherData} />
         </main>
     )
 }

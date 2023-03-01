@@ -10,6 +10,7 @@ const Dashboard = (props) => {
    
 
     const getCity = async (lat,long) => {
+        console.log(lat)
         await axios.get(`https://api.geoapify.com/v1/geocode/reverse?lat=${lat}&lon=${long}&format=json&apiKey=5caa923f63af4fb7a20bd70619ca5fbd` )
         .then(({data}) => {
             let results = data.results[0]
@@ -19,20 +20,25 @@ const Dashboard = (props) => {
 
     useEffect(() => {
         console.log(props.location.latitude)
-        getCity(props.location.latitude,props.location.longitude)
+        if(!props.location.latitude || !props.location.longitude) return
+            // getCity(props.location.latitude,props.location.longitude)
+        
     },[location])
 
  
     return (
-        <section class='flex flex-col m-6'>
-            <p class='text-white text-2xl m-0'>
+        <section class='flex flex-col m-8 gap-1'>
+            <p class='text-white text-3xl m-0'>
                 {city}
             </p>
             <p class='text-white '>
                 {props.weatherData.currentDate}
             </p>
-            <p class='text-white text-3xl'>
-                {props.weatherData.currentTemp}&deg;
+            <p class='text-white text-4xl'>
+                {props.weatherData.currentTemp} &deg;F
+            </p>
+            <p>
+
             </p>
         </section>
     )

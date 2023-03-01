@@ -521,6 +521,10 @@ video {
   margin: 0px;
 }
 
+.m-8 {
+  margin: 2rem;
+}
+
 .box-border {
   box-sizing: border-box;
 }
@@ -541,6 +545,10 @@ video {
   flex-direction: column;
 }
 
+.gap-1 {
+  gap: 0.25rem;
+}
+
 .bg-\[url\(\'\/yosemite\.jpg\'\)\] {
   background-image: url('/yosemite.jpg');
 }
@@ -557,6 +565,11 @@ video {
 .text-3xl {
   font-size: 1.875rem;
   line-height: 2.25rem;
+}
+
+.text-4xl {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
 }
 
 .text-white {
