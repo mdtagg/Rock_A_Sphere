@@ -3,9 +3,10 @@
 const InfoDisplay = (props) => {
     return (
         <section class='flex'>
-            {props.weatherData.days.map(item => {
+            {/* {props.weatherData &&
+            props.weatherData.days.map(item => {
                 return <div class='text-white'>{item}</div>
-            })}
+            })} */}
         </section>
     )
 }
