@@ -2,12 +2,10 @@
 
 export const getClimbingAreas = () => {
     return {
-        stoneyPoint: {
-            coords:'34.27, -118.60238934402216',
-        },
         redRock: {
+            title:'Red Rock',
             coords:
-                {latitude:'36.10', longitude:' -115.49'},
+                {latitude:'36.10',longitude:'-115.49'},
             img:'../public/redRock.jpg'
         }
     }  

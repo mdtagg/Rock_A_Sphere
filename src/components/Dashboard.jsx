@@ -1,17 +1,15 @@
 import { useState,useEffect } from "react"
 
 const Dashboard = (props) => {
-    // console.log(props.weatherData)
+    console.log(props.weatherData)
     return (
         <section class='flex flex-col m-8 gap-1'>
-            <p class='text-white text-3xl'>Current Location</p>
+            <p class='text-black text-3xl'>{props.location.title}</p>
             <p class='text-white '>
-                {props.weatherData !== undefined && props.location.longitude !== undefined &&
-                props.weatherData.currentWeather.currentDate}
+                {/* {props.weatherData.currentWeather.currentDate} */}
             </p>
             <p class='text-white text-4xl'>
-                {props.weatherData !== undefined && props.location.longitude !== undefined &&
-                props.weatherData.currentWeather.currentTemp} &deg;F
+                {/* { props.weatherData.currentWeather.currentTemp} &deg;F */}
             </p>
             <p>
 

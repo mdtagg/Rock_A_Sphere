@@ -10,31 +10,12 @@ const App = () => {
     // console.log(climbingAreas)
 
     const [weatherData,setWeatherData] = useState(undefined)
-    const [location,setLocation] = useState(climbingAreas.redRock.coords)
-
-    
-
-    // function positionSuccess({coords}) {
-    //     console.log(coords)
-    //     let {latitude,longitude} = coords
-    //     latitude = latitude.toString()
-    //     longitude = longitude.toString()
-    //     return {latitude,longitude}
-    //     // setLocation({latitude,longitude})
-    // }
-    // navigator.geolocation.getCurrentPosition(positionSuccess,positionFail)
-
-    // console.log({location})
-
-    // function positionFail() {
-    //     alert(
-    //       'Error getting location, please allow us to use your location and refresh the page'
-    //       )
-    //   }
+    const [location,setLocation] = useState(climbingAreas.redRock)
+    // console.log(location)
 
     const getWeatherData = async (lat,long,timezone) => {
         // console.log(lat,long)
-        await axios.get('https://api.open-meteo.com/v1/forecast?&daily=weathercode,apparent_temperature_max,sunrise,sunset,precipitation_sum,precipitation_hours,precipitation_probability_max&current_weather=true&temperature_unit=fahrenheit&windspeed_unit=mph&precipitation_unit=inch&past_days=7',
+        await axios.get('https://api.open-meteo.com/v1/forecast?&daily=weathercode,apparent_temperature_max,sunrise,sunset,precipitation_sum,precipitation_hours,precipitation_probability_max&current_weather=true&temperature_unit=fahrenheit&windspeed_unit=mph&precipitation_unit=inch&timeformat=unixtime&past_days=7',
         {
             params: {
                 latitude:lat,
@@ -42,6 +23,7 @@ const App = () => {
                 timezone
             }
         }).then(({data}) => {
+            // console.log(data)
             const parsedData = parseWeatherData(data)
             console.log({parsedData})
             setWeatherData(parsedData)
@@ -49,32 +31,11 @@ const App = () => {
         
     }
 
-    getWeatherData(
-        location.latitude,
-        location.longitude,
-        "America/Los_Angeles"
-    )
-
-    // useEffect(() => {
-    //     // console.log('location test')
-    //     // navigator.geolocation.getCurrentPosition(positionSuccess,positionFail)
-    // },[])
-
-    // useEffect(() => {
-    //     if(!location.latitude || !location.longitude) return
-    //     console.log(location.latitude)
-    //     getWeatherData(
-    //         location.latitude,
-    //         location.longitude,
-    //         Intl.DateTimeFormat().resolvedOptions().timeZone
-    //     )
-    // },[location])
-
     function parseWeatherData(data) {
-        console.log(data)
+        
         const currentWeather = parseCurrentWeather(data)
         const dailyWeather = parseDailyWeather(data.daily)
-        console.log({currentWeather,dailyWeather})
+        // console.log({currentWeather,dailyWeather})
         return {currentWeather,dailyWeather}
     }
 
@@ -99,8 +60,17 @@ const App = () => {
         return {days,rainTotal}
     }
 
+    useEffect(() => {
+        getWeatherData(
+            location.coords.latitude,
+            location.coords.longitude,
+            "America/Los_Angeles"
+        )
+    },[])
+
+    const title = 'test'
     return (
-        <main class="bg-[url('/yosemite.jpg')] bg-cover h-screen w-screen flex flex-col">
+        <main class={`bg-[url('/redRock.jpg')] bg-cover h-screen w-screen flex flex-col`}>
             <Dashboard weatherData={weatherData} location={location}/>
             <InfoDisplay location={location} weatherData={weatherData} />
         </main>
@@ -110,6 +80,8 @@ const App = () => {
 // getUserCoordinates()
 
 export default App
+
+// class="bg-[url('/redRock.jpg')] bg-cover h-screen w-screen flex flex-col"
 
 // const geolocationAPI = navigator.geolocation;
 
@@ -126,3 +98,19 @@ export default App
 //       })
 //     }
 // }
+
+// useEffect(() => {
+    //     // console.log('location test')
+    //     // navigator.geolocation.getCurrentPosition(positionSuccess,positionFail)
+    // },[])
+
+    // useEffect(() => {
+    //     if(!location.latitude || !location.longitude) return
+    //     console.log(location.latitude)
+    //     getWeatherData(
+    //         location.latitude,
+    //         location.longitude,
+    //         Intl.DateTimeFormat().resolvedOptions().timeZone
+    //     )
+    // },[location])
+
