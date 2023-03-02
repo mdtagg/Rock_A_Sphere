@@ -513,20 +513,12 @@ video {
   --tw-backdrop-sepia:  ;
 }
 
-.m-6 {
-  margin: 1.5rem;
-}
-
 .m-0 {
   margin: 0px;
 }
 
 .m-8 {
   margin: 2rem;
-}
-
-.box-border {
-  box-sizing: border-box;
 }
 
 .flex {
@@ -549,17 +541,16 @@ video {
   gap: 0.25rem;
 }
 
+.bg-\[url\(\'\/redRock\.jpg\'\)\] {
+  background-image: url('/redRock.jpg');
+}
+
 .bg-\[url\(\'\/yosemite\.jpg\'\)\] {
   background-image: url('/yosemite.jpg');
 }
 
 .bg-cover {
   background-size: cover;
-}
-
-.text-2xl {
-  font-size: 1.5rem;
-  line-height: 2rem;
 }
 
 .text-3xl {
@@ -577,3 +568,8 @@ video {
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
+/* .main {
+  background-image: url('/red-rock-canyon.jpg');
+  background-size:cover;
+  
+} */
