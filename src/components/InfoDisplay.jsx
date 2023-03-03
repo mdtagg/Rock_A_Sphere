@@ -51,8 +51,7 @@ const InfoDisplay = (props) => {
                         </div>
                     )
                 })
-            }
-                
+            } 
             </div>
             
         </section>

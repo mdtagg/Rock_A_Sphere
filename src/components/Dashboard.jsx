@@ -1,7 +1,6 @@
-import { useState,useEffect } from "react"
+import { useEffect } from "react"
 
 const Dashboard = (props) => {
-    // console.log(props.weatherData)
 
     useEffect(() => {
         
@@ -9,7 +8,10 @@ const Dashboard = (props) => {
 
     return (
         <section class='flex items-center flex-col m-8 p-6 gap-1 rounded-md bg-gray-100/25 h-fit w-fit border-2 border-black'>
-            <p class='text-black text-3xl'>{props.location.title}</p>
+            <button class='text-black text-3xl rounded flex items-center gap-1' >
+                {props.location.title} 
+                <img class='h-5 w-5' src='/downCaret.svg'></img>
+            </button>
             <p class='text-black '>
                 {props.weatherData &&
                 props.weatherData.currentWeather.currentDate}
@@ -52,3 +54,8 @@ export default Dashboard
     // <p class='text-white text-3xl m-0'>
     //             {city}
     //         </p>
+
+    // <button class='text-black text-3xl rounded flex items-center gap-1' >
+    //             {props.location.title} 
+    //             <img class='h-5 w-5' src='/downCaret.svg'></img>
+    //         </button>
