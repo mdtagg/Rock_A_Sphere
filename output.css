@@ -606,6 +606,10 @@ video {
   width: 33.333333%;
 }
 
+.w-5 {
+  width: 1.25rem;
+}
+
 .max-w-min {
   max-width: -moz-min-content;
   max-width: min-content;
@@ -654,6 +658,11 @@ video {
 .border-black {
   --tw-border-opacity: 1;
   border-color: rgb(0 0 0 / var(--tw-border-opacity));
+}
+
+.border-slate-500 {
+  --tw-border-opacity: 1;
+  border-color: rgb(100 116 139 / var(--tw-border-opacity));
 }
 
 .bg-slate-50 {
