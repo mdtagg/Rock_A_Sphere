@@ -8,15 +8,11 @@ import { useState,useEffect,useRef } from "react"
 const App = () => {
 
     let climbingAreas = getClimbingAreas()
-    // console.log(climbingAreas)
-
     const [weatherData,setWeatherData] = useState(undefined)
     const [location,setLocation] = useState(climbingAreas.redRock)
-    // console.log(location)
+    const [totalRain,setTotalRain] = useState({})
     
-
     const getWeatherData = async (lat,long,timezone) => {
-        // console.log(lat,long)
         await axios.get('https://api.open-meteo.com/v1/forecast?&daily=weathercode,apparent_temperature_max,sunrise,sunset,precipitation_sum,precipitation_hours,precipitation_probability_max&current_weather=true&temperature_unit=fahrenheit&windspeed_unit=mph&precipitation_unit=inch&timeformat=unixtime&past_days=7',
         {
             params: {
@@ -25,24 +21,19 @@ const App = () => {
                 timezone
             }
         }).then(({data}) => {
-            // console.log(data)
             const parsedData = parseWeatherData(data)
-            // console.log({parsedData})
             setWeatherData(parsedData)
         })
-        
     }
 
     function parseWeatherData(data) {
         
         const currentWeather = parseCurrentWeather(data)
         const dailyWeather = parseDailyWeather(data.daily)
-        // console.log({currentWeather,dailyWeather})
         return {currentWeather,dailyWeather}
     }
 
     function parseCurrentWeather(data) {
-        // console.log({data})
         const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
         const currentTemp = data.current_weather.temperature
         const currentDate = Intl.DateTimeFormat(undefined, dateOptions).format(data.current_weather.time * 1000)
@@ -59,10 +50,25 @@ const App = () => {
         days = days.slice(0,7)
         let rainTotal = data.precipitation_sum
         rainTotal = rainTotal.slice(0,7)
+        
+        let cumulativeRain = rainTotal.reduce((total,amt) => {
+            return total + amt
+        })
+        cumulativeRain = cumulativeRain.toFixed(2)
+        // console.log({cumulativeRain})
+
+        let pastThreeRain = rainTotal.slice(0,3)
+        pastThreeRain = pastThreeRain.reduce((total,amt) => {
+            return total + amt
+        })
+        pastThreeRain = pastThreeRain.toFixed(2)
+        
+        setTotalRain({cumulativeRain,pastThreeRain})
 
         return {days,rainTotal}
     }
 
+    console.log({totalRain})
     useEffect(() => {
         getWeatherData(
             location.coords.latitude,
@@ -74,7 +80,7 @@ const App = () => {
     return (
         <main class={`bg-[url('/redRock.jpg')] bg-cover bg-center h-screen w-screen flex flex-col justify-between`}>
             <Dashboard weatherData={weatherData} location={location}/>
-            <Summary/>
+            <Summary location={location} totalRain={totalRain} />
             <InfoDisplay location={location} weatherData={weatherData} />
         </main>
     )

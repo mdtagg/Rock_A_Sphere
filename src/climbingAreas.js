@@ -6,7 +6,8 @@ export const getClimbingAreas = () => {
             title:'Red Rock',
             coords:
                 {latitude:'36.10',longitude:'-115.49'},
-            img:'../public/redRock.jpg'
+            img:'../public/redRock.jpg',
+            rockType:'sandstone'
         }
     }  
 }
