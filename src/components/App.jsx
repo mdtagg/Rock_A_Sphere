@@ -1,8 +1,9 @@
 import Dashboard from "./Dashboard"
+import Summary from "./Summary"
 import InfoDisplay from "./InfoDisplay"
 import axios from "axios"
 import { getClimbingAreas } from '../climbingAreas'
-import { useState,useEffect } from "react"
+import { useState,useEffect,useRef } from "react"
 
 const App = () => {
 
@@ -12,6 +13,7 @@ const App = () => {
     const [weatherData,setWeatherData] = useState(undefined)
     const [location,setLocation] = useState(climbingAreas.redRock)
     // console.log(location)
+    
 
     const getWeatherData = async (lat,long,timezone) => {
         // console.log(lat,long)
@@ -25,7 +27,7 @@ const App = () => {
         }).then(({data}) => {
             // console.log(data)
             const parsedData = parseWeatherData(data)
-            console.log({parsedData})
+            // console.log({parsedData})
             setWeatherData(parsedData)
         })
         
@@ -50,13 +52,14 @@ const App = () => {
     }
 
     function parseDailyWeather(data) {
-        const dayOptions = { weekday:'long' }
+        const dayOptions = { weekday:'short',day:'numeric' }
         let days = data.time.map(date => {
             return Intl.DateTimeFormat(undefined,dayOptions).format(date * 1000)
         })
         days = days.slice(0,7)
         let rainTotal = data.precipitation_sum
         rainTotal = rainTotal.slice(0,7)
+
         return {days,rainTotal}
     }
 
@@ -68,10 +71,10 @@ const App = () => {
         )
     },[])
 
-    const title = 'test'
     return (
-        <main class={`bg-[url('/redRock.jpg')] bg-cover h-screen w-screen flex flex-col`}>
+        <main class={`bg-[url('/redRock.jpg')] bg-cover bg-center h-screen w-screen flex flex-col justify-between`}>
             <Dashboard weatherData={weatherData} location={location}/>
+            <Summary/>
             <InfoDisplay location={location} weatherData={weatherData} />
         </main>
     )

@@ -1,14 +1,14 @@
 import { useState,useEffect } from "react"
 
 const Dashboard = (props) => {
-    console.log(props.weatherData)
+    // console.log(props.weatherData)
 
     useEffect(() => {
         
     },[])
 
     return (
-        <section class='flex flex-col m-8 gap-1'>
+        <section class='flex items-center flex-col m-8 p-6 gap-1 rounded-md bg-gray-100/25 h-fit w-fit border-2 border-black'>
             <p class='text-black text-3xl'>{props.location.title}</p>
             <p class='text-black '>
                 {props.weatherData &&
