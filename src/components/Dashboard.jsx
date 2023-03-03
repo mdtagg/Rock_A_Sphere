@@ -1,4 +1,6 @@
 import { useEffect } from "react"
+import LocationMenu from "./LocationMenu"
+
 
 const Dashboard = (props) => {
 
@@ -8,10 +10,7 @@ const Dashboard = (props) => {
 
     return (
         <section class='flex items-center flex-col m-8 p-6 gap-1 rounded-md bg-gray-100/25 h-fit w-fit border-2 border-black'>
-            <button class='text-black text-3xl rounded flex items-center gap-1' >
-                {props.location.title} 
-                <img class='h-5 w-5' src='/downCaret.svg'></img>
-            </button>
+            <LocationMenu climbingAreas={props.climbingAreas} location={props.location}/>
             <p class='text-black '>
                 {props.weatherData &&
                 props.weatherData.currentWeather.currentDate}
@@ -56,6 +55,11 @@ export default Dashboard
     //         </p>
 
     // <button class='text-black text-3xl rounded flex items-center gap-1' >
+    //             {props.location.title} 
+    //             <img class='h-5 w-5' src='/downCaret.svg'></img>
+    //         </button>
+
+    // <button class='text-black text-3xl rounded flex items-center gap-1'  >
     //             {props.location.title} 
     //             <img class='h-5 w-5' src='/downCaret.svg'></img>
     //         </button>

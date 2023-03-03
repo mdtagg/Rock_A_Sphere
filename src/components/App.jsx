@@ -3,13 +3,14 @@ import Summary from "./Summary"
 import InfoDisplay from "./InfoDisplay"
 import axios from "axios"
 import { getClimbingAreas } from '../climbingAreas'
-import { useState,useEffect,useRef } from "react"
+import { useState,useEffect } from "react"
 
 const App = () => {
 
     let climbingAreas = getClimbingAreas()
+
     const [weatherData,setWeatherData] = useState(undefined)
-    const [location,setLocation] = useState(climbingAreas.redRock)
+    const [location,setLocation] = useState(climbingAreas[0])
     const [totalRain,setTotalRain] = useState({})
     
     const getWeatherData = async (lat,long,timezone) => {
@@ -55,7 +56,6 @@ const App = () => {
             return total + amt
         })
         cumulativeRain = cumulativeRain.toFixed(2)
-        // console.log({cumulativeRain})
 
         let pastThreeRain = rainTotal.slice(0,3)
         pastThreeRain = pastThreeRain.reduce((total,amt) => {
@@ -68,7 +68,6 @@ const App = () => {
         return {days,rainTotal}
     }
 
-    console.log({totalRain})
     useEffect(() => {
         getWeatherData(
             location.coords.latitude,
@@ -79,14 +78,12 @@ const App = () => {
 
     return (
         <main class={`bg-[url('/redRock.jpg')] bg-cover bg-center h-screen w-screen flex flex-col justify-between`}>
-            <Dashboard weatherData={weatherData} location={location}/>
+            <Dashboard climbingAreas={climbingAreas} weatherData={weatherData} location={location}/>
             <Summary location={location} totalRain={totalRain} />
             <InfoDisplay location={location} weatherData={weatherData} />
         </main>
     )
 }
-
-// getUserCoordinates()
 
 export default App
 

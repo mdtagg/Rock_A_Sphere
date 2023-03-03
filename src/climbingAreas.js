@@ -1,15 +1,20 @@
 
 
 export const getClimbingAreas = () => {
-    return {
-        redRock: {
+    return [
+        {
             title:'Red Rock',
             coords:
                 {latitude:'36.10',longitude:'-115.49'},
             img:'../public/redRock.jpg',
             rockType:'sandstone'
+        },
+        {
+            title:'Add Area',
+            coords:{latitude:'',longitude:''},
+            rockType:''
         }
-    }  
+    ]
 }
 
 // export const climbingAreas = {
