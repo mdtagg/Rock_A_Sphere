@@ -10,9 +10,10 @@ export const getClimbingAreas = () => {
             rockType:'sandstone'
         },
         {
-            title:'Add Area',
-            coords:{latitude:'',longitude:''},
-            rockType:''
+            title:'Stoney Point',
+            coords:
+                {latitude:'34.28088471105757',longitude:'-118.60424751803053'},
+            rockType:'sandstone'
         }
     ]
 }

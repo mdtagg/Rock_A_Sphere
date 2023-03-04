@@ -23,18 +23,17 @@ const InfoDisplay = (props) => {
             }
             return data
         })
-    console.log({parsedData})
     setDailyData(parsedData)
     }
 
     useEffect(() => {
-        if(!props.weatherData || dailyData) return
+        if(!props.weatherData) return
         parseDailyData(props.weatherData.dailyWeather)
     },[props.weatherData])
 
     return (
         <section class='flex w-full justify-evenly mb-8'>
-            <div class='flex text-black w-full justify-between pl-11 pr-11'>
+            <div class='flex text-black w-full justify-between pl-10 pr-10'>
             {dailyData &&
                 dailyData.map(item => {
                     return (

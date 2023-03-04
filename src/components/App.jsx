@@ -7,13 +7,15 @@ import { useState,useEffect } from "react"
 
 const App = () => {
 
-    let climbingAreas = getClimbingAreas()
-
+    // let climbingAreas = getClimbingAreas()
+    const [climbingAreas,setClimbingAreas] = useState(getClimbingAreas())
     const [weatherData,setWeatherData] = useState(undefined)
     const [location,setLocation] = useState(climbingAreas[0])
     const [totalRain,setTotalRain] = useState({})
     
+    console.log({climbingAreas,weatherData})
     const getWeatherData = async (lat,long,timezone) => {
+        console.log({lat,long})
         await axios.get('https://api.open-meteo.com/v1/forecast?&daily=weathercode,apparent_temperature_max,sunrise,sunset,precipitation_sum,precipitation_hours,precipitation_probability_max&current_weather=true&temperature_unit=fahrenheit&windspeed_unit=mph&precipitation_unit=inch&timeformat=unixtime&past_days=7',
         {
             params: {
@@ -74,11 +76,12 @@ const App = () => {
             location.coords.longitude,
             "America/Los_Angeles"
         )
-    },[])
+    },[location])
+
 
     return (
-        <main class={`bg-[url('/redRock.jpg')] bg-cover bg-center h-screen w-screen flex flex-col justify-between`}>
-            <Dashboard climbingAreas={climbingAreas} weatherData={weatherData} location={location}/>
+        <main className={`bg-[url('/redRock.jpg')] bg-cover bg-center h-screen w-screen flex flex-col justify-between`}>
+            <Dashboard climbingAreas={climbingAreas} setClimbingAreas={setClimbingAreas} weatherData={weatherData} location={location} setLocation={setLocation}/>
             <Summary location={location} totalRain={totalRain} />
             <InfoDisplay location={location} weatherData={weatherData} />
         </main>
