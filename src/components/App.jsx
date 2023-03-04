@@ -15,7 +15,7 @@ const App = () => {
     
     console.log({climbingAreas,weatherData})
     const getWeatherData = async (lat,long,timezone) => {
-        console.log({lat,long})
+        // console.log({lat,long})
         await axios.get('https://api.open-meteo.com/v1/forecast?&daily=weathercode,apparent_temperature_max,sunrise,sunset,precipitation_sum,precipitation_hours,precipitation_probability_max&current_weather=true&temperature_unit=fahrenheit&windspeed_unit=mph&precipitation_unit=inch&timeformat=unixtime&past_days=7',
         {
             params: {
@@ -53,6 +53,10 @@ const App = () => {
         days = days.slice(0,7)
         let rainTotal = data.precipitation_sum
         rainTotal = rainTotal.slice(0,7)
+        // console.log({rainTotal})
+        //     item = parseFloat(item)
+        // })
+
         
         let cumulativeRain = rainTotal.reduce((total,amt) => {
             return total + amt
@@ -80,7 +84,7 @@ const App = () => {
 
 
     return (
-        <main className={`bg-[url('/redRock.jpg')] bg-cover bg-center h-screen w-screen flex flex-col justify-between`}>
+        <main class={`bg-[url('/redRock.jpg')] bg-cover bg-center h-screen w-screen flex flex-col justify-between`}>
             <Dashboard climbingAreas={climbingAreas} setClimbingAreas={setClimbingAreas} weatherData={weatherData} location={location} setLocation={setLocation}/>
             <Summary location={location} totalRain={totalRain} />
             <InfoDisplay location={location} weatherData={weatherData} />

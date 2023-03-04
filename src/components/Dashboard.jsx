@@ -1,4 +1,4 @@
-import { useEffect,useState } from "react"
+import { useState } from "react"
 import LocationMenu from "./LocationMenu"
 
 
@@ -30,12 +30,12 @@ const Dashboard = (props) => {
             }
             
             {!dropdown && 
-            <div className='relative z-0 flex flex-col text-black items-center'>
-                <p className=''>
+            <div class='relative z-0 flex flex-col text-black items-center'>
+                <p class=''>
                     {props.weatherData &&
                     props.weatherData.currentWeather.currentDate}
                 </p>
-                <p className='text-4xl w-full'>
+                <p class='text-4xl w-full'>
                     {props.weatherData &&
                     props.weatherData.currentWeather.currentTemp} &deg;F
                 </p>

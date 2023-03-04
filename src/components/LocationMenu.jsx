@@ -1,5 +1,5 @@
 import { Popover, Transition } from '@headlessui/react'
-import { Fragment,useState } from 'react'
+import { useState } from 'react'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
 
 const LocationMenu = (props) => {
@@ -40,23 +40,23 @@ const LocationMenu = (props) => {
     return (
         <>
             {!toggleForm &&
-            <div className='relative w-full z-10 flex flex-col '>
+            <div class='relative w-full z-10 flex flex-col '>
                 {props.climbingAreas.map(area => {
-                    return <button className='bg-white border border-black' onClick={() => handleAreaChange(area)} >{area.title}</button>
+                    return <button class='bg-white border border-black' onClick={() => handleAreaChange(area)} >{area.title}</button>
                 })}
-                <button className='bg-white border border-black' onClick={handleClick}>Add Area</button>
+                <button class='bg-white border border-black' onClick={handleClick}>Add Area</button>
             </div>}
             {toggleForm &&
             <form onSubmit={(e) => handleSubmit(e)}>
-                <div className='flex gap-2'>
-                    <label className='font-bold' for='coords'>Latitude/Longitude: </label>
+                <div class='flex gap-2'>
+                    <label class='font-bold' for='coords'>Latitude/Longitude: </label>
                     <input type='text' id='coords' name='coords' required></input>
-                    <label className='font-bold' for='name'>Area Name: </label>
+                    <label class='font-bold' for='name'>Area Name: </label>
                     <input type='text' id='name' name='title' required></input>
                 </div>
-                <div className='flex gap-3 justify-center mt-4'>
-                    <button className='bg-green-500 text-white border-2 border-black rounded p-1 w-1/5' type='submit'>Add</button>
-                    <button className='bg-red-500 rounded text-white border-2 border-black p-1 w-1/5'>Cancel</button>
+                <div class='flex gap-3 justify-center mt-4'>
+                    <button class='bg-green-500 text-white border-2 border-black rounded p-1 w-1/5' type='submit'>Add</button>
+                    <button class='bg-red-500 rounded text-white border-2 border-black p-1 w-1/5'>Cancel</button>
                 </div>
             </form>
             }
@@ -84,13 +84,13 @@ export default LocationMenu
         //             leaveTo="opacity-0 translate-y-1"
         //         ></Transition>
 
-        // <div className="fixed top-16 w-full max-w-sm px-4">
+        // <div class="fixed top-16 w-full max-w-sm px-4">
         // <Popover class='relative'>
-        //     <Popover.Button className='flex w-full items-center justify-center gap-2'>
-        //         <span className='text-3xl'>{props.location.title}</span>
-        //         <ChevronDownIcon className='h-5 w-5'/>
+        //     <Popover.Button class='flex w-full items-center justify-center gap-2'>
+        //         <span class='text-3xl'>{props.location.title}</span>
+        //         <ChevronDownIcon class='h-5 w-5'/>
                 
-        //         <Popover.Panel className='flex flex-col'>
+        //         <Popover.Panel class='flex flex-col'>
                 
         //             {props.climbingAreas.map(location => {
         //                 return <button>{location.title}</button>

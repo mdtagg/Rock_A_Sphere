@@ -3,6 +3,7 @@ import { useState,useEffect } from "react"
 const InfoDisplay = (props) => {
 
     const [dailyData,setDailyData] = useState(undefined)
+    // console.log(dailyData)
 
     function parseDailyData(dailyData) {
   
@@ -24,9 +25,11 @@ const InfoDisplay = (props) => {
             return data
         })
     setDailyData(parsedData)
+    
     }
 
     useEffect(() => {
+        // console.log(props.weatherData)
         if(!props.weatherData) return
         parseDailyData(props.weatherData.dailyWeather)
     },[props.weatherData])
