@@ -1,6 +1,5 @@
-import { Popover, Transition } from '@headlessui/react'
+
 import { useState } from 'react'
-import { ChevronDownIcon } from '@heroicons/react/20/solid'
 
 const LocationMenu = (props) => {
 
@@ -13,23 +12,24 @@ const LocationMenu = (props) => {
     function handleSubmit(e) {
         e.preventDefault()
         setToggleForm(false)
-        let latLong = e.target[0].value
-        latLong = latLong.split(',')
-        let latitude = parseFloat(latLong[0])
-        latitude = latitude.toFixed(2)
-        let longitude = parseFloat(latLong[1])
-        longitude = longitude.toFixed(2)
-
+        const latLong = parseLatLong(e.target[0].value)
         const areaTitle = e.target[1].value
         props.setClimbingAreas((prevAreas) => {
             return [
                 ...prevAreas,
                 {
                     title:areaTitle,
-                    coords: {latitude,longitude}
+                    coords: latLong
                 }
             ]
         })
+    }
+
+    function parseLatLong(latLong) {
+        latLong = latLong.split(',')
+        const latitude = parseFloat(latLong[0]).toFixed(2)
+        const longitude = parseFloat(latLong[1]).toFixed(2)
+        return {latitude,longitude}
     }
 
     function handleAreaChange(area) {

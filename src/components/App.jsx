@@ -7,8 +7,12 @@ import { useState,useEffect } from "react"
 
 const App = () => {
 
-    // let climbingAreas = getClimbingAreas()
     const [climbingAreas,setClimbingAreas] = useState(getClimbingAreas())
+
+    console.log(climbingAreas)
+
+    //BUG consider initializing weatherData with an array and updating the initial rendering
+    //conditions in the other components
     const [weatherData,setWeatherData] = useState(undefined)
     const [location,setLocation] = useState(climbingAreas[0])
     const [totalRain,setTotalRain] = useState({})
