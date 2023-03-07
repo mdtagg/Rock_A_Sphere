@@ -1,5 +1,6 @@
 
 import { useState } from 'react'
+import { v4 as uuidv4 } from 'uuid';
 
 const LocationMenu = (props) => {
 
@@ -42,7 +43,17 @@ const LocationMenu = (props) => {
             {!toggleForm &&
             <div class='relative w-full z-10 flex flex-col '>
                 {props.climbingAreas.map(area => {
-                    return <button class='bg-white border border-black' onClick={() => handleAreaChange(area)} >{area.title}</button>
+                    return (
+
+                    <button 
+                        class='bg-white border border-black' 
+                        onClick={() => handleAreaChange(area)} 
+                        key={uuidv4()}
+                    >
+                        {area.title}
+                    </button>
+                    )
+
                 })}
                 <button class='bg-white border border-black' onClick={handleClick}>Add Area</button>
             </div>}

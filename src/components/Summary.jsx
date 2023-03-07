@@ -4,10 +4,13 @@ import { useState,useEffect } from "react"
 const Summary = (props) => {
 
     const [rockTypes,setRockTypes] = useState([])
-    const [rockData,setRockData] = useState([])
+    const [rockData,setRockData] = useState({primaryRockClass:'sedimentary',primaryRockType:'siliciclastic'})
 
     async function getRockData() {
-        const response = await axios.get('https://macrostrat.org/api/v2/geologic_units/map?lat=36.5792&lng=-118.2920')
+        const lat = props.location.coords.latitude
+        const lng = props.location.coords.longitude
+    
+        const response = await axios.get(`https://macrostrat.org/api/v2/geologic_units/map?lat=${lat}&lng=${lng}`)
         let dataArray = []
         // console.log({response})
         response.data.success.data.forEach(item => {
@@ -25,7 +28,7 @@ const Summary = (props) => {
                 }
             }
         }
-        // console.log({rockTypeData})
+        console.log({rockTypeData})
         findPrimaryRockClass(rockTypeData)
     }
 
@@ -83,7 +86,7 @@ const Summary = (props) => {
     },[])
 
     useEffect(() => {
-        // if(!rockTypes.length) return
+        if(!rockTypes.length) return
         getRockData()
     },[props.location])
     
