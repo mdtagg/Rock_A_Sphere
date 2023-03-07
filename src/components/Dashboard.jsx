@@ -31,11 +31,11 @@ const Dashboard = (props) => {
             
             {!dropdown && 
             <div class='relative z-0 flex flex-col text-black items-center'>
-                <p class=''>
+                <p class='flex justify-center'>
                     {props.weatherData &&
                     props.weatherData.currentWeather.currentDate}
                 </p>
-                <p class='text-4xl w-full'>
+                <p class='flex justify-center text-4xl w-full'>
                     {props.weatherData &&
                     props.weatherData.currentWeather.currentTemp} &deg;F
                 </p>
@@ -47,39 +47,3 @@ const Dashboard = (props) => {
 }
 
 export default Dashboard
-
-// // console.log(props.location)
-    // const [city,setCity] = useState('')
-
-    // console.log({city})
-   
-
-    // const getCity = async (lat,long) => {
-    //     console.log(lat)
-    //     await axios.get(`https://api.geoapify.com/v1/geocode/reverse?lat=${lat}&lon=${long}&format=json&apiKey=5caa923f63af4fb7a20bd70619ca5fbd` )
-    //     .then(({data}) => {
-    //         let results = data.results[0]
-    //         setCity(results.city)
-    //     })
-    // }
-
-    // useEffect(() => {
-    //     console.log(props.location.latitude)
-    //     if(!props.location.latitude || !props.location.longitude) return
-    //         // getCity(props.location.latitude,props.location.longitude)
-        
-    // },[location])
-
-    // <p class='text-white text-3xl m-0'>
-    //             {city}
-    //         </p>
-
-    // <button class='text-black text-3xl rounded flex items-center gap-1' >
-    //             {props.location.title} 
-    //             <img class='h-5 w-5' src='/downCaret.svg'></img>
-    //         </button>
-
-    // <button class='text-black text-3xl rounded flex items-center gap-1'  >
-    //             {props.location.title} 
-    //             <img class='h-5 w-5' src='/downCaret.svg'></img>
-    //         </button>

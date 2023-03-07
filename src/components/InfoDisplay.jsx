@@ -1,4 +1,5 @@
 import { useState,useEffect } from "react"
+import { v4 as uuidv4 } from 'uuid';
 
 const InfoDisplay = (props) => {
 
@@ -40,7 +41,7 @@ const InfoDisplay = (props) => {
             {dailyData &&
                 dailyData.map(item => {
                     return (
-                        <div class={`flex flex-col border-2 border-black p-6 ${item[2]} gap-3`}>
+                        <div key={uuidv4()} class={`flex flex-col border-2 border-black p-6 ${item[2]} gap-3`}>
                             <div class='text-3xl gap-3'>{item[0]}</div>
                             <div class='flex gap-3 items-center'>
                                 <div>
@@ -62,19 +63,3 @@ const InfoDisplay = (props) => {
 }
 
 export default InfoDisplay
-
-// {props.weatherData &&
-//     props.weatherData.dailyWeather.days.map(item => {
-//         return (
-//             <div>{item}</div>
-//         )
-//     })}
-
-
-// {props.weatherData &&
-//     props.weatherData.dailyWeather.forEach(item => {
-//         return (
-//             <div></div>
-//         )
-//     })
-// }
