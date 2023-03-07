@@ -11,7 +11,6 @@ const App = () => {
     const [weatherData,setWeatherData] = useState(undefined)
     const [location,setLocation] = useState(climbingAreas[0])
     const [totalRain,setTotalRain] = useState({})
-    const [rockTypes,setRockTypes] = useState([])
     
     // console.log({climbingAreas,weatherData})
     const getWeatherData = async (lat,long,timezone) => {
@@ -81,20 +80,23 @@ const App = () => {
         )
     },[location])
 
-    useEffect(() => {
-        const getRockTypes = async () => {
-            const response = await axios.get('https://macrostrat.org/api/defs/lithologies?all')
-            setRockTypes(response.data.success.data)
-        }
-        getRockTypes()
-    },[])
-
-
     return (
         <main class={`bg-[url('/redRock.jpg')] bg-cover bg-center h-screen w-screen flex flex-col justify-between`}>
-            <Dashboard climbingAreas={climbingAreas} setClimbingAreas={setClimbingAreas} weatherData={weatherData} location={location} setLocation={setLocation}/>
-            <Summary location={location} totalRain={totalRain} />
-            <InfoDisplay location={location} weatherData={weatherData} />
+            <Dashboard 
+                climbingAreas={climbingAreas} 
+                setClimbingAreas={setClimbingAreas} 
+                weatherData={weatherData} 
+                location={location} 
+                setLocation={setLocation}
+            />
+            <Summary 
+                location={location} 
+                totalRain={totalRain} 
+            />
+            <InfoDisplay 
+                location={location} 
+                weatherData={weatherData} 
+            />
         </main>
     )
 }

@@ -122,35 +122,38 @@ const Summary = (props) => {
     },[props.location])
     
     return (
-        <table class='flex flex-col w-1/3'>
-            <thead class='w-full'>
-                <tr class='border-2 border-black w-full'>
-                    <th class='border-2 border-black p-1 w-1/5'>Past 7 Rain Total</th>
-                    <th class='border-2 border-black w-1/5'>Past 3 Rain Total</th>
-                    <th class='border-2 border-black w-1/5'>Primary Rock Type</th>
-                    <th class='border-2 border-black w-1/5'>Other Rock Types</th>
-                    <th class='border-2 border-black w-1/5'>Days to Climb</th>
+        <table class='flex flex-col w-2/5 ml-8 bg-slate-200/50 border-2 border-black'>
+            <thead>
+                <tr class='flex'>
+                    <th class='border-r-2 border-black p-1 w-1/5'>Past 7 Rain Total</th>
+                    <th class='border-r-2 border-black w-1/5'>Past 3 Rain Total</th>
+                    <th class='border-r-2 border-black w-1/5'>Primary Rock Type</th>
+                    <th class='border-r-2 border-black w-1/5'>Other Rock Types</th>
+                    <th class=' w-1/5'>Days Left to Climb</th>
                 </tr>
             </thead>
-            <tbody class='w-full'>
-                <tr class='w-full border-2 border-black'>
-                    <td class='border-2 border-black w-1/5'>
-                        {props.totalRain.pastSevenTotal} in
+            <tbody>
+                <tr class='flex border-t-2 border-black'>
+                    <td class='text-center text-xl font-bold text-blue-600 border-r-2 border-black w-1/5'>
+                        {props.totalRain.pastSevenTotal} <i>in</i>
                     </td>
-                    <td class='w-1/5'>
-                        {props.totalRain.pastThreeTotal} in
+                    <td class='text-center text-xl text-blue-600 font-bold border-r-2 border-black w-1/5'>
+                        {props.totalRain.pastThreeTotal} <i>in</i>
                     </td>
-                    <td class='w-1/5'>
-                        {rockData.primaryRockClass} {rockData.primaryRockType}
+                    <td class='flex flex-col gap-1 border-r-2 border-black items-center justify-center w-1/5 p-1'>
+                        <div class='border-2 border-black rounded font-bold p-1 w-full'>{rockData.primaryRockClass}</div>
+                        <div class='border-2 border-black rounded font-bold p-1 w-full'>{rockData.primaryRockType}</div>
                     </td>
-                    <td class='w-1/5'>
+                    <td class='w-1/5 border-r-2 border-black'>
+                        <div class='flex flex-col gap-1 p-1'>
                         {rockData.kindsOfRock.map(item => {
                             return (
-                                <div class={`bg-[${item.color}] w-full border-2 border-black`}>
+                                <div class={`text-center rounded font-bold w-full h-full border-2 border-black`} style={{backgroundColor: `${item.color}`}}>
                                     {item.name}
                                 </div>
                             )
                         })}
+                        </div>
                     </td>
                     <td class='w-1/5'>
 
@@ -162,6 +165,8 @@ const Summary = (props) => {
 }
 
 export default Summary
+
+// bg-[${item.color}]
 
 {/* <section class='flex flex-col border-2 text-xl border-black h-full w-1/3 mb-8 ml-8 bg-slate-300/70 rounded gap-3'>
             <p>{`The total amount of rain and snow for the past 7 days was ${props.totalRain.pastSevenTotal}`} inches,</p>
