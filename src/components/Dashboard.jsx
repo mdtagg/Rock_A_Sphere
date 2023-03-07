@@ -41,8 +41,8 @@ const Dashboard = (props) => {
                 </p>
             </div>
             }
-            
         </section>
+        
     )
 }
 
