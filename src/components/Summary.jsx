@@ -91,7 +91,7 @@ const Summary = (props) => {
                 })
             }
         })
-        console.log({kindsOfRock})
+        
         return kindsOfRock
     }
 
@@ -122,7 +122,7 @@ const Summary = (props) => {
     },[props.location])
     
     return (
-        <table class='flex flex-col w-2/5 ml-8 bg-slate-200/50 border-2 border-black'>
+        <table class='flex flex-col w-2/5 ml-8 bg-slate-200/50 border-2 border-black sm:w-full'>
             <thead>
                 <tr class='flex items-center'>
                     <th class='border-r-2 border-black p-1 w-1/5'>Past 7 Rain Total</th>
@@ -177,21 +177,3 @@ const Summary = (props) => {
 }
 
 export default Summary
-
-// bg-[${item.color}]
-
-{/* <section class='flex flex-col border-2 text-xl border-black h-full w-1/3 mb-8 ml-8 bg-slate-300/70 rounded gap-3'>
-            <p>{`The total amount of rain and snow for the past 7 days was ${props.totalRain.pastSevenTotal}`} inches,</p>
-            <p>{`The total amount of rain and snow for the last 3 days was ${props.totalRain.pastThreeTotal}`} inches </p>
-            <p>{`This area is composed primarily of ${rockData.primaryRockClass} ${rockData.primaryRockType} rock`} </p>
-            <p>Based on this information it would be ideal to wait at least 5 days before climbing</p>
-            <p>Always check to make sure dirt underneath your climb is dry!</p>
-        </section> */}
-
-        // {
-        //     props.totalRain.pastSevenTotal > 1 ? 
-        //     <p>(heavy rain)</p> :
-        //     props.totalRain.pastSevenTotal < 5 ?
-        //     <p>(medium rain)</p>:
-        //     <p>(light rain)</p>
-        //     }

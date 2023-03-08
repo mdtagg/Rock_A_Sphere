@@ -76,38 +76,3 @@ const LocationMenu = (props) => {
 }
 
 export default LocationMenu
-
-{/* <label class='font-bold' for='longitude'>Longitude: </label> */}
-                    // <input type='number' id='longitude' name='longitude' required ></input>
-
-{/* <button class='text-black text-3xl rounded flex items-center gap-1'  >
-                {props.location.title} 
-                <img class='h-5 w-5' src='/downCaret.svg'></img>
-        </button> */}
-
-        // <Transition
-        //             as={Fragment}
-        //             enter="transition ease-out duration-200"
-        //             enterFrom="opacity-0 translate-y-1"
-        //             enterTo="opacity-100 translate-y-0"
-        //             leave="transition ease-in duration-150"
-        //             leaveFrom="opacity-100 translate-y-0"
-        //             leaveTo="opacity-0 translate-y-1"
-        //         ></Transition>
-
-        // <div class="fixed top-16 w-full max-w-sm px-4">
-        // <Popover class='relative'>
-        //     <Popover.Button class='flex w-full items-center justify-center gap-2'>
-        //         <span class='text-3xl'>{props.location.title}</span>
-        //         <ChevronDownIcon class='h-5 w-5'/>
-                
-        //         <Popover.Panel class='flex flex-col'>
-                
-        //             {props.climbingAreas.map(location => {
-        //                 return <button>{location.title}</button>
-        //             })}
-                   
-        //         </Popover.Panel>
-        //     </Popover.Button>
-        // </Popover>
-        // </div>
