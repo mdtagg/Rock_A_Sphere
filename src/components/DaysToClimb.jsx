@@ -7,7 +7,6 @@ const DaysToClimb = (props) => {
 function getDaysToClimb() {
 
     const lastThree = parseFloat(props.totalRain.pastThreeTotal)
-    console.log(props.rockData.primaryRockClass)
     if(props.rockData.primaryRockClass === 'sedimentary') {
         if(lastThree > 0.5) {
             setDaysToClimb(3)

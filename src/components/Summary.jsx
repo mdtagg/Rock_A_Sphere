@@ -38,12 +38,10 @@ const Summary = (props) => {
                 }
             }
         }
-        // console.log({rockTypeData})
         findPrimaryRockClass(rockTypeData)
     }
 
     function findPrimaryRockClass(rockTypeData) {
-        // console.log(rockTypeData)
         let rockData = {
             rockClasses: {},
             rockTypes:{},
