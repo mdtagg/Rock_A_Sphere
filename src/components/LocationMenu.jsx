@@ -88,9 +88,9 @@ const LocationMenu = (props) => {
             {toggleForm &&
             <form onSubmit={(e) => handleSubmit(e)}>
                 <div class='flex gap-2'>
-                    <label class='font-bold' for='coords'>Latitude/Longitude: </label>
+                    <label class='font-bold' htmlFor='coords'>Latitude/Longitude: </label>
                     <input class='border-2 border-black placeholder:text-xs' placeholder='copy and paste from google maps' type='text' id='coords' name='coords' required></input>
-                    <label class='font-bold' for='name'>Area Name: </label>
+                    <label class='font-bold' htmlFor='name'>Area Name: </label>
                     <input class='border-2 border-black' type='text' id='name' name='title' required></input>
                 </div>
                 <div class='flex gap-3 justify-center mt-4'>
