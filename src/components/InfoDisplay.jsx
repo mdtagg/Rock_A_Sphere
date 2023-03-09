@@ -43,7 +43,7 @@ const InfoDisplay = (props) => {
                             <div class='text-3xl gap-3'>{item[0]}</div>
                             <div class='flex gap-3 items-center'>
                                 <div>
-                                    <img class='h-5 ' src='/rain.svg'></img>
+                                    <img class='h-5 ' src='rain.svg'></img>
                                 </div>
                                 <div class='text-xl font-bold'>
                                     {item[1]} <i>in</i>

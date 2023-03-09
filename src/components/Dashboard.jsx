@@ -16,7 +16,7 @@ const Dashboard = (props) => {
         <section class='flex items-center flex-col p-6 gap-1 rounded-md bg-gray-100/25 h-fit w-fit border-2 border-black ml-11'>
             <button class='text-black text-3xl rounded flex items-center gap-1' onClick={handleClick}>
                 {props.location.title} 
-                <img class='h-5 w-5' src='/downCaret.svg'></img>
+                <img class='h-5 w-5' src='downCaret.svg'></img>
             </button> 
             
             {dropdown &&
