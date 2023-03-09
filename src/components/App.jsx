@@ -94,7 +94,6 @@ const App = () => {
             <Summary 
                 location={location} 
                 totalRain={totalRain} 
-                // weatherData={weatherData}
             />
             <InfoDisplay 
                 location={location} 

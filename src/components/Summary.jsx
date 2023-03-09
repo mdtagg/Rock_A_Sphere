@@ -172,7 +172,6 @@ const Summary = (props) => {
                         
                         <DaysToClimb 
                             totalRain={props.totalRain}
-                            // weatherData={props.weatherData}
                             rockData={rockData}
                         />
                 
