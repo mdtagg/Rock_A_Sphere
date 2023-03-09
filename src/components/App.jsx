@@ -12,6 +12,8 @@ const App = () => {
     const [location,setLocation] = useState(climbingAreas[0])
     const [totalRain,setTotalRain] = useState({})
 
+    console.log(climbingAreas)
+
     const getWeatherData = async (lat,long,timezone) => {
 
         await axios.get('https://api.open-meteo.com/v1/forecast?&daily=weathercode,apparent_temperature_max,sunrise,sunset,precipitation_sum,precipitation_hours,precipitation_probability_max&current_weather=true&temperature_unit=fahrenheit&windspeed_unit=mph&precipitation_unit=inch&timeformat=unixtime&past_days=7',
@@ -80,7 +82,7 @@ const App = () => {
     },[location])
 
     return (
-        <main class={`bg-[url('/redRock.jpg')] bg-cover bg-center h-screen w-screen flex flex-col justify-between`}>
+        <main class={`bg-[url('/redRock.jpg')] bg-cover bg-center h-screen w-screen flex flex-col justify-evenly`}>
             <Dashboard 
                 climbingAreas={climbingAreas} 
                 setClimbingAreas={setClimbingAreas} 

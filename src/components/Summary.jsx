@@ -28,6 +28,7 @@ const Summary = (props) => {
             dataArray.push(...item.liths)
         })
         let rockTypeData = []
+
         for(let i = 0;i < dataArray.length;i++) {
             for(let j = 0;j < rockTypes.length;j++) {
                 let currentRockType = rockTypes[j]
@@ -37,12 +38,12 @@ const Summary = (props) => {
                 }
             }
         }
-        console.log({rockTypeData})
+        // console.log({rockTypeData})
         findPrimaryRockClass(rockTypeData)
     }
 
     function findPrimaryRockClass(rockTypeData) {
-        console.log(rockTypeData)
+        // console.log(rockTypeData)
         let rockData = {
             rockClasses: {},
             rockTypes:{},
@@ -124,7 +125,7 @@ const Summary = (props) => {
     },[props.location])
     
     return (
-        <table class='flex flex-col w-2/5 ml-8 bg-slate-200/50 border-2 border-black '>
+        <table class='flex flex-col w-2/5 bg-slate-200/50 border-2 border-black ml-11'>
             <thead>
                 <tr class='flex items-center'>
                     <th class='border-r-2 border-black p-1 w-1/5'>Past 7 Rain Total</th>
