@@ -1,6 +1,7 @@
 import axios from "axios"
 import { useState,useEffect } from "react"
 import DaysToClimb from "./DaysToClimb"
+import { v4 as uuidv4 } from 'uuid';
 
 const Summary = (props) => {
 
@@ -156,7 +157,11 @@ const Summary = (props) => {
                         <div class='flex flex-col gap-1 p-1 items-center justify-center h-full'>
                         {rockData.kindsOfRock.map(item => {
                             return (
-                                <div class={`text-center rounded font-bold w-full border-2 border-black`} style={{backgroundColor: `${item.color}`}}>
+                                <div 
+                                    class={`text-center rounded font-bold w-full border-2 border-black`} 
+                                    style={{backgroundColor: `${item.color}`}}
+                                    key={uuidv4()}
+                                >
                                     {item.name}
                                 </div>
                             )

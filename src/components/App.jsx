@@ -8,13 +8,10 @@ import UseLocalStorage from "../hooks/UseLocalStorage"
 
 const App = () => {
 
-    // const [climbingAreas,setClimbingAreas] = useState(getClimbingAreas())
     const [climbingAreas,setClimbingAreas] = UseLocalStorage('climbing-areas',getClimbingAreas())
     const [weatherData,setWeatherData] = useState(undefined)
     const [location,setLocation] = useState(climbingAreas[0])
     const [totalRain,setTotalRain] = useState({})
-
-    console.log(climbingAreas)
 
     const getWeatherData = async (lat,long,timezone) => {
 
