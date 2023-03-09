@@ -4,7 +4,6 @@ import { v4 as uuidv4 } from 'uuid';
 const InfoDisplay = (props) => {
 
     const [dailyData,setDailyData] = useState(undefined)
-    // console.log(dailyData)
 
     function parseDailyData(dailyData) {
   
@@ -30,7 +29,6 @@ const InfoDisplay = (props) => {
     }
 
     useEffect(() => {
-        // console.log(props.weatherData)
         if(!props.weatherData) return
         parseDailyData(props.weatherData.dailyWeather)
     },[props.weatherData])

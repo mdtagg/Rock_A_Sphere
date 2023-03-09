@@ -76,7 +76,7 @@ const Summary = (props) => {
     }
 
     function getRockLithos(rockTypeData) {
-        const kindsOfRock = []
+        let kindsOfRock = []
         const rockDataArray = []
         const rockClasses = ['sedimentary','igneous','metamorphic']
         rockTypeData.forEach(type => {
@@ -91,7 +91,9 @@ const Summary = (props) => {
                 })
             }
         })
-        
+        if(kindsOfRock.length > 7) {
+            kindsOfRock = kindsOfRock.slice(0,7)
+        }
         return kindsOfRock
     }
 
@@ -122,7 +124,7 @@ const Summary = (props) => {
     },[props.location])
     
     return (
-        <table class='flex flex-col w-2/5 ml-8 bg-slate-200/50 border-2 border-black sm:w-full'>
+        <table class='flex flex-col w-2/5 ml-8 bg-slate-200/50 border-2 border-black '>
             <thead>
                 <tr class='flex items-center'>
                     <th class='border-r-2 border-black p-1 w-1/5'>Past 7 Rain Total</th>
