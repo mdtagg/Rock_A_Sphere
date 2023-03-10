@@ -34,12 +34,12 @@ const InfoDisplay = (props) => {
     },[props.weatherData])
 
     return (
-        <section class='flex w-full justify-evenly'>
-            <div class='flex text-black w-full justify-between pl-10 pr-10'>
+        <section class='flex justify-evenly'>
+            <div class='flex text-black w-full justify-between pl-10 pr-10 sm:grid sm:grid-cols-3 sm:grid-flow-row sm:p-0'>
             {dailyData &&
                 dailyData.map(item => {
                     return (
-                        <div key={uuidv4()} class={`flex flex-col border-2 border-black p-6 ${item[2]} gap-3`}>
+                        <div key={uuidv4()} class={`flex flex-col border-2 border-black p-6 ${item[2]} gap-3 sm:p-2 sm:items-center`}>
                             <div class='text-3xl gap-3'>{item[0]}</div>
                             <div class='flex gap-3 items-center'>
                                 <div>

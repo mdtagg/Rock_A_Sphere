@@ -124,7 +124,7 @@ const Summary = (props) => {
     },[props.location])
     
     return (
-        <table class='flex flex-col w-2/5 bg-slate-200/50 border-2 border-black ml-11'>
+        <table class='flex flex-col w-2/5 bg-slate-200/50 border-2 border-black ml-11 sm:w-full sm:m-0'>
             <thead>
                 <tr class='flex items-center'>
                     <th class='border-r-2 border-black p-1 w-1/5'>Past 7 Rain Total</th>
@@ -142,8 +142,8 @@ const Summary = (props) => {
                     <td class='flex items-center justify-center text-xl text-blue-600 font-bold border-r-2 border-black w-1/5 h-full gap-1'>
                         {props.totalRain.pastThreeTotal} <i>in</i>
                     </td>
-                    <td class='flex flex-col gap-1 border-r-2 border-black items-center justify-center w-1/5 p-1 h-full'>
-                        <div class='border-2 border-black rounded font-bold p-1 w-full text-center' style={{
+                    <td class='flex flex-col gap-1 border-r-2 border-black items-center justify-center w-1/5 p-1 h-full sm:p-0'>
+                        <div class='border-2 border-black rounded font-bold w-full text-center sm:text-xs sm:flex sm:justify-center sm:p-0' style={{
                             backgroundColor: 
                             rockData.primaryRockClass === 'sedimentary' ? '#FF8C00' :
                             rockData.primaryRockClass === 'metamorphic' ? '#AC902A' :
@@ -154,11 +154,11 @@ const Summary = (props) => {
                         </div>
                     </td>
                     <td class='w-1/5 border-r-2 border-black h-full'>
-                        <div class='flex flex-col gap-1 p-1 items-center justify-center h-full'>
+                        <div class='flex flex-col gap-1 p-1 items-center justify-center h-full sm:p-0'>
                         {rockData.kindsOfRock.map(item => {
                             return (
                                 <div 
-                                    class={`text-center rounded font-bold w-full border-2 border-black`} 
+                                    class={`text-center rounded font-bold w-full border-2 border-black sm:text-xs`} 
                                     style={{backgroundColor: `${item.color}`}}
                                     key={uuidv4()}
                                 >
