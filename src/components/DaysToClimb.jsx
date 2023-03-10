@@ -6,7 +6,8 @@ const DaysToClimb = (props) => {
 
 function getDaysToClimb() {
 
-    const lastThree = parseFloat(props.rainTotal.pastThreeTotal)
+    const lastThree = parseFloat(props.totalRain.pastThreeTotal)
+    console.log({lastThree})
     if(props.rockData.primaryRockClass === 'sedimentary') {
         if(lastThree > 0.5) {
             setDaysToClimb(3)
@@ -24,9 +25,9 @@ function getDaysToClimb() {
 }
 
 useEffect(() => {
-    if(!props.rainTotal) return 
+    if(!props.totalRain) return 
     getDaysToClimb()
-},[props.rainTotal])
+},[props.totalRain])
     
     return (
         <div class='flex flex-col items-center justify-center'>
