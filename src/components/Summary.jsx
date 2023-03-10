@@ -158,7 +158,7 @@ const Summary = (props) => {
                         {rockData.kindsOfRock.map(item => {
                             return (
                                 <div 
-                                    class="text-center rounded font-bold w-full border-2 border-black sm:text-xs" 
+                                    class="text-center rounded font-bold w-full border-2 text-clip overflow-hidden border-black sm:text-xs " 
                                     style={{backgroundColor: `${item.color}`, color: item.color === '#000000' ? 'white' : 'black'}}
                                     key={uuidv4()}
                                 >

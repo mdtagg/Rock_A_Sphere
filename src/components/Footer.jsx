@@ -1,0 +1,24 @@
+
+
+const Footer = () => {
+    return (
+        <footer class='flex items-center h-10 bg-gray-100/75 justify-between'>
+            <div class='flex justify-center m-auto items-center gap-2'>
+                <p class='text-black text-2xl font-medium sm:text-sm sm:font-medium'>Developed by Michael Tagg</p>
+                <a href='https://github.com/mdtagg'>
+                    <img 
+                        class='h-5 w-5' src='github.svg'>
+                    </img>
+                </a>
+            </div>
+            <div  class='text-black text-xs flex flex-col items-end'>
+                <p>Background Photo By: </p>
+                <p class='text-xs'>
+                    <a href='https://unsplash.com/@aaronburden'><i>Aaron Burden</i></a>
+                </p>
+            </div>
+        </footer>
+    )
+}
+
+export default Footer

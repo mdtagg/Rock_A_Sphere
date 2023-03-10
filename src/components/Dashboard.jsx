@@ -23,7 +23,6 @@ const Dashboard = (props) => {
         weatherIcon >= 95 && weatherIcon <= 99 ? newIcon = 'thunder.svg':
         newIcon = 'rain.svg'
 
-        console.log(newIcon)
         setWeatherIcon(newIcon)
      
     }

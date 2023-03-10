@@ -5,6 +5,7 @@ import axios from "axios"
 import { getClimbingAreas } from '../climbingAreas'
 import { useState,useEffect } from "react"
 import UseLocalStorage from "../hooks/UseLocalStorage"
+import Footer from "./Footer"
 
 const App = () => {
 
@@ -81,27 +82,30 @@ const App = () => {
     },[location])
 
     return (
-        <main class={`bg-[url('/redRock.jpg')] bg-cover bg-center h-screen w-screen flex flex-col justify-evenly`}>
-            <Dashboard 
-                climbingAreas={climbingAreas} 
-                setClimbingAreas={setClimbingAreas} 
-                weatherData={weatherData} 
-                location={location} 
-                setLocation={setLocation}
-            />
-            <Summary 
-                location={location} 
-                totalRain={totalRain} 
-            />
-            <InfoDisplay 
-                location={location} 
-                weatherData={weatherData} 
-            />
-            
+        <main class={`bg-[url('/redRock.jpg')] bg-cover bg-center h-screen w-screen flex flex-col justify-between sm:justify-end`}>
+            <div class='flex flex-col justify-evenly gap-3 h-full'>
+                <Dashboard 
+                    climbingAreas={climbingAreas} 
+                    setClimbingAreas={setClimbingAreas} 
+                    weatherData={weatherData} 
+                    location={location} 
+                    setLocation={setLocation}
+                />
+                <Summary 
+                    location={location} 
+                    totalRain={totalRain} 
+                />
+                <InfoDisplay 
+                    location={location} 
+                    weatherData={weatherData} 
+                />
+            </div>
+            <Footer/>
         </main>
     )
 }
 
 export default App
+
 
 

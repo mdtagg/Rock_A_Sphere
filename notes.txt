@@ -10,14 +10,16 @@ yosemite: anik3t
 
 todos:
 
-- parse parenthesis out of google maps gps coords
-- fix text color for rocks with black background
 - media queries for flipped iphones
-- add photo cred 
 - try to add map with marker
-- add weather icons
+- add todays rain
+- fix overflowing rock words 
 
 completed: 
 
--fix timezone api call 
+- fix timezone api call 
+- add weather icons
+- parse parenthesis out of google maps gps coords
+- fix text color for rocks with black background
+- add photo cred/github
 
