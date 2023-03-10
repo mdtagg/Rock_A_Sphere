@@ -159,7 +159,7 @@ const Summary = (props) => {
                             return (
                                 <div 
                                     class="text-center rounded font-bold w-full border-2 border-black sm:text-xs" 
-                                    style={{backgroundColor: `${item.color}`}}
+                                    style={{backgroundColor: `${item.color}`, color: item.color === '#000000' ? 'white' : 'black'}}
                                     key={uuidv4()}
                                 >
                                     {item.name}

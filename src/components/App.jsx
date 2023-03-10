@@ -97,6 +97,7 @@ const App = () => {
                 location={location} 
                 weatherData={weatherData} 
             />
+            
         </main>
     )
 }
