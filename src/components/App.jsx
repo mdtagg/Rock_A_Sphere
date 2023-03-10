@@ -76,7 +76,7 @@ const App = () => {
         getWeatherData(
             location.coords.latitude,
             location.coords.longitude,
-            "America/Los_Angeles"
+            "auto"
         )
     },[location])
 

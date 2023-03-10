@@ -7,3 +7,17 @@ upsplash:
 
 red rock: aaronburden
 yosemite: anik3t
+
+todos:
+
+- parse parenthesis out of google maps gps coords
+- fix text color for rocks with black background
+- media queries for flipped iphones
+- add photo cred 
+- try to add map with marker
+- add weather icons
+
+completed: 
+
+-fix timezone api call 
+
