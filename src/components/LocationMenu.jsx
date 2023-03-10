@@ -57,7 +57,7 @@ const LocationMenu = (props) => {
                 <div class='grid grid-rows-3 grid-flow-col w-full gap-1'>
                     {props.climbingAreas.map(area => {
                         return (
-                            <div class='flex justify-between gap-3 bg-white rounded border border-black pl-1' key={uuidv4()}>
+                            <div class='flex justify-between gap-3 bg-white rounded border border-black pl-1 sm:text-sm' key={uuidv4()}>
                                 <button 
                                     class='flex justify-start items-center w-full' 
                                     onClick={() => handleAreaChange(area)} 
