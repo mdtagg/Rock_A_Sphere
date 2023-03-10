@@ -16,8 +16,7 @@ const Summary = (props) => {
                 color:'#FFD500'
             }
         ]
-    }
-    )
+    })
 
     async function getRockData() {
         const lat = props.location.coords.latitude

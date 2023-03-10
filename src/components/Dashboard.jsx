@@ -1,5 +1,6 @@
 import { useState,useEffect } from "react"
 import LocationMenu from "./LocationMenu"
+// import MapWrapper from "./MapWrapper"
 
 
 const Dashboard = (props) => {
@@ -34,6 +35,7 @@ const Dashboard = (props) => {
     },[props.weatherData])
 
     return (
+        <div class='flex gap-10'>
         <section class='flex justify-center items-center flex-col p-4 gap-1 rounded-md bg-gray-100/25 h-fit w-fit border-2 border-black ml-11 sm:m-0 sm:p-2 sm:w-full'>
             <button class='text-black text-3xl rounded flex items-center gap-1' onClick={handleClick}>
                 {props.location.title} 
@@ -67,7 +69,8 @@ const Dashboard = (props) => {
             </div>
             }
         </section>
-        
+        {/* <MapWrapper /> */}
+        </div>
     )
 }
 
