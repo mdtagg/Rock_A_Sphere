@@ -44,25 +44,16 @@ const Summary = (props) => {
     function findPrimaryRockClass(rockTypeData) {
         let rockData = {
             rockClasses: {},
-            rockTypes:{},
-            rockTypesArray : [],
             rockClassesArray: []
         }
         
         rockTypeData.forEach(item => {
             const rockClass = item.class
-            const rockType = item.type
             if(rockData.rockClassesArray.includes(rockClass)) {
                 rockData.rockClasses[rockClass] += 1
             }else {
                 rockData.rockClasses[rockClass] = 1
                 rockData.rockClassesArray.push(rockClass)
-            }
-            if(rockData.rockTypesArray.includes(rockType)) {
-                rockData.rockTypes[rockType] += 1
-            }else {
-                rockData.rockTypes[rockType] = 1
-                rockData.rockTypesArray.push(rockType)
             }
         })
     
@@ -168,12 +159,10 @@ const Summary = (props) => {
                         </div>
                     </td>
                     <td class='w-1/5'>
-                        
                         <DaysToClimb 
                             totalRain={props.totalRain}
                             rockData={rockData}
                         />
-                
                     </td>
                 </tr>
             </tbody>
