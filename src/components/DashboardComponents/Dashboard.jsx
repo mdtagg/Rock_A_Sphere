@@ -31,7 +31,7 @@ const Dashboard = (props) => {
     },[props.weatherData])
 
     return (
-        <section class='flex justify-center items-center flex-col p-6 gap-1 rounded-md bg-gray-100/25 h-fit w-fit border-2 border-black ml-11 sm:m-0 sm:p-2 sm:w-full md:gap-0 md:p-2 md:m-0 md:w-1/3'>
+        <section class='flex justify-center items-center flex-col p-6 gap-1 rounded-md bg-gray-100/25 h-fit w-fit border-2 border-black ml-11 sm:m-0 sm:p-2 sm:w-full md:gap-0 md:p-2 md:m-0 '>
             <button class='text-black text-3xl rounded flex items-center gap-1 md:text-lg md:font-bold' onClick={handleClick}>
                 {props.location.title} 
                 <img class='h-5 w-5 md:h-3 md:w-3' src='downCaret.svg'></img>
