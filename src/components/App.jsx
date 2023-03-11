@@ -1,10 +1,10 @@
-import Dashboard from "./Dashboard"
-import Summary from "./Summary"
-import InfoDisplay from "./InfoDisplay"
-import axios from "axios"
-import { getClimbingAreas } from '../climbingAreas'
 import { useState,useEffect } from "react"
+import { getClimbingAreas } from '../climbingAreas'
 import UseLocalStorage from "../hooks/UseLocalStorage"
+import axios from "axios"
+import Dashboard from "./DashboardComponents/Dashboard"
+import Summary from "./SummaryComponents/Summary"
+import InfoDisplay from "./InfoDisplay"
 import Footer from "./Footer"
 
 const App = () => {

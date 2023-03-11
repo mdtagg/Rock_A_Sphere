@@ -33,7 +33,6 @@ const LocationMenu = (props) => {
         if(latLong[0][0] === '(' || latLong[1][latLong.length - 1] === ')') {
             const latitude = parseFloat(latLong[0].slice(1)).toFixed(2)
             const longitude = parseFloat(latLong[1].slice(0,latLong[1].length - 1)).toFixed(2)
-            console.log({latitude,longitude})
             return {latitude,longitude}
         }
         const latitude = parseFloat(latLong[0]).toFixed(2)
@@ -69,7 +68,6 @@ const LocationMenu = (props) => {
                                 <button 
                                     class='flex justify-start items-center w-full' 
                                     onClick={() => handleAreaChange(area)} 
-                                    
                                 >
                                     {area.title}
                                 </button>
@@ -92,7 +90,6 @@ const LocationMenu = (props) => {
             </div>
             }
             
-
             {toggleForm &&
             <form onSubmit={(e) => handleSubmit(e)}>
                 <div class='flex gap-2 sm:flex-col'>
