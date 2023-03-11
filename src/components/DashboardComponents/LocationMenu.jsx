@@ -64,7 +64,7 @@ const LocationMenu = (props) => {
                 <div class='grid grid-rows-3 grid-flow-col w-full gap-1'>
                     {props.climbingAreas.map(area => {
                         return (
-                            <div class='flex justify-between gap-3 bg-white rounded border border-black pl-1 sm:text-sm' key={uuidv4()}>
+                            <div class='flex justify-between gap-3 bg-white rounded border border-black pl-1 sm:text-sm md:text-xs' key={uuidv4()}>
                                 <button 
                                     class='flex justify-start items-center w-full' 
                                     onClick={() => handleAreaChange(area)} 
@@ -83,8 +83,8 @@ const LocationMenu = (props) => {
 
                     })}
                 </div>
-                <button class='flex justify-center gap-1 items-center bg-white border-2 border-black w-full rounded p-1 hover:bg-green-500' onClick={handleClick}>
-                    <img class='h-4 w-4' src='plus.svg'></img>
+                <button class='flex justify-center gap-1 items-center bg-white border-2 border-black w-full rounded p-1 hover:bg-green-500 md:p-0 md:text-xs' onClick={handleClick}>
+                    <img class='h-4 w-4 md:h-3 md:w-3' src='plus.svg'></img>
                     Add Area
                 </button>
             </div>
@@ -94,13 +94,13 @@ const LocationMenu = (props) => {
             <form onSubmit={(e) => handleSubmit(e)}>
                 <div class='flex gap-2 sm:flex-col'>
                     <label class='font-bold' htmlFor='coords'>Latitude/Longitude: </label>
-                    <input class='border-2 border-black placeholder:text-xs' placeholder='copy and paste from google maps' type='text' id='coords' name='coords' required></input>
+                    <input class='border-2 border-black placeholder:text-xs' placeholder='copy + paste from google maps' type='text' id='coords' name='coords' required></input>
                     <label class='font-bold' htmlFor='name'>Area Name: </label>
                     <input class='border-2 border-black' type='text' id='name' name='title' required></input>
                 </div>
-                <div class='flex gap-3 justify-center mt-4'>
-                    <button class='bg-green-500 text-white border-2 border-black rounded p-1 w-1/5 sm:w-1/2' type='submit'>Add</button>
-                    <button class='bg-red-500 rounded text-white border-2 border-black p-1 w-1/5 sm:w-1/2' onClick={handleCancel}>Cancel</button>
+                <div class='flex gap-3 justify-center mt-4 md:h-1/3'>
+                    <button class='bg-green-500 text-white border-2 border-black rounded p-1 w-1/5 sm:w-1/2 md:flex md:justify-center md:items-center' type='submit'>Add</button>
+                    <button class='bg-red-500 rounded text-white border-2 border-black p-1 w-1/5 sm:w-1/2 md:flex md:justify-center md:items-center' onClick={handleCancel}>Cancel</button>
                 </div>
             </form>
             }

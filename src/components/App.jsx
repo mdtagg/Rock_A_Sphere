@@ -82,8 +82,8 @@ const App = () => {
     },[location])
 
     return (
-        <main class={`bg-[url('/redRock.jpg')] bg-cover bg-center h-screen w-screen flex flex-col justify-between sm:justify-end`}>
-            <div class='flex flex-col justify-evenly gap-3 h-full'>
+        <main class={`bg-[url('/redRock.jpg')] bg-cover bg-center h-screen w-screen flex flex-col justify-between sm:justify-end `}>
+            <div class='flex flex-col justify-evenly gap-3 h-full md:gap-1'>
                 <Dashboard 
                     climbingAreas={climbingAreas} 
                     setClimbingAreas={setClimbingAreas} 

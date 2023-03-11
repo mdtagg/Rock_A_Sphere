@@ -37,19 +37,19 @@ const InfoDisplay = (props) => {
         <section class='flex justify-evenly'>
             <div class='flex text-black w-full justify-between pl-10 pr-10 sm:grid sm:grid-cols-3 sm:grid-flow-row sm:p-0'>
             {dailyData &&
-                dailyData.map(item => {
-                    return (
-                        <div key={uuidv4()} class={`flex flex-col border-2 border-black p-6 ${item[2]} gap-3 sm:p-2 sm:items-center`}>
-                            <div class='text-3xl gap-3'>{item[0]}</div>
-                            <div class='flex gap-3 items-center'>
-                                <div>
-                                    <img class='h-5 ' src='rain.svg'></img>
-                                </div>
-                                <div class='text-xl font-bold'>
-                                    {item[1]} <i>in</i>
-                                </div>
+            dailyData.map(item => {
+                return (
+                    <div key={uuidv4()} class={`flex flex-col border-2 border-black p-6 ${item[2]} gap-3 sm:p-2 sm:items-center md:p-1 md:gap-0 md:px-2`}>
+                        <div class='text-3xl gap-3 md:text-sm md:font-bold'>{item[0]}</div>
+                        <div class='flex gap-3 items-center md:gap-2'>
+                            <div>
+                                <img class='h-5 w-5 md:h-3 md:w-3' src='rain.svg'></img>
+                            </div>
+                            <div class='text-xl font-bold md:text-xs'>
+                                {item[1]} <i>in</i>
                             </div>
                         </div>
+                    </div>
                     )
                 })
             } 
