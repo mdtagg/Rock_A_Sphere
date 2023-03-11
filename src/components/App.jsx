@@ -82,7 +82,7 @@ const App = () => {
 
     return (
         <main class={`bg-[url('/redRock.jpg')] bg-cover bg-center h-screen w-screen flex flex-col justify-between sm:justify-end `}>
-            <div class='flex flex-col justify-evenly gap-3 h-full md:gap-1'>
+            <div class='flex flex-col justify-evenly gap-3 h-full sm:gap-5 sm:justify-center wide:gap-1'>
                 <Dashboard 
                     climbingAreas={climbingAreas} 
                     setClimbingAreas={setClimbingAreas} 

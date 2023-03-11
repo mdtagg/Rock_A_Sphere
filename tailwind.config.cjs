@@ -17,6 +17,9 @@ module.exports = {
 
       'sm': {'max': '639px'},
       // => @media (max-width: 639px) { ... }
+      'wide': {
+        'raw': `only screen and (max-height: 480px) and (max-width: 960px)`
+    },
     }
   },
   plugins:[]

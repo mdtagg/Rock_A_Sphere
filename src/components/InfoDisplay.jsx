@@ -39,13 +39,13 @@ const InfoDisplay = (props) => {
             {dailyData &&
             dailyData.map(item => {
                 return (
-                    <div key={uuidv4()} class={`flex flex-col border-2 border-black p-6 ${item[2]} gap-3 sm:p-2 sm:items-center md:p-1 md:gap-0 md:px-2`}>
-                        <div class='text-3xl gap-3 md:text-sm md:font-bold'>{item[0]}</div>
-                        <div class='flex gap-3 items-center md:gap-2'>
+                    <div key={uuidv4()} class={`flex flex-col border-2 border-black p-6 ${item[2]} gap-3 sm:p-2 sm:items-center wide:p-1 wide:gap-0 wide:px-2`}>
+                        <div class='text-3xl gap-3 wide:text-sm wide:font-bold'>{item[0]}</div>
+                        <div class='flex gap-3 items-center wide:gap-2'>
                             <div>
-                                <img class='h-5 w-5 md:h-3 md:w-3' src='rain.svg'></img>
+                                <img class='h-5 w-5 wide:h-3 wide:w-3' src='rain.svg'></img>
                             </div>
-                            <div class='text-xl font-bold md:text-xs'>
+                            <div class='text-xl font-bold wide:text-xs'>
                                 {item[1]} <i>in</i>
                             </div>
                         </div>

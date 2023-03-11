@@ -117,9 +117,9 @@ const Summary = (props) => {
     },[props.location])
     
     return (
-        <table class='flex flex-col w-2/5 bg-slate-200/50 border-2 border-black ml-11 sm:w-full sm:m-0 md:w-screen md:m-0'>
+        <table class='flex flex-col w-2/5 bg-slate-200/50 border-2 border-black ml-11 sm:w-full sm:m-0 wide:w-screen wide:m-0'>
             <thead>
-                <tr class='flex md:text-xs'>
+                <tr class='flex wide:text-xs'>
                     <th class='border-r-2 border-black p-1 w-1/5 flex justify-center items-center'>Past 7 Rain Total</th>
                     <th class='border-r-2 border-black w-1/5 p-1 flex justify-center items-center'>Past 3 Rain Total</th>
                     <th class='border-r-2 border-black w-1/5 p-1  flex justify-center items-center'>Primary Rock Type</th>
@@ -128,7 +128,7 @@ const Summary = (props) => {
                 </tr>
             </thead>
             <tbody>
-                <tr class='flex items-center border-t-2 border-black h-full md:text-sm'>
+                <tr class='flex items-center border-t-2 border-black h-full wide:text-sm'>
                     <td class='flex justify-center items-center text-xl font-bold text-blue-600 border-r-2 border-black w-1/5 h-full gap-1'>
                         {props.totalRain.pastSevenTotal} <i>in</i>
                     </td>
@@ -136,7 +136,7 @@ const Summary = (props) => {
                         {props.totalRain.pastThreeTotal} <i>in</i>
                     </td>
                     <td class='flex flex-col gap-1 border-r-2 border-black items-center justify-center w-1/5 p-1 h-full sm:p-0 '>
-                        <div class='border-2 border-black rounded font-bold w-full text-center sm:text-xs sm:flex sm:justify-center sm:p-0  md:text-xs' style={{
+                        <div class='border-2 border-black rounded font-bold w-full text-center sm:text-xs sm:flex sm:justify-center sm:p-0  wide:text-xs' style={{
                             backgroundColor: 
                             rockData.primaryRockClass === 'sedimentary' ? '#FF8C00' :
                             rockData.primaryRockClass === 'metamorphic' ? '#AC902A' :
@@ -147,7 +147,7 @@ const Summary = (props) => {
                         </div>
                     </td>
                     <td class='w-1/5 border-r-2 border-black h-full'>
-                        <div class='flex flex-col gap-1 p-1 items-center justify-center h-full sm:p-0 md:text-xs'>
+                        <div class='flex flex-col gap-1 p-1 items-center justify-center h-full sm:p-0 wide:text-xs'>
                         {rockData.kindsOfRock.map(item => {
                             return (
                                 <div 
