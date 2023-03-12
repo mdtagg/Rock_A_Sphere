@@ -18,8 +18,6 @@ const Summary = (props) => {
         ]
     })
 
-    console.log({rockData})
-
     async function getRockData() {
         const lat = props.location.coords.latitude
         const lng = props.location.coords.longitude

@@ -12,12 +12,13 @@ export const getClimbingAreas = () => {
         {
             title:'Stoney Point',
             coords:
-                {latitude:'34.28088471105757',longitude:'-118.60424751803053'},
+                {latitude:'34.27125553935417',longitude:'-118.60405296927681'},
             rockType:'sandstone',
             id: uuidv4()
         }
     ]
 }
+
 
 
 
