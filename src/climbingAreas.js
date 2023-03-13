@@ -5,7 +5,7 @@ export const getClimbingAreas = () => {
         {
             title:'Red Rock',
             coords:
-                {latitude:'36.10',longitude:'-115.49'},
+                {latitude:'36.09350599633892',longitude:'-115.48548059665926'},
             rockType:'sandstone',
             id: uuidv4()
         },
