@@ -8,6 +8,7 @@ import VectorSource from 'ol/source/Vector'
 import XYZ from 'ol/source/XYZ'
 import {Point} from 'ol/geom.js';
 import {Feature} from 'ol/index.js';
+import {OSM} from 'ol/source.js';
 
 const MapWrapper = (props) => {
 
