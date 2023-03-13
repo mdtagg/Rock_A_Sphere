@@ -8,9 +8,6 @@ import VectorSource from 'ol/source/Vector'
 import XYZ from 'ol/source/XYZ'
 import {Point} from 'ol/geom.js';
 import {Feature} from 'ol/index.js';
-import {fromLonLat} from 'ol/proj.js';
-import {transform} from 'ol/proj';
-import { Group as LayerGroup } from 'ol/layer.js'
 
 const MapWrapper = (props) => {
 
@@ -20,6 +17,7 @@ const MapWrapper = (props) => {
     const mapRef = useRef()
     mapRef.current = map
 
+    //creates the initial instance of the map 
     useEffect(() => {
         const place = [props.location.coords.longitude, props.location.coords.latitude]
         const point = new Point(place)
@@ -54,6 +52,7 @@ const MapWrapper = (props) => {
         setMap(initialMap)
     },[])
 
+    //adds a red dot on the map when a new area is created
     useEffect(() => {
         if(!map) return
         
@@ -76,9 +75,9 @@ const MapWrapper = (props) => {
         
     },[props.location])
 
+    //deletes points on the map when area is deleted
     useEffect(() => {
         if(!map) return
-
         const filteredIds = props.climbingAreas.map(area => {
             return area.id
         })
@@ -88,8 +87,6 @@ const MapWrapper = (props) => {
             }
         })
         map.setLayers(filteredLayers)
-        // console.log(filteredIds)
-        console.log(filteredLayers)
     },[props.climbingAreas])
 
     return (
