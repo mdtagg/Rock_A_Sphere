@@ -2,7 +2,7 @@ import { useState,useEffect } from "react"
 import { getClimbingAreas } from '../climbingAreas'
 import UseLocalStorage from "../hooks/UseLocalStorage"
 import axios from "axios"
-import Dashboard from "./DashboardComponents/Dashboard"
+import Dashboard from "../containers/Dashboard"
 import Summary from "./SummaryComponents/Summary"
 import InfoDisplay from "./InfoDisplay"
 import Footer from "./Footer"
@@ -15,17 +15,16 @@ const App = () => {
     const [totalRain,setTotalRain] = useState({})
 
     const getWeatherData = async (lat,long,timezone) => {
-        await axios.get('https://api.open-meteo.com/v1/forecast?&daily=weathercode,apparent_temperature_max,sunrise,sunset,precipitation_sum,precipitation_hours,precipitation_probability_max&current_weather=true&temperature_unit=fahrenheit&windspeed_unit=mph&precipitation_unit=inch&timeformat=unixtime&past_days=7',
+        const response = await axios.get('https://api.open-meteo.com/v1/forecast?&daily=weathercode,apparent_temperature_max,sunrise,sunset,precipitation_sum,precipitation_hours,precipitation_probability_max&current_weather=true&temperature_unit=fahrenheit&windspeed_unit=mph&precipitation_unit=inch&timeformat=unixtime&past_days=7',
         {
             params: {
                 latitude:lat,
                 longitude:long,
                 timezone
             }
-        }).then(({data}) => {
-            const parsedData = parseWeatherData(data)
-            setWeatherData(parsedData)
         })
+        const parsedData = parseWeatherData(response.data)
+        setWeatherData(parsedData)
     }
 
     function parseWeatherData(data) {

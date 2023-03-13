@@ -10,16 +10,30 @@ yosemite: anik3t
 
 todos:
 
-- media queries for flipped iphones
-- try to add map with marker
+- fix primary rock type logic (echo being igneous still weak to rain)
+- add more logic for determining days of wet rock
 - add todays rain
-- fix overflowing rock words 
+- button to get rid of footer
+- organize code, add more components and folders 
+- add tool tip to rock types linking to more info
+- add clicking feature to map 
+- add typescript
 
 completed: 
+
+3/11/23 && 3/13/23
+
+- try to add map with marker (open layer)
+
+
+
+3/10/23
 
 - fix timezone api call 
 - add weather icons
 - parse parenthesis out of google maps gps coords
 - fix text color for rocks with black background
 - add photo cred/github
+- fix overflowing rock words 
+- media queries for flipped iphones
 

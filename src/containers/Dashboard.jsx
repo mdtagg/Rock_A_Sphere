@@ -1,6 +1,6 @@
 import { useState,useEffect } from "react"
-import LocationMenu from "./LocationMenu"
-import MapWrapper from "./MapWrapper"
+import LocationMenu from "../components/DashboardComponents/LocationMenu"
+import MapWrapper from "../components/DashboardComponents/MapWrapper"
 
 const Dashboard = (props) => {
 
