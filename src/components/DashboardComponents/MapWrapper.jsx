@@ -26,9 +26,6 @@ const MapWrapper = (props) => {
     const point = new Point(place)
     const webMercator = fromLonLat(place)
 
-    // const transformedCoord = transform(place, 'EPSG:3857', 'EPSG:4326')
-    // console.log({transformedCoord})
-
     console.log(webMercator)
 
     useEffect(() => {
@@ -62,7 +59,7 @@ const MapWrapper = (props) => {
     },[])
 
     return (
-        <div class='w-72 h-40 border-2 border-black' ref={mapRef}></div>
+        <div class='w-72 h-40 border-2 border-black rounded' ref={mapRef}></div>
     )
 }
 
