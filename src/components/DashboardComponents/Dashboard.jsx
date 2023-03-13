@@ -33,7 +33,7 @@ const Dashboard = (props) => {
 
     return (
         <div class='flex gap-10'>
-        <section class='flex justify-center items-center flex-col p-6 gap-1 rounded-md bg-gray-100/25 h-fit w-fit border-2 border-black ml-11 sm:m-0 sm:p-2 sm:w-full wide:gap-0 wide:p-2 wide:m-0 '>
+        <section class='flex justify-center items-center flex-col p-6 gap-1 rounded-md bg-gray-100/25 h-fit w-fit border-2 border-black ml-11 sm:m-0 sm:p-2 sm:w-1/2 wide:gap-0 wide:p-2 wide:m-0 '>
             <button class='text-black text-3xl rounded flex items-center gap-1 wide:text-lg wide:font-bold' onClick={handleClick}>
                 {props.location.title} 
                 <img class='h-5 w-5 wide:h-3 wide:w-3' src='downCaret.svg'></img>
@@ -67,7 +67,7 @@ const Dashboard = (props) => {
             </div>
             }
         </section>
-        <MapWrapper location={props.location}/>
+        <MapWrapper location={props.location} climbingAreas={props.climbingAreas} />
         </div>
     )
 }
