@@ -8,9 +8,12 @@ import VectorSource from 'ol/source/Vector'
 import XYZ from 'ol/source/XYZ'
 import {Point} from 'ol/geom.js';
 import {Feature} from 'ol/index.js';
-import {OSM} from 'ol/source.js';
 
 const MapWrapper = (props) => {
+
+    //BUG map does not load when the locations come from the getClimbing
+    //areas default state. 
+    //Default areas have coords as strings where as added areas have floats
 
     const [map,setMap] = useState(null)
     const mapElement = useRef(null)
@@ -18,10 +21,12 @@ const MapWrapper = (props) => {
     const mapRef = useRef()
     mapRef.current = map
 
+    console.log(map)
     //creates the initial instance of the map 
     useEffect(() => {
-        const place = [props.location.coords.longitude, props.location.coords.latitude]
+        const place = [parseFloat(props.location.coords.longitude), parseFloat(props.location.coords.latitude)]
         const point = new Point(place)
+        console.log(place)
         const initialMap = new Map({
             target: mapElement.current,
             layers: [

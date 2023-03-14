@@ -40,14 +40,14 @@ const InfoDisplay = (props) => {
             dailyData.map(item => {
                 return (
                     <div key={uuidv4()} class={`flex flex-col border-2 border-black p-6 ${item[2]} gap-3 sm:p-2 sm:items-center wide:p-1 wide:gap-0 wide:px-2`}>
-                        <div class='text-3xl gap-3 wide:text-sm wide:font-bold'>{item[0]}</div>
+                        <p class='text-3xl gap-3 wide:text-sm wide:font-bold'>{item[0]}</p>
                         <div class='flex gap-3 items-center wide:gap-2'>
                             <div>
                                 <img class='h-5 w-5 wide:h-3 wide:w-3' src='/src/assets/svg/rain.svg'></img>
                             </div>
-                            <div class='text-xl font-bold wide:text-xs'>
+                            <p class='text-xl font-bold wide:text-xs'>
                                 {item[1]} <i>in</i>
-                            </div>
+                            </p>
                         </div>
                     </div>
                     )
