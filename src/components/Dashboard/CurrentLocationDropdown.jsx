@@ -1,6 +1,6 @@
 
 
-const CurrentLocation = (props) => {
+const CurrentLocationDropdown = (props) => {
 
     function handleClick() {
         setDropdown((prevState) => {
@@ -16,4 +16,4 @@ const CurrentLocation = (props) => {
     )
 }
 
-export default CurrentLocation
+export default CurrentLocationDropdown

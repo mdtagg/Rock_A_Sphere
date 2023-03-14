@@ -2,9 +2,12 @@ import axios from "axios"
 import { useState,useEffect } from "react"
 import DaysToClimb from "./DaysToClimb"
 import { v4 as uuidv4 } from 'uuid';
+import { parseDailyWeather } from "../../containers/App/utils/parseDailyWeather";
+import { parseRainData } from "../../containers/App/utils/parseRainData";
 
 const Summary = (props) => {
 
+    // const [totalRain,setTotalRain] = useState({})
     const [rockTypes,setRockTypes] = useState([])
     const [rockData,setRockData] = useState(
         {
@@ -112,6 +115,12 @@ const Summary = (props) => {
         if(!rockTypes.length) return
         getRockData()
     },[props.location])
+
+    // useEffect(() => {
+    //     const { pastSevenRain,pastThreeRain } = parseDailyWeather()
+    //     const rainTotals = parseRainData([pastSevenRain,pastThreeRain])
+    //     setTotalRain(rainTotals)
+    // },[props.weatherData])
     
     return (
         <table class='flex flex-col w-2/5 bg-slate-200/50 border-2 border-black ml-11 sm:w-full sm:m-0 wide:w-screen wide:m-0'>

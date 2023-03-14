@@ -1,9 +1,9 @@
 import { useState,useEffect } from "react"
-import CurrentLocationDropdown from "./CurrentLocationDropdown"
-import LocationMenu from "./LocationMenu"
-import { getWeatherIcon } from "./utils/getWeatherIcon"
-import CurrentWeatherInfo from "./CurrentWeatherInfo"
-import MapWrapper from "./MapWrapper"
+import CurrentLocationDropdown from "../components/Dashboard/CurrentLocationDropdown"
+import LocationMenu from "../components/Dashboard/LocationMenu"
+import { getWeatherIcon } from "../components/Dashboard/utils/getWeatherIcon"
+import CurrentWeatherInfo from "../components/Dashboard/CurrentWeatherInfo"
+import MapWrapper from "../components/Dashboard/MapWrapper"
 
 const Dashboard = (props) => {
 
