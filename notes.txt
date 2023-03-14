@@ -25,6 +25,10 @@ completed:
 3/11/23 && 3/13/23
 
 - try to add map with marker (open layer)
+- BUG FIX 
+    - map does not load when the locations come from the getClimbing
+      areas default state. 
+      solution: Default areas have coords as strings where as added areas have floats
 
 
 
