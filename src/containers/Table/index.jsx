@@ -2,10 +2,8 @@ import axios from "axios"
 import { useState,useEffect } from "react"
 import DaysToClimb from "./DaysToClimb"
 import { v4 as uuidv4 } from 'uuid';
-import { parseDailyWeather } from "../../containers/App/utils/parseDailyWeather";
-import { parseRainData } from "../../containers/App/utils/parseRainData";
 
-const Summary = (props) => {
+const Table = (props) => {
 
     // const [totalRain,setTotalRain] = useState({})
     const [rockTypes,setRockTypes] = useState([])
@@ -179,4 +177,4 @@ const Summary = (props) => {
     )
 }
 
-export default Summary
+export default Table

@@ -9,7 +9,7 @@ import XYZ from 'ol/source/XYZ'
 import {Point} from 'ol/geom.js';
 import {Feature} from 'ol/index.js';
 
-const MapWrapper = (props) => {
+const MapView = (props) => {
 
     const [map,setMap] = useState(null)
     const mapElement = useRef(null)
@@ -17,7 +17,6 @@ const MapWrapper = (props) => {
     const mapRef = useRef()
     mapRef.current = map
 
-    console.log(map)
     //creates the initial instance of the map 
     useEffect(() => {
         const place = [parseFloat(props.location.coords.longitude), parseFloat(props.location.coords.latitude)]
@@ -92,8 +91,8 @@ const MapWrapper = (props) => {
     },[props.climbingAreas])
 
     return (
-        <div class='w-72 h-40 border-2 border-black rounded sm:w-1/2 sm:h-full' ref={mapElement}></div>
+        <aside class='w-72 h-40 border-2 border-black rounded sm:w-1/2 sm:h-full' ref={mapElement}></aside>
     )
 }
 
-export default MapWrapper
+export default MapView

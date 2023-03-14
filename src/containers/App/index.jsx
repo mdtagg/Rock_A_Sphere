@@ -2,9 +2,9 @@ import { useState,useEffect } from "react"
 import { getClimbingAreas } from '../../climbingAreas'
 import WeatherDataService from "../../services/WeatherDataService"
 import UseLocalStorage from "./hooks/UseLocalStorage"
-import Menu from "../Menu"
-import Summary from "../../components/Summary/Summary"
-import InfoDisplay from "../../components/InfoDisplay"
+import CurrentInfoDisplay from "../CurrentInfoDisplay"
+import Table from "../Table"
+import RainReadout from "../RainReadout"
 import Footer from "../../components/Footer"
 import { parseWeatherData } from "./utils/parseWeatherData"
 import { parseRainData } from "./utils/parseRainData"
@@ -36,18 +36,18 @@ const App = () => {
 
     return (
         <main class={`bg-[url('./assets/images/redRock.jpg')] bg-cover bg-center h-screen w-screen flex flex-col pt-10 justify-between md:p-0`}>
-            <Menu
+            <CurrentInfoDisplay
                 climbingAreas={climbingAreas} 
                 setClimbingAreas={setClimbingAreas} 
                 weatherData={weatherData} 
                 location={location} 
                 setLocation={setLocation}
             />
-            <Summary 
+            <Table 
                 location={location} 
                 totalRain={totalRain} 
             />
-            <InfoDisplay 
+            <RainReadout
                 location={location} 
                 weatherData={weatherData} 
             />

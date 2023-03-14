@@ -1,9 +1,8 @@
 import { useState,useEffect } from "react"
-import CurrentLocationDropdown from "../../components/Dashboard/CurrentLocationDropdown"
-import LocationMenu from "../../components/Dashboard/LocationMenu"
+import LocationsButton from "./LocationsButton"
+import ClimbingLocations from "../ClimbingLocations"
+import CurrentWeatherInfo from "./CurrentWeatherInfo"
 import { getWeatherIcon } from "./utils/getWeatherIcon"
-import CurrentWeatherInfo from "../../components/Dashboard/CurrentWeatherInfo"
-import MapWrapper from "../../components/Dashboard/MapWrapper"
 
 const Menu = (props) => {
 
@@ -18,14 +17,13 @@ const Menu = (props) => {
     },[props.weatherData])
 
     return (
-        <div class='flex gap-10'>
-        <section class='flex justify-center items-center flex-col p-6 gap-1 rounded-md bg-gray-100/25 h-fit w-fit border-2 border-black ml-11 sm:m-0 sm:p-2 sm:w-1/2 wide:gap-0 wide:p-2 wide:m-0 '>
-            <CurrentLocationDropdown
+        <aside class='flex justify-center items-center flex-col p-6 gap-1 rounded-md bg-gray-100/25 h-fit w-fit border-2 border-black ml-11 sm:m-0 sm:p-2 sm:w-1/2 wide:gap-0 wide:p-2 wide:m-0 '>
+            <LocationsButton
                 location={props.location}
                 setDropdown={setDropdown}
             />
             {dropdown &&
-                <LocationMenu 
+                <ClimbingLocations 
                     climbingAreas={props.climbingAreas} 
                     setClimbingAreas={props.setClimbingAreas}
                     setLocation={props.setLocation}
@@ -38,12 +36,7 @@ const Menu = (props) => {
                     weatherIcon={weatherIcon}
                 />
             }
-        </section>
-        <MapWrapper 
-            location={props.location} 
-            climbingAreas={props.climbingAreas} 
-        />
-        </div>
+        </aside>
     )
 }
 
