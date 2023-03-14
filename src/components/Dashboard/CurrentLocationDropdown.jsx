@@ -3,7 +3,7 @@
 const CurrentLocationDropdown = (props) => {
 
     function handleClick() {
-        setDropdown((prevState) => {
+        props.setDropdown((prevState) => {
             return !prevState
         })
     }

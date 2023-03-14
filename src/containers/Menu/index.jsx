@@ -1,11 +1,11 @@
 import { useState,useEffect } from "react"
-import CurrentLocationDropdown from "../components/Dashboard/CurrentLocationDropdown"
-import LocationMenu from "../components/Dashboard/LocationMenu"
-import { getWeatherIcon } from "../components/Dashboard/utils/getWeatherIcon"
-import CurrentWeatherInfo from "../components/Dashboard/CurrentWeatherInfo"
-import MapWrapper from "../components/Dashboard/MapWrapper"
+import CurrentLocationDropdown from "../../components/Dashboard/CurrentLocationDropdown"
+import LocationMenu from "../../components/Dashboard/LocationMenu"
+import { getWeatherIcon } from "./utils/getWeatherIcon"
+import CurrentWeatherInfo from "../../components/Dashboard/CurrentWeatherInfo"
+import MapWrapper from "../../components/Dashboard/MapWrapper"
 
-const Dashboard = (props) => {
+const Menu = (props) => {
 
     const [ dropdown,setDropdown ] = useState(false)
     const [ weatherIcon,setWeatherIcon ] = useState('')
@@ -22,6 +22,7 @@ const Dashboard = (props) => {
         <section class='flex justify-center items-center flex-col p-6 gap-1 rounded-md bg-gray-100/25 h-fit w-fit border-2 border-black ml-11 sm:m-0 sm:p-2 sm:w-1/2 wide:gap-0 wide:p-2 wide:m-0 '>
             <CurrentLocationDropdown
                 location={props.location}
+                setDropdown={setDropdown}
             />
             {dropdown &&
                 <LocationMenu 
@@ -38,9 +39,12 @@ const Dashboard = (props) => {
                 />
             }
         </section>
-        <MapWrapper location={props.location} climbingAreas={props.climbingAreas} />
+        <MapWrapper 
+            location={props.location} 
+            climbingAreas={props.climbingAreas} 
+        />
         </div>
     )
 }
 
-export default Dashboard
+export default Menu

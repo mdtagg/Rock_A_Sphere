@@ -1,8 +1,8 @@
 import { useState,useEffect } from "react"
 import { getClimbingAreas } from '../../climbingAreas'
 import WeatherDataService from "../../services/WeatherDataService"
-import UseLocalStorage from "../../hooks/UseLocalStorage"
-import Dashboard from "../Dashboard"
+import UseLocalStorage from "./hooks/UseLocalStorage"
+import Menu from "../Menu"
 import Summary from "../../components/Summary/Summary"
 import InfoDisplay from "../../components/InfoDisplay"
 import Footer from "../../components/Footer"
@@ -31,30 +31,26 @@ const App = () => {
             setTotalRain(parsedRainData)
           
         })()
-        // parseData()
-        
         
     },[location])
 
     return (
-        <main class={`bg-[url('./assets/images/redRock.jpg')] bg-cover bg-center h-screen w-screen flex flex-col justify-between sm:justify-end `}>
-            <div class='flex flex-col justify-evenly gap-3 h-full sm:gap-5 sm:justify-center wide:gap-1'>
-                <Dashboard 
-                    climbingAreas={climbingAreas} 
-                    setClimbingAreas={setClimbingAreas} 
-                    weatherData={weatherData} 
-                    location={location} 
-                    setLocation={setLocation}
-                />
-                <Summary 
-                    location={location} 
-                    totalRain={totalRain} 
-                />
-                <InfoDisplay 
-                    location={location} 
-                    weatherData={weatherData} 
-                />
-            </div>
+        <main class={`bg-[url('./assets/images/redRock.jpg')] bg-cover bg-center h-screen w-screen flex flex-col pt-10 justify-between md:p-0`}>
+            <Menu
+                climbingAreas={climbingAreas} 
+                setClimbingAreas={setClimbingAreas} 
+                weatherData={weatherData} 
+                location={location} 
+                setLocation={setLocation}
+            />
+            <Summary 
+                location={location} 
+                totalRain={totalRain} 
+            />
+            <InfoDisplay 
+                location={location} 
+                weatherData={weatherData} 
+            />
             <Footer/>
         </main>
     )
