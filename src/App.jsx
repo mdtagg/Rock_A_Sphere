@@ -1,11 +1,11 @@
 import { useState,useEffect } from "react"
-import { getClimbingAreas } from '../climbingAreas'
-import UseLocalStorage from "../hooks/UseLocalStorage"
+import { getClimbingAreas } from './climbingAreas'
+import UseLocalStorage from "./hooks/UseLocalStorage"
 import axios from "axios"
-import Dashboard from "../containers/Dashboard"
-import Summary from "./SummaryComponents/Summary"
-import InfoDisplay from "./InfoDisplay"
-import Footer from "./Footer"
+import Dashboard from "./components/Dashboard/Dashboard"
+import Summary from "./components/Summary/Summary"
+import InfoDisplay from "./components/InfoDisplay"
+import Footer from "./components/Footer"
 
 const App = () => {
 
@@ -80,7 +80,7 @@ const App = () => {
     },[location])
 
     return (
-        <main class={`bg-[url('/redRock.jpg')] bg-cover bg-center h-screen w-screen flex flex-col justify-between sm:justify-end `}>
+        <main class={`bg-[url('./assets/images/redRock.jpg')] bg-cover bg-center h-screen w-screen flex flex-col justify-between sm:justify-end `}>
             <div class='flex flex-col justify-evenly gap-3 h-full sm:gap-5 sm:justify-center wide:gap-1'>
                 <Dashboard 
                     climbingAreas={climbingAreas} 

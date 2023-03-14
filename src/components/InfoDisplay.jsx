@@ -43,7 +43,7 @@ const InfoDisplay = (props) => {
                         <div class='text-3xl gap-3 wide:text-sm wide:font-bold'>{item[0]}</div>
                         <div class='flex gap-3 items-center wide:gap-2'>
                             <div>
-                                <img class='h-5 w-5 wide:h-3 wide:w-3' src='rain.svg'></img>
+                                <img class='h-5 w-5 wide:h-3 wide:w-3' src='/src/assets/svg/rain.svg'></img>
                             </div>
                             <div class='text-xl font-bold wide:text-xs'>
                                 {item[1]} <i>in</i>

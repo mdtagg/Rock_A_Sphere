@@ -1,6 +1,6 @@
 import { useState,useEffect } from "react"
-import LocationMenu from "../components/DashboardComponents/LocationMenu"
-import MapWrapper from "../components/DashboardComponents/MapWrapper"
+import LocationMenu from "./LocationMenu"
+import MapWrapper from "./MapWrapper"
 
 const Dashboard = (props) => {
 
@@ -15,12 +15,12 @@ const Dashboard = (props) => {
 
     function getWeatherIcon(weatherIcon) {
         let newIcon = ''
-        weatherIcon === 0 ? newIcon = 'sun.svg' :
-        weatherIcon >= 1 && weatherIcon <=3 ? newIcon = 'cloud-sun.svg':
-        weatherIcon >= 45 && weatherIcon <= 48 ? newIcon = 'cloud.svg' :
-        weatherIcon >= 71 && weatherIcon <= 77 ? newIcon = 'snow.svg':
-        weatherIcon >= 95 && weatherIcon <= 99 ? newIcon = 'thunder.svg':
-        newIcon = 'rain.svg'
+        weatherIcon === 0 ? newIcon = '/src/assets/svg/sun.svg' :
+        weatherIcon >= 1 && weatherIcon <=3 ? newIcon = '/src/assets/svg/cloud-sun.svg':
+        weatherIcon >= 45 && weatherIcon <= 48 ? newIcon = '/src/assets/svg/cloud.svg' :
+        weatherIcon >= 71 && weatherIcon <= 77 ? newIcon = '/src/assets/svg/snow.svg':
+        weatherIcon >= 95 && weatherIcon <= 99 ? newIcon = '/src/assets/svg/thunder.svg':
+        newIcon = '/src/assets/svg/rain.svg'
 
         setWeatherIcon(newIcon)
      
@@ -36,7 +36,7 @@ const Dashboard = (props) => {
         <section class='flex justify-center items-center flex-col p-6 gap-1 rounded-md bg-gray-100/25 h-fit w-fit border-2 border-black ml-11 sm:m-0 sm:p-2 sm:w-1/2 wide:gap-0 wide:p-2 wide:m-0 '>
             <button class='text-black text-3xl rounded flex items-center gap-1 wide:text-lg wide:font-bold' onClick={handleClick}>
                 {props.location.title} 
-                <img class='h-5 w-5 wide:h-3 wide:w-3' src='downCaret.svg'></img>
+                <img class='h-5 w-5 wide:h-3 wide:w-3' src='/src/assets/svg/downCaret.svg'></img>
             </button> 
             
             {dropdown &&

@@ -10,6 +10,7 @@ yosemite: anik3t
 
 todos:
 
+- fix map not loading upon initial render with no climbing areas in local state 
 - fix primary rock type logic (echo being igneous still weak to rain)
 - add more logic for determining days of wet rock
 - add todays rain

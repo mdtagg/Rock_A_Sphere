@@ -80,11 +80,10 @@ const LocationMenu = (props) => {
                                 </button>
                             </div>
                         )
-
                     })}
                 </div>
                 <button class='flex justify-center gap-1 items-center bg-white border-2 border-black w-full rounded p-1 hover:bg-green-500 wide:p-0 wide:text-xs' onClick={handleClick}>
-                    <img class='h-4 w-4 wide:h-3 wide:w-3' src='plus.svg'></img>
+                    <img class='h-4 w-4 wide:h-3 wide:w-3' src='/src/assets/svg/plus.svg'></img>
                     Add Area
                 </button>
             </div>

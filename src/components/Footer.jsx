@@ -7,7 +7,7 @@ const Footer = () => {
                 <p class='text-black text-2xl font-medium sm:text-sm sm:font-medium wide:text-sm'>Developed by Michael Tagg</p>
                 <a href='https://github.com/mdtagg'>
                     <img 
-                        class='h-5 w-5 wide:h-3 wide:w-3' src='github.svg'>
+                        class='h-5 w-5 wide:h-3 wide:w-3' src='src/assets/svg/github.svg'>
                     </img>
                 </a>
             </div>
