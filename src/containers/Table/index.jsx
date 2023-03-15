@@ -1,11 +1,15 @@
-import axios from "axios"
 import { useState,useEffect } from "react"
 import DaysToClimb from "./DaysToClimb"
 import { v4 as uuidv4 } from 'uuid';
+import RockDataService from "../../services/RockDataService";
+import { getLithoCodes } from "./utils/getLithoCodes";
+import { filterRockTypes } from "./utils/filterRockTypes";
+import { getPrimaryRockCounts } from "./utils/getPrimaryRockCounts"
+import { getPrimaryRockClass } from "./utils/getPrimaryRockClass";
+import { parseRockLithos } from "./utils/parseRockLithos";
 
 const Table = (props) => {
 
-    // const [totalRain,setTotalRain] = useState({})
     const [rockTypes,setRockTypes] = useState([])
     const [rockData,setRockData] = useState(
         {
@@ -19,99 +23,51 @@ const Table = (props) => {
         ]
     })
 
-    async function getRockData() {
-        const lat = props.location.coords.latitude
-        const lng = props.location.coords.longitude
-    
-        const response = await axios.get(`https://macrostrat.org/api/v2/geologic_units/map?lat=${lat}&lng=${lng}`)
-        let dataArray = []
-        response.data.success.data.forEach(item => {
-            dataArray.push(...item.liths)
-        })
-        let rockTypeData = []
-
-        for(let i = 0;i < dataArray.length;i++) {
-            for(let j = 0;j < rockTypes.length;j++) {
-                let currentRockType = rockTypes[j]
-                if(dataArray[i] === currentRockType.lith_id) {
-                    rockTypeData.push(currentRockType)
-                    break
-                }
-            }
-        }
-        findPrimaryRockClass(rockTypeData)
-    }
-
     function findPrimaryRockClass(rockTypeData) {
-        let rockData = {
-            rockClasses: {},
-            rockClassesArray: []
-        }
+        // let rockData = {
+        //     rockClasses: {},
+        //     rockClassesArray: []
+        // }
         
-        rockTypeData.forEach(item => {
-            const rockClass = item.class
-            if(rockData.rockClassesArray.includes(rockClass)) {
-                rockData.rockClasses[rockClass] += 1
-            }else {
-                rockData.rockClasses[rockClass] = 1
-                rockData.rockClassesArray.push(rockClass)
-            }
-        })
+        // rockTypeData.forEach(item => {
+        //     const rockClass = item.class
+        //     if(rockData.rockClassesArray.includes(rockClass)) {
+        //         rockData.rockClasses[rockClass] += 1
+        //     }else {
+        //         rockData.rockClasses[rockClass] = 1
+        //         rockData.rockClassesArray.push(rockClass)
+        //     }
+        // })
     
-        const { rockClasses,rockClassesArray } = rockData
-        const primaryRockClass = getPrimaryRockData(rockClasses,rockClassesArray)
-        const kindsOfRock = getRockLithos(rockTypeData) 
-    
-        setRockData({primaryRockClass,kindsOfRock})
-
-    }
-
-    function getRockLithos(rockTypeData) {
-        let kindsOfRock = []
-        const rockDataArray = []
-        const rockClasses = ['sedimentary','igneous','metamorphic']
-        rockTypeData.forEach(type => {
-            if(
-                !rockDataArray.includes(type.name) && 
-                !rockClasses.includes(type.name)
-            ) {
-                rockDataArray.push(type.name)
-                kindsOfRock.push({
-                    name:type.name,
-                    color:type.color
-                })
-            }
-        })
-        if(kindsOfRock.length > 7) {
-            kindsOfRock = kindsOfRock.slice(0,5)
-        }
-        return kindsOfRock
-    }
-
-    function getPrimaryRockData(rockDataType,rockDataTypeArray) {
-        let primaryRockType = rockDataTypeArray.map(item => {
-            return rockDataType[item]
-        })
-        primaryRockType = Math.max(...primaryRockType)
-        for(let rockType in rockDataType) {
-            if(rockDataType[rockType] === primaryRockType) {
-                primaryRockType = rockType
-            }
-        }
-        return primaryRockType
+        // const { rockClasses,rockClassesArray } = rockData
+        // const primaryRockClass = getPrimaryRockData(rockClasses,rockClassesArray)
+        // const kindsOfRock = getRockLithos(rockTypeData) 
+        // setRockData({primaryRockClass,kindsOfRock})
     }
 
     useEffect(() => {
-        const getRockTypes = async () => {
-            const response = await axios.get('https://macrostrat.org/api/defs/lithologies?all')
-            setRockTypes(response.data.success.data)
-        }
-        getRockTypes()
+        (async function() {
+            const rockTypes = await RockDataService.getRockTypes()
+            setRockTypes(rockTypes.success.data)
+        })()
     },[])
+    
 
     useEffect(() => {
         if(!rockTypes.length) return
-        getRockData()
+        (async function() {
+            const rockData = await RockDataService.getRockData(
+                props.location.coords.latitude,
+                props.location.coords.longitude
+            )
+            const lithoCodes = getLithoCodes(rockData)
+            const allRockTypes = filterRockTypes(lithoCodes,rockTypes)
+            const primaryRockCounts = getPrimaryRockCounts(allRockTypes)
+            const primaryRockClass = getPrimaryRockClass(primaryRockCounts.rockClasses,primaryRockCounts.rockClassesArray)
+            const kindsOfRock = parseRockLithos(allRockTypes,primaryRockCounts.rockClassesArray)
+            setRockData({primaryRockClass,kindsOfRock})
+        })()
+        // getRockData()
     },[props.location])
 
     // useEffect(() => {
@@ -178,3 +134,63 @@ const Table = (props) => {
 }
 
 export default Table
+
+
+// async function getRockData() {
+        // const lat = props.location.coords.latitude
+        // const lng = props.location.coords.longitude
+    
+        // const response = await axios.get(`https://macrostrat.org/api/v2/geologic_units/map?lat=${lat}&lng=${lng}`)
+        // let dataArray = []
+        // response.data.success.data.forEach(item => {
+        //     dataArray.push(...item.liths)
+        // })
+        // let rockTypeData = []
+
+        // for(let i = 0;i < dataArray.length;i++) {
+        //     for(let j = 0;j < rockTypes.length;j++) {
+        //         let currentRockType = rockTypes[j]
+        //         if(dataArray[i] === currentRockType.lith_id) {
+        //             rockTypeData.push(currentRockType)
+        //             break
+        //         }
+        //     }
+        // }
+        // findPrimaryRockClass(rockTypeData)
+    // }
+
+    //function getPrimaryRockData(rockDataType,rockDataTypeArray) {
+        //     let primaryRockType = rockDataTypeArray.map(item => {
+        //         return rockDataType[item]
+        //     })
+        //     primaryRockType = Math.max(...primaryRockType)
+        //     for(let rockType in rockDataType) {
+        //         if(rockDataType[rockType] === primaryRockType) {
+        //             primaryRockType = rockType
+        //         }
+        //     }
+        //     return primaryRockType
+        // }
+
+
+        // function getRockLithos(rockTypeData) {
+            //     let kindsOfRock = []
+            //     const rockDataArray = []
+            //     const rockClasses = ['sedimentary','igneous','metamorphic']
+            //     rockTypeData.forEach(type => {
+            //         if(
+            //             !rockDataArray.includes(type.name) && 
+            //             !rockClasses.includes(type.name)
+            //         ) {
+            //             rockDataArray.push(type.name)
+            //             kindsOfRock.push({
+            //                 name:type.name,
+            //                 color:type.color
+            //             })
+            //         }
+            //     })
+            //     if(kindsOfRock.length > 7) {
+            //         kindsOfRock = kindsOfRock.slice(0,5)
+            //     }
+            //     return kindsOfRock
+            // }
