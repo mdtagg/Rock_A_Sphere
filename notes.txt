@@ -20,6 +20,7 @@ todos:
 - add clicking feature to map 
 - add typescript
 - add catches to asyncs
+- add post css
 
 completed: 
 
