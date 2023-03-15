@@ -1,15 +1,18 @@
 
 import { useState,useEffect,useRef } from 'react'
-import Map from 'ol/Map'
-import View from 'ol/View'
-import TileLayer from 'ol/layer/Tile'
-import VectorLayer from 'ol/layer/Vector'
-import VectorSource from 'ol/source/Vector'
-import XYZ from 'ol/source/XYZ'
 import {Point} from 'ol/geom.js';
-import {Feature} from 'ol/index.js';
+import { getInitialMap } from './utils/getInitialMap'
+import { addPoint } from './utils/addPoint';
+import { recenterMap } from './utils/recenterMap';
+import { deletePoint } from './utils/deletePoint';
 
 const MapView = (props) => {
+
+    const longitude = parseFloat(props.location.coords.longitude)
+    const latitude = parseFloat(props.location.coords.latitude)
+    const id = props.location.id
+    const place = [longitude, latitude]
+    const point = new Point(place)
 
     const [map,setMap] = useState(null)
     const mapElement = useRef(null)
@@ -19,59 +22,19 @@ const MapView = (props) => {
 
     //creates the initial instance of the map 
     useEffect(() => {
-        const place = [parseFloat(props.location.coords.longitude), parseFloat(props.location.coords.latitude)]
-        const point = new Point(place)
-        console.log(place)
-        const initialMap = new Map({
-            target: mapElement.current,
-            layers: [
-                new TileLayer({
-                    source: new XYZ({
-                        url: 'https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer/tile/{z}/{y}/{x}'
-                    }),
-                }),
-                new VectorLayer({
-                    source: new VectorSource({
-                        features: [new Feature(point)]
-                    }),
-                    style: {
-                        'circle-radius': 7,
-                        'circle-fill-color': 'red',
-                    },
-                    id: props.location.id,
-                    type: 'point'
-                })
-            ],
-            view: new View({
-                projection:'EPSG:4326',
-                center:place,
-                zoom:16,
-                maxZoom:16
-            }),
-            controls:[]
-        })
+        const mapInfo = {place,point,mapElement,id}
+
+        const initialMap = getInitialMap(mapInfo)
         setMap(initialMap)
     },[])
 
     //adds a red dot on the map when a new area is created
     useEffect(() => {
         if(!map) return
+    
+        recenterMap(mapRef,place)
+        addPoint(mapRef,id,point)
         
-        const lat = parseFloat(props.location.coords.latitude)
-        const long = parseFloat(props.location.coords.longitude)
-        const point = new Point([long,lat])
-        mapRef.current.getView().setCenter([long,lat])
-        mapRef.current.addLayer(new VectorLayer({
-            source: new VectorSource({
-                features: [new Feature(point)]
-            }),
-            style: {
-                'circle-radius': 7,
-                'circle-fill-color': 'red',
-            },
-            id: props.location.id,
-            type:'point'
-        }))
         map.renderSync()
         
     },[props.location])
@@ -79,14 +42,16 @@ const MapView = (props) => {
     //deletes points on the map when area is deleted
     useEffect(() => {
         if(!map) return
-        const filteredIds = props.climbingAreas.map(area => {
-            return area.id
-        })
-        const filteredLayers = map.getLayers().getArray().filter(layer => {
-            if(filteredIds.includes(layer.values_.id) || layer.values_.type !== 'point') {
-                return layer
-            }
-        })
+        const { climbingAreas } = props
+        // const filteredIds = props.climbingAreas.map(area => {
+        //     return area.id
+        // })
+        // const filteredLayers = map.getLayers().getArray().filter(layer => {
+        //     if(filteredIds.includes(layer.values_.id) || layer.values_.type !== 'point') {
+        //         return layer
+        //     }
+        // })
+        const filteredLayers = deletePoint(climbingAreas,map)
         map.setLayers(filteredLayers)
     },[props.climbingAreas])
 

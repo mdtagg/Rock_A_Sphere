@@ -1,4 +1,4 @@
-import { ClimbingArea } from "./ClimbingArea"
+import { ClimbingArea } from "../ClimbingArea"
 
 const AreaList = (props) => {
     return (
@@ -9,6 +9,8 @@ const AreaList = (props) => {
                         area={area}
                         setDropdown={props.setDropdown}
                         setLocation={props.setLocation}
+                        climbingAreas={props.climbingAreas}
+                        setClimbingAreas={props.setClimbingAreas}
                     />
                 )
             })}

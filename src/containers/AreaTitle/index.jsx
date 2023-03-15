@@ -20,6 +20,7 @@ const AreaTitle = (props) => {
         <aside class='flex justify-center items-center flex-col p-6 gap-1 rounded-md bg-gray-100/25 h-fit w-fit border-2 border-black ml-11 sm:m-0 sm:p-2 sm:w-1/2 wide:gap-0 wide:p-2 wide:m-0 '>
             <LocationsButton
                 location={props.location}
+                setDropdown={setDropdown}
             />
             {!dropdown && 
                 <CurrentWeather
