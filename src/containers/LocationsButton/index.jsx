@@ -15,7 +15,7 @@ const LocationsButton = (props) => {
             onClick={handleClick}
         >
             <P
-                class='text-black text-3xl wide:text-lg wide:font-bold'
+                class='text-black font-bold text-3xl sm:text-2xl wide:text-lg'
                 value={props.location.title}
             />
             <Image

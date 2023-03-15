@@ -10,7 +10,7 @@ const CurrentWeather = (props) => {
             {props.weatherData &&
             <>
                 <CurrentDate
-                    class='flex justify-center'
+                    class='flex justify-center items-center sm:text-xs'
                     value={props.weatherData.currentWeather.currentDate}
                 />
                 <CurrentInfo

@@ -1,6 +1,6 @@
 APIs 
 
-geoapify
+macrostrat
 open medio
 
 upsplash:
@@ -10,19 +10,29 @@ yosemite: anik3t
 
 todos:
 
-- fix map not loading upon initial render with no climbing areas in local state 
+production needs: 
+
+- limit location number
+- add catches to asyncs
+- add clicking feature to map 
+- add todays rain
 - fix primary rock type logic (echo being igneous still weak to rain)
 - add more logic for determining days of wet rock
-- add todays rain
+- remove api key from prior commit
+
+
+
 - button to get rid of footer
-- organize code, add more components and folders 
 - add tool tip to rock types linking to more info
-- add clicking feature to map 
 - add typescript
-- add catches to asyncs
 - add post css
 
 completed: 
+
+3/15/23
+
+- organize code, add more components and folders 
+- fix map not loading upon initial render with no climbing areas in local state 
 
 3/11/23 && 3/13/23
 

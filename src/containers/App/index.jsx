@@ -5,7 +5,7 @@ import UseLocalStorage from "./hooks/UseLocalStorage"
 import { CurrentInfoDisplay } from "../CurrentInfoDisplay"
 import Table from "../Table"
 import RainReadout from "../RainReadout"
-import Footer from "../../components/Footer"
+import Footer from "../Footer/Index"
 import { parseWeatherData } from "./utils/parseWeatherData"
 import { parseRainData } from "./utils/parseRainData"
 

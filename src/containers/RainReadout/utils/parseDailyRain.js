@@ -18,9 +18,8 @@ function parseDailyRain(dailyData) {
 
             return data
         })
-        
+
         return parsedData
-    // setDailyData(parsedData)
 }
 
 export { parseDailyRain }
