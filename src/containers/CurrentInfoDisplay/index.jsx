@@ -1,6 +1,6 @@
 
 import MapView from "../MapView"
-import AreaTitle from "../AreaTitle"
+import { AreaTitle } from "../AreaTitle"
 
 const CurrentInfoDisplay = (props) => {
     return (

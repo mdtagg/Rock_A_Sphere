@@ -17,7 +17,6 @@ function getPrimaryRockCounts(rockTypeData) {
     })
     const { rockClasses,rockClassesArray } = rockData
     return {rockClasses,rockClassesArray}
-
 }
 
 export { getPrimaryRockCounts }

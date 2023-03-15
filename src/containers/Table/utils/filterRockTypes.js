@@ -11,7 +11,6 @@ function filterRockTypes(lithoCodes,rockTypes) {
             }
         }
     }
-    console.log({rockTypeData})
     return rockTypeData
 }
 

@@ -19,6 +19,7 @@ todos:
 - add tool tip to rock types linking to more info
 - add clicking feature to map 
 - add typescript
+- add catches to asyncs
 
 completed: 
 

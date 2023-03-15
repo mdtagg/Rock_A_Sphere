@@ -7,12 +7,10 @@ function getPrimaryRockClass(rockClasses,rockClassesArray) {
     const highestClass = Math.max(...classCounts)
     let primaryRockType = undefined
     for(let rockType in rockClasses) {
-        
         if(rockClasses[rockType] === highestClass) {
             primaryRockType = rockType
         }
     }
-    console.log(primaryRockType)
     return primaryRockType
 }
 

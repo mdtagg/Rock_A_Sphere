@@ -13,12 +13,7 @@ const CurrentInfo = (props) => {
                 class='h-7 w-7 wide:h-3 wide:w-3'
                 src={props.weatherIcon}
             />
-            {/* <img 
-            class='h-7 w-7 wide:h-3 wide:w-3'
-            src={props.weatherIcon}
-            >
-            </img> */}
-    </div>
+        </div>
     )
 }
 
