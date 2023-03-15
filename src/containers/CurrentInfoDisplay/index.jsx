@@ -1,12 +1,11 @@
 
 import MapView from "../MapView"
-import Menu from "../Menu"
+import AreaTitle from "../AreaTitle"
 
 const CurrentInfoDisplay = (props) => {
-
     return (
         <section class='flex gap-10'>
-            <Menu 
+            <AreaTitle 
                 location={props.location}
                 setLocation={props.setLocation}
                 climbingAreas={props.climbingAreas}

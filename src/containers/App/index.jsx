@@ -1,5 +1,5 @@
 import { useState,useEffect } from "react"
-import { getClimbingAreas } from '../../climbingAreas'
+import { getClimbingAreas } from "./utils/getClimbingAreas"
 import WeatherDataService from "../../services/WeatherDataService"
 import UseLocalStorage from "./hooks/UseLocalStorage"
 import CurrentInfoDisplay from "../CurrentInfoDisplay"

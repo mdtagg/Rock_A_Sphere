@@ -1,10 +1,10 @@
 import { useState,useEffect } from "react"
 import Locations from "../Locations"
-import CurrentWeatherInfo from "./CurrentWeatherInfo"
 import { getWeatherIcon } from "./utils/getWeatherIcon"
 import { ButtonImage as LocationsButton} from "../../components/ButtonImage"
+import { CurrentWeather } from "../CurrentWeather/CurrentWeatherInfo"
 
-const Menu = (props) => {
+const AreaTitle = (props) => {
 
     const [ dropdown,setDropdown ] = useState(false)
     const [ weatherIcon,setWeatherIcon ] = useState('')
@@ -33,7 +33,7 @@ const Menu = (props) => {
                 right={true}
             />
             {!dropdown && 
-                <CurrentWeatherInfo 
+                <CurrentWeather
                     weatherData={props.weatherData} 
                     weatherIcon={weatherIcon}
                 />
@@ -50,4 +50,4 @@ const Menu = (props) => {
     )
 }
 
-export default Menu
+export default AreaTitle
