@@ -1,7 +1,7 @@
 
 
 import { P as CurrentDate} from "../../components/P"
-import { CurrentInfo } from "../CurrentInfo.jsx"
+import { CurrentInfo } from "../CurrentInfo.jsx/index.jsx"
 
 const CurrentWeather = (props) => {
 

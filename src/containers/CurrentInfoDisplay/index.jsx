@@ -20,4 +20,4 @@ const CurrentInfoDisplay = (props) => {
     )
 }
 
-export default CurrentInfoDisplay
+export { CurrentInfoDisplay }

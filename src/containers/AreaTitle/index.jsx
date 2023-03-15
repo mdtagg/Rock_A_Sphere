@@ -2,7 +2,7 @@ import { useState,useEffect } from "react"
 import Locations from "../Locations"
 import { getWeatherIcon } from "./utils/getWeatherIcon"
 import { LocationsButton } from "../LocationsButton"
-import { CurrentWeather } from "../CurrentWeather/CurrentWeatherInfo"
+import { CurrentWeather } from "../CurrentWeather"
 
 const AreaTitle = (props) => {
 
