@@ -4,7 +4,7 @@ import WeatherDataService from "../../services/WeatherDataService"
 import UseLocalStorage from "./hooks/UseLocalStorage"
 import { CurrentInfoDisplay } from "../CurrentInfoDisplay"
 import Table from "../Table"
-import RainReadout from "../RainReadout"
+import { RainReadout } from "../RainReadout"
 import Footer from "../Footer/Index"
 import { parseWeatherData } from "./utils/parseWeatherData"
 import { parseRainData } from "./utils/parseRainData"
@@ -23,6 +23,7 @@ const App = () => {
                 location.coords.longitude,
                 "auto"
             )
+            console.log({weatherData})
             const parsedWeatherData = parseWeatherData(weatherData)
             setWeatherData(parsedWeatherData)
     

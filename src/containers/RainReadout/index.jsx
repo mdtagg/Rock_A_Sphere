@@ -1,8 +1,9 @@
 import { useState,useEffect } from "react"
 import { parseDailyRain } from "./utils/parseDailyRain";
 import { RainSquare } from "../RainSquare";
+import { v4 as uuidv4 } from 'uuid';
 
-const InfoDisplay = (props) => {
+const RainReadout = (props) => {
 
     const [dailyData,setDailyData] = useState([])
      
@@ -18,6 +19,7 @@ const InfoDisplay = (props) => {
             return (
                 <RainSquare
                     item={item}
+                    key={uuidv4()}
                 />
                 )
             })
@@ -27,4 +29,4 @@ const InfoDisplay = (props) => {
     
 }
 
-export default InfoDisplay
+export { RainReadout }

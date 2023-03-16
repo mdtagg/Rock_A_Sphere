@@ -8,8 +8,9 @@ function deletePoint(climbingAreas,map) {
         if(filteredIds.includes(layer.values_.id) || layer.values_.type !== 'point') {
             return layer
         }
-    return filteredLayers
+    
     })
+    return filteredLayers
 }
 
 export { deletePoint }

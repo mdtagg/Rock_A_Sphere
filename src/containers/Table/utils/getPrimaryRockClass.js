@@ -1,6 +1,5 @@
 
 function getPrimaryRockClass(rockClasses,rockClassesArray) {
-    console.log({rockClasses,rockClassesArray})
     const classCounts = rockClassesArray.map(item => {
         return rockClasses[item]
     })

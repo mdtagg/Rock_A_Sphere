@@ -13,9 +13,11 @@ const MapView = (props) => {
     const id = props.location.id
     const place = [longitude, latitude]
     const point = new Point(place)
-
+    
     const [map,setMap] = useState(null)
     const mapElement = useRef(null)
+
+    const [numberOfAreas,setNumberOfAreas] = useState(props.climbingAreas.length)
 
     const mapRef = useRef()
     mapRef.current = map
@@ -23,7 +25,6 @@ const MapView = (props) => {
     //creates the initial instance of the map 
     useEffect(() => {
         const mapInfo = {place,point,mapElement,id}
-
         const initialMap = getInitialMap(mapInfo)
         setMap(initialMap)
     },[])
@@ -41,16 +42,9 @@ const MapView = (props) => {
 
     //deletes points on the map when area is deleted
     useEffect(() => {
-        if(!map) return
+        
+        if(!map ) return
         const { climbingAreas } = props
-        // const filteredIds = props.climbingAreas.map(area => {
-        //     return area.id
-        // })
-        // const filteredLayers = map.getLayers().getArray().filter(layer => {
-        //     if(filteredIds.includes(layer.values_.id) || layer.values_.type !== 'point') {
-        //         return layer
-        //     }
-        // })
         const filteredLayers = deletePoint(climbingAreas,map)
         map.setLayers(filteredLayers)
     },[props.climbingAreas])

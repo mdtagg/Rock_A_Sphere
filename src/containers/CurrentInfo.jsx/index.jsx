@@ -5,7 +5,7 @@ const CurrentInfo = (props) => {
     return (
         <div class='flex justify-center items-center gap-5 wide:gap-3'>
             <CurrentTemp
-                class='text-4xl w-full font-semibold items-center gap-5 sm:text-2xl wide:gap-3 wide:text-xl '
+                class='text-4xl w-full font-normal items-center gap-5 sm:text-2xl wide:gap-3 wide:text-xl '
                 value={`${props.weatherData.currentWeather.currentTemp}\u00b0F`}
                 
             />

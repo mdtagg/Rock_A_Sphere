@@ -1,4 +1,5 @@
 import { ClimbingArea } from "../ClimbingArea"
+import { v4 as uuidv4 } from 'uuid';
 
 const AreaList = (props) => {
     return (
@@ -11,6 +12,7 @@ const AreaList = (props) => {
                         setLocation={props.setLocation}
                         climbingAreas={props.climbingAreas}
                         setClimbingAreas={props.setClimbingAreas}
+                        key={uuidv4()}
                     />
                 )
             })}
