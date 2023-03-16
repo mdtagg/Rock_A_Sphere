@@ -23,7 +23,7 @@ const App = () => {
                 location.coords.longitude,
                 "auto"
             )
-            console.log({weatherData})
+            
             const parsedWeatherData = parseWeatherData(weatherData)
             setWeatherData(parsedWeatherData)
     

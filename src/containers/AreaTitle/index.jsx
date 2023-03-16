@@ -1,6 +1,6 @@
 import { useState,useEffect } from "react"
 import Locations from "../Locations"
-import { getWeatherIcon } from "./utils/getWeatherIcon"
+// import { getWeatherIcon } from "./utils/WeatherIcon"
 import { LocationsButton } from "../LocationsButton"
 import { CurrentWeather } from "../CurrentWeather"
 
@@ -12,8 +12,8 @@ const AreaTitle = (props) => {
     useEffect(() => {
         if(!props.weatherData) return 
         const { weatherCode } = props.weatherData.currentWeather
-        const weatherIcon = getWeatherIcon(weatherCode)
-        setWeatherIcon(weatherIcon)
+        // const weatherIcon = getWeatherIcon(weatherCode)
+        // setWeatherIcon(weatherIcon)
     },[props.weatherData])
 
     return (
@@ -25,7 +25,8 @@ const AreaTitle = (props) => {
             {!dropdown && 
                 <CurrentWeather
                     weatherData={props.weatherData} 
-                    weatherIcon={weatherIcon}
+                    // weatherIcon={<weatherIcon/>}
+
                 />
             }
             {dropdown &&

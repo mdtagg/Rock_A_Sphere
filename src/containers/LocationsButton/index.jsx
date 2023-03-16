@@ -1,5 +1,5 @@
-import { Image } from "../../components/Image"
-import { P } from "../../components/P"
+import { P as LocationTitle} from "../../components/P"
+import {ReactComponent as DownCaret} from '../../assets/svg/downCaret.svg'
 
 const LocationsButton = (props) => {
 
@@ -14,13 +14,12 @@ const LocationsButton = (props) => {
             class='flex justify-center items-center gap-2' 
             onClick={handleClick}
         >
-            <P
+            <LocationTitle
                 class='text-black font-bold text-3xl sm:text-2xl wide:text-lg'
                 value={props.location.title}
             />
-            <Image
-                class='h-5 w-5 wide:h-3 wide:w-3'
-                src='/src/assets/svg/downCaret.svg'
+            <DownCaret
+                class='flex justify-center items-center h-4 w-4'
             />
         </button>
         
@@ -28,3 +27,5 @@ const LocationsButton = (props) => {
 }
 
 export { LocationsButton }
+
+// ./src/assets/svg/downCaret.svg

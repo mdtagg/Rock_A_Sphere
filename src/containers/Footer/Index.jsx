@@ -1,4 +1,4 @@
-
+import { ReactComponent as GitHubImg } from '../../assets/svg/github.svg'
 
 const Footer = () => {
     return (
@@ -6,9 +6,9 @@ const Footer = () => {
             <div class='flex justify-center m-auto items-center gap-2'>
                 <p class='text-black text-2xl font-medium sm:text-sm sm:font-medium wide:text-sm'>Developed by Michael Tagg</p>
                 <a href='https://github.com/mdtagg'>
-                    <img 
-                        class='h-5 w-5 wide:h-3 wide:w-3' src='src/assets/svg/github.svg'>
-                    </img>
+                    <GitHubImg
+                        class='h-5 w-5 wide:h-3 wide:w-3'
+                    />
                 </a>
             </div>
             <div  class='text-black text-xs flex flex-col items-end' style={{lineHeight:'10px',fontSize:'8px'}}>
