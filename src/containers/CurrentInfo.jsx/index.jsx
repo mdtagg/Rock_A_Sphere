@@ -12,7 +12,7 @@ const CurrentInfo = (props) => {
                 
             />
             <WeatherIcon
-                class='h-8 w-8 wide:h-5 wide:w-5 '
+                class='h-fit w-8 wide:w-5 '
             />
         </div>
     )

@@ -27,5 +27,3 @@ const LocationsButton = (props) => {
 }
 
 export { LocationsButton }
-
-// ./src/assets/svg/downCaret.svg

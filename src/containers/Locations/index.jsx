@@ -11,7 +11,7 @@ const Locations = (props) => {
     return (
         <>
             {!toggleForm &&
-            <div class='flex flex-col gap-3 w-full'>
+            <div class='flex flex-col gap-1 w-full'>
                 <AreaList
                     climbingAreas={props.climbingAreas}
                     setClimbingAreas={props.setClimbingAreas}

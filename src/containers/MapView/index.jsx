@@ -17,8 +17,6 @@ const MapView = (props) => {
     const [map,setMap] = useState(null)
     const mapElement = useRef(null)
 
-    const [numberOfAreas,setNumberOfAreas] = useState(props.climbingAreas.length)
-
     const mapRef = useRef()
     mapRef.current = map
 
@@ -50,8 +48,9 @@ const MapView = (props) => {
     },[props.climbingAreas])
 
     return (
-        <aside class='w-72 h-40 border-2 border-black rounded sm:w-1/2 sm:h-full' ref={mapElement}></aside>
+        <aside class='w-72 h-full flex border-2 border-black rounded sm:w-1/2 sm:h-full' ref={mapElement}></aside>
     )
 }
 
 export default MapView
+

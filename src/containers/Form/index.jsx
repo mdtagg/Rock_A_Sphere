@@ -6,7 +6,7 @@ const Form = (props) => {
 
     return (
         <form onSubmit={(e) => handleSubmit(e,props)}>
-            <div class='flex gap-2 sm:flex-col wide:h-1/3'>
+            <div class='flex gap-2 sm:flex-col wide:h-1/3 sm:gap-0'>
                 <label class='font-bold' htmlFor='coords'>Latitude/Longitude: </label>
                 <input class='border-2 border-black placeholder:text-xs' placeholder='copy + paste from google maps' type='text' id='coords' name='coords' required></input>
                 <label class='font-bold' htmlFor='name'>Area Name: </label>
