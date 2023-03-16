@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "tailwind": "tailwindcss -i ./src/index.css -o ./dist/output.css --watch"
+    "tailwind": "tailwindcss -i ./src/index.css -o ./dist/output.css --watch",
+    "deploy": "git subtree push --prefix dist origin gh-pages"
   },
   "dependencies": {
     "axios": "^1.2.5",
