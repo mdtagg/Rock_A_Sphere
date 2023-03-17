@@ -14,8 +14,10 @@ module.exports = {
       //767
       'md': {'min': '767px','max': '900px'},
       // => @media (max-width: 767px) { ... }
-
-      'sm': {'max': '639px'},
+      'sm': {
+        'raw': `only screen and (max-height: 980px) and (max-width:480px)`
+      },
+      // 'sm': {'max': '639px'},
       // => @media (max-width: 639px) { ... }
       'wide': {
         'raw': `only screen and (max-height: 480px) and (max-width: 960px)`
