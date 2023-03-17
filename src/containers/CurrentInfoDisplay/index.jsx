@@ -15,6 +15,7 @@ const CurrentInfoDisplay = (props) => {
             <MapView 
                 location={props.location} 
                 climbingAreas={props.climbingAreas} 
+                setClimbingAreas={props.setClimbingAreas}
             />
         </section>
     )
