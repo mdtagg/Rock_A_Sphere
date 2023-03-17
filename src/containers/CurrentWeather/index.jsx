@@ -6,7 +6,7 @@ import { CurrentInfo } from "../CurrentInfo.jsx/index.jsx"
 const CurrentWeather = (props) => {
 
     return (
-        <div class=' flex flex-col text-black items-center gap-1'>
+        <div class=' flex flex-col h-fit text-black items-center'>
             {props.weatherData &&
             <>
                 <CurrentDate
