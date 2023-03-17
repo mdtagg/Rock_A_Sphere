@@ -4,7 +4,7 @@ import { AreaTitle } from "../AreaTitle"
 
 const CurrentInfoDisplay = (props) => {
     return (
-        <section class='flex gap-10 '>
+        <section class='flex gap-10'>
             <AreaTitle 
                 location={props.location}
                 setLocation={props.setLocation}

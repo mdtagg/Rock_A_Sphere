@@ -8,7 +8,7 @@ const AreaTitle = (props) => {
     const [ dropdown,setDropdown ] = useState(false)
 
     return (
-        <aside class='h-fit flex justify-center items-center flex-col p-6 gap-1 rounded-md bg-gray-100/25  w-fit border-2 border-black ml-11 sm:m-0 sm:p-2 sm:w-1/2 wide:gap-0 wide:p-4 wide:m-0  '>
+        <aside class='h-40 flex justify-center items-center flex-col p-6 gap-1 rounded-md bg-gray-100/25  w-fit border-2 border-black ml-11 sm:h-48 sm:m-0 sm:p-2 sm:w-1/2 wide:gap-0 wide:p-4 wide:m-0  '>
             <LocationsButton
                 location={props.location}
                 setDropdown={setDropdown}
