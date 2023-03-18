@@ -15,8 +15,7 @@ const App = () => {
     const [weatherData,setWeatherData] = useState(undefined)
     const [location,setLocation] = useState(climbingAreas[0])
     const [totalRain,setTotalRain] = useState({})
-
-    console.log(weatherData)
+    const [earthView,setEarthView] = useState(false)
 
     useEffect(() => {
         (async function () {
@@ -45,6 +44,8 @@ const App = () => {
                 weatherData={weatherData} 
                 location={location} 
                 setLocation={setLocation}
+                earthView={earthView}
+                setEarthView={setEarthView}
             />
             <Table 
                 location={location} 

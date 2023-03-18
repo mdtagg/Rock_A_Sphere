@@ -12,6 +12,8 @@ const AreaTitle = (props) => {
             <LocationsButton
                 location={props.location}
                 setDropdown={setDropdown}
+                earthView={props.earthView}
+                setEarthView={props.setEarthView}
             />
             {!dropdown && 
                 <CurrentWeather

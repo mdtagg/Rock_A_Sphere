@@ -27,8 +27,6 @@ const MapView = (props) => {
     const popupElement = useRef()
     const popupContainer = useRef()
 
-    console.log(props.climbingAreas)
-
     const mapRef = useRef()
     mapRef.current = map
 
@@ -36,7 +34,6 @@ const MapView = (props) => {
         e.preventDefault()
         removeOverlays(mapRef)
         const transformedCoords = transform(clickCoords,'EPSG:3857','EPSG:4326')
-        console.log({transformedCoords})
         props.setClimbingAreas((prevAreas) => {
             return [
                 ...prevAreas,
@@ -91,6 +88,12 @@ const MapView = (props) => {
         map.setLayers(filteredLayers)
 
     },[props.climbingAreas])
+
+    useEffect(() => {
+        if(!props.earthView) return
+        props.setEarthView(false)
+        mapRef.current.getView().setZoom(1)
+    },[props.earthView])
 
     return (
         <aside class='w-96 h-52 z-10 border-2 border-black rounded sm:w-1/2 sm:h-full wide:w-72 wide:h-40' ref={mapElement}>
