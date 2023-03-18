@@ -7,7 +7,6 @@ function changeCoords(e,mapRef,popupElement,setClickCoords) {
 
     
     const overlays = mapRef.current.getOverlays().array_
-    console.log(overlays)
     if(overlays.length) return
     const featureTest = mapRef.current.getFeaturesAtPixel(e.pixel)[0];
     if(featureTest) {

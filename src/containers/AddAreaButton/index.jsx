@@ -14,7 +14,7 @@ const AddAreaButton = (props) => {
                 class='h-4 w-4 wide:h-3 wide:w-3'   
             />
             <P 
-                class=' wide:text-xs'
+                class=' wide:text-base font-semibold'
                 value='Add Area'
             />
         </button>

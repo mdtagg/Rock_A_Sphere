@@ -90,7 +90,7 @@ const MapView = (props) => {
     },[props.climbingAreas])
 
     return (
-        <aside class='w-72 h-40 z-10 border-2 border-black rounded sm:w-1/2 sm:h-full' ref={mapElement}>
+        <aside class='w-96 h-52 z-10 border-2 border-black rounded sm:w-1/2 sm:h-full wide:w-72' ref={mapElement}>
             <div class='hidden' ref={popupContainer}>
             {map &&
             <form 

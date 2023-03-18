@@ -16,6 +16,8 @@ const App = () => {
     const [location,setLocation] = useState(climbingAreas[0])
     const [totalRain,setTotalRain] = useState({})
 
+    console.log(weatherData)
+
     useEffect(() => {
         (async function () {
             const weatherData = await WeatherDataService.getWeatherData(
@@ -47,6 +49,7 @@ const App = () => {
             <Table 
                 location={location} 
                 totalRain={totalRain} 
+                weatherData={weatherData}
             />
             <RainReadout
                 location={location} 

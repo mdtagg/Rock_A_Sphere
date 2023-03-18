@@ -15,7 +15,7 @@ const LocationsButton = (props) => {
             onClick={handleClick}
         >
             <LocationTitle
-                class='text-black font-bold text-3xl sm:text-2xl wide:text-lg'
+                class='text-black font-bold text-3xl sm:text-xl wide:text-lg'
                 value={props.location.title}
             />
             <DownCaret
