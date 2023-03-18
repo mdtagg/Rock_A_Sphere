@@ -5,10 +5,11 @@ import VectorSource from 'ol/source/Vector'
 import TileLayer from 'ol/layer/Tile'
 import XYZ from 'ol/source/XYZ'
 import {Feature} from 'ol/index.js';
+import { Point } from 'ol/geom'
 
-function getInitialMap(mapInfo) {
+function getInitialMap(mapInfo,climbingAreas) {
 
-    const { place,point,mapElement,id } = mapInfo
+    const { place,mapElement,id } = mapInfo
     const initialMap = new Map({
         target: mapElement.current,
         layers: [
@@ -17,17 +18,25 @@ function getInitialMap(mapInfo) {
                     url: 'https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer/tile/{z}/{y}/{x}'
                 }),
             }),
-            new VectorLayer({
-                source: new VectorSource({
-                    features: [new Feature(point)]
-                }),
-                style: {
-                    'circle-radius': 7,
-                    'circle-fill-color': 'red',
-                },
-                id: id,
-                type: 'point'
+            ...climbingAreas.map(area => {
+                const { longitude,latitude } = area.coords
+                const place = [longitude,latitude]
+                const point = new Point(place)
+                return (
+                    new VectorLayer({
+                        source: new VectorSource({
+                            features: [new Feature(point)]
+                        }),
+                        style: {
+                            'circle-radius': 7,
+                            'circle-fill-color': 'red',
+                        },
+                        id: id,
+                        type: 'point'
+                    })
+                )
             })
+            
         ],
         view: new View({
             projection:'EPSG:4326',
