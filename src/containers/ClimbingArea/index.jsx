@@ -7,7 +7,7 @@ import { handleDelete } from "./utils/handleDelete";
 const ClimbingArea = (props) => {
 
     return (
-        <div class='flex justify-between gap-3 bg-white rounded border border-black pl-1 sm:p-0 sm:text-[9px] sm:font-bold wide:text-base ' >
+        <div class='flex justify-between gap-3 bg-white rounded border border-black pl-1 sm:text-[9px] sm:font-bold wide:text-base ' >
             <ChangeLocation
                 class=' h-[25px] w-[100px] justify-center truncate items-center overflow-hidden sm:break-keep sm:flex sm:justify-start sm:h-[20px] sm:w-[60px]  ' 
                 onClick={() => handleAreaChange(props)} 
