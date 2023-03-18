@@ -9,6 +9,7 @@ import { changeCoords } from './utils/changeCoords';
 import { v4 as uuidv4 } from 'uuid'
 import { cancelPoint } from './utils/cancelPoint';
 import { removeOverlays } from './utils/removeOverlays';
+import { transform } from 'ol/proj';
 
 const MapView = (props) => {
 
@@ -26,20 +27,24 @@ const MapView = (props) => {
     const popupElement = useRef()
     const popupContainer = useRef()
 
+    console.log(props.climbingAreas)
+
     const mapRef = useRef()
     mapRef.current = map
 
     function handleSubmit(e) {
         e.preventDefault()
         removeOverlays(mapRef)
+        const transformedCoords = transform(clickCoords,'EPSG:3857','EPSG:4326')
+        console.log({transformedCoords})
         props.setClimbingAreas((prevAreas) => {
             return [
                 ...prevAreas,
                 {
                     title:areaName,
                     coords: {
-                        latitude:clickCoords[1],
-                        longitude:clickCoords[0]
+                        latitude:transformedCoords[1],
+                        longitude:transformedCoords[0]
                     },
                     id: uuidv4()
                 }
@@ -73,7 +78,6 @@ const MapView = (props) => {
         recenterMap(mapRef,place)
         addPoint(mapRef,id,point)
         
-        // map.renderSync()
         map.render()
         
     },[props.location])

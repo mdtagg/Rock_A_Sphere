@@ -15,6 +15,7 @@ function changeCoords(e,mapRef,popupElement,setClickCoords) {
     }
 
     const coords = e.coordinate
+    console.log({coords})
     const point = new Point(coords)
     addPoint(mapRef,uuidv4(),point)
 

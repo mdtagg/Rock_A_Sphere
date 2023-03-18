@@ -6,6 +6,7 @@ import TileLayer from 'ol/layer/Tile'
 import XYZ from 'ol/source/XYZ'
 import {Feature} from 'ol/index.js';
 import { Point } from 'ol/geom'
+import { fromLonLat } from 'ol/proj'
 
 function getInitialMap(mapInfo,climbingAreas) {
 
@@ -15,13 +16,14 @@ function getInitialMap(mapInfo,climbingAreas) {
         layers: [
             new TileLayer({
                 source: new XYZ({
-                    url: 'https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer/tile/{z}/{y}/{x}'
+                    url: 'https://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'
                 }),
             }),
             ...climbingAreas.map(area => {
                 const { longitude,latitude } = area.coords
                 const place = [longitude,latitude]
-                const point = new Point(place)
+                const webMerc = fromLonLat(place)
+                const point = new Point(webMerc)
                 return (
                     new VectorLayer({
                         source: new VectorSource({
@@ -39,10 +41,10 @@ function getInitialMap(mapInfo,climbingAreas) {
             
         ],
         view: new View({
-            projection:'EPSG:4326',
-            center:place,
-            zoom:16,
-            maxZoom:16
+            projection:'EPSG:3857',
+            center:[0,0],
+            zoom:1,
+            maxZoom:19
         }),
         controls:[]
         })
@@ -52,3 +54,5 @@ function getInitialMap(mapInfo,climbingAreas) {
 }
 
 export { getInitialMap }
+
+// https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer/tile/{z}/{y}/{x}
