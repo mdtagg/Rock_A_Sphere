@@ -46,6 +46,7 @@ function getInitialMap(mapInfo,climbingAreas) {
         }),
         controls:[]
         })
+        // EPSG:4326
 
     return initialMap
 }

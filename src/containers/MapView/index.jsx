@@ -73,7 +73,8 @@ const MapView = (props) => {
         recenterMap(mapRef,place)
         addPoint(mapRef,id,point)
         
-        map.renderSync()
+        // map.renderSync()
+        map.render()
         
     },[props.location])
 

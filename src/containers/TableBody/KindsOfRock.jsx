@@ -4,8 +4,14 @@ const KindsOfRock = (props) => {
     return (
         <div class='flex flex-col gap-1 p-1 items-center justify-center h-full sm:p-0 wide:text-xs'>
             {props.rockData.kindsOfRock.map(item => {
+                const rockName = 
+                item.name === 'conglomerate' ? 'conglomerate-rock':
+                item.name === 'plutonic' ? 'intrusive-rock':
+                item.name === 'volcanic' ? 'extrusive-rock':
+                item.name
+                
                 return (
-                    <div 
+                    <button 
                         class="text-center rounded font-bold w-full border-2 text-clip overflow-hidden border-black sm:text-xs " 
                         style=
                         {{
@@ -14,8 +20,8 @@ const KindsOfRock = (props) => {
                         }}
                         key={uuidv4()}
                     >
-                        {item.name}
-                    </div>
+                        <a href={`https://www.britannica.com/science/${rockName}`} target='_blank'>{item.name}</a>
+                    </button>
                 )
             })}
         </div>
