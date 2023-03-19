@@ -3,6 +3,7 @@ import VectorSource from 'ol/source/Vector'
 import {Feature} from 'ol/index.js';
 
 function addPoint(mapRef,id,point) {
+    
     const newPoint = new VectorLayer({
             source: new VectorSource({
                 features: [new Feature(point)]
@@ -12,7 +13,8 @@ function addPoint(mapRef,id,point) {
                 'circle-fill-color': 'red',
             },
             id: id,
-            type:'point'
+            type:'point',
+            
         })
     mapRef.current.getLayers().push(newPoint)
     

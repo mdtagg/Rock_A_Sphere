@@ -25,6 +25,7 @@ function getInitialMap(mapInfo,climbingAreas) {
                 const place = [longitude,latitude]
                 const webMerc = fromLonLat(place)
                 const point = new Point(webMerc)
+                
                 return (
                     new VectorLayer({
                         source: new VectorSource({

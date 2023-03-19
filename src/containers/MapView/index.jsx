@@ -2,11 +2,9 @@
 import { useState,useEffect,useRef } from 'react'
 import {Point} from 'ol/geom.js';
 import { getInitialMap } from './utils/getInitialMap'
-import { addPoint } from './utils/addPoint';
 import { recenterMap } from './utils/recenterMap';
 import { deletePoint } from './utils/deletePoint';
 import { changeCoords } from './utils/changeCoords';
-import { v4 as uuidv4 } from 'uuid'
 import { cancelPoint } from './utils/cancelPoint';
 import { removeOverlays } from './utils/removeOverlays';
 import { transform } from 'ol/proj';
@@ -25,8 +23,6 @@ const MapView = (props) => {
     const [clickCoords,setClickCoords] = useState([])
     const [areaName,setAreaName] = useState([])
     const [areaId,setAreaId] = useState([])
-    
-    console.log(areaId)
 
     const mapElement = useRef(null)
     const popupElement = useRef()
@@ -69,15 +65,18 @@ const MapView = (props) => {
     useEffect(() => {
         const mapInfo = {place,point,mapElement,id}
         const initialMap = getInitialMap(mapInfo,props.climbingAreas)
-        initialMap.on('click',(e) => changeCoords(e,mapRef,popupElement,setClickCoords,setAreaId))
+        initialMap.on('click',(e) => changeCoords(e,mapRef,popupElement,setClickCoords,setAreaId,props.climbingAreas,props.setLocation))
+        initialMap.on('pointermove', function (e) {
+            const type = mapRef.current.hasFeatureAtPixel(e.pixel) ? 'pointer' : 'inherit';
+            mapRef.current.getViewport().style.cursor = type;
+          });
         setMap(initialMap)
     },[])
 
     //adds a red dot on the map when a new area is created
     useEffect(() => {
         if(!map) return
-        recenterMap(mapRef,place)
-        // addPoint(mapRef,map,id,point)
+        recenterMap(mapRef,webMerc)
         
         map.render()
         
@@ -89,7 +88,6 @@ const MapView = (props) => {
         if(!map ) return
         const { climbingAreas } = props
         const filteredLayers = deletePoint(climbingAreas,mapRef,map)
-        // const filteredLayers = deletePoint(climbingAreas,mapRef)
         map.setLayers(filteredLayers)
 
     },[props.climbingAreas])

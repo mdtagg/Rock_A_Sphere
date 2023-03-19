@@ -2,14 +2,15 @@ import { addPoint } from "./addPoint"
 import {Point} from 'ol/geom.js';
 import { Overlay } from "ol";
 import { v4 as uuidv4 } from 'uuid'
+import { getAreaInfo } from "./getAreaInfo";
 
-function changeCoords(e,mapRef,popupElement,setClickCoords,setAreaId) {
+function changeCoords(e,mapRef,popupElement,setClickCoords,setAreaId,climbingAreas,setLocation) {
 
     const overlays = mapRef.current.getOverlays().array_
     if(overlays.length) return
-    const featureTest = mapRef.current.getFeaturesAtPixel(e.pixel)[0];
-    if(featureTest) {
-        getAreaInfo()
+    const feature = mapRef.current.getFeaturesAtPixel(e.pixel)[0];
+    if(feature) {
+        getAreaInfo(mapRef,feature,climbingAreas,setLocation)
         return
     }
 
