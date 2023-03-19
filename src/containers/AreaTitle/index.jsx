@@ -26,6 +26,7 @@ const AreaTitle = (props) => {
                     setClimbingAreas={props.setClimbingAreas}
                     setLocation={props.setLocation}
                     setDropdown={setDropdown}
+                    setToggleForm={props.setToggleForm}
                 />
             }
         </aside>

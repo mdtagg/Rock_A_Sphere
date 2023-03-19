@@ -1,10 +1,19 @@
 
+import { useState } from "react"
 import MapView from "../MapView"
 import { AreaTitle } from "../AreaTitle"
+import { Form } from "../Form"
 
 const CurrentInfoDisplay = (props) => {
+
+    const [toggleForm,setToggleForm] = useState(false)
+
     return (
+        
         <section class='flex gap-10 sm:gap-5'>
+            
+            {!toggleForm &&
+            <>
             <AreaTitle 
                 location={props.location}
                 setLocation={props.setLocation}
@@ -13,6 +22,7 @@ const CurrentInfoDisplay = (props) => {
                 weatherData={props.weatherData}
                 earthView={props.earthView}
                 setEarthView={props.setEarthView}
+                setToggleForm={setToggleForm}
                 
             />
             <MapView 
@@ -23,7 +33,17 @@ const CurrentInfoDisplay = (props) => {
                 earthView={props.earthView}
                 setEarthView={props.setEarthView}
             />
+            </>
+            }       
+            {toggleForm &&
+            <Form 
+                setToggleForm={setToggleForm}
+                setClimbingAreas={props.setClimbingAreas}
+            />
+            }
+            
         </section>
+        
     )
 }
 

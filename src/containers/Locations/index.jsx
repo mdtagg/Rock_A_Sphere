@@ -1,16 +1,16 @@
 
-import { useState } from 'react'
-import { Form } from '../Form';
+// import { useState } from 'react'
+// import { Form } from '../Form';
 import { AreaList } from '../AreaList';
 import { AddAreaButton } from '../AddAreaButton';
 
 const Locations = (props) => {
 
-    const [toggleForm,setToggleForm] = useState(false)
+    // const [toggleForm,setToggleForm] = useState(false)
 
     return (
-        <>
-            {!toggleForm &&
+        // <>
+            
             <div class='flex flex-col gap-1 w-full'>
                 <AreaList
                     climbingAreas={props.climbingAreas}
@@ -19,17 +19,17 @@ const Locations = (props) => {
                     setLocation={props.setLocation}
                 />
                 <AddAreaButton 
-                    setToggleForm={setToggleForm}
+                    setToggleForm={props.setToggleForm}
                 />
             </div>
-            }
-            {toggleForm &&
-                <Form 
-                    setToggleForm={setToggleForm}
-                    setClimbingAreas={props.setClimbingAreas}
-                />
-            }
-        </>
+            // }
+            // {toggleForm &&
+                // <Form 
+                //     setToggleForm={setToggleForm}
+                //     setClimbingAreas={props.setClimbingAreas}
+                // />
+            // }
+        // </>
     )
 }
 
