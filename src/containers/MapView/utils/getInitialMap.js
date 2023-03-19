@@ -21,6 +21,7 @@ function getInitialMap(mapInfo,climbingAreas) {
             }),
             ...climbingAreas.map(area => {
                 const { longitude,latitude } = area.coords
+                const { id } = area
                 const place = [longitude,latitude]
                 const webMerc = fromLonLat(place)
                 const point = new Point(webMerc)

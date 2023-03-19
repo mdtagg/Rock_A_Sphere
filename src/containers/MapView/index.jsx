@@ -10,6 +10,7 @@ import { v4 as uuidv4 } from 'uuid'
 import { cancelPoint } from './utils/cancelPoint';
 import { removeOverlays } from './utils/removeOverlays';
 import { transform } from 'ol/proj';
+import { fromLonLat } from 'ol/proj';
 
 const MapView = (props) => {
 
@@ -17,12 +18,16 @@ const MapView = (props) => {
     const latitude = parseFloat(props.location.coords.latitude)
     const id = props.location.id
     const place = [longitude, latitude]
-    const point = new Point(place)
+    const webMerc = fromLonLat(place)
+    const point = new Point(webMerc)
     
     const [map,setMap] = useState(null)
     const [clickCoords,setClickCoords] = useState([])
     const [areaName,setAreaName] = useState([])
+    const [areaId,setAreaId] = useState([])
     
+    console.log(areaId)
+
     const mapElement = useRef(null)
     const popupElement = useRef()
     const popupContainer = useRef()
@@ -43,7 +48,7 @@ const MapView = (props) => {
                         latitude:transformedCoords[1],
                         longitude:transformedCoords[0]
                     },
-                    id: uuidv4()
+                    id: areaId
                 }
             ]
         })
@@ -64,16 +69,15 @@ const MapView = (props) => {
     useEffect(() => {
         const mapInfo = {place,point,mapElement,id}
         const initialMap = getInitialMap(mapInfo,props.climbingAreas)
-        initialMap.on('click',(e) => changeCoords(e,mapRef,popupElement,setClickCoords,popupContainer))
+        initialMap.on('click',(e) => changeCoords(e,mapRef,popupElement,setClickCoords,setAreaId))
         setMap(initialMap)
     },[])
 
     //adds a red dot on the map when a new area is created
     useEffect(() => {
         if(!map) return
-    
         recenterMap(mapRef,place)
-        addPoint(mapRef,id,point)
+        // addPoint(mapRef,map,id,point)
         
         map.render()
         
@@ -84,7 +88,8 @@ const MapView = (props) => {
         
         if(!map ) return
         const { climbingAreas } = props
-        const filteredLayers = deletePoint(climbingAreas,mapRef)
+        const filteredLayers = deletePoint(climbingAreas,mapRef,map)
+        // const filteredLayers = deletePoint(climbingAreas,mapRef)
         map.setLayers(filteredLayers)
 
     },[props.climbingAreas])

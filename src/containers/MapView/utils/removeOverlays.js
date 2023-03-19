@@ -1,6 +1,7 @@
 
 
 function removeOverlays(mapRef) {
+    
     mapRef.current.getOverlays().getArray().map(container => {
         container.element.remove()
     })
