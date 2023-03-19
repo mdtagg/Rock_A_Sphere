@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 const AreaList = (props) => {
     return (
-        <div class='grid grid-rows-3 grid-flow-col w-full gap-1'>
+        <div class='grid grid-rows-3 grid-flow-col w-full gap-1 justify-center'>
             {props.climbingAreas.map(area => {
                 return (
                     <ClimbingArea 

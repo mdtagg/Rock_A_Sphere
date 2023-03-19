@@ -1,10 +1,14 @@
 import { useState,useEffect } from "react"
+import { getClimbingAreas } from "../utils/getClimbingAreas"
 
 const UseLocalStorage = (key,initialValue) => {
 
     const [ value, setValue ] = useState(() => {
         try {
             const localValue = window.localStorage.getItem(key)
+            if(localValue && !JSON.parse(localValue).length) {
+                return initialValue
+            }
             return localValue ? JSON.parse(localValue) : initialValue
         }
         catch(error) {

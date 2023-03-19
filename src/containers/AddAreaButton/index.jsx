@@ -1,5 +1,4 @@
-import { P } from "../../components/P"
-import { Image } from "../../components/Image"
+import { P as Text } from "../../components/P"
 import { handleClick } from "./utils/handleClick"
 import { ReactComponent as PlusImg } from '../../assets/svg/plus.svg'
 
@@ -13,8 +12,8 @@ const AddAreaButton = (props) => {
             <PlusImg
                 class='h-4 w-4 wide:h-3 wide:w-3'   
             />
-            <P 
-                class=' wide:text-base font-semibold'
+            <Text
+                class=' font-semibold wide:text-xs'
                 value='Add Area'
             />
         </button>
