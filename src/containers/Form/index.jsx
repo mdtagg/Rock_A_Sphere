@@ -4,6 +4,11 @@ import { handleCancel } from "./utils/handleCancel";
 
 const Form = (props) => {
 
+    const coordinateRegex = /^[-+]?([1-8]?\d(\.\d+)?|90(\.0+)?),\s*[-+]?(180(\.0+)?|((1[0-7]\d)|([1-9]?\d))(\.\d+)?)$/
+    const coords = '34.09604562465432,-118.73008531949412'
+    const test = coordinateRegex.test(coords)
+    console.log(test)
+
     return (
         <form onSubmit={(e) => handleSubmit(e,props)} class='flex flex-col justify-center items-center p-3 gap-2 border-2 border-black rounded w-full wide:gap-4 xl:h-full'>
             <div class='flex gap-2 sm:flex-col sm:gap-0 xl:flex-col xl:w-1/3' >
