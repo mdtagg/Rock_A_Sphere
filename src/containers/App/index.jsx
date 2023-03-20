@@ -36,6 +36,11 @@ const App = () => {
         
     },[location])
 
+    useEffect(() => {
+        console.log(window.innerWidth,window.innerHeight)
+        console.log(window.screen)
+    },[window.innerWidth])
+
     return (
         <main class={`bg-[url('./assets/images/redRock.jpg')] bg-cover bg-center h-screen w-screen flex flex-col pt-10 justify-between sm:p-0 wide:p-0`}>
             <CurrentInfoDisplay

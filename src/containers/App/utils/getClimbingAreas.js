@@ -20,18 +20,18 @@ export const getClimbingAreas = () => {
             {latitude:'34.09604562465432',longitude:'-118.73008531949412'},
             id:uuidv4()
         },
+        
+        {
+            title:'Texas Canyon',
+            coords:
+                {latitude:'34.51324985131252',longitude:'-118.40142757794119'},
+                id: uuidv4()
+        },
         {
             title:'Red Rock (Oak Creek Canyon)',
             coords:
                 {latitude:'36.102907561044844',longitude:'-115.48824730717135'},
             id: uuidv4()
-        },
-        
-        {
-            title:'Kraft Boulders',
-            coords:
-                {latitude:'36.16549228954012',longitude:'-115.41598533328391'},
-                id: uuidv4()
         },
         {
             title:'Black Velvet Canyon',

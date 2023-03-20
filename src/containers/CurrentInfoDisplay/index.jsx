@@ -10,7 +10,7 @@ const CurrentInfoDisplay = (props) => {
 
     return (
         
-        <section class='flex gap-10 sm:gap-5'>
+        <section class='flex gap-10 sm:gap-5 wide:gap-1'>
             
             {!toggleForm &&
             <>
