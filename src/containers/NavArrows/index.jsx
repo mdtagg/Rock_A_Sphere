@@ -2,6 +2,7 @@ import { ReactComponent as LeftCaret } from '../../assets/svg/left-caret.svg'
 import { ReactComponent as RightCaret } from '../../assets/svg/right-caret.svg'
 import { useState,useEffect } from 'react'
 
+
 const NavArrows = (props) => {
 
     const [totalPages,setTotalPages] = useState(1)
@@ -23,7 +24,7 @@ const NavArrows = (props) => {
     function handlePageForward() {
         if(!props.climbingAreas.length > 6 || 
             !props.climbingAreas.length ||
-            props.currentPageIndex === totalPages) {
+            props.currentPageIndex === totalPages - 1) {
                 return
             }
         props.setCurrentPageIndex((prevPage) => {
@@ -35,10 +36,12 @@ const NavArrows = (props) => {
     useEffect(() => {
 
         if(!props.climbingAreas.length) return 
-        
-        let pageNumbers = Math.floor(props.climbingAreas.length % 6)
-        if(pageNumbers === 0) {
-            pageNumbers = props.climbingAreas.length / 6
+        const pageNumbers = Math.ceil(props.climbingAreas.length / 6)
+        if(props.currentPageIndex === pageNumbers) {
+            props.setCurrentPageIndex((prevIndex) => {
+                prevIndex -= 1
+                return prevIndex
+            })
         }
         setTotalPages(pageNumbers)
 

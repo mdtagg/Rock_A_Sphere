@@ -12,9 +12,8 @@ const AreaList = (props) => {
             areaStartIndex *= 6
         }
         const areaEndIndex = areaStartIndex + 6
-        const test = props.climbingAreas.slice(areaStartIndex,areaEndIndex)
-        console.log(areaStartIndex,areaEndIndex,props.currentPageIndex,test)
-        setAreaDisplay(test)
+        const areaSlice = props.climbingAreas.slice(areaStartIndex,areaEndIndex)
+        setAreaDisplay(areaSlice)
     },[props.currentPageIndex,props.climbingAreas])
 
     return (

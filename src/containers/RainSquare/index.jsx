@@ -1,8 +1,7 @@
 import { P as RainAmt} from '../../components/P';
 import { P as Inches } from '../../components/P';
 import { P as Day } from '../../components/P'
-import { Image } from '../../components/Image';
-import { ReactComponent as Rain } from '../../assets/svg/rain.svg'
+import { ReactComponent as RainImg } from '../../assets/svg/rain.svg'
 
 const RainSquare = (props) => {
 
@@ -17,11 +16,7 @@ const RainSquare = (props) => {
                 value={item[0]}
             />
             <div class='flex gap-2 items-center wide:gap-2'>
-                {/* <Image
-                    class='h-5 w-5 wide:h-3 wide:w-3'
-                    src='/src/assets/svg/rain.svg'
-                /> */}
-                <Rain
+                <RainImg
                     class='h-5 w-5 wide:h-3 wide:w-3'
                 />
                 <RainAmt

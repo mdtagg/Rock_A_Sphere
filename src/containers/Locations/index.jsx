@@ -7,7 +7,7 @@ import { NavArrows } from "../NavArrows"
 const Locations = (props) => {
 
     const [currentPageIndex,setCurrentPageIndex] = useState(0)
-    console.log({currentPageIndex})
+    
     return (
         <div class='flex flex-col gap-1 w-full'>
             <NavArrows
