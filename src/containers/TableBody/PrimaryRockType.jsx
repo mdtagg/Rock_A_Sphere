@@ -9,7 +9,7 @@ const PrimaryRockType = (props) => {
         const color = 
         data === 'sedimentary' ? '#FF8C00' :
         data === 'metamorphic' ? '#AC902A' :
-        '#000000'
+        '#FF0000'
 
         return { color }
     }
