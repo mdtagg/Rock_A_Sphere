@@ -20,7 +20,7 @@ const KindsOfRock = (props) => {
                         }}
                         key={uuidv4()}
                     >
-                        <a href={`https://www.britannica.com/science/${rockName}`} target='_blank'>{item.name}</a>
+                        <a href={`https://en.wikipedia.org/wiki/${rockName}`} target='_blank'>{item.name}</a>
                     </button>
                 )
             })}
@@ -29,3 +29,5 @@ const KindsOfRock = (props) => {
 }
 
 export { KindsOfRock }
+
+// https://www.britannica.com/science/${rockName}

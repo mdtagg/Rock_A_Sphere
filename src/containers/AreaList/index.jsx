@@ -1,10 +1,25 @@
 import { ClimbingArea } from "../ClimbingArea"
 import { v4 as uuidv4 } from 'uuid';
+import { useState,useEffect } from "react";
 
 const AreaList = (props) => {
+
+    const [areaDisplay,setAreaDisplay] = useState([])
+
+    useEffect(() => {
+        let areaStartIndex = props.currentPageIndex
+        if(props.currentPageIndex > 0) {
+            areaStartIndex *= 6
+        }
+        const areaEndIndex = areaStartIndex + 6
+        const test = props.climbingAreas.slice(areaStartIndex,areaEndIndex)
+        console.log(areaStartIndex,areaEndIndex,props.currentPageIndex,test)
+        setAreaDisplay(test)
+    },[props.currentPageIndex,props.climbingAreas])
+
     return (
-        <div class='grid grid-rows-3 grid-flow-col w-full gap-1 justify-center'>
-            {props.climbingAreas.map(area => {
+        <div class='grid grid-rows-3 grid-flow-col gap-1'>
+            {areaDisplay.map(area => {
                 return (
                     <ClimbingArea 
                         area={area}
