@@ -21,7 +21,7 @@ const LocationsButton = (props) => {
                     onClick={() => handleViewChange(props.setEarthView)}
                 />
             <button 
-                class='flex rounded gap-2 justify-center items-center hover:bg-slate-500/50 xl:w-full' 
+                class='flex rounded gap-2 justify-center items-center hover:bg-slate-500/50 sm:w-3/4 wide:w-3/4 xl:w-full' 
                 onClick={handleClick}
             >
                 <LocationTitle
