@@ -10,7 +10,7 @@ import { fromLonLat } from 'ol/proj'
 
 function getInitialMap(mapInfo,climbingAreas) {
 
-    const { place,mapElement,id } = mapInfo
+    const { mapElement } = mapInfo
     const initialMap = new Map({
         target: mapElement.current,
         layers: [
@@ -50,11 +50,8 @@ function getInitialMap(mapInfo,climbingAreas) {
         }),
         controls:[]
         })
-        // EPSG:4326
 
     return initialMap
 }
 
 export { getInitialMap }
-
-// https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer/tile/{z}/{y}/{x}
