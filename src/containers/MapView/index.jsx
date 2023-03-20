@@ -99,7 +99,7 @@ const MapView = (props) => {
     },[props.earthView])
 
     return (
-        <aside class='w-96 h-52 z-10 border-2 border-black rounded sm:w-1/2 sm:h-full wide:w-72 wide:h-40' ref={mapElement}>
+        <aside class='w-96 h-52 border-2 border-black rounded sm:w-1/2 sm:h-full wide:w-96 wide:h-40' ref={mapElement}>
             <div class='hidden' ref={popupContainer}>
             {map &&
             <form 
