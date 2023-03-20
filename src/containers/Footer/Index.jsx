@@ -2,7 +2,7 @@ import { ReactComponent as GitHubImg } from '../../assets/svg/github.svg'
 
 const Footer = () => {
     return (
-        <footer class='flex items-center h-10 bg-gray-100/75 justify-between wide:h-6 md:hidden'>
+        <footer class='flex items-center h-10 bg-gray-100/75 justify-between wide:h-6 wide:hidden'>
             <div class='flex justify-center m-auto items-center gap-2'>
                 <p class='text-black text-2xl font-medium sm:text-sm sm:font-medium wide:text-sm'>Developed by Michael Tagg</p>
                 <a href='https://github.com/mdtagg'>
