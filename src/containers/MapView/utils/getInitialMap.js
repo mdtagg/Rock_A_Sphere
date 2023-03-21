@@ -7,18 +7,21 @@ import XYZ from 'ol/source/XYZ'
 import {Feature} from 'ol/index.js';
 import { Point } from 'ol/geom'
 import { fromLonLat } from 'ol/proj'
+import { Control } from 'ol/control'
+import { Group as LayerGroup } from 'ol/layer'
 
-function getInitialMap(mapInfo,climbingAreas) {
+function getInitialMap(mapInfo,climbingAreas,mapChange) {
 
     const { mapElement } = mapInfo
     const initialMap = new Map({
         target: mapElement.current,
         layers: [
-            new TileLayer({
+                new TileLayer({
                 source: new XYZ({
                     url: 'https://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'
+                })
                 }),
-            }),
+            
             ...climbingAreas.map(area => {
                 const { longitude,latitude } = area.coords
                 const { id } = area
@@ -40,7 +43,6 @@ function getInitialMap(mapInfo,climbingAreas) {
                     })
                 )
             })
-            
         ],
         view: new View({
             projection:'EPSG:3857',
@@ -48,7 +50,10 @@ function getInitialMap(mapInfo,climbingAreas) {
             zoom:1,
             maxZoom:19
         }),
-        controls:[]
+        controls:[new Control({
+            element: mapChange.current,
+            zoom:true
+        })]
         })
 
     return initialMap

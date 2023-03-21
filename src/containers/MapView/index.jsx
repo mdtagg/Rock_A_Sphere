@@ -9,6 +9,9 @@ import { cancelPoint } from './utils/cancelPoint';
 import { removeOverlays } from './utils/removeOverlays';
 import { transform } from 'ol/proj';
 import { fromLonLat } from 'ol/proj';
+import { OSM } from 'ol/source';
+import TileLayer from 'ol/layer/Tile'
+import XYZ from 'ol/source/XYZ'
 
 const MapView = (props) => {
 
@@ -23,10 +26,12 @@ const MapView = (props) => {
     const [clickCoords,setClickCoords] = useState([])
     const [areaName,setAreaName] = useState([])
     const [areaId,setAreaId] = useState([])
+    const [tile,setTile] = useState([])
 
     const mapElement = useRef(null)
     const popupElement = useRef()
     const popupContainer = useRef()
+    const mapChange = useRef()
 
     const mapRef = useRef()
     mapRef.current = map
@@ -61,10 +66,31 @@ const MapView = (props) => {
         removeOverlays(mapRef) 
     }
 
+    function changeStreetView() {
+        map.getLayers().getArray().shift()
+        const newTile = new TileLayer({
+            source: new OSM()
+        })
+        map.getLayers().getArray().unshift(newTile)
+        map.render()
+        
+    }
+
+    function changeMapView() {
+        map.getLayers().getArray().shift()
+        const newTile = new TileLayer({
+                source: new XYZ({
+                    url: 'https://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'
+                })
+                })
+        map.getLayers().getArray().unshift(newTile)
+        map.render()
+    }
+
     //creates the initial instance of the map 
     useEffect(() => {
         const mapInfo = {place,point,mapElement,id}
-        const initialMap = getInitialMap(mapInfo,props.climbingAreas)
+        const initialMap = getInitialMap(mapInfo,props.climbingAreas,mapChange)
         initialMap.on('click',(e) => changeCoords(e,mapRef,popupElement,setClickCoords,setAreaId,props.climbingAreas,props.setLocation))
         initialMap.on('pointermove', function (e) {
             const type = mapRef.current.hasFeatureAtPixel(e.pixel) ? 'pointer' : 'inherit';
@@ -100,6 +126,20 @@ const MapView = (props) => {
 
     return (
         <aside class='w-96 h-52 border-2 border-black rounded sm:w-1/2 sm:h-full wide:w-[29rem] wide:h-40' ref={mapElement}>
+            <div class='flex flex-col gap-2 justify-end' ref={mapChange} >
+                <button 
+                    class='h-5 w-5 flex justify-center items-center bg-white border border-black cursor-pointer' 
+                    onClick={changeStreetView}
+                >
+                    S
+                </button>
+                <button 
+                    class='h-5 w-5 flex justify-center items-center bg-white border border-black cursor-pointer' 
+                    onClick={changeMapView}
+                >
+                    M
+                </button>
+            </div>
             <div class='hidden' ref={popupContainer}>
             {map &&
             <form 
