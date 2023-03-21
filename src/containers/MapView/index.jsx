@@ -9,7 +9,6 @@ import { cancelPoint } from './utils/cancelPoint';
 import { removeOverlays } from './utils/removeOverlays';
 import { transform } from 'ol/proj';
 import { fromLonLat } from 'ol/proj';
-import { OSM } from 'ol/source';
 import TileLayer from 'ol/layer/Tile'
 import XYZ from 'ol/source/XYZ'
 
@@ -17,16 +16,19 @@ const MapView = (props) => {
 
     const longitude = parseFloat(props.location.coords.longitude)
     const latitude = parseFloat(props.location.coords.latitude)
-    const id = props.location.id
     const place = [longitude, latitude]
     const webMerc = fromLonLat(place)
-    const point = new Point(webMerc)
     
     const [map,setMap] = useState(null)
     const [clickCoords,setClickCoords] = useState([])
     const [areaName,setAreaName] = useState([])
     const [areaId,setAreaId] = useState([])
-    const [tile,setTile] = useState([])
+    const [tileLayer,setTileLayer] = useState(
+        new TileLayer({
+        source: new XYZ({
+            url: 'https://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'
+            })
+        }))
 
     const mapElement = useRef(null)
     const popupElement = useRef()
@@ -67,30 +69,34 @@ const MapView = (props) => {
     }
 
     function changeStreetView() {
-        map.getLayers().getArray().shift()
-        const newTile = new TileLayer({
-            source: new OSM()
-        })
-        map.getLayers().getArray().unshift(newTile)
-        map.render()
-        
+
+        tileLayer.setSource(
+            new XYZ({
+                    url:'https://tile.openstreetmap.org/{z}/{x}/{y}.png'
+                })
+            )
     }
 
     function changeMapView() {
-        map.getLayers().getArray().shift()
-        const newTile = new TileLayer({
-                source: new XYZ({
-                    url: 'https://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'
+        tileLayer.setSource(
+            new XYZ({
+                url: 'https://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'
                 })
-                })
-        map.getLayers().getArray().unshift(newTile)
-        map.render()
+            )
+        // mapRef.current.getLayers().getArray().shift()
+        // const newTile = new TileLayer({
+        //         source: new XYZ({
+        //             url: 'https://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'
+        //         })
+        //         })
+        // mapRef.current.getLayers().getArray().unshift(newTile)
+        // map.render()
     }
 
     //creates the initial instance of the map 
     useEffect(() => {
-        const mapInfo = {place,point,mapElement,id}
-        const initialMap = getInitialMap(mapInfo,props.climbingAreas,mapChange)
+        // const mapInfo = {place,point,mapElement,id}
+        const initialMap = getInitialMap(mapElement,props.climbingAreas,mapChange,tileLayer)
         initialMap.on('click',(e) => changeCoords(e,mapRef,popupElement,setClickCoords,setAreaId,props.climbingAreas,props.setLocation))
         initialMap.on('pointermove', function (e) {
             const type = mapRef.current.hasFeatureAtPixel(e.pixel) ? 'pointer' : 'inherit';
@@ -99,11 +105,10 @@ const MapView = (props) => {
         setMap(initialMap)
     },[])
 
-    //adds a red dot on the map when a new area is created
     useEffect(() => {
+
         if(!map) return
         recenterMap(mapRef,webMerc)
-        
         map.render()
         
     },[props.location])
@@ -113,7 +118,7 @@ const MapView = (props) => {
         
         if(!map ) return
         const { climbingAreas } = props
-        const filteredLayers = deletePoint(climbingAreas,mapRef,map)
+        const filteredLayers = deletePoint(climbingAreas,mapRef)
         map.setLayers(filteredLayers)
 
     },[props.climbingAreas])
@@ -149,9 +154,9 @@ const MapView = (props) => {
                 <div class='h-1/2 flex flex-col'>
                     <label htmlFor='area-name'>Area Name: </label>
                     <input 
-                    id='area-name' 
-                    name='areaName'
-                    onChange={(e) => handleInput(e)}
+                        id='area-name' 
+                        name='areaName'
+                        onChange={(e) => handleInput(e)}
                     ></input>
                 </div>
                 <div class='h-1/3 flex'>

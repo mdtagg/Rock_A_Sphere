@@ -8,19 +8,24 @@ import {Feature} from 'ol/index.js';
 import { Point } from 'ol/geom'
 import { fromLonLat } from 'ol/proj'
 import { Control } from 'ol/control'
-import { Group as LayerGroup } from 'ol/layer'
 
-function getInitialMap(mapInfo,climbingAreas,mapChange) {
-
-    const { mapElement } = mapInfo
+function getInitialMap(mapElement,climbingAreas,mapChange,tileLayer,setTileLayer) {
+    // const tileLayer = 
+    // new TileLayer({
+    //     source: new XYZ({
+    //         url: 'https://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'
+    //         })
+    //     })
+    // const { mapElement } = mapInfo
     const initialMap = new Map({
         target: mapElement.current,
         layers: [
-                new TileLayer({
-                source: new XYZ({
-                    url: 'https://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'
-                })
-                }),
+                // new TileLayer({
+                // source: new XYZ({
+                //     url: 'https://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'
+                //     })
+                // }),
+                tileLayer,
             
             ...climbingAreas.map(area => {
                 const { longitude,latitude } = area.coords

@@ -1,6 +1,6 @@
 
 
-function deletePoint(climbingAreas,mapRef,map) {
+function deletePoint(climbingAreas,mapRef) {
 
     const filteredIds = climbingAreas.map(area => {
         return area.id

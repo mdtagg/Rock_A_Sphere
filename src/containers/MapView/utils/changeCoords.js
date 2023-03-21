@@ -2,15 +2,17 @@ import { addPoint } from "./addPoint"
 import {Point} from 'ol/geom.js';
 import { Overlay } from "ol";
 import { v4 as uuidv4 } from 'uuid'
-import { getAreaInfo } from "./getAreaInfo";
+import { setArea } from "./setArea";
 
 function changeCoords(e,mapRef,popupElement,setClickCoords,setAreaId,climbingAreas,setLocation) {
 
     const overlays = mapRef.current.getOverlays().array_
+    console.log(overlays)
     if(overlays.length) return
     const feature = mapRef.current.getFeaturesAtPixel(e.pixel)[0];
     if(feature) {
-        getAreaInfo(mapRef,feature,climbingAreas,setLocation)
+        //when a point on the map is clicked the location state is changed to that area
+        setArea(feature,climbingAreas,setLocation)
         return
     }
 

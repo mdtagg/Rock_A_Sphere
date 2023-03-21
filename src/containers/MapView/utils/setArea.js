@@ -1,8 +1,7 @@
-import { recenterMap } from "./recenterMap"
-import { filterAreas } from "./filterAreas"
+
 import { transform } from "ol/proj"
 
-function getAreaInfo(mapRef,feature,climbingAreas,setLocation) {
+function setArea(feature,climbingAreas,setLocation) {
     const featureCoords = feature.getGeometry().flatCoordinates
     const filteredArea = climbingAreas.filter(area => {
         const {longitude,latitude} = area.coords
@@ -15,4 +14,4 @@ function getAreaInfo(mapRef,feature,climbingAreas,setLocation) {
     setLocation(...filteredArea)
 }
 
-export { getAreaInfo }
+export { setArea }
