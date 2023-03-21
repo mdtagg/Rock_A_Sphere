@@ -7,7 +7,6 @@ import { setArea } from "./setArea";
 function changeCoords(e,mapRef,popupElement,setClickCoords,setAreaId,climbingAreas,setLocation) {
 
     const overlays = mapRef.current.getOverlays().array_
-    console.log(overlays)
     if(overlays.length) return
     const feature = mapRef.current.getFeaturesAtPixel(e.pixel)[0];
     if(feature) {

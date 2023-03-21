@@ -17,6 +17,8 @@ const App = () => {
     const [totalRain,setTotalRain] = useState({})
     const [earthView,setEarthView] = useState(false)
 
+    console.log({climbingAreas})
+
     useEffect(() => {
         (async function () {
             const weatherData = await WeatherDataService.getWeatherData(

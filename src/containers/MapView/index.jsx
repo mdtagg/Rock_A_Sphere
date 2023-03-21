@@ -1,6 +1,5 @@
 
 import { useState,useEffect,useRef } from 'react'
-import {Point} from 'ol/geom.js';
 import { getInitialMap } from './utils/getInitialMap'
 import { recenterMap } from './utils/recenterMap';
 import { deletePoint } from './utils/deletePoint';
@@ -8,16 +7,12 @@ import { changeCoords } from './utils/changeCoords';
 import { cancelPoint } from './utils/cancelPoint';
 import { removeOverlays } from './utils/removeOverlays';
 import { transform } from 'ol/proj';
-import { fromLonLat } from 'ol/proj';
+import { transformCoords } from './utils/transformCoords';
 import TileLayer from 'ol/layer/Tile'
 import XYZ from 'ol/source/XYZ'
+import { getMapPoints } from './utils/getMapPoints';
 
 const MapView = (props) => {
-
-    const longitude = parseFloat(props.location.coords.longitude)
-    const latitude = parseFloat(props.location.coords.latitude)
-    const place = [longitude, latitude]
-    const webMerc = fromLonLat(place)
     
     const [map,setMap] = useState(null)
     const [clickCoords,setClickCoords] = useState([])
@@ -28,7 +23,9 @@ const MapView = (props) => {
         source: new XYZ({
             url: 'https://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'
             })
-        }))
+        })
+    )
+    const [pointLayers,setPointLayers] = useState(getMapPoints(props.climbingAreas))
 
     const mapElement = useRef(null)
     const popupElement = useRef()
@@ -83,20 +80,12 @@ const MapView = (props) => {
                 url: 'https://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'
                 })
             )
-        // mapRef.current.getLayers().getArray().shift()
-        // const newTile = new TileLayer({
-        //         source: new XYZ({
-        //             url: 'https://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'
-        //         })
-        //         })
-        // mapRef.current.getLayers().getArray().unshift(newTile)
-        // map.render()
     }
 
     //creates the initial instance of the map 
     useEffect(() => {
-        // const mapInfo = {place,point,mapElement,id}
-        const initialMap = getInitialMap(mapElement,props.climbingAreas,mapChange,tileLayer)
+        // getMapPoints(props.climbingAreas)
+        const initialMap = getInitialMap(mapElement,props.climbingAreas,mapChange,tileLayer,setTileLayer)
         initialMap.on('click',(e) => changeCoords(e,mapRef,popupElement,setClickCoords,setAreaId,props.climbingAreas,props.setLocation))
         initialMap.on('pointermove', function (e) {
             const type = mapRef.current.hasFeatureAtPixel(e.pixel) ? 'pointer' : 'inherit';
@@ -108,6 +97,7 @@ const MapView = (props) => {
     useEffect(() => {
 
         if(!map) return
+        const webMerc = transformCoords(props.location.coords)
         recenterMap(mapRef,webMerc)
         map.render()
         

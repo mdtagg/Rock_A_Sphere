@@ -2,38 +2,25 @@ import Map from 'ol/Map'
 import View from 'ol/View'
 import VectorLayer from 'ol/layer/Vector'
 import VectorSource from 'ol/source/Vector'
-import TileLayer from 'ol/layer/Tile'
-import XYZ from 'ol/source/XYZ'
 import {Feature} from 'ol/index.js';
 import { Point } from 'ol/geom'
 import { fromLonLat } from 'ol/proj'
 import { Control } from 'ol/control'
+import { transformCoords } from './transformCoords';
 
 function getInitialMap(mapElement,climbingAreas,mapChange,tileLayer,setTileLayer) {
-    // const tileLayer = 
-    // new TileLayer({
-    //     source: new XYZ({
-    //         url: 'https://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'
-    //         })
-    //     })
-    // const { mapElement } = mapInfo
+
     const initialMap = new Map({
         target: mapElement.current,
         layers: [
-                // new TileLayer({
-                // source: new XYZ({
-                //     url: 'https://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'
-                //     })
-                // }),
-                tileLayer,
-            
-            ...climbingAreas.map(area => {
-                const { longitude,latitude } = area.coords
-                const { id } = area
-                const place = [longitude,latitude]
-                const webMerc = fromLonLat(place)
-                const point = new Point(webMerc)
                 
+            tileLayer,
+            // ...pointLayers
+            ...climbingAreas.map(area => {
+               
+                const webMerc = transformCoords(area.coords)
+                const point = new Point(webMerc)
+                const { id } = area
                 return (
                     new VectorLayer({
                         source: new VectorSource({
