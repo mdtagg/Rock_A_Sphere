@@ -14,7 +14,6 @@ function addPoint(mapRef,id,point) {
             },
             id: id,
             type:'point',
-            
         })
     mapRef.current.getLayers().push(newPoint)
     

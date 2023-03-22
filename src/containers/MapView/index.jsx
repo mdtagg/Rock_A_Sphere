@@ -10,7 +10,6 @@ import { transform } from 'ol/proj';
 import { transformCoords } from './utils/transformCoords';
 import TileLayer from 'ol/layer/Tile'
 import XYZ from 'ol/source/XYZ'
-import { getMapPoints } from './utils/getMapPoints';
 
 const MapView = (props) => {
     
@@ -26,7 +25,6 @@ const MapView = (props) => {
         })
     )
     const [currentFeature,setCurrentFeature] = useState()
-    // const [pointLayers,setPointLayers] = useState(getMapPoints(props.climbingAreas))
 
     const mapElement = useRef(null)
     const popupElement = useRef()
@@ -85,7 +83,6 @@ const MapView = (props) => {
 
     //creates the initial instance of the map 
     useEffect(() => {
-        // getMapPoints(props.climbingAreas)
         const initialMap = getInitialMap(mapElement,props.climbingAreas,mapChange,tileLayer,setTileLayer)
         initialMap.on('click',(e) => changeCoords(e,mapRef,popupElement,setClickCoords,setAreaId,setCurrentFeature,props.setLocation))
         initialMap.on('pointermove', function (e) {
@@ -108,7 +105,6 @@ const MapView = (props) => {
     useEffect(() => {
         
         if(!map ) return
-        // setClimbingRef(props.climbingAreas)
         const { climbingAreas } = props
         const filteredLayers = deletePoint(climbingAreas,mapRef)
         map.setLayers(filteredLayers)
