@@ -5,9 +5,9 @@ const TableHead = () => {
         <thead>
             <tr class='flex wide:text-xs sm:text-xs'>
                 <th class='flex-col border-r-2 border-black p-1 w-1/5 flex justify-center items-center'>
-                    Past 7 Precipitation Total
+                    Past 7 Rain/Snow Total
                 </th>
-                <th class='border-r-2 border-black w-1/5 p-1 flex justify-center items-center'>Past 3 Precipitation Total</th>
+                <th class='border-r-2 border-black w-1/5 p-1 flex justify-center items-center'>Past 3 Rain/Snow Total</th>
                 <th class='flex-col border-r-2 border-black w-1/5 p-1  flex justify-center items-center'>
                     Primary Rock Type
                     <p class='flex justify-center items-center w-full whitespace-nowrap sm:text-[.4rem] text-[.7rem]'>(click for more info)</p>

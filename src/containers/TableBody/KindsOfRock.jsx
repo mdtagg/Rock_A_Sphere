@@ -5,7 +5,6 @@ import { getPageData } from '../../components/NavArrows/utils/getPageData';
 const KindsOfRock = (props) => {
 
     const [rockDisplay,setRockDisplay] = useState([])
-    console.log(props.currentPageIndex,rockDisplay)
 
     useEffect(() => {
         const { kindsOfRock } = props.rockData
