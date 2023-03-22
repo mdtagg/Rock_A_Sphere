@@ -8,7 +8,7 @@ const ClimbingArea = (props) => {
     return (
         <div class='flex w-full gap-2 items-center bg-white rounded border-2 border-black sm:text-[9px] sm:font-bold sm:w-[90px] wide:w-[95px] wide:text-base ' >
             <ChangeLocation
-                class='h-[25px] w-full flex justify-start truncate font-medium items-center hover:bg-slate-500/50 sm:h-[20px] wide:text-xs wide:h-[10px]' 
+                class='h-[25px] w-full flex justify-start truncate font-medium items-center hover:bg-slate-500/50 sm:h-[20px] wide:text-[11px] wide:h-[10px]' 
                 onClick={() => handleAreaChange(props)} 
                 value={props.area.title}
             />

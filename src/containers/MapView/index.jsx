@@ -104,7 +104,7 @@ const MapView = (props) => {
     //deletes points on the map when area is deleted
     useEffect(() => {
         
-        if(!map ) return
+        if(!map) return
         const { climbingAreas } = props
         const filteredLayers = deletePoint(climbingAreas,mapRef)
         map.setLayers(filteredLayers)
@@ -120,17 +120,15 @@ const MapView = (props) => {
     useEffect(() => {
         if(!currentFeature) return
         const filteredArea = props.climbingAreas.filter(area => {
-            
             if(area.id === currentFeature) {
                 return area
             }
     })
-   
     props.setLocation(...filteredArea)
     },[currentFeature])
 
     return (
-        <aside class='w-96 h-52 border-2 border-black rounded sm:w-1/2 sm:h-full wide:w-[29rem] wide:h-40' ref={mapElement}>
+        <aside class='w-[900px] h-52 border-2 border-black rounded sm:w-1/2 sm:h-full wide:w-[29rem] wide:h-40' ref={mapElement}>
             <div class='flex flex-col gap-2 justify-end' ref={mapChange} >
                 <button 
                     class='h-5 w-5 flex justify-center items-center bg-white border border-black cursor-pointer' 

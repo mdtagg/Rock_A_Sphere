@@ -17,7 +17,7 @@ const AreaList = (props) => {
     },[props.currentPageIndex,props.climbingAreas])
 
     return (
-        <div class='grid grid-rows-3 grid-flow-col gap-1'>
+        <div class='grid grid-rows-3 grid-cols-2 gap-1'>
             {areaDisplay.map(area => {
                 return (
                     <ClimbingArea 

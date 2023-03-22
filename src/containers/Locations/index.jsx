@@ -9,7 +9,7 @@ const Locations = (props) => {
     const [currentPageIndex,setCurrentPageIndex] = useState(0)
     
     return (
-        <div class='flex flex-col gap-1 w-full'>
+        <div class='flex flex-col gap-1'>
             <NavArrows
                 climbingAreas={props.climbingAreas}
                 currentPageIndex={currentPageIndex}

@@ -4,7 +4,6 @@ import VectorLayer from 'ol/layer/Vector'
 import VectorSource from 'ol/source/Vector'
 import {Feature} from 'ol/index.js';
 import { Point } from 'ol/geom'
-import { fromLonLat } from 'ol/proj'
 import { Control } from 'ol/control'
 import { transformCoords } from './transformCoords';
 
@@ -15,7 +14,6 @@ function getInitialMap(mapElement,climbingAreas,mapChange,tileLayer,setTileLayer
         layers: [
                 
             tileLayer,
-            // ...pointLayers
             ...climbingAreas.map(area => {
                
                 const webMerc = transformCoords(area.coords)
