@@ -124,12 +124,12 @@ const MapView = (props) => {
     useEffect(() => {
         if(!currentFeature) return
         const filteredArea = props.climbingAreas.filter(area => {
-            console.log(area.id,currentFeature)
+            
             if(area.id === currentFeature) {
                 return area
             }
     })
-    console.log({filteredArea})
+   
     props.setLocation(...filteredArea)
     },[currentFeature])
 

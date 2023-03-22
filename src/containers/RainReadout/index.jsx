@@ -16,7 +16,7 @@ const RainReadout = (props) => {
     return (
         <section class='flex justify-between text-black w-full  pl-10 pr-10 sm:grid sm:grid-cols-3 sm:grid-flow-row sm:p-0'>
         {dailyData.map((item,index) => {
-
+            // console.log({item})
             if(index === 6) {
                 item[0] = 'Today'
             }
