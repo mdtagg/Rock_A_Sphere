@@ -15,9 +15,6 @@ function parseRockLithos(rockTypes,rockClasses) {
             })
         }
     })
-    if(kindsOfRock.length > 5) {
-        kindsOfRock = kindsOfRock.slice(0,5)
-    }
     return kindsOfRock
 }
 
