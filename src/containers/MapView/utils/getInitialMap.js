@@ -21,6 +21,7 @@ function getInitialMap(mapElement,climbingAreas,mapChange,tileLayer,setTileLayer
                 const webMerc = transformCoords(area.coords)
                 const point = new Point(webMerc)
                 const { id } = area
+                point.id = id
                 return (
                     new VectorLayer({
                         source: new VectorSource({

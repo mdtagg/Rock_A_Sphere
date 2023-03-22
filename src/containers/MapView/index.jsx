@@ -25,7 +25,8 @@ const MapView = (props) => {
             })
         })
     )
-    const [pointLayers,setPointLayers] = useState(getMapPoints(props.climbingAreas))
+    const [currentFeature,setCurrentFeature] = useState()
+    // const [pointLayers,setPointLayers] = useState(getMapPoints(props.climbingAreas))
 
     const mapElement = useRef(null)
     const popupElement = useRef()
@@ -86,7 +87,7 @@ const MapView = (props) => {
     useEffect(() => {
         // getMapPoints(props.climbingAreas)
         const initialMap = getInitialMap(mapElement,props.climbingAreas,mapChange,tileLayer,setTileLayer)
-        initialMap.on('click',(e) => changeCoords(e,mapRef,popupElement,setClickCoords,setAreaId,props.climbingAreas,props.setLocation))
+        initialMap.on('click',(e) => changeCoords(e,mapRef,popupElement,setClickCoords,setAreaId,setCurrentFeature,props.setLocation))
         initialMap.on('pointermove', function (e) {
             const type = mapRef.current.hasFeatureAtPixel(e.pixel) ? 'pointer' : 'inherit';
             mapRef.current.getViewport().style.cursor = type;
@@ -107,6 +108,7 @@ const MapView = (props) => {
     useEffect(() => {
         
         if(!map ) return
+        // setClimbingRef(props.climbingAreas)
         const { climbingAreas } = props
         const filteredLayers = deletePoint(climbingAreas,mapRef)
         map.setLayers(filteredLayers)
@@ -118,6 +120,18 @@ const MapView = (props) => {
         props.setEarthView(false)
         mapRef.current.getView().setZoom(1)
     },[props.earthView])
+
+    useEffect(() => {
+        if(!currentFeature) return
+        const filteredArea = props.climbingAreas.filter(area => {
+            console.log(area.id,currentFeature)
+            if(area.id === currentFeature) {
+                return area
+            }
+    })
+    console.log({filteredArea})
+    props.setLocation(...filteredArea)
+    },[currentFeature])
 
     return (
         <aside class='w-96 h-52 border-2 border-black rounded sm:w-1/2 sm:h-full wide:w-[29rem] wide:h-40' ref={mapElement}>

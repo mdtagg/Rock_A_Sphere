@@ -4,14 +4,18 @@ import { Overlay } from "ol";
 import { v4 as uuidv4 } from 'uuid'
 import { setArea } from "./setArea";
 
-function changeCoords(e,mapRef,popupElement,setClickCoords,setAreaId,climbingAreas,setLocation) {
+function changeCoords(e,mapRef,popupElement,setClickCoords,setAreaId,setCurrentFeature,setLocation) {
 
     const overlays = mapRef.current.getOverlays().array_
     if(overlays.length) return
     const feature = mapRef.current.getFeaturesAtPixel(e.pixel)[0];
     if(feature) {
         //when a point on the map is clicked the location state is changed to that area
-        setArea(feature,climbingAreas,setLocation)
+        // setClimbingRef
+        // console.log(feature.getGeometry().id)
+        console.log(feature.getGeometry())
+        setCurrentFeature(feature.getGeometry().id)
+        // setArea(feature,climbingRef,setLocation)
         return
     }
 
@@ -19,6 +23,8 @@ function changeCoords(e,mapRef,popupElement,setClickCoords,setAreaId,climbingAre
     const point = new Point(coords)
 
     const id = uuidv4()
+    point.id = id
+    
     addPoint(mapRef,id,point)
     setAreaId(id)
    
