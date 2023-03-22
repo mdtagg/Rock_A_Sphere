@@ -11,12 +11,12 @@ const TableBody = (props) => {
 
     const pastSevenColor = 
         pastSevenTotal >= 2 ? 'text-red-600' :
-        pastSevenTotal < 2 && pastSevenTotal > 0 ? 'text-amber-400':
+        pastSevenTotal < 2 && pastSevenTotal > 0 ? 'text-orange-500':
         'text-green-400'
 
     const pastThreeColor = 
         pastThreeTotal >= 1 ? 'text-red-600' :
-        pastThreeTotal < 1 && pastThreeTotal > 0 ? 'text-amber-400' :
+        pastThreeTotal < 1 && pastThreeTotal > 0 ? 'text-orange-500' :
         'text-green-400'
     
     return (
