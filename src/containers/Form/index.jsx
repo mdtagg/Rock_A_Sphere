@@ -1,19 +1,25 @@
 
 import { handleSubmit } from "./utils/handleSubmit";
 import { handleCancel } from "./utils/handleCancel";
+import { useState,useEffect } from "react";
 
 const Form = (props) => {
 
-    const coordinateRegex = /^[-+]?([1-8]?\d(\.\d+)?|90(\.0+)?),\s*[-+]?(180(\.0+)?|((1[0-7]\d)|([1-9]?\d))(\.\d+)?)$/
-    const coords = '34.09604562465432,-118.73008531949412'
-    const test = coordinateRegex.test(coords)
-    console.log(test)
+    const [error,setError] = useState(false)
+    const [errorBorder,setErrorBorder] = useState()
 
+    useEffect(() => {
+        const border =
+        error ? 'border-2 border-red-600' :
+        'border-2 border-black'
+
+        setErrorBorder(border)
+    },[error])
     return (
-        <form onSubmit={(e) => handleSubmit(e,props)} class='flex flex-col justify-center items-center p-3 gap-2 border-2 border-black rounded w-full wide:gap-4 xl:h-full'>
+        <form onSubmit={(e) => handleSubmit(e,props,setError)} class='flex flex-col justify-center items-center p-3 gap-2 border-2 border-black rounded w-full wide:gap-4 xl:h-full'>
             <div class='flex gap-2 sm:flex-col sm:gap-0 xl:flex-col xl:w-1/3' >
                 <label class='font-bold whitespace-nowrap' htmlFor='coords'>Latitude/Longitude: </label>
-                <input class='border-2 border-black placeholder:text-xs sm:w-fit wide:h-fit' placeholder='copy + paste from google maps' type='text' id='coords' name='coords' required></input>
+                <input class={`${errorBorder} placeholder:text-xs sm:w-fit wide:h-fit`} placeholder='copy + paste from google maps' type='text' id='coords' name='coords' required></input>
                 <label class='font-bold whitespace-nowrap' htmlFor='name'>Area Name: </label>
                 <input class='border-2 border-black sm:w-fit wide:h-fit' type='text' id='name' name='title' required></input>
             </div>
