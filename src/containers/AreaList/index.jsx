@@ -1,19 +1,15 @@
 import { ClimbingArea } from "../ClimbingArea"
 import { v4 as uuidv4 } from 'uuid';
 import { useState,useEffect } from "react";
+import { getPageData } from "../../components/NavArrows/utils/getPageData";
 
 const AreaList = (props) => {
 
     const [areaDisplay,setAreaDisplay] = useState([])
 
     useEffect(() => {
-        let areaStartIndex = props.currentPageIndex
-        if(props.currentPageIndex > 0) {
-            areaStartIndex *= 6
-        }
-        const areaEndIndex = areaStartIndex + 6
-        const areaSlice = props.climbingAreas.slice(areaStartIndex,areaEndIndex)
-        setAreaDisplay(areaSlice)
+        const { currentPageIndex,climbingAreas } = props
+        getPageData(currentPageIndex,climbingAreas,setAreaDisplay,6)
     },[props.currentPageIndex,props.climbingAreas])
 
     return (

@@ -1,14 +1,25 @@
 import { v4 as uuidv4 } from 'uuid';
+import { useState,useEffect } from 'react';
+import { getPageData } from '../../components/NavArrows/utils/getPageData';
 
 const KindsOfRock = (props) => {
+
+    const [rockDisplay,setRockDisplay] = useState([])
+    console.log(props.currentPageIndex,rockDisplay)
+
+    useEffect(() => {
+        const { kindsOfRock } = props.rockData
+        const { currentPageIndex } = props
+        if(kindsOfRock.length > 3) {
+            getPageData(currentPageIndex,kindsOfRock,setRockDisplay,3)
+        }else {
+            setRockDisplay(kindsOfRock)
+        }
+        
+    },[props.rockData,props.currentPageIndex])
     return (
         <div class='flex flex-col gap-1 p-1 items-center justify-center h-full sm:p-0 wide:text-xs'>
-            {props.rockData.kindsOfRock.map(item => {
-                // const rockName = 
-                // item.name === 'conglomerate' ? 'conglomerate-rock':
-                // item.name === 'plutonic' ? 'intrusive-rock':
-                // item.name === 'volcanic' ? 'extrusive-rock':
-                // item.name
+            {rockDisplay.map(item => {
                 
                 return (
                     <button 
@@ -29,5 +40,3 @@ const KindsOfRock = (props) => {
 }
 
 export { KindsOfRock }
-
-// https://www.britannica.com/science/${rockName}

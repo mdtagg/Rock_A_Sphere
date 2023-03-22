@@ -25,13 +25,13 @@ function getDaysToClimb() {
         if(lastThree >= 6) {
             setDaysToClimb('5-7')
         }
-        else if(lastThree < 6 && lastThree >= 4) {
+        else if(lastThree < 6 && lastThree >= 3) {
             setDaysToClimb('4-5')
         }
-        if(lastThree < 4 && lastThree >= 2) {
-            setDaysToClimb('2-3')
-        }else if(lastThree < 2 && lastThree >= 0) {
-            setDaysToClimb('1-2')
+        if(lastThree < 3 && lastThree >= 1) {
+            setDaysToClimb('3-4')
+        }else if(lastThree < 1 && lastThree >= 0) {
+            setDaysToClimb('1-3')
         }else {
             setDaysToClimb('0')
         }

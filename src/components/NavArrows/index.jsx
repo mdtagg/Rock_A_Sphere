@@ -5,32 +5,31 @@ import { useState,useEffect } from 'react'
 
 const NavArrows = (props) => {
 
-
-    // props:currentPageIndex,data,dataLength,
+    const { dataFocus,currentPageIndex,setCurrentPageIndex,pageLength } = props
 
     const [totalPages,setTotalPages] = useState(1)
 
     function handlePageBack() {
         if(
-            props.climbingAreas.length <= 6 || 
-            !props.climbingAreas.length ||
-            props.currentPageIndex === 0
+            dataFocus.length <= pageLength  || 
+            !dataFocus ||
+            currentPageIndex === 0
             ) {
                 return
             }
-        props.setCurrentPageIndex((prevPage) => {
+        setCurrentPageIndex((prevPage) => {
             prevPage -= 1
             return prevPage
         })
     }
 
     function handlePageForward() {
-        if(!props.climbingAreas.length > 6 || 
-            !props.climbingAreas.length ||
-            props.currentPageIndex === totalPages - 1) {
+        if(!dataFocus.length > pageLength || 
+            !dataFocus.length ||
+            currentPageIndex === totalPages - 1) {
                 return
             }
-        props.setCurrentPageIndex((prevPage) => {
+        setCurrentPageIndex((prevPage) => {
             prevPage += 1
             return prevPage
         })
@@ -38,10 +37,10 @@ const NavArrows = (props) => {
 
     useEffect(() => {
 
-        if(!props.climbingAreas.length) return 
-        const pageNumbers = Math.ceil(props.climbingAreas.length / 6)
-        if(props.currentPageIndex === pageNumbers) {
-            props.setCurrentPageIndex((prevIndex) => {
+        if(!dataFocus.length) return 
+        const pageNumbers = Math.ceil(dataFocus.length / pageLength)
+        if(currentPageIndex === pageNumbers) {
+            setCurrentPageIndex((prevIndex) => {
                 prevIndex -= 1
                 return prevIndex
             })
@@ -49,7 +48,7 @@ const NavArrows = (props) => {
         setTotalPages(pageNumbers)
 
 
-    },[props.climbingAreas])
+    },[dataFocus])
 
     return (
         <div class='flex justify-center items-center'>
