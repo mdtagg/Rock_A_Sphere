@@ -54,7 +54,6 @@ const Table = (props) => {
                 rockData={rockData}
                 totalRain={props.totalRain}
                 weatherData={props.weatherData}
-
             />
         </table>
     )

@@ -1,10 +1,13 @@
 import { parseCurrentWeather } from "./parseCurrentWeather"
 import { parseDailyWeather } from "./parseDailyWeather"
+import { parseHourlyWeather } from "./parseHourlyWeather"
 
 const parseWeatherData = (data) => {
     const currentWeather = parseCurrentWeather(data)
     const dailyWeather = parseDailyWeather(data.daily)
-    return {currentWeather,dailyWeather}
+    const hourlyWeather = parseHourlyWeather(data.hourly)
+    
+    return {currentWeather,dailyWeather,hourlyWeather}
 }
 
 export { parseWeatherData }
