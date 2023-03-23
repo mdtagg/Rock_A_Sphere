@@ -1,5 +1,4 @@
 function parseForecast(data) {
-    // console.log({data})
     const parsedData = []
     let index = 0
     while(index <= 6) {
@@ -16,7 +15,6 @@ function parseForecast(data) {
         data.push('bg-red-400/70')
         return data
     })
-    console.log({parsedData})
     return parsedData
 }
 

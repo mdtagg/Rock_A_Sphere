@@ -15,7 +15,6 @@ function parseDailyRain(dailyData) {
             data[1] === 0 ? data.push('bg-green-200/70') :
             data[1] > 0 && data[1] <= 0.5 ? data.push('bg-yellow-200/70') :
             data.push('bg-red-400/70')
-
             return data
         })
 

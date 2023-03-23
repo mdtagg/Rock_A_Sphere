@@ -2,12 +2,13 @@
 import { P as Day } from '../../components/P'
 import { RainInfo } from '../RainInfo';
 import { ForecastSquare } from '../ForecastSquare/info';
+import { HourlySquare } from '../HourlySquare';
 
 const RainSquare = (props) => {
 
     const { item } = props
     const color = 
-    props.buttonTitle === 'Rain' ? item[2] :
+    props.buttonTitle === 'Wet Rock' ? item[2] :
     item[item.length-1]
 
     return (
@@ -18,7 +19,7 @@ const RainSquare = (props) => {
                 class='text-3xl gap-3 font-bold sm:text-xl wide:text-sm wide:font-bold '
                 value={item[0]}
             />
-            {props.buttonTitle === 'Rain' &&
+            {props.buttonTitle === 'Wet Rock' &&
                 <RainInfo
                     rainInfo={item}
                 />}
@@ -27,8 +28,8 @@ const RainSquare = (props) => {
                     forecastInfo={item}
                 />}
             {props.buttonTitle === 'Hourly' &&
-                <ForecastSquare
-                    forecastInfo={item}
+                <HourlySquare
+                    hourlyInfo={item}
                 />
             }
         </div>

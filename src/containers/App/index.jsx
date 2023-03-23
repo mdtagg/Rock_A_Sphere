@@ -16,7 +16,7 @@ const App = () => {
     const [location,setLocation] = useState(climbingAreas[0])
     const [totalRain,setTotalRain] = useState({})
     const [earthView,setEarthView] = useState(false)
-    const [buttonTitle,setButtonTitle] = useState('Rain')
+    const [buttonTitle,setButtonTitle] = useState('Wet Rock')
 
     useEffect(() => {
         (async function () {
@@ -38,7 +38,7 @@ const App = () => {
     },[location])
 
     return (
-        <main class={`bg-[url('./assets/images/redRock.jpg')] bg-cover bg-center h-screen w-screen flex flex-col pt-10 justify-between sm:p-0 wide:p-0`}>
+        <main class={`bg-[url('./assets/images/redRock.jpg')] bg-cover bg-center h-screen w-screen flex flex-col pt-10 justify-between sm:p-0 wide:p-0 wide:justify-center`}>
             <CurrentInfoDisplay
                 climbingAreas={climbingAreas} 
                 setClimbingAreas={setClimbingAreas} 
@@ -48,7 +48,7 @@ const App = () => {
                 earthView={earthView}
                 setEarthView={setEarthView}
             />
-            {buttonTitle === 'Rain' &&
+            {buttonTitle === 'Wet Rock' &&
             <Table 
                 location={location} 
                 totalRain={totalRain} 

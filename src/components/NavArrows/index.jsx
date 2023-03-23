@@ -53,11 +53,11 @@ const NavArrows = (props) => {
     return (
         <div class='flex justify-center items-center'>
             <LeftCaret 
-                class='h-4 w-4 hover:bg-slate-500/50 cursor-pointer'
+                class='h-4 w-4 hover:bg-slate-500/50 cursor-pointer rounded-full'
                 onClick={handlePageBack}
             />
             <RightCaret 
-                class='h-4 w-4 hover:bg-slate-500/50 cursor-pointer'
+                class='h-4 w-4 hover:bg-slate-500/50 cursor-pointer rounded-full'
                 onClick={handlePageForward}
             />
         </div>
