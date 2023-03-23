@@ -4,7 +4,7 @@ function parseHourlyWeather(data) {
     const hourOptions = {hour: "numeric"}
     const hourlyData = {}
     for(let key in data) {
-        hourlyData[key] = data[key].splice(168,24)
+        hourlyData[key] = data[key].slice(168)
     }
     for(let key in hourlyData) {
         if(key === 'time') {
@@ -13,6 +13,7 @@ function parseHourlyWeather(data) {
             })
         }
     }   
+    // console.log({hourlyData})
     return hourlyData
 }
 

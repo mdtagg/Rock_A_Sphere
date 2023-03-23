@@ -6,7 +6,7 @@ import { useState,useEffect } from 'react'
 const NavArrows = (props) => {
 
     const { dataFocus,currentPageIndex,setCurrentPageIndex,pageLength } = props
-
+    // console.log({dataFocus})
     const [totalPages,setTotalPages] = useState(1)
 
     function handlePageBack() {
@@ -39,6 +39,7 @@ const NavArrows = (props) => {
 
         if(!dataFocus.length) return 
         const pageNumbers = Math.ceil(dataFocus.length / pageLength)
+        console.log({pageNumbers})
         if(currentPageIndex === pageNumbers) {
             setCurrentPageIndex((prevIndex) => {
                 prevIndex -= 1
@@ -46,7 +47,6 @@ const NavArrows = (props) => {
             })
         }
         setTotalPages(pageNumbers)
-
 
     },[dataFocus])
 

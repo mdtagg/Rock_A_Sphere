@@ -6,10 +6,9 @@ import { ForecastSquare } from '../ForecastSquare/info';
 const RainSquare = (props) => {
 
     const { item } = props
-    
     const color = 
     props.buttonTitle === 'Rain' ? item[2] :
-    item[9]
+    item[item.length-1]
 
     return (
         <div 
@@ -26,9 +25,12 @@ const RainSquare = (props) => {
             {props.buttonTitle === 'Forecast' &&
                 <ForecastSquare
                     forecastInfo={item}
+                />}
+            {props.buttonTitle === 'Hourly' &&
+                <ForecastSquare
+                    forecastInfo={item}
                 />
             }
-            
         </div>
         )
 }

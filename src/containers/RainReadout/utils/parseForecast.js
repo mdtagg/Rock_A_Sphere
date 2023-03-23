@@ -1,5 +1,5 @@
 function parseForecast(data) {
-    console.log({data})
+    // console.log({data})
     const parsedData = []
     let index = 0
     while(index <= 6) {
@@ -10,7 +10,6 @@ function parseForecast(data) {
         parsedData.push(dataSection)
         index += 1
     }
-
     parsedData.map(data => {
         data[7] === 0 ? data.push('bg-green-200/70') :
         data[7] > 0 && data[1] <= 30 ? data.push('bg-yellow-200/70') :
