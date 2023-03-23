@@ -16,6 +16,7 @@ const App = () => {
     const [location,setLocation] = useState(climbingAreas[0])
     const [totalRain,setTotalRain] = useState({})
     const [earthView,setEarthView] = useState(false)
+    const [buttonTitle,setButtonTitle] = useState('Rain')
 
     useEffect(() => {
         (async function () {
@@ -27,7 +28,7 @@ const App = () => {
             
             const parsedWeatherData = parseWeatherData(weatherData)
             setWeatherData(parsedWeatherData)
-            
+
             const { pastSevenRain,pastThreeRain } = parsedWeatherData.dailyWeather
             const parsedRainData = parseRainData([pastSevenRain,pastThreeRain])
             setTotalRain(parsedRainData)
@@ -47,14 +48,18 @@ const App = () => {
                 earthView={earthView}
                 setEarthView={setEarthView}
             />
+            {buttonTitle === 'Rain' &&
             <Table 
                 location={location} 
                 totalRain={totalRain} 
                 weatherData={weatherData}
             />
+            }   
             <RainReadout
                 location={location} 
                 weatherData={weatherData} 
+                buttonTitle={buttonTitle}
+                setButtonTitle={setButtonTitle}
             />
             <Footer/>
         </main>
