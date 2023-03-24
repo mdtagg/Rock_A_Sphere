@@ -18,8 +18,6 @@ module.exports = {
         'raw': `only screen and (max-height: 480px) and (max-width: 960px)`
     },
     },
-    // ,visibility:'hidden'
-    // ,visibility: 'visible'
     keyframes: {
       inAnimation: {
         '0%': { opacity:'0' },
