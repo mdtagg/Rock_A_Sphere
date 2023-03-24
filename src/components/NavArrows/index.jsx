@@ -6,8 +6,15 @@ import { useState,useEffect } from 'react'
 const NavArrows = (props) => {
 
     const { dataFocus,currentPageIndex,setCurrentPageIndex,pageLength } = props
-    // console.log({dataFocus})
     const [totalPages,setTotalPages] = useState(1)
+    const [moveRight,setMoveRight] = useState(false)
+    const [moveLeft,setMoveLeft] = useState(false)
+
+    const bumpRight = 
+    moveRight ? 'animate-bumpRight' : ''
+
+    const bumpLeft = 
+    moveLeft ? 'animate-bumpLeft' : ''
 
     function handlePageBack() {
         if(
@@ -39,7 +46,6 @@ const NavArrows = (props) => {
 
         if(!dataFocus.length) return 
         const pageNumbers = Math.ceil(dataFocus.length / pageLength)
-        console.log({pageNumbers})
         if(currentPageIndex === pageNumbers) {
             setCurrentPageIndex((prevIndex) => {
                 prevIndex -= 1
@@ -53,12 +59,26 @@ const NavArrows = (props) => {
     return (
         <div class='flex justify-center items-center'>
             <LeftCaret 
-                class='h-4 w-4 hover:bg-slate-500/50 cursor-pointer rounded-full'
-                onClick={handlePageBack}
+                class={`h-4 w-4 hover:bg-slate-500/50 cursor-pointer rounded-full relative ${bumpLeft}`}
+                onClick={() => {
+                    handlePageBack()
+                    setMoveRight(false)
+                    setMoveLeft(true)
+                }}
+                onAnimationEnd={() => {
+                    setMoveLeft(false)
+                }}
             />
             <RightCaret 
-                class='h-4 w-4 hover:bg-slate-500/50 cursor-pointer rounded-full'
-                onClick={handlePageForward}
+                class={`h-4 w-4 hover:bg-slate-500/50 cursor-pointer rounded-full relative ${bumpRight}`}
+                onClick={() => {
+                    handlePageForward()
+                    setMoveLeft(false)
+                    setMoveRight(true)
+                }}
+                onAnimationEnd={() => {
+                    setMoveRight(false)
+                }}
             />
         </div>
     )
