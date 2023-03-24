@@ -63,7 +63,7 @@ const RainReadout = (props) => {
                     />
                 </div>}
             </div>
-            <div class='flex justify-between text-black w-full pr-10 sm:grid sm:grid-cols-3 sm:grid-flow-row sm:p-0'>
+            <div class='flex justify-between text-black w-full pr-10 sm:grid sm:grid-cols-3 sm:grid-flow-row sm:p-0 wide:p-0'>
             {dailyData.map((item,index) => {
                 if(index === 6 && props.buttonTitle === 'Wet Rock') {
                     item[0] = 'Today'

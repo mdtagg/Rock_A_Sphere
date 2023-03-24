@@ -10,11 +10,11 @@ const ForecastSquare = (props) => {
             <WeatherIcon
                 class='m-auto h-5 w-5 '
             />
-            <p class='m-0 p-0 text-lg sm:text-xs wide:text-xs'>Feels Like: <b>{forecastInfo[2]}&deg;</b></p>
-            <p class='m-0 p-0 text-lg sm:text-xs wide:text-xs'>Precip: <b>{forecastInfo[7]}%</b></p>
+            <p class='m-0 p-0 text-lg sm:text-xs wide:text-xs w-full'>Feels Like: <b>{forecastInfo[2]}&deg;</b></p>
+            <p class='m-0 p-0 text-lg sm:text-xs wide:text-xs w-full'>Precip: <b>{forecastInfo[7]}%</b></p>
             {/* <p class='m-0 p-0 text-xs'>Precip Amt: <b>{forecastInfo[5]}</b></p> */}
-            <p class='m-0 p-0 text-lg sm:text-xs wide:text-xs'>Sunrise:  <b>{forecastInfo[3]}</b></p>
-            <p class='m-0 p-0 text-lg sm:text-xs wide:text-xs'>Sunset:  <b>{forecastInfo[4]}</b></p>
+            <p class='m-0 p-0 text-lg sm:text-xs wide:text-xs w-full'>Sunrise:  <b>{forecastInfo[3]}</b></p>
+            <p class='m-0 p-0 text-lg sm:text-xs wide:text-xs w-full'>Sunset:  <b>{forecastInfo[4]}</b></p>
         </div>
     )
 }
