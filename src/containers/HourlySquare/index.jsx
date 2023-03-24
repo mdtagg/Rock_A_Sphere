@@ -3,7 +3,6 @@ import GetWeatherIcon from "../AreaTitle/utils/getWeatherIcon"
 const HourlySquare = (props) => {
 
     const { hourlyInfo } = props
-    console.log({hourlyInfo})
     const WeatherIcon = GetWeatherIcon(hourlyInfo[8])
 
     return (

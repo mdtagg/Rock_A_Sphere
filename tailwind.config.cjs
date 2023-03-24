@@ -4,32 +4,30 @@ module.exports = {
   theme: {
     screens: {
       '2xl': {'max': '1535px'},
-      // => @media (max-width: 1535px) { ... }
 
       'xl': {'min': '1279px'},
 
       'lg': {'max': '1023px'},
-      // => @media (max-width: 1023px) { ... }
-      //767
+
       'md': {'min': '767px','max': '900px'},
-      // => @media (max-width: 767px) { ... }
+
       'sm': {
         'raw': `only screen and (max-height: 980px) and (max-width:480px)`
       },
-      // 'sm': {'max': '639px'},
-      // => @media (max-width: 639px) { ... }
       'wide': {
         'raw': `only screen and (max-height: 480px) and (max-width: 960px)`
     },
     },
+    // ,visibility:'hidden'
+    // ,visibility: 'visible'
     keyframes: {
       inAnimation: {
-        '0%': { opacity:'0',visibility:'hidden' },
-        '100%': { opacity: '1',visibility: 'visible' }
+        '0%': { opacity:'0' },
+        '100%': { opacity: '1' }
       },
       outAnimation: {
         '0%': { opacity:'1' },
-        '100%': { opacity:'0',visibility:'hidden' }
+        '100%': { opacity:'0' }
       },
       rotateUp: {
         '0%': {rotate:'0deg'},

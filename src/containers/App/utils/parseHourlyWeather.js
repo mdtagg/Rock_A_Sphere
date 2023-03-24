@@ -12,8 +12,7 @@ function parseHourlyWeather(data) {
             return Intl.DateTimeFormat(undefined,hourOptions).format(date * 1000)
             })
         }
-    }   
-    // console.log({hourlyData})
+    }  
     return hourlyData
 }
 
