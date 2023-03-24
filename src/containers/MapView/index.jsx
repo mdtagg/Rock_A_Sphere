@@ -128,7 +128,7 @@ const MapView = (props) => {
     },[currentFeature])
 
     return (
-        <aside class='w-[900px] h-52 border-2 border-black rounded sm:w-1/2 sm:h-full wide:w-[29rem] wide:h-40' ref={mapElement}>
+        <aside class='w-[900px] h-56 border-2 border-black rounded sm:w-1/2 sm:h-full wide:w-[29rem] wide:h-40' ref={mapElement}>
             <div class='flex flex-col gap-2 justify-end' ref={mapChange} >
                 <button 
                     class='h-5 w-5 flex justify-center items-center bg-white border border-black cursor-pointer' 

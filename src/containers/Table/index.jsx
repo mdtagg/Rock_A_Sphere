@@ -48,7 +48,7 @@ const Table = (props) => {
     },[props.location])
     
     return (
-        <table class='flex flex-col w-2/5 bg-slate-200/50 border-2 border-black ml-11 sm:w-full sm:m-0 wide:w-screen wide:m-0'>
+        <table class='flex flex-col w-2/5 bg-slate-200/50 border-2 border-black ml-11 sm:w-full sm:m-0 wide:w-screen wide:m-0 animate-fadeIn'>
             <TableHead/>
             <TableBody
                 rockData={rockData}

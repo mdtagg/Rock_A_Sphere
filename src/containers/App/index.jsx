@@ -49,11 +49,13 @@ const App = () => {
                 setEarthView={setEarthView}
             />
             {buttonTitle === 'Wet Rock' &&
+            
             <Table 
                 location={location} 
                 totalRain={totalRain} 
                 weatherData={weatherData}
             />
+            
             }   
             <RainReadout
                 location={location} 

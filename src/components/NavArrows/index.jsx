@@ -59,7 +59,7 @@ const NavArrows = (props) => {
     return (
         <div class='flex justify-center items-center'>
             <LeftCaret 
-                class={`h-4 w-4 hover:bg-slate-500/50 cursor-pointer rounded-full relative ${bumpLeft}`}
+                class={`h-4 w-4 cursor-pointer rounded-full relative ${bumpLeft}`}
                 onClick={() => {
                     handlePageBack()
                     setMoveRight(false)
@@ -70,7 +70,7 @@ const NavArrows = (props) => {
                 }}
             />
             <RightCaret 
-                class={`h-4 w-4 hover:bg-slate-500/50 cursor-pointer rounded-full relative ${bumpRight}`}
+                class={`h-4 w-4 cursor-pointer rounded-full relative ${bumpRight}`}
                 onClick={() => {
                     handlePageForward()
                     setMoveLeft(false)

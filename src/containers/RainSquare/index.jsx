@@ -13,7 +13,7 @@ const RainSquare = (props) => {
 
     return (
         <div 
-            class={`flex flex-col justify-center items-center border-2 border-black p-6 ${color} gap-3 sm:gap-1 sm:p-2 sm:items-center wide:gap-0 wide:p-2`}
+            class={`flex flex-col justify-center items-center border-2 border-black p-6 ${color} gap-3 sm:gap-1 sm:p-2 sm:items-center wide:gap-0 wide:p-2 animate-fadeIn`}
         >
             <Day
                 class='text-3xl gap-3 font-bold sm:text-xl wide:text-sm wide:font-bold '

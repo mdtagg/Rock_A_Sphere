@@ -54,7 +54,7 @@ const RainReadout = (props) => {
                     <button class='w-1/3 text-xs text-white relative font-semibold' onClick={handleHourly}>Hourly</button>
                 </div>
                 {props.buttonTitle === 'Hourly' &&
-                <div class='bg-slate-200/50 rounded-full flex justify-center items-center'>
+                <div class='bg-slate-200/75 border border-black rounded-full flex justify-center items-center animate-fadeIn'>
                     <NavArrows
                         dataFocus={hourlyData}
                         currentPageIndex={currentPageIndex}
