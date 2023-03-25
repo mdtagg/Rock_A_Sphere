@@ -47,20 +47,13 @@ useEffect(() => {
 },[props.totalRain])
     
     return (
-        
-       
-          
             <div class='flex flex-col items-center justify-center'>
             <p class='text-3xl'>{daysToClimb}</p>
             <p class='text-[.7rem] leading-none font-bold sm:text-[.4rem]'>
                 Always make sure the ground by your climb is dry,
                 if it is not wait another day or two!
             </p>
-               
         </div>
-       
-        
-       
     )
 }
 

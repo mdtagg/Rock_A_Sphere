@@ -7,14 +7,14 @@ import Table from "../Table"
 import { RainReadout } from "../RainReadout"
 import Footer from "../Footer/Index"
 import { parseWeatherData } from "./utils/parseWeatherData"
-import { parseRainData } from "./utils/parseRainData"
 
+// import { parseRainData } from "./utils/parseRainData"
 const App = () => {
 
     const [climbingAreas,setClimbingAreas] = UseLocalStorage('climbing-areas',getClimbingAreas())
     const [weatherData,setWeatherData] = useState(undefined)
     const [location,setLocation] = useState(climbingAreas[0])
-    const [totalRain,setTotalRain] = useState({})
+    // const [totalRain,setTotalRain] = useState({})
     const [earthView,setEarthView] = useState(false)
     const [buttonTitle,setButtonTitle] = useState('Wet Rock')
 
@@ -29,9 +29,9 @@ const App = () => {
             const parsedWeatherData = parseWeatherData(weatherData)
             setWeatherData(parsedWeatherData)
 
-            const { pastSevenRain,pastThreeRain } = parsedWeatherData.dailyWeather
-            const parsedRainData = parseRainData([pastSevenRain,pastThreeRain])
-            setTotalRain(parsedRainData)
+            // const { pastSevenRain,pastThreeRain } = parsedWeatherData.dailyWeather
+            // const parsedRainData = parseRainData([pastSevenRain,pastThreeRain])
+            // setTotalRain(parsedRainData)
           
         })()
         
@@ -52,7 +52,7 @@ const App = () => {
             
             <Table 
                 location={location} 
-                totalRain={totalRain} 
+                // totalRain={totalRain} 
                 weatherData={weatherData}
             />
             

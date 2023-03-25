@@ -52,7 +52,7 @@ const Table = (props) => {
             <TableHead/>
             <TableBody
                 rockData={rockData}
-                totalRain={props.totalRain}
+                // totalRain={props.totalRain}
                 weatherData={props.weatherData}
             />
         </table>
