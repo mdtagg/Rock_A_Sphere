@@ -42,7 +42,6 @@ const RainReadout = (props) => {
             setHourlyData(hourlyData)
             getPageData(currentPageIndex,hourlyData,setDailyData,7)
         }
-        console.log('test')
     },[props.weatherData,props.buttonTitle,currentPageIndex])
 
     return (

@@ -1,6 +1,10 @@
 import { parseForecast } from "./parseForecast"
 
 const parseDailyWeather = (data) => {
+    const testOptions = { weekday:'short',day:'numeric' }
+    let test = data.time.map(date => {
+        return Intl.DateTimeFormat(undefined,testOptions).format(date * 1000)
+    })
     const dayOptions = { weekday:'short',day:'numeric' }
     const days = data.time.map(date => {
         return Intl.DateTimeFormat(undefined,dayOptions).format(date * 1000)

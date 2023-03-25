@@ -3,6 +3,7 @@ import { parseDailyWeather } from "./parseDailyWeather"
 import { parseHourlyWeather } from "./parseHourlyWeather"
 
 const parseWeatherData = (data) => {
+    
     const currentWeather = parseCurrentWeather(data)
     const dailyWeather = parseDailyWeather(data.daily)
     const hourlyWeather = parseHourlyWeather(data.hourly)

@@ -11,6 +11,7 @@ function GetWeatherIcon(weatherIcon) {
     weatherIcon === 1 ? CloudSun :
     weatherIcon >= 3 && weatherIcon <= 48 ? Cloud :
     weatherIcon >= 71 && weatherIcon <= 77 ? Snow :
+    weatherIcon >= 85 && weatherIcon <= 86 ? Snow :
     weatherIcon >= 95 && weatherIcon <= 99 ? Thunder :
     Rain
     )
