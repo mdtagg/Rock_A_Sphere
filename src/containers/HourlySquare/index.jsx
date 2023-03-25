@@ -4,7 +4,6 @@ const HourlySquare = (props) => {
 
     const { hourlyInfo } = props
     const WeatherIcon = GetWeatherIcon(hourlyInfo[8])
-    console.log({hourlyInfo})
 
     return (
         <div class='flex flex-col'>

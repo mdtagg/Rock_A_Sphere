@@ -1,7 +1,6 @@
 
 
 function parseHourly(data) {
-    console.log({data})
     const parsedData = []
     let index = 0
     while(index <= 167) {
