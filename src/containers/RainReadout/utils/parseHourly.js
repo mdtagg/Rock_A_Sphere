@@ -1,6 +1,7 @@
 
 
 function parseHourly(data) {
+    console.log({data})
     const parsedData = []
     let index = 0
     while(index <= 167) {
@@ -12,8 +13,8 @@ function parseHourly(data) {
         index += 1
     }
     parsedData.map(data => {
-        data[3] === 0 ? data.push('bg-green-200/70') :
-        data[3] > 0 && data[3] <= 30 ? data.push('bg-yellow-200/70') :
+        data[4] === 0 ? data.push('bg-green-200/70') :
+        data[4] > 0 && data[4] <= 0.5 ? data.push('bg-yellow-200/70') :
         data.push('bg-red-400/70')
         return data
     })
