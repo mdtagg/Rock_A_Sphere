@@ -28,10 +28,6 @@ const App = () => {
             
             const parsedWeatherData = parseWeatherData(weatherData)
             setWeatherData(parsedWeatherData)
-
-            // const { pastSevenRain,pastThreeRain } = parsedWeatherData.dailyWeather
-            // const parsedRainData = parseRainData([pastSevenRain,pastThreeRain])
-            // setTotalRain(parsedRainData)
           
         })()
         

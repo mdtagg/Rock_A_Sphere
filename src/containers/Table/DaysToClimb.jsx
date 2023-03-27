@@ -4,7 +4,7 @@ const DaysToClimb = (props) => {
 
     const [ daysToClimb, setDaysToClimb ] = useState(0)
 
-function getDaysToClimb() {
+    function getDaysToClimb() {
    
     const kindsOfRock = props.rockData.kindsOfRock.map(rock => {
         return rock.name
@@ -36,7 +36,7 @@ function getDaysToClimb() {
             setDaysToClimb('0')
         }
     }else {
-        setDaysToClimb(0)
+        setDaysToClimb('0')
     }
 
 }

@@ -13,7 +13,6 @@ const TableBody = (props) => {
 
     useEffect(() => {
         if(!props.weatherData) return
-        // const { pastSevenRain,pastThreeRain } = props.weatherData.dailyWeather
         const parsedRainData = parseRainData(props.weatherData.dailyWeather)
         setTotalRain(parsedRainData)
     },[props.weatherData])
@@ -51,8 +50,6 @@ const TableBody = (props) => {
                     <DaysToClimb 
                         totalRain={props.totalRain}
                         rockData={props.rockData}
-                        weatherData={props.weatherData}
-
                     />
                 </td>
             </tr>
