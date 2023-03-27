@@ -35,7 +35,7 @@ const RainReadout = (props) => {
             const parsedRainData = parseDailyRain(props.weatherData.dailyWeather)
             setDailyData(parsedRainData)
         }else if(props.buttonTitle === 'Forecast') {
-            const forecastData = parseForecast(props.weatherData.dailyWeather.forecast)
+            const forecastData = parseForecast(props.weatherData.forecast)
             setDailyData(forecastData)
         }else if(props.buttonTitle === 'Hourly') {
             const hourlyData = parseHourly(props.weatherData.hourlyWeather)

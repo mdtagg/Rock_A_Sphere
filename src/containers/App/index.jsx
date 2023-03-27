@@ -1,21 +1,18 @@
 import { useState,useEffect } from "react"
-import { getClimbingAreas } from "./utils/getClimbingAreas"
+import { getDefaultAreas } from "./utils/getDefaultAreas"
 import WeatherDataService from "../../services/WeatherDataService"
 import UseLocalStorage from "./hooks/UseLocalStorage"
 import { CurrentInfoDisplay } from "../CurrentInfoDisplay"
 import Table from "../Table"
 import { RainReadout } from "../RainReadout"
 import Footer from "../Footer/Index"
-import { parseWeatherData } from "./utils/parseWeatherData"
+import { parseWeatherData } from "./helpers/parseWeatherData"
 
-// import { parseRainData } from "./utils/parseRainData"
 const App = () => {
 
-    const [climbingAreas,setClimbingAreas] = UseLocalStorage('climbing-areas',getClimbingAreas())
+    const [climbingAreas,setClimbingAreas] = UseLocalStorage('climbing-areas',getDefaultAreas())
     const [weatherData,setWeatherData] = useState(undefined)
     const [location,setLocation] = useState(climbingAreas[0])
-    // const [totalRain,setTotalRain] = useState({})
-    const [earthView,setEarthView] = useState(false)
     const [buttonTitle,setButtonTitle] = useState('Wet Rock')
 
     useEffect(() => {
@@ -25,10 +22,8 @@ const App = () => {
                 location.coords.longitude,
                 "auto"
             )
-            
             const parsedWeatherData = parseWeatherData(weatherData)
             setWeatherData(parsedWeatherData)
-          
         })()
         
     },[location])
@@ -41,14 +36,11 @@ const App = () => {
                 weatherData={weatherData} 
                 location={location} 
                 setLocation={setLocation}
-                earthView={earthView}
-                setEarthView={setEarthView}
             />
             {buttonTitle === 'Wet Rock' &&
             
             <Table 
                 location={location} 
-                // totalRain={totalRain} 
                 weatherData={weatherData}
             />
             

@@ -6,6 +6,7 @@ import { Form } from "../Form"
 
 const CurrentInfoDisplay = (props) => {
 
+    const [earthView,setEarthView] = useState(false)
     const [toggleForm,setToggleForm] = useState(false)
 
     return (
@@ -20,8 +21,8 @@ const CurrentInfoDisplay = (props) => {
                 climbingAreas={props.climbingAreas}
                 setClimbingAreas={props.setClimbingAreas}
                 weatherData={props.weatherData}
-                earthView={props.earthView}
-                setEarthView={props.setEarthView}
+                earthView={earthView}
+                setEarthView={setEarthView}
                 setToggleForm={setToggleForm}
                 
             />
@@ -30,8 +31,8 @@ const CurrentInfoDisplay = (props) => {
                 setLocation={props.setLocation}
                 climbingAreas={props.climbingAreas} 
                 setClimbingAreas={props.setClimbingAreas}
-                earthView={props.earthView}
-                setEarthView={props.setEarthView}
+                earthView={earthView}
+                setEarthView={setEarthView}
             />
             </>
             }       

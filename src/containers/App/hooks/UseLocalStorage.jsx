@@ -1,5 +1,5 @@
 import { useState,useEffect } from "react"
-import { getClimbingAreas } from "../utils/getClimbingAreas"
+// import { getDefaultAreas } from "../utils/getDefaultAreas"
 
 const UseLocalStorage = (key,initialValue) => {
 
