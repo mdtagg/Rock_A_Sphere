@@ -14,7 +14,7 @@ const RainInfo = (props) => {
             />
             <Inches
                 class='text-xl font-bold sm:text-base wide:text-xs italic'
-                value='"'
+                value='In'
             />
         </div>
     )
