@@ -26,7 +26,7 @@ const TableBody = (props) => {
                     <p class={`text-xl flex items-center h-full font-bold ${totalRain.pastSevenColor}`}>
                         {totalRain.pastSevenTotal} <i>"</i>
                     </p>
-                    <a class='text-black absolute text-[.3rem] font-extrabold' href='https://open-meteo.com/' target='_blank'>Weather data from Open-Medio</a>
+                    <a class='text-black absolute text-[.2rem] font-extrabold' href='https://open-meteo.com/' target='_blank'>Weather data from Open-Medio</a>
                 </td>
                 <td class={`flex items-center justify-center text-xl ${totalRain.pastThreeColor} font-bold border-r-2 border-black w-1/5 h-full gap-1`}> 
                     {totalRain.pastThreeTotal} <i>"</i>
@@ -38,7 +38,7 @@ const TableBody = (props) => {
                         />
                     </div>
                     <a 
-                        class='text-black text-[.3rem] absolute font-extrabold' 
+                        class='text-black text-[.2rem] absolute font-extrabold' 
                         href={`https://macrostrat.org/map/loc/${longitude}/${latitude}#z=14`} 
                         target='_blank'>Geological data from MacroStrat
                     </a>
