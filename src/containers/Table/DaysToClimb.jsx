@@ -5,39 +5,42 @@ const DaysToClimb = (props) => {
     const [ daysToClimb, setDaysToClimb ] = useState(0)
 
     function getDaysToClimb() {
-   
-    const kindsOfRock = props.rockData.kindsOfRock.map(rock => {
-        return rock.name
-    })
-    const sensitiveRockTypes = ['sandstone','basalt','mudstone','siltstone','breccia','andesite','conglomerate','siltstone']
-    let susceptible = false
-    kindsOfRock.forEach(rock => {
-        if(sensitiveRockTypes.includes(rock)) {
-            susceptible = true
-        }
-    })
+        const kindsOfRock = props.rockData.kindsOfRock.map(rock => {
+            return rock.name
+        })
+        const sensitiveRockTypes = ['sandstone','basalt','mudstone','siltstone','breccia','andesite','conglomerate','siltstone']
+        let susceptible = false
+        kindsOfRock.forEach(rock => {
+            if(sensitiveRockTypes.includes(rock)) {
+                susceptible = true
+            }
+        })
 
-    const lastThree = parseFloat(props.totalRain.pastThreeTotal)
-    if(
-        props.rockData.primaryRockClass === 'sedimentary' ||
-        susceptible
-    ) {
-        if(lastThree >= 6) {
-            setDaysToClimb('5-7')
-        }
-        else if(lastThree < 6 && lastThree >= 3) {
-            setDaysToClimb('4-5')
-        }
-        if(lastThree < 3 && lastThree >= 1) {
-            setDaysToClimb('3-4')
-        }else if(lastThree < 1 && lastThree >= 0) {
-            setDaysToClimb('1-3')
+        const lastThree = parseFloat(props.totalRain.pastThreeTotal)
+        const lastSeven = parseFloat(props.totalRain.pastSevenTotal)
+        if(
+            props.rockData.primaryRockClass === 'sedimentary' ||
+            susceptible
+        ) {
+            if(lastThree >= 6 || lastSeven >= 9) {
+                setDaysToClimb('5-7')
+            }
+            else if((lastThree < 6 && lastThree >= 3) || (lastSeven < 7 && lastSeven >= 5)) {
+                setDaysToClimb('4-5')
+            }
+            if((lastThree < 3 && lastThree >= 1) || lastSeven < 5 && lastSeven >= 2.5) {
+                setDaysToClimb('3-4')
+            }else if((lastThree < 1 && lastThree >= 0.5) || (lastSeven < 2.5 && lastSeven >= 1.5)) {
+                setDaysToClimb('2-3')
+            }else if((lastThree < 0.5 && lastThree >= 0) || (lastSeven < 1.5 && lastSeven >= 1)) {
+                setDaysToClimb('1-2')
+            }
+            else {
+                setDaysToClimb('0')
+            }
         }else {
             setDaysToClimb('0')
         }
-    }else {
-        setDaysToClimb('0')
-    }
 
 }
 

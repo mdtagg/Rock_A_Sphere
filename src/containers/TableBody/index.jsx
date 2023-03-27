@@ -59,7 +59,7 @@ const TableBody = (props) => {
                 </td>
                 <td class='w-1/5'>
                     <DaysToClimb 
-                        totalRain={props.totalRain}
+                        totalRain={totalRain}
                         rockData={props.rockData}
                     />
                 </td>

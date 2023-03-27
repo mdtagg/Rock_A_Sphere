@@ -4,7 +4,7 @@ import { ReactComponent as RainImg } from '../../assets/svg/rain.svg'
 
 const RainInfo = (props) => {
     return (
-        <div class='flex gap-2 items-center wide:gap-2'>
+        <div class='flex gap-2 items-center'>
             <RainImg
                 class='h-5 w-5 wide:h-3 wide:w-3 sm:h-4 sm:w-4'
             />
@@ -14,7 +14,7 @@ const RainInfo = (props) => {
             />
             <Inches
                 class='text-xl font-bold sm:text-base wide:text-xs italic'
-                value='In'
+                value='"'
             />
         </div>
     )
