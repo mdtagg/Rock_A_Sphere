@@ -28,7 +28,7 @@ const AreaTitle = (props) => {
             }
             {showDiv &&
             <div 
-                class={dropdown ? 'animate-fadeIn' : 'animate-fadeOut'}
+                class={dropdown ? 'animate-fadeIn w-full' : 'animate-fadeOut w-full'}
             >
                 <Locations 
                     climbingAreas={props.climbingAreas} 
