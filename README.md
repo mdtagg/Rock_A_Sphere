@@ -9,6 +9,7 @@
 - Dynamically generated recommendations on how long to wait before climbing on wet rock
 - Get the different types of rock found in any given area
 - Map support that makes adding new locations easy
+- Built with React and Tailwind. Powered by OpenMedio, MacroStrat, OpenLayers and OpenStreetMap.
 
 ![rock_weather_app_2](https://user-images.githubusercontent.com/105080528/228383686-685d7c0c-98ff-4a48-b6e8-b3e2b025b1fb.jpg)
 
