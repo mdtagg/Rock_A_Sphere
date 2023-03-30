@@ -11,17 +11,12 @@ import { TableBody } from "../TableBody";
 const Table = (props) => {
 
     const [rockTypes,setRockTypes] = useState([])
-    const [rockData,setRockData] = useState(
-        {
-        primaryRockClass:'sedimentary',
-        kindsOfRock: 
-        [
-            {
-                name:'sandstone',
-                color:'#FFD500'
-            }
-        ]
-    })
+    const [rockData,setRockData] = useState()
+
+    console.log({rockData,rockTypes})
+
+    const hide = 
+    props.buttonTitle !== 'Wet Rock' ? 'hidden' : 'flex'
 
     useEffect(() => {
         (async function() {
@@ -29,10 +24,8 @@ const Table = (props) => {
             setRockTypes(rockTypes.success.data)
         })()
     },[])
-    
 
     useEffect(() => {
-        if(!rockTypes.length) return
         (async function() {
             const rockData = await RockDataService.getRockData(
                 props.location.coords.latitude,
@@ -45,10 +38,10 @@ const Table = (props) => {
             const kindsOfRock = parseRockLithos(allRockTypes,primaryRockCounts.rockClassesArray)
             setRockData({primaryRockClass,kindsOfRock})
         })()
-    },[props.location])
+    },[props.location,rockTypes])
     
     return (
-        <table class='flex flex-col w-2/5 bg-slate-200/50 border-2 border-black ml-11 sm:w-full sm:m-0 wide:w-screen wide:m-0 animate-fadeIn'>
+        <table class={`${hide} flex-col w-2/5 bg-slate-200/50 border-2 border-black ml-11 sm:w-full sm:m-0 wide:w-screen wide:m-0 animate-fadeIn`}>
             <TableHead/>
             <TableBody
                 location={props.location}
