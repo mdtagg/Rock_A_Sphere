@@ -44,7 +44,7 @@ const TableBody = (props) => {
                         />
                     </div>
                     <a 
-                        class='text-black text-[.2rem] absolute font-extrabold' 
+                        class='text-black text-[.3rem] absolute font-extrabold' 
                         href={`https://macrostrat.org/map/loc/${longitude}/${latitude}#z=14`} 
                         target='_blank'>Geological data from MacroStrat
                     </a>
