@@ -45,7 +45,7 @@ const App = () => {
                 buttonTitle={buttonTitle}
             />
             
-            {/* }    */}
+            {/* } */}
             <RainReadout
                 location={location} 
                 weatherData={weatherData} 
