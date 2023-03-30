@@ -8,7 +8,7 @@ const DaysToClimb = (props) => {
         const kindsOfRock = props.rockData.kindsOfRock.map(rock => {
             return rock.name
         })
-        const sensitiveRockTypes = ['sandstone','basalt','mudstone','siltstone','breccia','andesite','conglomerate','siltstone']
+        const sensitiveRockTypes = ['sandstone','basalt','mudstone','siltstone','breccia','andesite','conglomerate','siltstone','dolomite']
         let susceptible = false
         kindsOfRock.forEach(rock => {
             if(sensitiveRockTypes.includes(rock)) {
@@ -18,6 +18,8 @@ const DaysToClimb = (props) => {
 
         const lastThree = parseFloat(props.totalRain.pastThreeTotal)
         const lastSeven = parseFloat(props.totalRain.pastSevenTotal)
+
+        console.log({lastThree,lastSeven})
         if(
             props.rockData.primaryRockClass === 'sedimentary' ||
             susceptible
@@ -47,7 +49,7 @@ const DaysToClimb = (props) => {
 useEffect(() => {
     if(!props.totalRain) return 
     getDaysToClimb()
-},[props.totalRain])
+},[props.totalRain,props.rockTypes])
     
     return (
             <div class='flex flex-col items-center justify-center'>

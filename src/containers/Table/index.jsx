@@ -13,8 +13,6 @@ const Table = (props) => {
     const [rockTypes,setRockTypes] = useState([])
     const [rockData,setRockData] = useState()
 
-    console.log({rockData,rockTypes})
-
     const hide = 
     props.buttonTitle !== 'Wet Rock' ? 'hidden' : 'flex'
 
@@ -47,6 +45,7 @@ const Table = (props) => {
                 location={props.location}
                 rockData={rockData}
                 weatherData={props.weatherData}
+                rockTypes={rockTypes}
             />
         </table>
     )
