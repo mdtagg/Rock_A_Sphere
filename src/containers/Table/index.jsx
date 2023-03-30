@@ -45,7 +45,6 @@ const Table = (props) => {
                 location={props.location}
                 rockData={rockData}
                 weatherData={props.weatherData}
-                rockTypes={rockTypes}
             />
         </table>
     )

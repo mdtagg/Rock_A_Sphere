@@ -19,7 +19,6 @@ const DaysToClimb = (props) => {
         const lastThree = parseFloat(props.totalRain.pastThreeTotal)
         const lastSeven = parseFloat(props.totalRain.pastSevenTotal)
 
-        console.log({lastThree,lastSeven})
         if(
             props.rockData.primaryRockClass === 'sedimentary' ||
             susceptible
@@ -49,10 +48,10 @@ const DaysToClimb = (props) => {
 useEffect(() => {
     if(!props.totalRain) return 
     getDaysToClimb()
-},[props.totalRain,props.rockTypes])
+},[props.totalRain,props.rockData])
     
     return (
-            <div class='flex flex-col items-center justify-center'>
+        <div class='flex flex-col items-center justify-center'>
             <p class='text-3xl'>{daysToClimb}</p>
             <p class='text-[.7rem] leading-none font-bold sm:text-[.4rem]'>
                 Always make sure the ground by your climb is dry,

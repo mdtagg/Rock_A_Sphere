@@ -40,7 +40,6 @@ const App = () => {
             {/* {buttonTitle === 'Wet Rock' && */}
             
             <Table 
-                className='hidden'
                 location={location} 
                 weatherData={weatherData}
                 buttonTitle={buttonTitle}

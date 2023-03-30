@@ -67,7 +67,6 @@ const TableBody = (props) => {
                     <DaysToClimb 
                         totalRain={totalRain}
                         rockData={props.rockData}
-                        rockTypes={props.rockTypes}
                     />
                 </td>
             </tr>}

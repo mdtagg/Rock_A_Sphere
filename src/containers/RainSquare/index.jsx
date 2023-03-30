@@ -7,7 +7,6 @@ import { HourlySquare } from '../HourlySquare';
 const RainSquare = (props) => {
 
     const { item } = props
-    console.log({item})
     const color = 
     props.buttonTitle === 'Wet Rock' ? item[2] :
     item[item.length-1]
