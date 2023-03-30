@@ -13,8 +13,14 @@ const Table = (props) => {
     const [rockTypes,setRockTypes] = useState([])
     const [rockData,setRockData] = useState(
         {
-            name:'sandstone',
-            color:'#FFD500'
+            primaryRockClass:'sedimentary',
+            kindsOfRock: 
+            [
+                {
+                    name:'sandstone',
+                    color:'#FFD500'
+                }
+            ]
         }
     )
     console.log({rockData,rockTypes})
@@ -31,6 +37,7 @@ const Table = (props) => {
     },[])
 
     useEffect(() => {
+        if(!rockTypes.length) return
         (async function() {
             const rockData = await RockDataService.getRockData(
                 props.location.coords.latitude,
