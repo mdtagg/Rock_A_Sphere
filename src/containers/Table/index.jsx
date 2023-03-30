@@ -11,7 +11,7 @@ import { TableBody } from "../TableBody";
 const Table = (props) => {
 
     const [rockTypes,setRockTypes] = useState([])
-    const [rockData,setRockData] = useState()
+    const [rockData,setRockData] = useState([])
 
     const hide = 
     props.buttonTitle !== 'Wet Rock' ? 'hidden' : 'flex'
