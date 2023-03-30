@@ -48,7 +48,7 @@ const DaysToClimb = (props) => {
 useEffect(() => {
     if(!props.totalRain) return 
     getDaysToClimb()
-},[props.totalRain,props.rockData])
+},[props.totalRain])
     
     return (
         <div class='flex flex-col items-center justify-center'>

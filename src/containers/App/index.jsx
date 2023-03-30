@@ -37,7 +37,7 @@ const App = () => {
                 location={location} 
                 setLocation={setLocation}
             />
-            {/* {buttonTitle === 'Wet Rock' && */}
+            {buttonTitle === 'Wet Rock' &&
             
             <Table 
                 location={location} 
@@ -45,7 +45,7 @@ const App = () => {
                 buttonTitle={buttonTitle}
             />
             
-            {/* }    */}
+            }
             <RainReadout
                 location={location} 
                 weatherData={weatherData} 
