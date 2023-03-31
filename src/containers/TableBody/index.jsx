@@ -19,6 +19,8 @@ const TableBody = (props) => {
     },[props.weatherData])
     
     return (
+        <>
+        {props.rockData &&
         <tbody>
             {props.weatherData &&
             <tr class='flex items-center border-t-2 border-black h-full sm:h-[100px] wide:h-[100px] wide:text-sm'>
@@ -70,7 +72,8 @@ const TableBody = (props) => {
                     />
                 </td>
             </tr>}
-        </tbody>
+        </tbody>}
+        </>
     )
 }
 
