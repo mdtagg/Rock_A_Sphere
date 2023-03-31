@@ -19,7 +19,6 @@ const AreaList = (props) => {
                     <ClimbingArea 
                         area={area}
                         setDropdown={props.setDropdown}
-                        setLocation={props.setLocation}
                         climbingAreas={props.climbingAreas}
                         setClimbingAreas={props.setClimbingAreas}
                         key={uuidv4()}

@@ -16,19 +16,13 @@ const CurrentInfoDisplay = (props) => {
             {!toggleForm &&
             <>
             <AreaTitle 
-                location={props.location}
-                setLocation={props.setLocation}
                 climbingAreas={props.climbingAreas}
                 setClimbingAreas={props.setClimbingAreas}
-                weatherData={props.weatherData}
                 earthView={earthView}
                 setEarthView={setEarthView}
                 setToggleForm={setToggleForm}
-                
             />
             <MapView 
-                location={props.location} 
-                setLocation={props.setLocation}
                 climbingAreas={props.climbingAreas} 
                 setClimbingAreas={props.setClimbingAreas}
                 earthView={earthView}

@@ -20,7 +20,6 @@ const Locations = (props) => {
                 climbingAreas={props.climbingAreas}
                 setClimbingAreas={props.setClimbingAreas}
                 setDropdown={props.setDropdown}
-                setLocation={props.setLocation}
                 currentPageIndex={currentPageIndex}
             />
             <AddAreaButton 

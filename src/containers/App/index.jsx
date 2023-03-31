@@ -1,4 +1,4 @@
-import { useState,useEffect } from "react"
+import { useState,useEffect,createContext } from "react"
 import { getDefaultAreas } from "./utils/getDefaultAreas"
 import WeatherDataService from "../../services/WeatherDataService"
 import UseLocalStorage from "./hooks/UseLocalStorage"
@@ -7,6 +7,8 @@ import Table from "../Table"
 import { RainReadout } from "../RainReadout"
 import Footer from "../Footer/Index"
 import { parseWeatherData } from "./helpers/parseWeatherData"
+// import { AppContext } from "./contexts/AppContext"
+export const AppContext = createContext(null)
 
 const App = () => {
 
@@ -30,29 +32,22 @@ const App = () => {
 
     return (
         <main class={`bg-[url('./assets/images/redRock.jpg')] bg-cover bg-center h-screen w-screen flex flex-col pt-10 justify-between sm:p-0 wide:p-0 wide:justify-center `}>
-            <CurrentInfoDisplay
-                climbingAreas={climbingAreas} 
-                setClimbingAreas={setClimbingAreas} 
-                weatherData={weatherData} 
-                location={location} 
-                setLocation={setLocation}
-            />
-            {/* {buttonTitle === 'Wet Rock' && */}
-            
-            <Table 
-                location={location} 
-                weatherData={weatherData}
-                buttonTitle={buttonTitle}
-            />
-            
-            {/* } */}
-            <RainReadout
-                location={location} 
-                weatherData={weatherData} 
-                buttonTitle={buttonTitle}
-                setButtonTitle={setButtonTitle}
-            />
-            <Footer/>
+            <AppContext.Provider value={{location,setLocation,weatherData}}>
+
+                <CurrentInfoDisplay
+                    climbingAreas={climbingAreas} 
+                    setClimbingAreas={setClimbingAreas} 
+                />
+                <Table 
+                    buttonTitle={buttonTitle}
+                />
+                <RainReadout
+                    buttonTitle={buttonTitle}
+                    setButtonTitle={setButtonTitle}
+                />
+                <Footer/>
+
+            </AppContext.Provider>
         </main>
     )
 }

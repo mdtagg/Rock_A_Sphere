@@ -1,4 +1,4 @@
-import { useState,useEffect } from "react"
+import { useState,useEffect,useContext } from "react"
 import { parseDailyRain } from "./utils/parseDailyRain";
 import { RainSquare } from "../RainSquare";
 import { v4 as uuidv4 } from 'uuid';
@@ -6,9 +6,11 @@ import { parseForecast } from "./utils/parseForecast";
 import { parseHourly } from "./utils/parseHourly";
 import { NavArrows } from "../../components/NavArrows";
 import { getPageData } from "../../components/NavArrows/utils/getPageData";
+import { AppContext } from "../App";
 
 const RainReadout = (props) => {
 
+    const { weatherData } = useContext(AppContext)
     const [dailyData,setDailyData] = useState([])
     const [buttonPosition,setButtonPosition] = useState('')
     const [currentPageIndex,setCurrentPageIndex] = useState(0)
@@ -30,19 +32,19 @@ const RainReadout = (props) => {
     }
      
     useEffect(() => {
-        if(!props.weatherData) return
+        if(!weatherData) return
         if(props.buttonTitle === 'Wet Rock') {
-            const parsedRainData = parseDailyRain(props.weatherData.dailyWeather)
+            const parsedRainData = parseDailyRain(weatherData.dailyWeather)
             setDailyData(parsedRainData)
         }else if(props.buttonTitle === 'Forecast') {
-            const forecastData = parseForecast(props.weatherData.forecast)
+            const forecastData = parseForecast(weatherData.forecast)
             setDailyData(forecastData)
         }else if(props.buttonTitle === 'Hourly') {
-            const hourlyData = parseHourly(props.weatherData.hourlyWeather)
+            const hourlyData = parseHourly(weatherData.hourlyWeather)
             setHourlyData(hourlyData)
             getPageData(currentPageIndex,hourlyData,setDailyData,7)
         }
-    },[props.weatherData,props.buttonTitle,currentPageIndex])
+    },[weatherData,props.buttonTitle,currentPageIndex])
 
     return (
         <section class='flex flex-col gap-2 pl-10 sm:p-0 wide:gap-0 wide:p-0'>
