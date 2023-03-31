@@ -7,7 +7,7 @@ import Table from "../Table"
 import { RainReadout } from "../RainReadout"
 import Footer from "../Footer/Index"
 import { parseWeatherData } from "./helpers/parseWeatherData"
-// import { AppContext } from "./contexts/AppContext"
+
 export const AppContext = createContext(null)
 
 const App = () => {
@@ -45,9 +45,9 @@ const App = () => {
                     buttonTitle={buttonTitle}
                     setButtonTitle={setButtonTitle}
                 />
-                <Footer/>
-
             </AppContext.Provider>
+
+            <Footer/>
         </main>
     )
 }
