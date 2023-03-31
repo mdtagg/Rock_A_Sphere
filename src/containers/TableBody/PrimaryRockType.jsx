@@ -22,7 +22,8 @@ const PrimaryRockType = (props) => {
             <a 
                 class='text-clip' 
                 href={`https://en.wikipedia.org/wiki/${props.rockData.primaryRockClass}`} 
-                target='_blank'>
+                target='_blank'
+            >
                     {props.rockData.primaryRockClass}
             </a>
         </button>

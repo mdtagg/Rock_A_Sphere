@@ -11,18 +11,7 @@ import { TableBody } from "../TableBody";
 const Table = (props) => {
 
     const [rockTypes,setRockTypes] = useState([])
-    const [rockData,setRockData] = useState(
-        // {
-        //     primaryRockClass:'sedimentary',
-        //     kindsOfRock: 
-        //     [
-        //         {
-        //             name:'sandstone',
-        //             color:'#FFD500'
-        //         }
-        //     ]
-        // }
-    )
+    const [rockData,setRockData] = useState()
 
     const hide = 
     props.buttonTitle !== 'Wet Rock' ? 'hidden' : 'flex'
