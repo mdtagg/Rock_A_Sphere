@@ -10,11 +10,11 @@ import { transform } from 'ol/proj';
 import { transformCoords } from './utils/transformCoords';
 import TileLayer from 'ol/layer/Tile'
 import XYZ from 'ol/source/XYZ'
-import { AppContext } from '../App';
+import CurrentInfoContext from '../App/contexts/CurrentInfoContext';
 
 const MapView = (props) => {
     
-    const { location,setLocation } = useContext(AppContext)
+    const { location,setLocation,climbingAreas,setClimbingAreas } = useContext(CurrentInfoContext)
     const [map,setMap] = useState(null)
     const [clickCoords,setClickCoords] = useState([])
     const [areaName,setAreaName] = useState([])
@@ -39,7 +39,7 @@ const MapView = (props) => {
         e.preventDefault()
         removeOverlays(mapRef)
         const transformedCoords = transform(clickCoords,'EPSG:3857','EPSG:4326')
-        props.setClimbingAreas((prevAreas) => {
+        setClimbingAreas((prevAreas) => {
             return [
                 ...prevAreas,
                 {
@@ -84,7 +84,7 @@ const MapView = (props) => {
 
     //creates the initial instance of the map 
     useEffect(() => {
-        const initialMap = getInitialMap(mapElement,props.climbingAreas,mapChange,tileLayer,setTileLayer)
+        const initialMap = getInitialMap(mapElement,climbingAreas,mapChange,tileLayer,setTileLayer)
         initialMap.on('click',(e) => changeCoords(e,mapRef,popupElement,setClickCoords,setAreaId,setCurrentFeature,setLocation))
         initialMap.on('pointermove', function (e) {
             const type = mapRef.current.hasFeatureAtPixel(e.pixel) ? 'pointer' : 'inherit';
@@ -110,7 +110,7 @@ const MapView = (props) => {
         const filteredLayers = deletePoint(climbingAreas,mapRef)
         map.setLayers(filteredLayers)
 
-    },[props.climbingAreas])
+    },[climbingAreas])
 
     useEffect(() => {
         if(!props.earthView) return
@@ -120,7 +120,7 @@ const MapView = (props) => {
 
     useEffect(() => {
         if(!currentFeature) return
-        const filteredArea = props.climbingAreas.filter(area => {
+        const filteredArea = climbingAreas.filter(area => {
             if(area.id === currentFeature) {
                 return area
             }

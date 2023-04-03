@@ -29,8 +29,6 @@ const AreaTitle = (props) => {
                 class={dropdown ? 'animate-fadeIn w-full' : 'animate-fadeOut w-full'}
             >
                 <Locations 
-                    climbingAreas={props.climbingAreas} 
-                    setClimbingAreas={props.setClimbingAreas}
                     setDropdown={setDropdown}
                     setToggleForm={props.setToggleForm}
                 />

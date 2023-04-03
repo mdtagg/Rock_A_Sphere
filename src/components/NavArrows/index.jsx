@@ -2,7 +2,6 @@ import { ReactComponent as LeftCaret } from '../../assets/svg/left-caret.svg'
 import { ReactComponent as RightCaret } from '../../assets/svg/right-caret.svg'
 import { useState,useEffect } from 'react'
 
-
 const NavArrows = (props) => {
 
     const { dataFocus,currentPageIndex,setCurrentPageIndex,pageLength } = props

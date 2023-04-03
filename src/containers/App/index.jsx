@@ -7,8 +7,7 @@ import Table from "../Table"
 import { RainReadout } from "../RainReadout"
 import Footer from "../Footer/Index"
 import { parseWeatherData } from "./helpers/parseWeatherData"
-
-export const AppContext = createContext(null)
+import CurrentInfoContext from "./contexts/CurrentInfoContext"
 
 const App = () => {
 
@@ -32,21 +31,30 @@ const App = () => {
 
     return (
         <main class={`bg-[url('./assets/images/redRock.jpg')] bg-cover bg-center h-screen w-screen flex flex-col pt-10 justify-between sm:p-0 wide:p-0 wide:justify-center `}>
-            <AppContext.Provider value={{location,setLocation,weatherData}}>
+            <CurrentInfoContext.Provider 
+                value=
+                {{
+                    location,
+                    setLocation,
+                    weatherData,
+                    climbingAreas,
+                    setClimbingAreas
+                }}
+            >
+                <CurrentInfoDisplay />
+            </CurrentInfoContext.Provider>
 
-                <CurrentInfoDisplay
-                    climbingAreas={climbingAreas} 
-                    setClimbingAreas={setClimbingAreas} 
-                />
                 <Table 
+                    weatherData={weatherData}
+                    location={location}
                     buttonTitle={buttonTitle}
                 />
+            
                 <RainReadout
+                    weatherData={weatherData}
                     buttonTitle={buttonTitle}
                     setButtonTitle={setButtonTitle}
                 />
-            </AppContext.Provider>
-
             <Footer/>
         </main>
     )

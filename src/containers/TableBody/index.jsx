@@ -4,27 +4,27 @@ import { KindsOfRock } from './KindsOfRock';
 import { useState,useEffect } from 'react';
 import { NavArrows } from '../../components/NavArrows';
 import { parseRainData } from './utils/parseRainData';
-import { useContext } from 'react';
-import { AppContext } from "../App";
+// import { useContext } from 'react';
+// import { AppContext } from "../App";
 
 const TableBody = (props) => {
 
-    const { location,weatherData } = useContext(AppContext)
-    const {latitude,longitude} = location.coords
+    // const { location,props.weatherData } = useContext(AppContext)
+    const {latitude,longitude} = props.location.coords
     const [currentPageIndex,setCurrentPageIndex] = useState(0)
     const [totalRain,setTotalRain] = useState({})
 
     useEffect(() => {
-        if(!weatherData) return
-        const parsedRainData = parseRainData(weatherData.dailyWeather)
+        if(!props.weatherData) return
+        const parsedRainData = parseRainData(props.weatherData.dailyWeather)
         setTotalRain(parsedRainData)
-    },[weatherData])
+    },[props.weatherData])
     
     return (
         <>
         {props.rockData &&
         <tbody>
-            {weatherData &&
+            {props.weatherData &&
             <tr class='flex items-center border-t-2 border-black h-full sm:h-[100px] wide:h-[100px] wide:text-sm'>
                 <td class={`flex flex-col justify-end items-center  border-r-2 border-black w-1/5 h-full gap-1`}>
                     <p class={`text-xl flex items-center h-full font-bold ${totalRain.pastSevenColor}`}>

@@ -2,12 +2,12 @@
 
 import { P as CurrentDate} from "../../components/P"
 import { CurrentInfo } from "../CurrentInfo.jsx/index.jsx"
-import { AppContext } from "../App"
+import CurrentInfoContext from "../App/contexts/CurrentInfoContext"
 import { useContext } from "react"
 
 const CurrentWeather = (props) => {
 
-    const { weatherData } = useContext(AppContext)
+    const { weatherData } = useContext(CurrentInfoContext)
 
     return (
         <>

@@ -4,7 +4,7 @@ import MapView from "../MapView"
 import { AreaTitle } from "../AreaTitle"
 import { Form } from "../Form"
 
-const CurrentInfoDisplay = (props) => {
+const CurrentInfoDisplay = () => {
 
     const [earthView,setEarthView] = useState(false)
     const [toggleForm,setToggleForm] = useState(false)
@@ -15,26 +15,21 @@ const CurrentInfoDisplay = (props) => {
             
             {!toggleForm &&
             <>
-            <AreaTitle 
-                climbingAreas={props.climbingAreas}
-                setClimbingAreas={props.setClimbingAreas}
-                earthView={earthView}
-                setEarthView={setEarthView}
-                setToggleForm={setToggleForm}
-            />
-            <MapView 
-                climbingAreas={props.climbingAreas} 
-                setClimbingAreas={props.setClimbingAreas}
-                earthView={earthView}
-                setEarthView={setEarthView}
-            />
+                <AreaTitle 
+                    earthView={earthView}
+                    setEarthView={setEarthView}
+                    setToggleForm={setToggleForm}
+                />
+                <MapView 
+                    earthView={earthView}
+                    setEarthView={setEarthView}
+                />
             </>
             }       
             {toggleForm &&
-            <Form 
-                setToggleForm={setToggleForm}
-                setClimbingAreas={props.setClimbingAreas}
-            />
+                <Form 
+                    setToggleForm={setToggleForm}
+                />
             }
             
         </section>

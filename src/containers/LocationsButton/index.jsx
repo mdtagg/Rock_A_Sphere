@@ -2,11 +2,11 @@ import { P as LocationTitle} from "../../components/P"
 import {ReactComponent as DownCaret} from '../../assets/svg/downCaret.svg'
 import { ReactComponent as Earth } from '../../assets/svg/earth.svg'
 import { useContext } from "react"
-import { AppContext } from "../App"
+import CurrentInfoContext from "../App/contexts/CurrentInfoContext"
 
 const LocationsButton = (props) => {
 
-    const { location } = useContext(AppContext)
+    const { location } = useContext(CurrentInfoContext)
 
     const rotate = 
     props.dropdown ? 'animate-spinUp transform rotate-[540deg]' : 'animate-spinDown'

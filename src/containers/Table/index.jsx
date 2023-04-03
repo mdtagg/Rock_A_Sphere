@@ -7,16 +7,17 @@ import { getPrimaryRockClass } from "./utils/getPrimaryRockClass";
 import { parseRockLithos } from "./utils/parseRockLithos";
 import { TableHead } from "./TableHead";
 import { TableBody } from "../TableBody";
-import { AppContext } from "../App";
+// import { AppContext } from "../App";
 
 const Table = (props) => {
 
     const [rockTypes,setRockTypes] = useState([])
     const [rockData,setRockData] = useState()
-    const { location } = useContext(AppContext)
+    // const { location } = useContext(AppContext)
+    const { buttonTitle } = props
 
     const hide = 
-    props.buttonTitle !== 'Wet Rock' ? 'hidden' : 'flex'
+    buttonTitle !== 'Wet Rock' ? 'hidden' : 'flex'
 
     useEffect(() => {
         (async function() {
@@ -29,8 +30,8 @@ const Table = (props) => {
         if(!rockTypes.length) return
         (async function() {
             const rockData = await RockDataService.getRockData(
-                location.coords.latitude,
-                location.coords.longitude
+                props.location.coords.latitude,
+                props.location.coords.longitude
             )
             const lithoCodes = getLithoCodes(rockData)
             const allRockTypes = filterRockTypes(lithoCodes,rockTypes)
@@ -40,12 +41,14 @@ const Table = (props) => {
 
             setRockData({primaryRockClass,kindsOfRock})
         })()
-    },[location,rockTypes])
+    },[props.location,rockTypes])
     
     return (
         <table class={`${hide} flex-col w-2/5 bg-slate-200/50 border-2 border-black ml-11 sm:w-full sm:m-0 wide:w-screen wide:m-0 animate-fadeIn`}>
             <TableHead/>
             <TableBody
+                location={props.location}
+                weatherData={props.weatherData}
                 rockData={rockData}
             />
         </table>
