@@ -59,7 +59,7 @@ const Form = (props) => {
                     class='bg-green-500 text-white border-2 border-black rounded p-1 w-1/5 sm:w-[80px] wide:flex wide:justify-center wide:items-center wide:h-8 wide:w-20 xl:h-full' 
                     type='submit'
                 >
-                        Add
+                    Add
                 </button>
                 <button 
                     class='bg-red-500 rounded text-white border-2 border-black p-1 w-1/5 sm:w-1/2 wide:flex wide:justify-center wide:items-center wide:h-8 wide:w-20' 

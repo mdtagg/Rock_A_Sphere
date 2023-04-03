@@ -12,9 +12,7 @@ const WeatherOptionsButton = (props) => {
     const [ buttonPosition, setButtonPosition ] = useState('')
     const [ hourlyData, setHourlyData ] = useState([])
     const [ currentPageIndex, setCurrentPageIndex ] = useState(0)
-
     const { setDailyData } = props
-
 
     function handleButtonChange(position,title) {
         setButtonPosition(position)

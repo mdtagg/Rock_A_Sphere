@@ -40,7 +40,7 @@ const RainReadout = () => {
                     <RainSquare
                         item={item}
                         key={uuidv4()}
-                        // buttonTitle={buttonTitle}
+                        buttonTitle={buttonTitle}
                     />
                     )
                 })

@@ -1,4 +1,3 @@
-import { P as LocationTitle} from "../../components/P"
 import { ReactComponent as DownCaret } from '../../assets/svg/downCaret.svg'
 import { ReactComponent as Earth } from '../../assets/svg/earth.svg'
 import { useContext } from "react"
@@ -8,7 +7,7 @@ import EarthViewContext from "../CurrentInfoDisplay/contexts/EarthViewContext"
 const LocationsButton = (props) => {
 
     const { location } = useContext(CurrentInfoContext)
-    const { earthView,setEarthView } = useContext(EarthViewContext)
+    const { setEarthView } = useContext(EarthViewContext)
 
     const rotate = 
     props.dropdown ? 'animate-spinUp transform rotate-[540deg]' : 'animate-spinDown'
@@ -28,10 +27,11 @@ const LocationsButton = (props) => {
                     props.setDropdown(!props.dropdown)
                 }}
             >
-                <LocationTitle
+                <p
                     class='text-black font-bold text-2xl sm:text-xl sm:truncate wide:truncate wide:text-base xl:w-full'
-                    value={location.title}
-                />
+                >
+                    {location.title}
+                </p>
                 <DownCaret
                     class={`flex justify-center items-center h-4 w-4 ${rotate}`}
                 />
