@@ -17,7 +17,7 @@ export const getDefaultAreas = () => {
         {
             title:'Malibu Creek',
             coords:
-            {latitude:'34.09604562465432',longitude:'-118.73008531949412'},
+                {latitude:'34.09604562465432',longitude:'-118.73008531949412'},
             id:uuidv4()
         },
         
@@ -25,7 +25,7 @@ export const getDefaultAreas = () => {
             title:'Texas Canyon',
             coords:
                 {latitude:'34.51324985131252',longitude:'-118.40142757794119'},
-                id: uuidv4()
+            id: uuidv4()
         },
         {
             title:'Red Rock (Oak Creek Canyon)',
@@ -35,7 +35,7 @@ export const getDefaultAreas = () => {
         },
         {
             title:'Black Velvet Canyon',
-            coords:{latitude:'36.035708655490055',longitude:'-115.46781106160708'},
+                coords:{latitude:'36.035708655490055',longitude:'-115.46781106160708'},
             id:uuidv4()
         }
 

@@ -24,7 +24,6 @@ const CurrentInfoDisplay = (props) => {
                 earthView={earthView}
                 setEarthView={setEarthView}
                 setToggleForm={setToggleForm}
-                
             />
             <MapView 
                 location={props.location} 
@@ -34,14 +33,12 @@ const CurrentInfoDisplay = (props) => {
                 earthView={earthView}
                 setEarthView={setEarthView}
             />
-            </>
-            }       
+            </>}       
             {toggleForm &&
             <Form 
                 setToggleForm={setToggleForm}
                 setClimbingAreas={props.setClimbingAreas}
-            />
-            }
+            />}
             
         </section>
         
