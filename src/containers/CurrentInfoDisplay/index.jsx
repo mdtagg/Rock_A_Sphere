@@ -3,6 +3,7 @@ import { useState } from "react"
 import MapView from "../MapView"
 import { AreaTitle } from "../AreaTitle"
 import { Form } from "../Form"
+import EarthViewContext from "./contexts/EarthViewContext"
 
 const CurrentInfoDisplay = () => {
 
@@ -14,17 +15,12 @@ const CurrentInfoDisplay = () => {
         <section class='flex gap-10 sm:gap-2 wide:gap-1'>
             
             {!toggleForm &&
-            <>
+            <EarthViewContext.Provider value={{earthView,setEarthView}}>
                 <AreaTitle 
-                    earthView={earthView}
-                    setEarthView={setEarthView}
                     setToggleForm={setToggleForm}
                 />
-                <MapView 
-                    earthView={earthView}
-                    setEarthView={setEarthView}
-                />
-            </>
+                <MapView />
+            </EarthViewContext.Provider>
             }       
             {toggleForm &&
                 <Form 

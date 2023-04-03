@@ -6,9 +6,9 @@ import { HourlySquare } from '../HourlySquare';
 
 const RainSquare = (props) => {
 
-    const { item } = props
+    const { item,buttonTitle } = props
     const color = 
-    props.buttonTitle === 'Wet Rock' ? item[2] :
+    buttonTitle === 'Wet Rock' ? item[2] :
     item[item.length-1]
 
     return (
@@ -19,15 +19,15 @@ const RainSquare = (props) => {
                 class='text-3xl gap-3 font-bold sm:text-xl wide:text-sm wide:font-bold '
                 value={item[0]}
             />
-            {props.buttonTitle === 'Wet Rock' &&
+            {buttonTitle === 'Wet Rock' &&
                 <RainInfo
                     rainInfo={item}
                 />}
-            {props.buttonTitle === 'Forecast' &&
+            {buttonTitle === 'Forecast' &&
                 <ForecastSquare
                     forecastInfo={item}
                 />}
-            {props.buttonTitle === 'Hourly' &&
+            {buttonTitle === 'Hourly' &&
                 <HourlySquare
                     hourlyInfo={item}
                 />

@@ -8,6 +8,7 @@ import { RainReadout } from "../RainReadout"
 import Footer from "../Footer/Index"
 import { parseWeatherData } from "./helpers/parseWeatherData"
 import CurrentInfoContext from "./contexts/CurrentInfoContext"
+import WeatherContext from "./contexts/WeatherContext"
 
 const App = () => {
 
@@ -41,20 +42,29 @@ const App = () => {
                     setClimbingAreas
                 }}
             >
+
                 <CurrentInfoDisplay />
+
             </CurrentInfoContext.Provider>
 
-                <Table 
-                    weatherData={weatherData}
-                    location={location}
-                    buttonTitle={buttonTitle}
-                />
+            <WeatherContext.Provider
+                value={{
+                    weatherData,
+                    location,
+                    buttonTitle,
+                    setButtonTitle,
+                    location
+                }}
+            >
+                
+                <Table />
             
                 <RainReadout
                     weatherData={weatherData}
                     buttonTitle={buttonTitle}
                     setButtonTitle={setButtonTitle}
                 />
+            </WeatherContext.Provider>
             <Footer/>
         </main>
     )

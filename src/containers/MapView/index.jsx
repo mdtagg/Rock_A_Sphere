@@ -11,10 +11,12 @@ import { transformCoords } from './utils/transformCoords';
 import TileLayer from 'ol/layer/Tile'
 import XYZ from 'ol/source/XYZ'
 import CurrentInfoContext from '../App/contexts/CurrentInfoContext';
+import EarthViewContext from '../CurrentInfoDisplay/contexts/EarthViewContext';
 
 const MapView = (props) => {
     
     const { location,setLocation,climbingAreas,setClimbingAreas } = useContext(CurrentInfoContext)
+    const { earthView,setEarthView } = useContext(EarthViewContext)
     const [map,setMap] = useState(null)
     const [clickCoords,setClickCoords] = useState([])
     const [areaName,setAreaName] = useState([])
@@ -113,10 +115,10 @@ const MapView = (props) => {
     },[climbingAreas])
 
     useEffect(() => {
-        if(!props.earthView) return
-        props.setEarthView(false)
+        if(!earthView) return
+        setEarthView(false)
         mapRef.current.getView().setZoom(1)
-    },[props.earthView])
+    },[earthView])
 
     useEffect(() => {
         if(!currentFeature) return
