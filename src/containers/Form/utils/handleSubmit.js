@@ -1,9 +1,9 @@
 import { parseLatLong } from "./parseLatLong"
 import { v4 as uuidv4 } from 'uuid';
 
-function handleSubmit(e,props,setError) {
+function handleSubmit(e,submitProps) {
     e.preventDefault()
-    const { setToggleForm,setClimbingAreas } = props
+    const { setToggleForm,setClimbingAreas,setError } = submitProps
     const input = e.target[0].value
     let latLong
     

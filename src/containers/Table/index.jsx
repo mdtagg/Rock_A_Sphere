@@ -1,4 +1,4 @@
-import { useState,useEffect } from "react"
+import { useState,useEffect,useContext } from "react"
 import RockDataService from "../../services/RockDataService";
 import { getLithoCodes } from "./utils/getLithoCodes";
 import { filterRockTypes } from "./utils/filterRockTypes";
@@ -7,14 +7,16 @@ import { getPrimaryRockClass } from "./utils/getPrimaryRockClass";
 import { parseRockLithos } from "./utils/parseRockLithos";
 import { TableHead } from "./TableHead";
 import { TableBody } from "../TableBody";
+import WeatherContext from "../App/contexts/WeatherContext";
 
-const Table = (props) => {
+const Table = () => {
 
     const [rockTypes,setRockTypes] = useState([])
     const [rockData,setRockData] = useState()
+    const { location, buttonTitle } = useContext(WeatherContext)
 
     const hide = 
-    props.buttonTitle !== 'Wet Rock' ? 'hidden' : 'flex'
+    buttonTitle !== 'Wet Rock' ? 'hidden' : 'flex'
 
     useEffect(() => {
         (async function() {
@@ -27,8 +29,8 @@ const Table = (props) => {
         if(!rockTypes.length) return
         (async function() {
             const rockData = await RockDataService.getRockData(
-                props.location.coords.latitude,
-                props.location.coords.longitude
+                location.coords.latitude,
+                location.coords.longitude
             )
             const lithoCodes = getLithoCodes(rockData)
             const allRockTypes = filterRockTypes(lithoCodes,rockTypes)
@@ -38,15 +40,13 @@ const Table = (props) => {
 
             setRockData({primaryRockClass,kindsOfRock})
         })()
-    },[props.location,rockTypes])
+    },[location,rockTypes])
     
     return (
         <table class={`${hide} flex-col w-2/5 bg-slate-200/50 border-2 border-black ml-11 sm:w-full sm:m-0 wide:w-screen wide:m-0 animate-fadeIn`}>
             <TableHead/>
             <TableBody
-                location={props.location}
                 rockData={rockData}
-                weatherData={props.weatherData}
             />
         </table>
     )

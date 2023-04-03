@@ -1,5 +1,5 @@
 
-import { useState,useEffect,useRef } from 'react'
+import { useState,useEffect,useRef,useContext } from 'react'
 import { getInitialMap } from './utils/getInitialMap'
 import { recenterMap } from './utils/recenterMap';
 import { deletePoint } from './utils/deletePoint';
@@ -10,9 +10,13 @@ import { transform } from 'ol/proj';
 import { transformCoords } from './utils/transformCoords';
 import TileLayer from 'ol/layer/Tile'
 import XYZ from 'ol/source/XYZ'
+import CurrentInfoContext from '../App/contexts/CurrentInfoContext';
+import EarthViewContext from '../CurrentInfoDisplay/contexts/EarthViewContext';
 
 const MapView = (props) => {
     
+    const { location,setLocation,climbingAreas,setClimbingAreas } = useContext(CurrentInfoContext)
+    const { earthView,setEarthView } = useContext(EarthViewContext)
     const [map,setMap] = useState(null)
     const [clickCoords,setClickCoords] = useState([])
     const [areaName,setAreaName] = useState([])
@@ -30,7 +34,6 @@ const MapView = (props) => {
     const popupElement = useRef()
     const popupContainer = useRef()
     const mapChange = useRef()
-
     const mapRef = useRef()
     mapRef.current = map
 
@@ -38,7 +41,7 @@ const MapView = (props) => {
         e.preventDefault()
         removeOverlays(mapRef)
         const transformedCoords = transform(clickCoords,'EPSG:3857','EPSG:4326')
-        props.setClimbingAreas((prevAreas) => {
+        setClimbingAreas((prevAreas) => {
             return [
                 ...prevAreas,
                 {
@@ -83,8 +86,8 @@ const MapView = (props) => {
 
     //creates the initial instance of the map 
     useEffect(() => {
-        const initialMap = getInitialMap(mapElement,props.climbingAreas,mapChange,tileLayer,setTileLayer)
-        initialMap.on('click',(e) => changeCoords(e,mapRef,popupElement,setClickCoords,setAreaId,setCurrentFeature,props.setLocation))
+        const initialMap = getInitialMap(mapElement,climbingAreas,mapChange,tileLayer,setTileLayer)
+        initialMap.on('click',(e) => changeCoords(e,mapRef,popupElement,setClickCoords,setAreaId,setCurrentFeature,setLocation))
         initialMap.on('pointermove', function (e) {
             const type = mapRef.current.hasFeatureAtPixel(e.pixel) ? 'pointer' : 'inherit';
             mapRef.current.getViewport().style.cursor = type;
@@ -95,11 +98,11 @@ const MapView = (props) => {
     useEffect(() => {
 
         if(!map) return
-        const webMerc = transformCoords(props.location.coords)
+        const webMerc = transformCoords(location.coords)
         recenterMap(mapRef,webMerc)
         map.render()
         
-    },[props.location])
+    },[location])
 
     //deletes points on the map when area is deleted
     useEffect(() => {
@@ -109,22 +112,22 @@ const MapView = (props) => {
         const filteredLayers = deletePoint(climbingAreas,mapRef)
         map.setLayers(filteredLayers)
 
-    },[props.climbingAreas])
+    },[climbingAreas])
 
     useEffect(() => {
-        if(!props.earthView) return
-        props.setEarthView(false)
+        if(!earthView) return
+        setEarthView(false)
         mapRef.current.getView().setZoom(1)
-    },[props.earthView])
+    },[earthView])
 
     useEffect(() => {
         if(!currentFeature) return
-        const filteredArea = props.climbingAreas.filter(area => {
+        const filteredArea = climbingAreas.filter(area => {
             if(area.id === currentFeature) {
                 return area
             }
     })
-    props.setLocation(...filteredArea)
+    setLocation(...filteredArea)
     },[currentFeature])
 
     return (
