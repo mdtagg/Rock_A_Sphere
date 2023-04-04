@@ -12,10 +12,10 @@ import WeatherContext from "./contexts/WeatherContext"
 
 const App = () => {
 
-    const [climbingAreas,setClimbingAreas] = UseLocalStorage('climbing-areas',getDefaultAreas())
-    const [weatherData,setWeatherData] = useState(undefined)
-    const [location,setLocation] = useState(climbingAreas[0])
-    const [buttonTitle,setButtonTitle] = useState('Wet Rock')
+    const [ climbingAreas, setClimbingAreas ] = UseLocalStorage('climbing-areas',getDefaultAreas())
+    const [ weatherData, setWeatherData ] = useState(undefined)
+    const [ location, setLocation ] = useState(climbingAreas[0])
+    const [ buttonTitle, setButtonTitle ] = useState('Wet Rock')
 
     const currentInfoContextValues = {
         location,

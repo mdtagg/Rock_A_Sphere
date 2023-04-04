@@ -9,6 +9,7 @@ const CurrentInfo = () => {
     const WeatherIcon = GetWeatherIcon(weatherCode)
    
     return (
+        
         <div class='flex justify-center items-center gap-3  sm:gap-2' >
             <p
                 class='text-4xl items-center gap-5 sm:text-2xl wide:gap-3 wide:text-xl '                

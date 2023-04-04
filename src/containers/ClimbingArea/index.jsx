@@ -1,12 +1,14 @@
 import { useContext } from "react";
 import CurrentInfoContext from "../App/contexts/CurrentInfoContext";
+import DropDownContext from "../AreaTitle/contexts/DropDownContext";
 
 const ClimbingArea = (props) => {
 
     const { setLocation,setClimbingAreas,climbingAreas } = useContext(CurrentInfoContext)
+    const { setDropdown } = useContext(DropDownContext)
 
     function handleAreaChange(area) {
-        props.setDropdown(false)
+        setDropdown(false)
         setLocation(area)
     }
 
