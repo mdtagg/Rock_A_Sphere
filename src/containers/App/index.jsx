@@ -48,18 +48,14 @@ const App = () => {
     return (
         <main class={`bg-[url('./assets/images/redRock.jpg')] bg-cover bg-center h-screen w-screen flex flex-col pt-10 justify-between sm:p-0 wide:p-0 wide:justify-center `}>
             <CurrentInfoContext.Provider value={currentInfoContextValues}>
-
                 <CurrentInfoDisplay />
-
             </CurrentInfoContext.Provider>
 
             <WeatherContext.Provider value={weatherContextValues}>
-
                 <Table />
                 <RainReadout />
-
             </WeatherContext.Provider>
-
+            
             <Footer/>
         </main>
     )

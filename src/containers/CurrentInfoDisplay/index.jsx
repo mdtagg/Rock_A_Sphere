@@ -36,9 +36,7 @@ const CurrentInfoDisplay = () => {
             }       
             {toggleForm &&
             <FormContext.Provider value={formContextValues}>
-                <Form 
-                    // setToggleForm={setToggleForm}
-                />
+                <Form />
             </FormContext.Provider>
             }
             
