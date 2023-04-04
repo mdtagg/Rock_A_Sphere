@@ -13,7 +13,7 @@ import XYZ from 'ol/source/XYZ'
 import CurrentInfoContext from '../App/contexts/CurrentInfoContext';
 import EarthViewContext from '../CurrentInfoDisplay/contexts/EarthViewContext';
 
-const MapView = (props) => {
+const MapView = () => {
     
     const { location,setLocation,climbingAreas,setClimbingAreas } = useContext(CurrentInfoContext)
     const { earthView,setEarthView } = useContext(EarthViewContext)
@@ -108,7 +108,6 @@ const MapView = (props) => {
     useEffect(() => {
         
         if(!map) return
-        const { climbingAreas } = props
         const filteredLayers = deletePoint(climbingAreas,mapRef)
         map.setLayers(filteredLayers)
 
@@ -158,7 +157,8 @@ const MapView = (props) => {
                         id='area-name' 
                         name='areaName'
                         onChange={(e) => handleInput(e)}
-                    ></input>
+                    >
+                    </input>
                 </div>
                 <div class='h-1/3 flex'>
                     <button class='flex justify-center items-center w-1/2 bg-green-500 hover:bg-green-700 text-white border border-black' onClick={(e) => handleSubmit(e)}>Add</button>

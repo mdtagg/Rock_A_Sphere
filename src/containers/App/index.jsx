@@ -60,9 +60,9 @@ const App = () => {
                 <Table />
             
                 <RainReadout
-                    weatherData={weatherData}
-                    buttonTitle={buttonTitle}
-                    setButtonTitle={setButtonTitle}
+                    // weatherData={weatherData}
+                    // buttonTitle={buttonTitle}
+                    // setButtonTitle={setButtonTitle}
                 />
             </WeatherContext.Provider>
             <Footer/>
