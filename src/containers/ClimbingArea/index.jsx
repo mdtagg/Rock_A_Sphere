@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import CurrentInfoContext from "../App/contexts/CurrentInfoContext";
-import DropDownContext from "../AreaTitle/contexts/DropDownContext";
+import DropDownContext from "../CurrentAreaContainer/contexts/DropDownContext";
 
 const ClimbingArea = (props) => {
 

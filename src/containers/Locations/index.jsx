@@ -4,7 +4,7 @@ import { AreaList } from '../AreaList';
 import { AddAreaButton } from '../AddAreaButton';
 import { NavArrows } from '../../components/NavArrows';
 import CurrentInfoContext from '../App/contexts/CurrentInfoContext';
-import DropDownContext from '../AreaTitle/contexts/DropDownContext';
+import DropDownContext from '../CurrentAreaContainer/contexts/DropDownContext';
 
 const Locations = () => {
 

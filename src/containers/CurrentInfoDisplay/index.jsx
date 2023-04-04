@@ -1,7 +1,7 @@
 
 import { useState } from "react"
 import MapView from "../MapView"
-import { AreaTitle } from "../AreaTitle"
+import { CurrentAreaContainer } from "../CurrentAreaContainer"
 import { Form } from "../Form"
 import EarthViewContext from "./contexts/EarthViewContext"
 import FormContext from "./contexts/FormContext"
@@ -29,7 +29,7 @@ const CurrentInfoDisplay = () => {
             {!toggleForm &&
                 <EarthViewContext.Provider value={earthViewContextValues}>
                     <FormContext.Provider value={formContextValues}>
-                        <AreaTitle />
+                        <CurrentAreaContainer />
                     </FormContext.Provider>
                     <MapView />
                 </EarthViewContext.Provider>

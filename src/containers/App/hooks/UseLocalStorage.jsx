@@ -1,5 +1,4 @@
 import { useState,useEffect } from "react"
-// import { getDefaultAreas } from "../utils/getDefaultAreas"
 
 const UseLocalStorage = (key,initialValue) => {
 

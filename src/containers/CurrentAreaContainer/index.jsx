@@ -2,10 +2,10 @@ import { useState } from "react"
 import Locations from "../Locations"
 import { LocationsButton } from "../LocationsButton"
 import { CurrentWeather } from "../CurrentWeather"
-import { useDelayUnmount } from "../../hooks/useDelayUnmount"
+import { useDelayUnmount } from "./Hooks/useDelayUnmount"
 import DropDownContext from "./contexts/DropDownContext"
 
-const AreaTitle = () => {
+const CurrentAreaContainer = () => {
     
     const [ dropdown, setDropdown ] = useState(false);
     const showDiv = useDelayUnmount(dropdown,250)
@@ -35,4 +35,4 @@ const AreaTitle = () => {
     )
 }
 
-export { AreaTitle }
+export { CurrentAreaContainer }

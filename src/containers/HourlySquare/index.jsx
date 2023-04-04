@@ -1,4 +1,4 @@
-import GetWeatherIcon from "../AreaTitle/utils/getWeatherIcon"
+import GetWeatherIcon from "../CurrentAreaContainer/utils/getWeatherIcon"
 
 const HourlySquare = (props) => {
 

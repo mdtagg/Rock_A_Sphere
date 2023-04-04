@@ -3,7 +3,7 @@ import { ReactComponent as Earth } from '../../assets/svg/earth.svg'
 import { useContext } from "react"
 import CurrentInfoContext from "../App/contexts/CurrentInfoContext"
 import EarthViewContext from "../CurrentInfoDisplay/contexts/EarthViewContext"
-import DropDownContext from '../AreaTitle/contexts/DropDownContext'
+import DropDownContext from '../CurrentAreaContainer/contexts/DropDownContext'
 
 const LocationsButton = () => {
 
