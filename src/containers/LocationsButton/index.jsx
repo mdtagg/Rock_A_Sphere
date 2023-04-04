@@ -6,11 +6,12 @@ import EarthViewContext from "../CurrentInfoDisplay/contexts/EarthViewContext"
 
 const LocationsButton = (props) => {
 
+    const { dropdown,setDropdown } = props
     const { location } = useContext(CurrentInfoContext)
     const { setEarthView } = useContext(EarthViewContext)
 
     const rotate = 
-    props.dropdown ? 'animate-spinUp transform rotate-[540deg]' : 'animate-spinDown'
+    dropdown ? 'animate-spinUp transform rotate-[540deg]' : 'animate-spinDown'
 
     function handleViewChange(setEarthView) {
        setEarthView(true)
@@ -18,13 +19,13 @@ const LocationsButton = (props) => {
     return (
         <div class='flex w-full gap-2 justify-center items-center xl:w-auto'>
             <Earth
-                    class='flex rounded-[100%] justify-center items-center h-6 w-7 cursor-pointer hover:bg-slate-500/50 sm:w-5 sm:h-5 wide:h-5 wide:w-5'
-                    onClick={() => handleViewChange(setEarthView)}
-                />
+                class='flex rounded-[100%] justify-center items-center h-6 w-7 cursor-pointer hover:bg-slate-500/50 sm:w-5 sm:h-5 wide:h-5 wide:w-5'
+                onClick={() => handleViewChange(setEarthView)}
+            />
             <button 
                 class='flex rounded gap-2 justify-center items-center sm:w-3/4 wide:w-3/4 xl:w-full' 
                 onClick={() => {
-                    props.setDropdown(!props.dropdown)
+                    setDropdown(!dropdown)
                 }}
             >
                 <p

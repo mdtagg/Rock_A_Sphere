@@ -3,9 +3,10 @@ import { CurrentInfo } from "../CurrentInfo.jsx/index.jsx"
 import CurrentInfoContext from "../App/contexts/CurrentInfoContext"
 import { useContext } from "react"
 
-const CurrentWeather = (props) => {
+const CurrentWeather = () => {
 
     const { weatherData } = useContext(CurrentInfoContext)
+    const { currentDate } = weatherData.currentWeather
 
     return (
         <>
@@ -14,11 +15,10 @@ const CurrentWeather = (props) => {
                 <p
                     class='flex justify-center items-center sm:text-xs wide:text-sm'
                 >
-                    {weatherData.currentWeather.currentDate}
+                    {currentDate}
                 </p>
                 <CurrentInfo
                     weatherData={weatherData}
-                    weatherIcon={props.weatherIcon}
                 />
             </div>
             }

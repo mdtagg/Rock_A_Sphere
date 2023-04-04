@@ -1,4 +1,4 @@
-import { useState,useEffect,createContext } from "react"
+import { useState,useEffect } from "react"
 import { getDefaultAreas } from "./utils/getDefaultAreas"
 import WeatherDataService from "../../services/WeatherDataService"
 import UseLocalStorage from "./hooks/UseLocalStorage"
@@ -17,6 +17,21 @@ const App = () => {
     const [location,setLocation] = useState(climbingAreas[0])
     const [buttonTitle,setButtonTitle] = useState('Wet Rock')
 
+    const currentInfoContextValues = {
+        location,
+        setLocation,
+        weatherData,
+        climbingAreas,
+        setClimbingAreas
+    }
+
+    const weatherContextValues = {
+        location,
+        weatherData,
+        buttonTitle,
+        setButtonTitle,
+    }
+
     useEffect(() => {
         (async function () {
             const weatherData = await WeatherDataService.getWeatherData(
@@ -32,39 +47,19 @@ const App = () => {
 
     return (
         <main class={`bg-[url('./assets/images/redRock.jpg')] bg-cover bg-center h-screen w-screen flex flex-col pt-10 justify-between sm:p-0 wide:p-0 wide:justify-center `}>
-            <CurrentInfoContext.Provider 
-                value=
-                {{
-                    location,
-                    setLocation,
-                    weatherData,
-                    climbingAreas,
-                    setClimbingAreas
-                }}
-            >
+            <CurrentInfoContext.Provider value={currentInfoContextValues}>
 
                 <CurrentInfoDisplay />
 
             </CurrentInfoContext.Provider>
 
-            <WeatherContext.Provider
-                value={{
-                    weatherData,
-                    location,
-                    buttonTitle,
-                    setButtonTitle,
-                    location
-                }}
-            >
-                
+            <WeatherContext.Provider value={weatherContextValues}>
+
                 <Table />
-            
-                <RainReadout
-                    // weatherData={weatherData}
-                    // buttonTitle={buttonTitle}
-                    // setButtonTitle={setButtonTitle}
-                />
+                <RainReadout />
+
             </WeatherContext.Provider>
+
             <Footer/>
         </main>
     )
