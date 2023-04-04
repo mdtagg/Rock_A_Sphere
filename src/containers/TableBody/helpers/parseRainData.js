@@ -1,9 +1,8 @@
 
-import { getColor } from "./getColor"
 
 function parseRainData(weatherData) {
-    const {pastSevenRain,pastThreeRain} = weatherData
-    const rainData = [pastSevenRain,pastThreeRain]
+    const { pastSevenRain, pastThreeRain } = weatherData
+    const rainData = [ pastSevenRain, pastThreeRain ]
     const parsedData = rainData.map(data => {
         return data.reduce((total,amt) => {
             return total + amt
@@ -16,6 +15,15 @@ function parseRainData(weatherData) {
         pastThreeTotal:parsedData[1],
         pastThreeColor:getColor(parsedData[1],1,0)
     }
+}
+
+function getColor(dataFocus,upperLimit,lowerLimit) {
+
+    return (
+    dataFocus >= upperLimit ? 'text-red-600' :
+    dataFocus < upperLimit && dataFocus > lowerLimit ? 'text-orange-400':
+    'text-green-500'
+    )
 }
 
 export { parseRainData }

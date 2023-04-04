@@ -4,8 +4,6 @@ import { LocationsButton } from "../LocationsButton"
 import { CurrentWeather } from "../CurrentWeather"
 import { useDelayUnmount } from "../../hooks/useDelayUnmount"
 import DropDownContext from "./contexts/DropDownContext"
-// import { CurrentWeatherInfo } from "../CurrentWeatherInfo.jsx/index.jsx"
-
 
 const AreaTitle = () => {
     
@@ -23,9 +21,11 @@ const AreaTitle = () => {
             <DropDownContext.Provider value={dropdownContextValues}>
                 <LocationsButton />
             </DropDownContext.Provider>
+
             {!showDiv && 
                 <CurrentWeather />
             }
+
             {showDiv &&
             <DropDownContext.Provider value={dropdownContextValues}>
                 <Locations />

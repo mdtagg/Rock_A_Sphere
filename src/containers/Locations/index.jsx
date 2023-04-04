@@ -11,7 +11,7 @@ const Locations = () => {
     const { climbingAreas } = useContext(CurrentInfoContext)
     const [ currentPageIndex, setCurrentPageIndex ] = useState(0)
     const { dropdown } = useContext(DropDownContext)
-    
+
     const animation = 
     dropdown ? 'animate-fadeIn' : 'animate-fadeOut'
 
@@ -33,4 +33,3 @@ const Locations = () => {
 
 export default Locations
 
-// class='flex flex-col w-full gap-1 pt-1 sm:gap-2'

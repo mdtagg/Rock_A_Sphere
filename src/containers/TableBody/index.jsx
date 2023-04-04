@@ -1,79 +1,78 @@
-import DaysToClimb from '../Table/DaysToClimb';
-import { PrimaryRockType } from './PrimaryRockType';
-import { KindsOfRock } from './KindsOfRock';
-import { useState,useEffect,useContext } from 'react';
-import { NavArrows } from '../../components/NavArrows';
-import { parseRainData } from './utils/parseRainData';
-import WeatherContext from '../App/contexts/WeatherContext';
 
-const TableBody = (props) => {
+import RockDataService from "../../services/RockDataService";
+import { getLithoCodes } from "./helpers/getLithoCodes";
+import { filterRockTypes } from "./helpers/filterRockTypes";
+import { getPrimaryRockCounts } from "./helpers/getPrimaryRockCounts"
+import { getPrimaryRockClass } from "./helpers/getPrimaryRockClass";
+import { parseRockLithos } from "./helpers/parseRockLithos";
+import { useState,useEffect,useContext } from 'react';
+import { parseRainData } from './helpers/parseRainData';
+import WeatherContext from '../App/contexts/WeatherContext';
+import TableContext from "./contexts/TableContext";
+import { PastSevenRain } from "./components/PastSevenRain";
+import { PastThreeRain } from "./components/PastThreeRain";
+import { PrimaryRockType } from "./components/PrimaryRockType";
+import { KindsOfRock } from "./components/KindsOfRock";
+import { DaysToClimb } from "./components/DaysToClimb";
+
+const TableBody = () => {
 
     const { weatherData,location } = useContext(WeatherContext)
-    const {latitude,longitude} = location.coords
-    const [currentPageIndex,setCurrentPageIndex] = useState(0)
     const [totalRain,setTotalRain] = useState({})
+    const [rockTypes,setRockTypes] = useState([])
+    const [rockData,setRockData] = useState()
+
+    const tableContextValues = 
+    {
+        totalRain,
+        rockData
+    }
 
     useEffect(() => {
         if(!weatherData) return
         const parsedRainData = parseRainData(weatherData.dailyWeather)
         setTotalRain(parsedRainData)
     },[weatherData])
+
+    useEffect(() => {
+        (async function() {
+            const rockTypes = await RockDataService.getRockTypes()
+            setRockTypes(rockTypes.success.data)
+        })()
+    },[])
+
+    useEffect(() => {
+        if(!rockTypes.length) return
+        (async function() {
+            const rockData = await RockDataService.getRockData(
+                location.coords.latitude,
+                location.coords.longitude
+            )
+            const lithoCodes = getLithoCodes(rockData)
+            const allRockTypes = filterRockTypes(lithoCodes,rockTypes)
+            const primaryRockCounts = getPrimaryRockCounts(allRockTypes)
+            const primaryRockClass = getPrimaryRockClass(primaryRockCounts.rockClasses,primaryRockCounts.rockClassesArray)
+            const kindsOfRock = parseRockLithos(allRockTypes,primaryRockCounts.rockClassesArray)
+
+            setRockData({primaryRockClass,kindsOfRock})
+        })()
+    },[location,rockTypes])
     
     return (
         <>
-        {props.rockData &&
+        {rockData &&
         <tbody>
             {weatherData &&
-            <tr class='flex items-center border-t-2 border-black h-full sm:h-[100px] wide:h-[100px] wide:text-sm'>
-                <td class={`flex flex-col justify-end items-center  border-r-2 border-black w-1/5 h-full gap-1`}>
-                    <p class={`text-xl flex items-center h-full font-bold ${totalRain.pastSevenColor}`}>
-                        {totalRain.pastSevenTotal} <i>"</i>
-                    </p>
-                    <a 
-                        class='text-black absolute text-[.2rem] font-extrabold' 
-                        href='https://open-meteo.com/' 
-                        target='_blank'
-                    >
-                        Weather data from Open-Medio
-                    </a>
-                </td>
-                <td class={`flex items-center justify-center text-xl ${totalRain.pastThreeColor} font-bold border-r-2 border-black w-1/5 h-full gap-1`}> 
-                    {totalRain.pastThreeTotal} <i>"</i>
-                </td> 
-                <td class='flex flex-col gap-1 border-r-2 border-black items-center justify-end w-1/5 p-1 h-full sm:p-0 '>
-                    <div class='h-full w-full flex justify-center items-center'>
-                        <PrimaryRockType
-                            rockData={props.rockData}
-                        />
-                    </div>
-                    <a 
-                        class='text-black text-[.2rem] absolute font-extrabold' 
-                        href={`https://macrostrat.org/map/loc/${longitude}/${latitude}#z=14`} 
-                        target='_blank'>
-                            Geological data from MacroStrat
-                    </a>
-                </td>
-                <td class='flex flex-col gap-1 w-1/5 border-r-2 border-black h-full'>
-                    <KindsOfRock
-                        rockData={props.rockData}
-                        currentPageIndex={currentPageIndex}
-                    />
-                    {props.rockData.kindsOfRock.length > 3 &&
-                        <NavArrows
-                            currentPageIndex={currentPageIndex}
-                            dataFocus={props.rockData.kindsOfRock}
-                            setCurrentPageIndex={setCurrentPageIndex}
-                            pageLength={3}
-                        />
-                    }
-                </td>
-                <td class='w-1/5'>
-                    <DaysToClimb 
-                        totalRain={totalRain}
-                        rockData={props.rockData}
-                    />
-                </td>
-            </tr>}
+            <TableContext.Provider value={tableContextValues}>
+                <tr class='flex items-center border-t-2 border-black h-full sm:h-[100px] wide:h-[100px] wide:text-sm'>
+                    <PastSevenRain />
+                    <PastThreeRain />
+                    <PrimaryRockType />
+                    <KindsOfRock />
+                    <DaysToClimb />
+                </tr>
+            </TableContext.Provider>
+            }
         </tbody>}
         </>
     )

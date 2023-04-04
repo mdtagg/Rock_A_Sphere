@@ -17,11 +17,11 @@ const MapView = () => {
     
     const { location,setLocation,climbingAreas,setClimbingAreas } = useContext(CurrentInfoContext)
     const { earthView,setEarthView } = useContext(EarthViewContext)
-    const [map,setMap] = useState(null)
-    const [clickCoords,setClickCoords] = useState([])
-    const [areaName,setAreaName] = useState([])
-    const [areaId,setAreaId] = useState([])
-    const [tileLayer,setTileLayer] = useState(
+    const [ map, setMap ] = useState(null)
+    const [ clickCoords, setClickCoords ] = useState([])
+    const [ areaName, setAreaName ] = useState([])
+    const [ areaId, setAreaId ] = useState([])
+    const [ tileLayer, setTileLayer ] = useState(
         new TileLayer({
         source: new XYZ({
             url: 'https://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'

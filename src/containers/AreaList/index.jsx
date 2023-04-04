@@ -8,7 +8,7 @@ import CurrentInfoContext from "../App/contexts/CurrentInfoContext";
 const AreaList = (props) => {
 
     const { climbingAreas } = useContext(CurrentInfoContext)
-    const [areaDisplay,setAreaDisplay] = useState([])
+    const [ areaDisplay, setAreaDisplay ] = useState([])
 
     useEffect(() => {
         const { currentPageIndex } = props
@@ -21,7 +21,6 @@ const AreaList = (props) => {
                 return (
                     <ClimbingArea 
                         area={area}
-                        // setDropdown={props.setDropdown}
                         key={uuidv4()}
                     />
                 )
