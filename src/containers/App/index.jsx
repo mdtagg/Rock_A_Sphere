@@ -3,7 +3,7 @@ import { getDefaultAreas } from "./utils/getDefaultAreas"
 import WeatherDataService from "../../services/WeatherDataService"
 import UseLocalStorage from "./hooks/UseLocalStorage"
 import { CurrentInfoDisplay } from "../CurrentInfoDisplay"
-import Table from "../Table"
+import { TableContainer } from "../Table"
 import { RainReadout } from "../RainReadout"
 import Footer from "../Footer/Index"
 import { parseWeatherData } from "./helpers/parseWeatherData"
@@ -52,7 +52,7 @@ const App = () => {
             </CurrentInfoContext.Provider>
 
             <WeatherContext.Provider value={weatherContextValues}>
-                <Table />
+                <TableContainer />
                 <RainReadout />
             </WeatherContext.Provider>
             
