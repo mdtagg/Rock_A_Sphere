@@ -4,13 +4,23 @@ import MapView from "../MapView"
 import { AreaTitle } from "../AreaTitle"
 import { Form } from "../Form"
 import EarthViewContext from "./contexts/EarthViewContext"
+import FormContext from "./contexts/FormContext"
 
 const CurrentInfoDisplay = () => {
 
-    const [earthView,setEarthView] = useState(false)
-    const [toggleForm,setToggleForm] = useState(false)
+    const [ earthView, setEarthView ] = useState(false)
+    const [ toggleForm, setToggleForm ] = useState(false)
 
-    const earthViewContextValues = { earthView,setEarthView }
+    const earthViewContextValues = 
+    { 
+        earthView, 
+        setEarthView 
+    }
+
+    const formContextValues = 
+    {
+        setToggleForm
+    }
 
     return (
         
@@ -18,18 +28,18 @@ const CurrentInfoDisplay = () => {
             
             {!toggleForm &&
                 <EarthViewContext.Provider value={earthViewContextValues}>
-
-                    <AreaTitle 
-                        setToggleForm={setToggleForm}
-                    />
+                    <FormContext.Provider value={formContextValues}>
+                        <AreaTitle />
+                    </FormContext.Provider>
                     <MapView />
-
                 </EarthViewContext.Provider>
             }       
             {toggleForm &&
+            <FormContext.Provider value={formContextValues}>
                 <Form 
-                    setToggleForm={setToggleForm}
+                    // setToggleForm={setToggleForm}
                 />
+            </FormContext.Provider>
             }
             
         </section>

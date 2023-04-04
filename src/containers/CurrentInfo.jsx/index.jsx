@@ -1,10 +1,11 @@
 import GetWeatherIcon from "../AreaTitle/utils/getWeatherIcon"
+import { useContext } from "react"
+import CurrentInfoContext from "../App/contexts/CurrentInfoContext"
 
-const CurrentInfo = (props) => {
+const CurrentInfo = () => {
 
-    const { weatherData } = props
-    const { weatherCode } = weatherData.currentWeather
-    const { currentTemp } = weatherData.currentWeather
+    const { weatherData } = useContext(CurrentInfoContext)
+    const { weatherCode,currentTemp } = weatherData.currentWeather
     const WeatherIcon = GetWeatherIcon(weatherCode)
    
     return (

@@ -6,7 +6,6 @@ import { useContext } from "react"
 const CurrentWeather = () => {
 
     const { weatherData } = useContext(CurrentInfoContext)
-    const { currentDate } = weatherData.currentWeather
 
     return (
         <>
@@ -15,11 +14,9 @@ const CurrentWeather = () => {
                 <p
                     class='flex justify-center items-center sm:text-xs wide:text-sm'
                 >
-                    {currentDate}
+                    {weatherData.currentWeather.currentDate}
                 </p>
-                <CurrentInfo
-                    weatherData={weatherData}
-                />
+                <CurrentInfo />
             </div>
             }
         </>

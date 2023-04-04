@@ -7,8 +7,9 @@ import CurrentInfoContext from '../App/contexts/CurrentInfoContext';
 
 const Locations = (props) => {
 
+    const { setDropdown } = props
     const { climbingAreas } = useContext(CurrentInfoContext)
-    const [currentPageIndex,setCurrentPageIndex] = useState(0)
+    const [ currentPageIndex, setCurrentPageIndex ] = useState(0)
     
     return (
         <div class='flex flex-col w-full gap-1 pt-1 sm:gap-2'>
@@ -19,12 +20,10 @@ const Locations = (props) => {
                 pageLength={6}
             />
             <AreaList
-                setDropdown={props.setDropdown}
+                setDropdown={setDropdown}
                 currentPageIndex={currentPageIndex}
             />
-            <AddAreaButton 
-                setToggleForm={props.setToggleForm}
-            />
+            <AddAreaButton />
         </div>
     )
 }

@@ -1,17 +1,27 @@
 
 import { handleSubmit } from "./utils/handleSubmit";
-import { handleCancel } from "./utils/handleCancel";
 import { useState,useEffect,useContext } from "react";
 import CurrentInfoContext from "../App/contexts/CurrentInfoContext";
+import FormContext from "../CurrentInfoDisplay/contexts/FormContext";
 
-const Form = (props) => {
+
+const Form = () => {
 
     const { setClimbingAreas } = useContext(CurrentInfoContext)
-    const { setToggleForm } = props
-    const [error,setError] = useState(false)
-    const submitProps = { setClimbingAreas,setToggleForm,setError }
-    
-    const [errorBorder,setErrorBorder] = useState()
+    const { setToggleForm } = useContext(FormContext)
+    const [ error, setError ] = useState(false)
+    const [ errorBorder, setErrorBorder ] = useState()
+
+    const submitProps = 
+    { 
+        setClimbingAreas, 
+        setToggleForm, 
+        setError 
+    }
+
+    function handleCancel() {
+        setToggleForm(false)
+    }
 
     useEffect(() => {
         const border =
@@ -20,6 +30,7 @@ const Form = (props) => {
 
         setErrorBorder(border)
     },[error])
+
     return (
         <form 
             onSubmit={(e) => handleSubmit(e,submitProps)} 
@@ -63,7 +74,7 @@ const Form = (props) => {
                 </button>
                 <button 
                     class='bg-red-500 rounded text-white border-2 border-black p-1 w-1/5 sm:w-1/2 wide:flex wide:justify-center wide:items-center wide:h-8 wide:w-20' 
-                    onClick={() => handleCancel(props)}
+                    onClick={handleCancel}
                 >
                     Cancel
                 </button>

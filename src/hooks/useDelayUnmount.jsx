@@ -7,9 +7,9 @@ function useDelayUnmount(dropdown, delayTime) {
       if (dropdown && !showDiv) {
         setShowDiv(true);
       } else if (!dropdown && showDiv) {
-        timeoutId = setTimeout(() => setShowDiv(false), delayTime); //delay our unmount
+        timeoutId = setTimeout(() => setShowDiv(false), delayTime); 
       }
-      return () => clearTimeout(timeoutId); // cleanup mechanism for effects , the use of setTimeout generate a sideEffect
+      return () => clearTimeout(timeoutId);
     }, [dropdown,delayTime, showDiv]);
     return showDiv;
   }

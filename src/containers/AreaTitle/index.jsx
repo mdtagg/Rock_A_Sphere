@@ -20,7 +20,7 @@ const AreaTitle = (props) => {
             <div 
                 class={dropdown && 'animate-fadeOut'}
             >
-                <CurrentWeather/>
+                <CurrentWeather />
             </div>
             }
             {showDiv &&
