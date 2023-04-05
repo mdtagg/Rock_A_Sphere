@@ -22,30 +22,27 @@ const RainReadout = () => {
         <section 
             class='flex flex-col gap-2 pl-10 sm:p-0 wide:gap-0 wide:p-0'
         >
-            <div 
-                class='flex gap-1'
-            >
-                <WeatherOptionsButton
-                    setDailyData={setDailyData}
-                />
-            </div>
+            <WeatherOptionsButton
+                setDailyData={setDailyData}
+            />
             <div 
                 class='flex justify-between text-black w-full pr-10 sm:grid sm:grid-cols-3 sm:grid-flow-row sm:p-0 wide:p-0'
             >
-            {dailyData.map((item,index) => {
-                
-                findToday(item,index,buttonTitle)
+                {
+                dailyData.map((data,index) => {
+                    
+                    findToday(data,index,buttonTitle)
 
-                return (
-                    <WeatherSquare
-                        item={item}
-                        key={uuidv4()}
-                        buttonTitle={buttonTitle}
-                    />
-                    )
-                })
-            } 
-                </div>
+                    return (
+                        <WeatherSquare
+                            data={data}
+                            key={uuidv4()}
+                            buttonTitle={buttonTitle}
+                        />
+                        )
+                    })
+                } 
+            </div>
         </section>
     )
     

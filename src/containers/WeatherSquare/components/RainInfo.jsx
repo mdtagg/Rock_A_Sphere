@@ -1,4 +1,4 @@
-import { ReactComponent as RainImg } from '../../assets/svg/rain.svg'
+import { ReactComponent as RainImg } from '../../../assets/svg/rain.svg'
 
 const RainInfo = (props) => {
     return (
