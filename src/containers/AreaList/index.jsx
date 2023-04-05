@@ -1,4 +1,4 @@
-import { ClimbingArea } from "../ClimbingArea"
+import { ClimbingArea } from "./components/ClimbingArea"
 import { v4 as uuidv4 } from 'uuid';
 import { useState,useEffect,useContext } from "react";
 import { getPageData } from "../../components/NavArrows/utils/getPageData";
@@ -9,11 +9,11 @@ const AreaList = (props) => {
 
     const { climbingAreas } = useContext(CurrentInfoContext)
     const [ areaDisplay, setAreaDisplay ] = useState([])
+    const { currentPageIndex } = props
 
     useEffect(() => {
-        const { currentPageIndex } = props
         getPageData(currentPageIndex,climbingAreas,setAreaDisplay,6)
-    },[props.currentPageIndex,climbingAreas])
+    },[currentPageIndex,climbingAreas])
 
     return (
         <div class='grid grid-rows-3 grid-cols-2 gap-1 w-full'>

@@ -1,5 +1,5 @@
-import { ReactComponent as PlusImg } from '../../assets/svg/plus.svg'
-import FormContext from '../CurrentInfoDisplay/contexts/FormContext'
+import { ReactComponent as PlusImg } from '../../../assets/svg/plus.svg'
+import FormContext from '../../CurrentInfoDisplay/contexts/FormContext'
 import { useContext } from 'react'
 
 const AddAreaButton = () => {

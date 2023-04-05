@@ -1,7 +1,7 @@
 import { useState } from "react"
 import Locations from "../Locations"
-import { LocationsButton } from "../LocationsButton"
-import { CurrentWeather } from "../CurrentWeather"
+import { LocationsButton } from "./components/LocationsButton"
+import { CurrentWeather } from "./components/CurrentWeather"
 import { useDelayUnmount } from "./Hooks/useDelayUnmount"
 import DropDownContext from "./contexts/DropDownContext"
 
