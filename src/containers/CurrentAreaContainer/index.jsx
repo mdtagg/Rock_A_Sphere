@@ -1,5 +1,5 @@
 import { useState } from "react"
-import Locations from "../Locations"
+import Locations from "../LocationsContainer"
 import { LocationsButton } from "./components/LocationsButton"
 import { CurrentWeather } from "./components/CurrentWeather"
 import { useDelayUnmount } from "./Hooks/useDelayUnmount"

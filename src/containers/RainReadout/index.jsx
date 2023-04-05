@@ -1,5 +1,5 @@
 import { useState,useContext } from "react"
-import { RainSquare } from "../RainSquare";
+import { WeatherSquare } from "../WeatherSquare";
 import { v4 as uuidv4 } from 'uuid';
 import WeatherContext from "../App/contexts/WeatherContext";
 import { WeatherOptionsButton } from "../WeatherOptionsButton";
@@ -37,7 +37,7 @@ const RainReadout = () => {
                 findToday(item,index,buttonTitle)
 
                 return (
-                    <RainSquare
+                    <WeatherSquare
                         item={item}
                         key={uuidv4()}
                         buttonTitle={buttonTitle}

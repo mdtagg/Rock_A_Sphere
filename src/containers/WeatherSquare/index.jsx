@@ -1,9 +1,9 @@
 
 import { RainInfo } from '../RainInfo';
-import { ForecastSquare } from '../ForecastSquare/info';
-import { HourlySquare } from '../HourlySquare';
+import { ForecastInfo } from './components/ForecastInfo';
+import { HourlyInfo } from './components/HourlyInfo';
 
-const RainSquare = (props) => {
+const WeatherSquare = (props) => {
 
     const { item,buttonTitle } = props
     const color = 
@@ -25,11 +25,11 @@ const RainSquare = (props) => {
                     rainInfo={item}
                 />}
             {buttonTitle === 'Forecast' &&
-                <ForecastSquare
+                <ForecastInfo
                     forecastInfo={item}
                 />}
             {buttonTitle === 'Hourly' &&
-                <HourlySquare
+                <HourlyInfo
                     hourlyInfo={item}
                 />
             }
@@ -37,4 +37,4 @@ const RainSquare = (props) => {
         )
 }
 
-export { RainSquare }
+export { WeatherSquare }

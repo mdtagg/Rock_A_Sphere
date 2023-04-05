@@ -1,8 +1,8 @@
 
 import { handleSubmit } from "./utils/handleSubmit";
 import { useState,useEffect,useContext } from "react";
-import CurrentInfoContext from "../App/contexts/CurrentInfoContext";
-import FormContext from "../CurrentInfoDisplay/contexts/FormContext";
+import CurrentInfoContext from "../../../App/contexts/CurrentInfoContext";
+import FormContext from "../../contexts/FormContext";
 
 
 const Form = () => {

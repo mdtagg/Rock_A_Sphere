@@ -1,4 +1,4 @@
-import { ReactComponent as GitHubImg } from '../../assets/svg/github.svg'
+import { ReactComponent as GitHubImg } from '../../../../assets/svg/github.svg'
 
 const Footer = () => {
     return (
@@ -25,3 +25,4 @@ const Footer = () => {
 }
 
 export default Footer
+

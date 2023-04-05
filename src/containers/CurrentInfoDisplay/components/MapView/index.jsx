@@ -10,8 +10,8 @@ import { transform } from 'ol/proj';
 import { transformCoords } from './utils/transformCoords';
 import TileLayer from 'ol/layer/Tile'
 import XYZ from 'ol/source/XYZ'
-import CurrentInfoContext from '../App/contexts/CurrentInfoContext';
-import EarthViewContext from '../CurrentInfoDisplay/contexts/EarthViewContext';
+import CurrentInfoContext from '../../../App/contexts/CurrentInfoContext';
+import EarthViewContext from '../../contexts/EarthViewContext';
 
 const MapView = () => {
     

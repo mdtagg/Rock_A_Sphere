@@ -1,6 +1,6 @@
-import GetWeatherIcon from "../CurrentAreaContainer/utils/getWeatherIcon"
+import GetWeatherIcon from "../../CurrentAreaContainer/utils/getWeatherIcon"
 
-const ForecastSquare = (props) => {
+const ForecastInfo = (props) => {
 
     const { forecastInfo } = props
     const WeatherIcon = GetWeatherIcon(forecastInfo[1])
@@ -19,4 +19,4 @@ const ForecastSquare = (props) => {
     )
 }
 
-export { ForecastSquare }
+export { ForecastInfo }
