@@ -1,7 +1,7 @@
 
 
 function parseDailyRain(dailyData) {
-    
+
     const { days,pastSevenRain } = dailyData
     let parsedData = []
     
@@ -18,7 +18,6 @@ function parseDailyRain(dailyData) {
         data.push('bg-red-400/70')
         return data
     })
-    console.log({parsedData})
     return parsedData
 }
 
