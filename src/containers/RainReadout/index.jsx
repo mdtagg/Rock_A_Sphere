@@ -9,12 +9,12 @@ const RainReadout = () => {
     const { buttonTitle } = useContext(WeatherContext)
     const [ dailyData, setDailyData ] = useState([])
 
-    function findToday(item,index,buttonTitle) {
+    function findToday(data,index,buttonTitle) {
         if(
             (index === 6 && buttonTitle === 'Wet Rock') ||
             (index === 0 && buttonTitle === 'Forecast')
             ) {
-                item[0] = 'Today'
+                data[0] = 'Today'
         }
     }
 
