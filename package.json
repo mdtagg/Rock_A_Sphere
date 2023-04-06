@@ -11,6 +11,7 @@
     "deploy": "git subtree push --prefix dist origin gh-pages"
   },
   "dependencies": {
+    "@types/uuid": "^9.0.1",
     "axios": "^1.2.5",
     "ol": "^7.3.0",
     "react": "^18.2.0",
@@ -25,6 +26,7 @@
     "autoprefixer": "^10.4.14",
     "postcss": "^8.4.21",
     "tailwindcss": "^3.2.7",
+    "typescript": "^5.0.3",
     "vite": "^4.0.0"
   }
 }

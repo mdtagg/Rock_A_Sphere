@@ -25,7 +25,6 @@ const CurrentInfoDisplay = () => {
     return (
         
         <section class='flex gap-10 sm:gap-2 wide:gap-1'>
-            
             {!toggleForm &&
             <EarthViewContext.Provider value={earthViewContextValues}>
 
@@ -33,14 +32,14 @@ const CurrentInfoDisplay = () => {
                     <CurrentAreaContainer />
                 </FormContext.Provider>
                 
-                <MapView />
+                {/* <MapView /> */}
             </EarthViewContext.Provider>
             }       
-            {toggleForm &&
+            {/* {toggleForm &&
             <FormContext.Provider value={formContextValues}>
                 <Form />
             </FormContext.Provider>
-            }
+            } */}
             
         </section>
         

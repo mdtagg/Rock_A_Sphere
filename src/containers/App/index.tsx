@@ -2,19 +2,25 @@ import { useState,useEffect } from "react"
 import { getDefaultAreas } from "./helpers/getDefaultAreas"
 import WeatherDataService from "../../services/WeatherDataService"
 import UseLocalStorage from "./hooks/UseLocalStorage"
-import { CurrentInfoDisplay } from "../CurrentInfoDisplay"
-import { TableContainer } from "../TableContainer"
-import { RainReadout } from "../RainReadout"
-import Footer from "./components/Footer/Index"
+// import { CurrentInfoDisplay } from "../CurrentInfoDisplay"
+// import { TableContainer } from "../TableContainer"
+// import { RainReadout } from "../RainReadout"
+// import Footer from "./components/Footer/Index"
 import { parseWeatherData } from "./helpers/parseWeatherData"
 import CurrentInfoContext from "./contexts/CurrentInfoContext"
-import WeatherContext from "./contexts/WeatherContext"
+// import WeatherContext from "./contexts/WeatherContext"
+
+export interface ILocation {
+    coords: { latitude:string, longitude:string },
+    title: string,
+    id:string
+}
 
 const App = () => {
 
-    const [ climbingAreas, setClimbingAreas ] = UseLocalStorage('climbing-areas',getDefaultAreas())
-    const [ weatherData, setWeatherData ] = useState(undefined)
-    const [ location, setLocation ] = useState(climbingAreas[0])
+    const [ climbingAreas, setClimbingAreas ]:any = UseLocalStorage('climbing-areas',getDefaultAreas())
+    const [ weatherData, setWeatherData ]:any = useState(undefined)
+    const [ location, setLocation ] = useState<ILocation>(climbingAreas[0])
     const [ buttonTitle, setButtonTitle ] = useState('Wet Rock')
 
     const currentInfoContextValues = {
@@ -33,7 +39,7 @@ const App = () => {
     }
 
     useEffect(() => {
-        (async function () {
+        (async function (): Promise<void> {
             const weatherData = await WeatherDataService.getWeatherData(
                 location.coords.latitude,
                 location.coords.longitude,
@@ -46,21 +52,21 @@ const App = () => {
     },[location])
 
     return (
-        <main class={`bg-[url('./assets/images/redRock.jpg')] bg-cover bg-center h-screen w-screen flex flex-col pt-10 justify-between sm:p-0 wide:p-0 wide:justify-center `}>
+        <main className={`bg-[url('./assets/images/redRock.jpg')] bg-cover bg-center h-screen w-screen flex flex-col pt-10 justify-between sm:p-0 wide:p-0 wide:justify-center `}>
             <CurrentInfoContext.Provider value={currentInfoContextValues}>
 
                 <CurrentInfoDisplay />
 
             </CurrentInfoContext.Provider>
 
-            <WeatherContext.Provider value={weatherContextValues}>
+            {/* <WeatherContext.Provider value={weatherContextValues}>
 
                 <TableContainer />
                 <RainReadout />
 
             </WeatherContext.Provider>
             
-            <Footer/>
+            <Footer/> */}
         </main>
     )
 }

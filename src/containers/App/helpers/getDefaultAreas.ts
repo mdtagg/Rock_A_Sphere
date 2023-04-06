@@ -1,6 +1,13 @@
 import { v4 as uuidv4 } from 'uuid';
 
-export const getDefaultAreas = () => {
+interface climbingArea {
+    title:string,
+    coords: {latitude:string,longitude:string},
+    id:string
+}
+
+export const getDefaultAreas = () : climbingArea[] => {
+
     return [
         {
             title:'Stoney Point',

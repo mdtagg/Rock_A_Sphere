@@ -45,5 +45,5 @@ const LocationsContainer = () => {
     )
 }
 
-export default LocationsContainer
+export { LocationsContainer }
 
