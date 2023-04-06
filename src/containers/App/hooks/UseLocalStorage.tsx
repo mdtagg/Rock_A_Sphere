@@ -1,8 +1,14 @@
 import { useState,useEffect } from "react"
 
-const UseLocalStorage = (key:string,initialValue:any) => {
+type TClimbingAreas = {
+    title: string,
+    coords: { latitude: string, longitude: string },
+    id: string
+}[]
 
-    const [ value, setValue ] = useState(() => {
+
+const UseLocalStorage = (key: string, initialValue: TClimbingAreas) : [TClimbingAreas,React.Dispatch<React.SetStateAction<TClimbingAreas>>] => {
+    const [ value, setValue ] = useState<TClimbingAreas>(() => {
         try {
             const localValue = window.localStorage.getItem(key)
             if(localValue && !JSON.parse(localValue).length) {
@@ -18,7 +24,8 @@ const UseLocalStorage = (key:string,initialValue:any) => {
     useEffect(() => {
         window.localStorage.setItem(key,JSON.stringify(value))
     },[key,value])
-    return [value,setValue]
+
+    return [ value, setValue ]
 }
 
 

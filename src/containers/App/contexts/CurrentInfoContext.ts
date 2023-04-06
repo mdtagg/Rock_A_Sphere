@@ -1,6 +1,6 @@
 import { createContext } from "react"
-import { ILocation } from ".."
+import { CurrentInfoContextType } from ".."
 
-const CurrentInfoContext = createContext<any>(null)
+const CurrentInfoContext = createContext<null | CurrentInfoContextType>(null)
 
 export default CurrentInfoContext

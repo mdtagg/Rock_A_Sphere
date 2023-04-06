@@ -2,25 +2,69 @@ import { useState,useEffect } from "react"
 import { getDefaultAreas } from "./helpers/getDefaultAreas"
 import WeatherDataService from "../../services/WeatherDataService"
 import UseLocalStorage from "./hooks/UseLocalStorage"
-// import { CurrentInfoDisplay } from "../CurrentInfoDisplay"
+import { CurrentInfoDisplay } from "../CurrentInfoDisplay"
 // import { TableContainer } from "../TableContainer"
 // import { RainReadout } from "../RainReadout"
 // import Footer from "./components/Footer/Index"
 import { parseWeatherData } from "./helpers/parseWeatherData"
 import CurrentInfoContext from "./contexts/CurrentInfoContext"
 // import WeatherContext from "./contexts/WeatherContext"
+import { TClimbingAreas } from "./hooks/UseLocalStorage"
 
-export interface ILocation {
-    coords: { latitude:string, longitude:string },
+interface IWeatherData {
+    currentWeather: {
+        currentDate:string,
+        currentTemp:number,
+        weatherCode:number
+    }
+    dailyWeather: {
+        days: string[],
+        pastSevenRain: number[],
+        pastThreeRain: number[]
+    }
+    forecast: {
+        apparent_temperature_max: number[],
+        precipitation_hours: number[],
+        precipitation_probability_max: number[],
+        precipitation_sum: number[],
+        snowfall_sum:number[],
+        sunrise: string[],
+        sunset: string[],
+        time: string[],
+        weathercode: number[],
+        windspeed_10m_max: number[]
+    }
+    hourlyWeather: {
+        apparent_temperature_max: number[],
+        precipitation_hours: number[],
+        precipitation_probability_max: number[],
+        precipitation_sum: number[],
+        snowfall_sum:number[],
+        time: string[],
+        weathercode: number[],
+        windspeed_10m_max: number[]
+    }
+}
+
+type climbingArea = {
     title: string,
-    id:string
+    coords: { latitude: string, longitude: string },
+    id: string
+}
+
+export interface CurrentInfoContextType {
+    location:climbingArea 
+    setLocation: React.Dispatch<React.SetStateAction<climbingArea>>;
+    weatherData: IWeatherData | undefined
+    climbingAreas:TClimbingAreas
+    setClimbingAreas: React.Dispatch<React.SetStateAction<TClimbingAreas>>
 }
 
 const App = () => {
 
-    const [ climbingAreas, setClimbingAreas ]:any = UseLocalStorage('climbing-areas',getDefaultAreas())
-    const [ weatherData, setWeatherData ]:any = useState(undefined)
-    const [ location, setLocation ] = useState<ILocation>(climbingAreas[0])
+    const [ climbingAreas, setClimbingAreas ] = UseLocalStorage('climbing-areas',getDefaultAreas())
+    const [ weatherData, setWeatherData ] = useState<IWeatherData | undefined>(undefined)
+    const [ location, setLocation ] = useState<climbingArea>(climbingAreas[0])
     const [ buttonTitle, setButtonTitle ] = useState('Wet Rock')
 
     const currentInfoContextValues = {

@@ -1,12 +1,12 @@
 import { v4 as uuidv4 } from 'uuid';
 
-interface climbingArea {
-    title:string,
-    coords: {latitude:string,longitude:string},
-    id:string
-}
+// type ClimbingAreas = {
+//     title:string,
+//     coords: { latitude: string, longitude: string },
+//     id:string
+// }[]
 
-export const getDefaultAreas = () : climbingArea[] => {
+export const getDefaultAreas = () => {
 
     return [
         {
