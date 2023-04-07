@@ -1,9 +1,9 @@
 import { useState,useEffect } from 'react'
 
-function useDelayUnmount(dropdown, delayTime) {
-    const [ showDiv, setShowDiv ] = useState(false);
+function useDelayUnmount(dropdown:boolean, delayTime:number) {
+    const [ showDiv, setShowDiv ] = useState<boolean>(false);
     useEffect(() => {
-      let timeoutId;
+      let timeoutId:number;
       if (dropdown && !showDiv) {
         setShowDiv(true);
       } else if (!dropdown && showDiv) {

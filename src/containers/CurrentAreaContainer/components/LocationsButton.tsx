@@ -1,4 +1,6 @@
+//@ts-expect-error
 import { ReactComponent as DownCaret } from '../../../assets/svg/downCaret.svg'
+//@ts-expect-error
 import { ReactComponent as Earth } from '../../../assets/svg/earth.svg'
 import { useContext } from "react"
 import CurrentInfoContext from "../../App/contexts/CurrentInfoContext"
@@ -7,7 +9,7 @@ import DropDownContext from '../contexts/DropDownContext'
 
 const LocationsButton = () => {
 
-    const { dropdown,setDropdown } = useContext(DropDownContext)
+    const { dropdown, setDropdown } = useContext(DropDownContext)!
     const { location } = useContext(CurrentInfoContext)
     const { setEarthView } = useContext(EarthViewContext)
 

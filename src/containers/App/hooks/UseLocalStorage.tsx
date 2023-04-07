@@ -1,13 +1,13 @@
 import { useState,useEffect } from "react"
 
-type TClimbingAreas = {
+export type TClimbingAreas = {
     title: string,
     coords: { latitude: string, longitude: string },
     id: string
 }[]
 
 
-const UseLocalStorage = (key: string, initialValue: TClimbingAreas) : [TClimbingAreas,React.Dispatch<React.SetStateAction<TClimbingAreas>>] => {
+const UseLocalStorage = (key: string, initialValue: TClimbingAreas) : [TClimbingAreas,React.Dispatch<React.SetStateAction<TClimbingAreas>>]=> {
     const [ value, setValue ] = useState<TClimbingAreas>(() => {
         try {
             const localValue = window.localStorage.getItem(key)

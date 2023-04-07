@@ -6,10 +6,19 @@ import { Form } from "./components/Form"
 import EarthViewContext from "./contexts/EarthViewContext"
 import FormContext from "./contexts/FormContext"
 
+export interface earthViewContextType {
+    earthView:boolean
+    setEarthView: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+export interface toggleFormContextType {
+    setToggleForm: React.Dispatch<React.SetStateAction<boolean>>
+}
+
 const CurrentInfoDisplay = () => {
 
-    const [ earthView, setEarthView ] = useState(false)
-    const [ toggleForm, setToggleForm ] = useState(false)
+    const [ earthView, setEarthView ] = useState<boolean>(false)
+    const [ toggleForm, setToggleForm ] = useState<boolean>(false)
 
     const earthViewContextValues = 
     { 
@@ -24,7 +33,7 @@ const CurrentInfoDisplay = () => {
 
     return (
         
-        <section class='flex gap-10 sm:gap-2 wide:gap-1'>
+        <section className='flex gap-10 sm:gap-2 wide:gap-1'>
             {!toggleForm &&
             <EarthViewContext.Provider value={earthViewContextValues}>
 

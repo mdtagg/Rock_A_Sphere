@@ -52,6 +52,7 @@ type climbingArea = {
     id: string
 }
 
+
 export interface CurrentInfoContextType {
     location:climbingArea 
     setLocation: React.Dispatch<React.SetStateAction<climbingArea>>;
