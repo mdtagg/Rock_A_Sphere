@@ -46,26 +46,27 @@ interface IWeatherData {
     }
 }
 
-type climbingArea = {
+type ClimbingArea = {
     title: string,
     coords: { latitude: string, longitude: string },
     id: string
 }
 
+export type ReactSetter<T> = React.Dispatch<React.SetStateAction<T>>
 
 export interface CurrentInfoContextType {
-    location:climbingArea 
-    setLocation: React.Dispatch<React.SetStateAction<climbingArea>>;
+    location:ClimbingArea
+    setLocation: ReactSetter<ClimbingArea>;
     weatherData: IWeatherData | undefined
     climbingAreas:TClimbingAreas
-    setClimbingAreas: React.Dispatch<React.SetStateAction<TClimbingAreas>>
+    setClimbingAreas: ReactSetter<TClimbingAreas>
 }
 
 const App = () => {
 
     const [ climbingAreas, setClimbingAreas ] = UseLocalStorage('climbing-areas',getDefaultAreas())
     const [ weatherData, setWeatherData ] = useState<IWeatherData | undefined>(undefined)
-    const [ location, setLocation ] = useState<climbingArea>(climbingAreas[0])
+    const [ location, setLocation ] = useState(climbingAreas[0])
     const [ buttonTitle, setButtonTitle ] = useState('Wet Rock')
 
     const currentInfoContextValues = {
