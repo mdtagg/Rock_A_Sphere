@@ -11,6 +11,7 @@ import CurrentInfoContext from "./contexts/CurrentInfoContext"
 // import WeatherContext from "./contexts/WeatherContext"
 import { TClimbingAreas } from "./hooks/UseLocalStorage"
 
+
 interface IWeatherData {
     currentWeather: {
         currentDate:string,

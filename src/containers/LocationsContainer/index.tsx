@@ -7,13 +7,14 @@ import DropDownContext from '../CurrentAreaContainer/contexts/DropDownContext';
 import { ClimbingArea } from './components/ClimbingArea';
 import { getPageData } from '../../components/NavArrows/utils/getPageData';
 import { v4 as uuidv4 } from 'uuid';
+import { TClimbingAreas } from '../App/hooks/UseLocalStorage';
 
 const LocationsContainer = () => {
 
-    const { climbingAreas } = useContext(CurrentInfoContext)
-    const [ areaDisplay, setAreaDisplay ] = useState([])
+    const { climbingAreas } = useContext(CurrentInfoContext)!
+    const [ areaDisplay, setAreaDisplay ] = useState<TClimbingAreas>([])
     const [ currentPageIndex, setCurrentPageIndex ] = useState(0)
-    const { dropdown } = useContext(DropDownContext)
+    const { dropdown } = useContext(DropDownContext)!
 
     const animation = 
     dropdown ? 'animate-fadeIn' : 'animate-fadeOut'
@@ -23,14 +24,14 @@ const LocationsContainer = () => {
     },[currentPageIndex,climbingAreas])
 
     return (
-        <div class={`flex flex-col w-full ${animation} gap-1 pt-1 sm:gap-2`}>
+        <div className={`flex flex-col w-full ${animation} gap-1 pt-1 sm:gap-2`}>
             <NavArrows
                 dataFocus={climbingAreas}
                 currentPageIndex={currentPageIndex}
                 setCurrentPageIndex={setCurrentPageIndex}
                 pageLength={6}
             />
-            <div class='grid grid-rows-3 grid-cols-2 gap-1 w-full'>
+            <div className='grid grid-rows-3 grid-cols-2 gap-1 w-full'>
                 {areaDisplay.map(area => {
                     return (
                         <ClimbingArea 
