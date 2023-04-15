@@ -47,7 +47,7 @@ interface IWeatherData {
     }
 }
 
-type ClimbingArea = {
+export type TClimbingArea = {
     title: string,
     coords: { latitude: string, longitude: string },
     id: string
@@ -56,8 +56,8 @@ type ClimbingArea = {
 export type ReactSetter<T> = React.Dispatch<React.SetStateAction<T>>
 
 export interface CurrentInfoContextType {
-    location:ClimbingArea
-    setLocation: ReactSetter<ClimbingArea>;
+    location:TClimbingArea
+    setLocation: ReactSetter<TClimbingArea>;
     weatherData: IWeatherData | undefined
     climbingAreas:TClimbingAreas
     setClimbingAreas: ReactSetter<TClimbingAreas>

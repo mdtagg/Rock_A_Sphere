@@ -10,7 +10,6 @@ const CurrentWeather = () => {
 
     if(weatherData) {
         WeatherIcon = GetWeatherIcon(weatherData.currentWeather.weatherCode)
-        console.log(WeatherIcon)
     }
 
     return (

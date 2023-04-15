@@ -34,7 +34,7 @@ const LocationsContainer = () => {
             <div className='grid grid-rows-3 grid-cols-2 gap-1 w-full'>
                 {areaDisplay.map(area => {
                     return (
-                        <ClimbingArea 
+                        <ClimbingArea
                             area={area}
                             key={uuidv4()}
                         />
