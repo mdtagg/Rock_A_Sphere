@@ -1,5 +1,5 @@
 
-import { useState,useEffect,useRef,useContext } from 'react'
+import { useState,useEffect,useRef,useContext, SyntheticEvent } from 'react'
 import { getInitialMap } from './utils/getInitialMap'
 import { recenterMap } from './utils/recenterMap';
 import { deletePoint } from './utils/deletePoint';
@@ -12,16 +12,19 @@ import TileLayer from 'ol/layer/Tile'
 import XYZ from 'ol/source/XYZ'
 import CurrentInfoContext from '../../../App/contexts/CurrentInfoContext';
 import EarthViewContext from '../../contexts/EarthViewContext';
-// import { TClimbingAreas } from '../../../App';
+import { Map } from 'ol';
+import { TClimbingArea } from '../../../App';
+// import { TClimbingAreas } from '../../../App/hooks/UseLocalStorage';
+
 
 const MapView = () => {
     
-    const { location,setLocation,climbingAreas,setClimbingAreas } = useContext(CurrentInfoContext)!
-    const { earthView,setEarthView } = useContext(EarthViewContext)!
-    const [ map, setMap ] = useState(null)
+    const { location, setLocation, climbingAreas, setClimbingAreas } = useContext(CurrentInfoContext)!
+    const { earthView, setEarthView } = useContext(EarthViewContext)!
+    const [ map, setMap ] = useState<Map | null>(null)
     const [ clickCoords, setClickCoords ] = useState([])
-    const [ areaName, setAreaName ] = useState([])
-    const [ areaId, setAreaId ] = useState([])
+    const [ areaName, setAreaName ] = useState('')
+    const [ areaId, setAreaId ] = useState('')
     const [ tileLayer, setTileLayer ] = useState(
         new TileLayer({
         source: new XYZ({
@@ -29,19 +32,19 @@ const MapView = () => {
             })
         })
     )
-    const [currentFeature,setCurrentFeature] = useState()
+    const [ currentFeature, setCurrentFeature ] = useState()
 
-    const mapElement = useRef(null)
+    const mapElement = useRef<HTMLElement>(null!)
     const popupElement = useRef(null)
     const popupContainer = useRef(null)
-    const mapChange = useRef(null)
-    const mapRef:null | {current: } = useRef(null)
+    const mapChange = useRef<HTMLDivElement>(null!)
+    const mapRef = useRef<Map | null>(null)
     if(mapRef.current) {
         mapRef.current = map
     }
     
 
-    function handleSubmit(e) {
+    function handleSubmit(e:SyntheticEvent) {
         e.preventDefault()
         removeOverlays(mapRef)
         const transformedCoords = transform(clickCoords,'EPSG:3857','EPSG:4326')
@@ -51,8 +54,8 @@ const MapView = () => {
                 {
                     title:areaName,
                     coords: {
-                        latitude:transformedCoords[1],
-                        longitude:transformedCoords[0]
+                        latitude:transformedCoords[1].toString(),
+                        longitude:transformedCoords[0].toString()
                     },
                     id: areaId
                 }
@@ -60,12 +63,12 @@ const MapView = () => {
         })
     }
 
-    function handleInput(e) {
-        const {value} = e.target
+    function handleInput(e:React.BaseSyntheticEvent) {
+        const { value } = e.target
         setAreaName(value)
     }
 
-    function deleteOverlay(e) {
+    function deleteOverlay(e:React.BaseSyntheticEvent) {
         e.preventDefault()
         cancelPoint(mapRef,map)
         removeOverlays(mapRef) 
@@ -90,7 +93,7 @@ const MapView = () => {
 
     //creates the initial instance of the map 
     useEffect(() => {
-        const initialMap = getInitialMap(mapElement,climbingAreas,mapChange,tileLayer,setTileLayer)
+        const initialMap = getInitialMap(mapElement,climbingAreas,mapChange,tileLayer)
         initialMap.on('click',(e) => changeCoords(e,mapRef,popupElement,setClickCoords,setAreaId,setCurrentFeature,setLocation))
         initialMap.on('pointermove', function (e) {
             if(mapRef.current) {
@@ -122,42 +125,44 @@ const MapView = () => {
     useEffect(() => {
         if(!earthView) return
         setEarthView(false)
-        mapRef.current.getView().setZoom(1)
+        if(mapRef.current) {
+            mapRef.current.getView().setZoom(1)
+        }
     },[earthView])
 
     useEffect(() => {
         if(!currentFeature) return
-        const filteredArea = climbingAreas.filter(area => {
+        const [ filteredArea ] = climbingAreas.filter(area => {
             if(area.id === currentFeature) {
                 return area
             }
-    })
-    setLocation(...filteredArea)
+        }) 
+        setLocation(filteredArea)
     },[currentFeature])
 
     return (
-        <aside class='w-[900px] h-56 border-2 border-black rounded sm:w-1/2 sm:h-full wide:w-[29rem] wide:h-40' ref={mapElement}>
-            <div class='flex flex-col gap-2 justify-end' ref={mapChange} >
+        <aside className='w-[900px] h-56 border-2 border-black rounded sm:w-1/2 sm:h-full wide:w-[29rem] wide:h-40' ref={mapElement}>
+            <div className='flex flex-col gap-2 justify-end' ref={mapChange} >
                 <button 
-                    class='h-5 w-5 flex justify-center items-center bg-white border border-black cursor-pointer' 
+                    className='h-5 w-5 flex justify-center items-center bg-white border border-black cursor-pointer' 
                     onClick={changeStreetView}
                 >
                     S
                 </button>
                 <button 
-                    class='h-5 w-5 flex justify-center items-center bg-white border border-black cursor-pointer' 
+                    className='h-5 w-5 flex justify-center items-center bg-white border border-black cursor-pointer' 
                     onClick={changeMapView}
                 >
                     M
                 </button>
             </div>
-            <div class='hidden' ref={popupContainer}>
+            <div className='hidden' ref={popupContainer}>
             {map &&
             <form 
-                class='h-14 w-32 flex flex-col justify-between relative bottom-[70px] right-[64px] bg-slate-300/75 border-2 border-black rounded text-xs'
+                className='h-14 w-32 flex flex-col justify-between relative bottom-[70px] right-[64px] bg-slate-300/75 border-2 border-black rounded text-xs'
                 ref={popupElement}
             >
-                <div class='h-1/2 flex flex-col'>
+                <div className='h-1/2 flex flex-col'>
                     <label htmlFor='area-name'>Area Name: </label>
                     <input 
                         id='area-name' 
@@ -166,9 +171,9 @@ const MapView = () => {
                     >
                     </input>
                 </div>
-                <div class='h-1/3 flex'>
-                    <button class='flex justify-center items-center w-1/2 bg-green-500 hover:bg-green-700 text-white border border-black' onClick={(e) => handleSubmit(e)}>Add</button>
-                    <button class='flex justify-center items-center h-full w-1/2 bg-red-600 hover:bg-red-800 text-white border border-black' onClick={deleteOverlay}>Cancel</button>
+                <div className='h-1/3 flex'>
+                    <button className='flex justify-center items-center w-1/2 bg-green-500 hover:bg-green-700 text-white border border-black' onClick={(e) => handleSubmit(e)}>Add</button>
+                    <button className='flex justify-center items-center h-full w-1/2 bg-red-600 hover:bg-red-800 text-white border border-black' onClick={deleteOverlay}>Cancel</button>
                 </div>
             </form>}
             </div>
