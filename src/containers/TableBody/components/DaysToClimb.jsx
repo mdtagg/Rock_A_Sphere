@@ -35,7 +35,7 @@ const DaysToClimb = () => {
                 setDaysToClimb('3-4')
             }else if((lastThree < 1 && lastThree >= 0.5) || (lastSeven < 2.5 && lastSeven >= 1.5)) {
                 setDaysToClimb('2-3')
-            }else if((lastThree < 0.5 && lastThree >= 0) || (lastSeven < 1.5 && lastSeven >= 1)) {
+            }else if((lastThree < 0.5 && lastThree > 0) || (lastSeven < 1.5 && lastSeven >= 1)) {
                 setDaysToClimb('1-2')
             }
             else {
