@@ -41,7 +41,7 @@ const CurrentInfoDisplay = () => {
                     <CurrentAreaContainer />
                 </FormContext.Provider>
                 
-                {/* <MapView /> */}
+                <MapView />
             </EarthViewContext.Provider>
             }       
             {/* {toggleForm &&

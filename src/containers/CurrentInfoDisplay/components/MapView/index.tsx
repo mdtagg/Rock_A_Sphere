@@ -12,11 +12,12 @@ import TileLayer from 'ol/layer/Tile'
 import XYZ from 'ol/source/XYZ'
 import CurrentInfoContext from '../../../App/contexts/CurrentInfoContext';
 import EarthViewContext from '../../contexts/EarthViewContext';
+// import { TClimbingAreas } from '../../../App';
 
 const MapView = () => {
     
-    const { location,setLocation,climbingAreas,setClimbingAreas } = useContext(CurrentInfoContext)
-    const { earthView,setEarthView } = useContext(EarthViewContext)
+    const { location,setLocation,climbingAreas,setClimbingAreas } = useContext(CurrentInfoContext)!
+    const { earthView,setEarthView } = useContext(EarthViewContext)!
     const [ map, setMap ] = useState(null)
     const [ clickCoords, setClickCoords ] = useState([])
     const [ areaName, setAreaName ] = useState([])
@@ -31,11 +32,14 @@ const MapView = () => {
     const [currentFeature,setCurrentFeature] = useState()
 
     const mapElement = useRef(null)
-    const popupElement = useRef()
-    const popupContainer = useRef()
-    const mapChange = useRef()
-    const mapRef = useRef()
-    mapRef.current = map
+    const popupElement = useRef(null)
+    const popupContainer = useRef(null)
+    const mapChange = useRef(null)
+    const mapRef:null | {current: } = useRef(null)
+    if(mapRef.current) {
+        mapRef.current = map
+    }
+    
 
     function handleSubmit(e) {
         e.preventDefault()
@@ -89,8 +93,10 @@ const MapView = () => {
         const initialMap = getInitialMap(mapElement,climbingAreas,mapChange,tileLayer,setTileLayer)
         initialMap.on('click',(e) => changeCoords(e,mapRef,popupElement,setClickCoords,setAreaId,setCurrentFeature,setLocation))
         initialMap.on('pointermove', function (e) {
-            const type = mapRef.current.hasFeatureAtPixel(e.pixel) ? 'pointer' : 'inherit';
-            mapRef.current.getViewport().style.cursor = type;
+            if(mapRef.current) {
+                const type = mapRef.current.hasFeatureAtPixel(e.pixel) ? 'pointer' : 'inherit';
+                mapRef.current.getViewport().style.cursor = type;
+            }
           });
         setMap(initialMap)
     },[])

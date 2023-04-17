@@ -2,17 +2,13 @@ import { SyntheticEvent ,MouseEventHandler, useContext } from "react";
 import CurrentInfoContext from "../../App/contexts/CurrentInfoContext";
 import DropDownContext from "../../CurrentAreaContainer/contexts/DropDownContext";
 import { TClimbingArea } from "../../App";
-import { V4Options } from "uuid";
 
 interface TArea {
     area:TClimbingArea
     key:string
 }
 
-// type test = TClimbingArea & TArea
-
 const ClimbingArea = (props:TArea) => {
-    // console.log(props)
     const { area }:TArea = props
     const { setLocation,setClimbingAreas,climbingAreas } = useContext(CurrentInfoContext)!
     const { setDropdown } = useContext(DropDownContext)!
