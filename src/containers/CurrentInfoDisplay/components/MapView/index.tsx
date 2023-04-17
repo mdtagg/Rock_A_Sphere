@@ -35,14 +35,14 @@ const MapView = () => {
     const [ currentFeature, setCurrentFeature ] = useState()
 
     const mapElement = useRef<HTMLElement>(null!)
-    const popupElement = useRef(null)
-    const popupContainer = useRef(null)
+    const popupElement = useRef<HTMLFormElement>(null!)
+    const popupContainer = useRef<HTMLDivElement>(null!)
     const mapChange = useRef<HTMLDivElement>(null!)
     const mapRef = useRef<Map | null>(null)
     if(mapRef.current) {
         mapRef.current = map
+        
     }
-    
 
     function handleSubmit(e:SyntheticEvent) {
         e.preventDefault()

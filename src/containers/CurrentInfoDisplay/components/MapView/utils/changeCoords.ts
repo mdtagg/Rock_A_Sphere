@@ -2,8 +2,17 @@ import { addPoint } from "./addPoint"
 import {Point} from 'ol/geom.js';
 import { Overlay } from "ol";
 import { v4 as uuidv4 } from 'uuid'
+import { Map } from "ol";
+import { ReactSetter } from "../../../../App";
 
-function changeCoords(e,mapRef,popupElement,setClickCoords,setAreaId,setCurrentFeature,setLocation) {
+interface TChangeCoords {
+    e:React.BaseSyntheticEvent
+    mapRef: React.MutableRefObject<Map | null>
+    popupElement: React.MutableRefObject<HTMLFormElement>
+    setClickCoords: ReactSetter
+}
+
+function changeCoords(e,mapRef,popupElement,setClickCoords,setAreaId,setCurrentFeature) {
 
     const overlays = mapRef.current.getOverlays().array_
     if(overlays.length) return
