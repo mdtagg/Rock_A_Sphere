@@ -5,6 +5,11 @@ import { v4 as uuidv4 } from 'uuid'
 import { Map } from "ol";
 import { ReactSetter } from "../../../../App";
 
+type TCoords = {
+    latitude:number
+    longitude:number
+}[]
+
 interface TChangeCoords {
     e:React.BaseSyntheticEvent
     mapRef: React.MutableRefObject<Map | null>
@@ -24,7 +29,7 @@ function changeCoords(e,mapRef,popupElement,setClickCoords,setAreaId,setCurrentF
         return
     }
 
-    const coords = e.coordinate
+    const coords:TCoords = e.coordinate
     const point = new Point(coords)
 
     const id = uuidv4()
