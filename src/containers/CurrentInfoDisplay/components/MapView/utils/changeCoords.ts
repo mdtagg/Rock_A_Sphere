@@ -1,26 +1,42 @@
 import { addPoint } from "./addPoint"
-import {Point} from 'ol/geom.js';
-import { Overlay } from "ol";
+import { Point } from 'ol/geom.js';
+import { Collection, Overlay } from "ol";
 import { v4 as uuidv4 } from 'uuid'
 import { Map } from "ol";
 import { ReactSetter } from "../../../../App";
+import { SyntheticEvent } from "react";
+import { MapBrowserEvent } from "ol";
 
-type TCoords = {
-    latitude:number
-    longitude:number
-}[]
 
-interface TChangeCoords {
-    e:React.BaseSyntheticEvent
-    mapRef: React.MutableRefObject<Map | null>
-    popupElement: React.MutableRefObject<HTMLFormElement>
-    setClickCoords: ReactSetter
-}
+export type TCoords = [ latitude: number, longitude: number]
 
-function changeCoords(e,mapRef,popupElement,setClickCoords,setAreaId,setCurrentFeature) {
 
+
+// type MapBrowserEvent = typeof MapBrowserEvent
+
+// interface TChangeCoords {
+//     e: SyntheticEvent<MapBrowserEvent>
+//     mapRef: React.MutableRefObject<Map>
+//     popupElement: React.MutableRefObject<HTMLFormElement>
+//     setClickCoords: ReactSetter<TCoords>
+//     setAreaId: ReactSetter<string>
+//     setCurrentFeature: ReactSetter<string>
+// }
+
+function changeCoords(
+    e: MapBrowserEvent<any>,
+    mapRef: any,
+    popupElement: React.MutableRefObject<HTMLFormElement>,
+    setClickCoords: ReactSetter<TCoords>,
+    setAreaId: ReactSetter<string>,
+    setCurrentFeature: ReactSetter<string>) {
+    // const { e,mapRef,popupElement,setClickCoords,setAreaId,setCurrentFeature } = props
+    console.log(mapRef.current)
     const overlays = mapRef.current.getOverlays().array_
-    if(overlays.length) return
+    console.log({overlays})
+    // .array_
+    if(overlays) return
+    // .length
     
     const feature = mapRef.current.getFeaturesAtPixel(e.pixel)[0];
     if(feature) {
@@ -29,11 +45,12 @@ function changeCoords(e,mapRef,popupElement,setClickCoords,setAreaId,setCurrentF
         return
     }
 
-    const coords:TCoords = e.coordinate
+    const coords:any = e.coordinate
     const point = new Point(coords)
 
     const id = uuidv4()
-    point.id = id
+    // point.id = id
+
 
     addPoint(mapRef,id,point)
     setAreaId(id)

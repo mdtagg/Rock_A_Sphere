@@ -9,8 +9,14 @@ import { transformCoords } from './transformCoords';
 import { TClimbingAreas } from '../../../../App/hooks/UseLocalStorage';
 import TileLayer from 'ol/layer/Tile';
 import XYZ from 'ol/source/XYZ';
+// import { changeCoords } from './changeCoords';
 
-function getInitialMap(mapElement:React.MutableRefObject<HTMLElement>,climbingAreas:TClimbingAreas,mapChange:React.MutableRefObject<HTMLDivElement>,tileLayer:TileLayer<XYZ>): Map {
+function getInitialMap(
+    mapElement:React.MutableRefObject<HTMLElement>,
+    climbingAreas:TClimbingAreas,
+    mapChange:React.MutableRefObject<HTMLDivElement>,
+    tileLayer:TileLayer<XYZ>,
+    ): Map {
 
     const initialMap = new Map({
         target: mapElement.current,
@@ -32,8 +38,8 @@ function getInitialMap(mapElement:React.MutableRefObject<HTMLElement>,climbingAr
                             'circle-radius': 7,
                             'circle-fill-color': 'red',
                         },
-                        // id: id,
-                        // type: 'point'
+                        id: id,
+                        type: 'point'
                     })
                 )
             })
@@ -49,8 +55,13 @@ function getInitialMap(mapElement:React.MutableRefObject<HTMLElement>,climbingAr
             // zoom:true
         })]
         })
-
     return initialMap
 }
 
 export { getInitialMap }
+
+// mapRef:any,
+//     popupElement:any,
+//     setClickCoords:any,
+//     setAreaId:any,
+//     setCurrentFeature:any

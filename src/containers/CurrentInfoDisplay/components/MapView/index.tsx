@@ -14,6 +14,7 @@ import CurrentInfoContext from '../../../App/contexts/CurrentInfoContext';
 import EarthViewContext from '../../contexts/EarthViewContext';
 import { Map } from 'ol';
 import { TClimbingArea } from '../../../App';
+import { TCoords } from './utils/changeCoords';
 // import { TClimbingAreas } from '../../../App/hooks/UseLocalStorage';
 
 
@@ -21,8 +22,9 @@ const MapView = () => {
     
     const { location, setLocation, climbingAreas, setClimbingAreas } = useContext(CurrentInfoContext)!
     const { earthView, setEarthView } = useContext(EarthViewContext)!
-    const [ map, setMap ] = useState<Map | null>(null)
-    const [ clickCoords, setClickCoords ] = useState([])
+
+    const [ map,setMap ] = useState<Map | null>(null)
+    const [ clickCoords, setClickCoords ] = useState<any>('')
     const [ areaName, setAreaName ] = useState('')
     const [ areaId, setAreaId ] = useState('')
     const [ tileLayer, setTileLayer ] = useState(
@@ -32,16 +34,15 @@ const MapView = () => {
             })
         })
     )
-    const [ currentFeature, setCurrentFeature ] = useState()
+    const [ currentFeature, setCurrentFeature ] = useState('')
 
     const mapElement = useRef<HTMLElement>(null!)
     const popupElement = useRef<HTMLFormElement>(null!)
     const popupContainer = useRef<HTMLDivElement>(null!)
     const mapChange = useRef<HTMLDivElement>(null!)
     const mapRef = useRef<Map | null>(null)
-    if(mapRef.current) {
+    if(!mapRef.current) {
         mapRef.current = map
-        
     }
 
     function handleSubmit(e:SyntheticEvent) {
@@ -94,13 +95,13 @@ const MapView = () => {
     //creates the initial instance of the map 
     useEffect(() => {
         const initialMap = getInitialMap(mapElement,climbingAreas,mapChange,tileLayer)
-        initialMap.on('click',(e) => changeCoords(e,mapRef,popupElement,setClickCoords,setAreaId,setCurrentFeature,setLocation))
+        initialMap.on('click',(e) => changeCoords(e,mapRef,popupElement,setClickCoords,setAreaId,setCurrentFeature))
         initialMap.on('pointermove', function (e) {
             if(mapRef.current) {
                 const type = mapRef.current.hasFeatureAtPixel(e.pixel) ? 'pointer' : 'inherit';
                 mapRef.current.getViewport().style.cursor = type;
             }
-          });
+            });
         setMap(initialMap)
     },[])
 
@@ -158,24 +159,24 @@ const MapView = () => {
             </div>
             <div className='hidden' ref={popupContainer}>
             {map &&
-            <form 
-                className='h-14 w-32 flex flex-col justify-between relative bottom-[70px] right-[64px] bg-slate-300/75 border-2 border-black rounded text-xs'
-                ref={popupElement}
-            >
-                <div className='h-1/2 flex flex-col'>
-                    <label htmlFor='area-name'>Area Name: </label>
-                    <input 
-                        id='area-name' 
-                        name='areaName'
-                        onChange={(e) => handleInput(e)}
-                    >
-                    </input>
-                </div>
-                <div className='h-1/3 flex'>
-                    <button className='flex justify-center items-center w-1/2 bg-green-500 hover:bg-green-700 text-white border border-black' onClick={(e) => handleSubmit(e)}>Add</button>
-                    <button className='flex justify-center items-center h-full w-1/2 bg-red-600 hover:bg-red-800 text-white border border-black' onClick={deleteOverlay}>Cancel</button>
-                </div>
-            </form>}
+                <form 
+                    className='h-14 w-32 flex flex-col justify-between relative bottom-[70px] right-[64px] bg-slate-300/75 border-2 border-black rounded text-xs'
+                    ref={popupElement}
+                >
+                    <div className='h-1/2 flex flex-col'>
+                        <label htmlFor='area-name'>Area Name: </label>
+                        <input 
+                            id='area-name' 
+                            name='areaName'
+                            onChange={(e) => handleInput(e)}
+                        >
+                        </input>
+                    </div>
+                    <div className='h-1/3 flex'>
+                        <button className='flex justify-center items-center w-1/2 bg-green-500 hover:bg-green-700 text-white border border-black' onClick={(e) => handleSubmit(e)}>Add</button>
+                        <button className='flex justify-center items-center h-full w-1/2 bg-red-600 hover:bg-red-800 text-white border border-black' onClick={deleteOverlay}>Cancel</button>
+                    </div>
+                </form>}
             </div>
         </aside>
     )
