@@ -42,7 +42,10 @@ const MapView = () => {
     useEffect(() => {
         const initialMap = getInitialMap(mapElement,climbingAreas,mapChange,tileLayer)
 
-        initialMap.on('click',(e) => changeCoords(e,mapRef,popupElement,setClickCoords,setAreaId,setCurrentFeature))
+        initialMap.on('click',(e) => { 
+            const props = {e,mapRef,popupElement,setClickCoords,setAreaId,setCurrentFeature}
+            changeCoords(props)
+        })
         initialMap.on('pointermove', function (e) {
         if(mapRef.current) {
             const type = mapRef.current.hasFeatureAtPixel(e.pixel) ? 'pointer' : 'inherit';

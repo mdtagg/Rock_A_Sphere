@@ -1,21 +1,25 @@
 import { addPoint } from "./addPoint"
 import { Point } from 'ol/geom.js';
-import { Collection, Overlay } from "ol";
+import { Overlay } from "ol";
 import { v4 as uuidv4 } from 'uuid'
 import { Map } from "ol";
 import { ReactSetter } from "../../App";
 import { MapBrowserEvent } from "ol";
 import { Coordinate } from "ol/coordinate";
 
-function changeCoords(
+interface ChangeCoordsProps {
     e: MapBrowserEvent<any>,
     mapRef: React.MutableRefObject<Map>,
     popupElement: React.MutableRefObject<HTMLFormElement>,
     setClickCoords: ReactSetter<Coordinate>,
     setAreaId: ReactSetter<string>,
     setCurrentFeature: ReactSetter<string>
-    ) {
-    
+}
+
+function changeCoords(props:ChangeCoordsProps) {
+
+    const { e,mapRef,popupElement,setClickCoords,setAreaId,setCurrentFeature } = props
+
     const overlays = mapRef.current.getOverlays()
     if(overlays.getArray().length) return
     const feature = mapRef.current.getFeaturesAtPixel(e.pixel)[0] 
