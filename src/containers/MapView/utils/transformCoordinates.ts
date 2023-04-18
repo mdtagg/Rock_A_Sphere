@@ -1,13 +1,12 @@
 import { fromLonLat } from 'ol/proj';
-import { TCoords } from './changeCoords';
 import { Coordinate } from 'ol/coordinate';
 
 type numCoords = {
-    latitude:number
-    longitude:number
+    latitude:string
+    longitude:string
 }
 
-function transformCoordinates(coords:TCoords):Coordinate {
+function transformCoordinates(coords:numCoords):Coordinate {
 
     const { longitude, latitude } = coords
     const place = [ longitude, latitude ].map(item => {

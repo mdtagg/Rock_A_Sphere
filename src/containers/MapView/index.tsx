@@ -5,7 +5,6 @@ import { recenterMap } from './utils/recenterMap';
 import { deletePoint } from './utils/deletePoint';
 import { changeCoords } from './utils/changeCoords';
 import { cancelPoint } from './utils/cancelPoint';
-import { removeOverlays } from './utils/removeOverlays';
 import { transform } from 'ol/proj';
 // import { transformCoords } from './utils/transformCoordinates';
 import { transformCoordinates } from './utils/transformCoordinates'
@@ -16,7 +15,7 @@ import EarthViewContext from '../CurrentInfoDisplay/contexts/EarthViewContext';
 import { Map } from 'ol';
 import { FeatureLike } from 'ol/Feature';
 import { TClimbingArea } from '../App';
-import { TCoords } from './utils/changeCoords';
+import { Coordinate } from 'ol/coordinate';
 // import { TClimbingAreas } from '../../../App/hooks/UseLocalStorage';
 
 
@@ -26,7 +25,7 @@ const MapView = () => {
     const { earthView, setEarthView } = useContext(EarthViewContext)!
 
     const [ map, setMap ] = useState<Map>(null!)
-    const [ clickCoords, setClickCoords ] = useState<any>('')
+    const [ clickCoords, setClickCoords ] = useState<Coordinate>(null!)
     const [ areaName, setAreaName ] = useState('')
     const [ areaId, setAreaId ] = useState('')
     const [ tileLayer, setTileLayer ] = useState(
@@ -48,9 +47,7 @@ const MapView = () => {
 
     function handleSubmit(e:SyntheticEvent) {
         e.preventDefault()
-        // removeOverlays(mapRef)
         mapRef.current.getOverlays().clear()
-
         const transformedCoords = transform(clickCoords,'EPSG:3857','EPSG:4326')
         setClimbingAreas((prevAreas) => {
             return [
@@ -75,7 +72,7 @@ const MapView = () => {
     function deleteOverlay(e:React.BaseSyntheticEvent) {
         e.preventDefault()
         cancelPoint(mapRef,map)
-        removeOverlays(mapRef) 
+        mapRef.current.getOverlays().clear()
     }
 
     function changeStreetView() {

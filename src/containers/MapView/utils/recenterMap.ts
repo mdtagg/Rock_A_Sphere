@@ -1,6 +1,5 @@
 import { Map } from "ol"
 import { Coordinate } from "ol/coordinate"
-import { TCoords } from "./changeCoords"
 
 function recenterMap(mapRef:React.MutableRefObject<Map>,coordinates:Coordinate) {
     // const { latitude,longitude } = coordinates

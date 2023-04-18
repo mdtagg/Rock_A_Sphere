@@ -5,15 +5,13 @@ import { v4 as uuidv4 } from 'uuid'
 import { Map } from "ol";
 import { ReactSetter } from "../../App";
 import { MapBrowserEvent } from "ol";
-
-
-export type TCoords = { latitude: string, longitude: string }
+import { Coordinate } from "ol/coordinate";
 
 function changeCoords(
     e: MapBrowserEvent<any>,
     mapRef: React.MutableRefObject<Map>,
     popupElement: React.MutableRefObject<HTMLFormElement>,
-    setClickCoords: ReactSetter<TCoords>,
+    setClickCoords: ReactSetter<Coordinate>,
     setAreaId: ReactSetter<string>,
     setCurrentFeature: ReactSetter<string>
     ) {
@@ -29,7 +27,7 @@ function changeCoords(
         return
     }
 
-    const coords:any = e.coordinate
+    const coords = e.coordinate
     const point = new Point(coords)
 
     const id = uuidv4()
