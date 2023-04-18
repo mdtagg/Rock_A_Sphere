@@ -22,8 +22,7 @@ function changeCoords(
     if(overlays.getArray().length) return
     
     const feature = mapRef.current.getFeaturesAtPixel(e.pixel)[0] 
-    // console.log(typeof feature.getId() === 'string')
-    if(typeof feature.getId() === 'string') {
+    if(feature) {
         //when a point on the map is clicked the location state is changed to that area
         const featureId = feature.getId() as string
         setCurrentFeature(featureId)
@@ -34,9 +33,7 @@ function changeCoords(
     const point = new Point(coords)
 
     const id = uuidv4()
-    // point.id = id
-
-
+   
     addPoint(mapRef,id,point)
     setAreaId(id)
    

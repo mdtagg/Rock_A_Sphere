@@ -30,21 +30,35 @@ function getInitialMap(
                 const point:{[k:string]:any} = new Point(webMerc)
                 // point.setId(uuidv4())
                 const { id } = area
-                point.id = id
-                const feature = new Feature(point)
-                feature.setId(id)
+                // point.id = id
+                // const feature = new Feature(point)
+                // feature.setId(id)
+                const vectorLayer = 
+                new VectorLayer({
+                    source: new VectorSource({
+                        features: [new Feature(point)]
+                    }),
+                    style: {
+                        'circle-radius': 7,
+                        'circle-fill-color': 'red',
+                    },
+                    // id: id,
+                    // type: 'point'
+                })
+                vectorLayer.setProperties({'id':id,'type':'point'})
                 return (
-                    new VectorLayer({
-                        source: new VectorSource({
-                            features: [feature]
-                        }),
-                        style: {
-                            'circle-radius': 7,
-                            'circle-fill-color': 'red',
-                        },
-                        // id: id,
-                        // type: 'point'
-                    })
+                    vectorLayer
+                    // new VectorLayer({
+                    //     source: new VectorSource({
+                    //         features: [new Feature(point)]
+                    //     }),
+                    //     style: {
+                    //         'circle-radius': 7,
+                    //         'circle-fill-color': 'red',
+                    //     },
+                    //     // id: id,
+                    //     // type: 'point'
+                    // })
                 )
             })
         ],
