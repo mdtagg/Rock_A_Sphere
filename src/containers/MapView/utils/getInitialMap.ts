@@ -6,9 +6,10 @@ import {Feature} from 'ol/index.js';
 import { Point } from 'ol/geom'
 import { Control } from 'ol/control'
 import { transformCoords } from './transformCoords';
-import { TClimbingAreas } from '../../../../App/hooks/UseLocalStorage';
+import { TClimbingAreas } from '../../App/hooks/UseLocalStorage';
 import TileLayer from 'ol/layer/Tile';
 import XYZ from 'ol/source/XYZ';
+import { v4 as uuidv4 } from 'uuid'
 // import { changeCoords } from './changeCoords';
 
 function getInitialMap(
@@ -27,19 +28,22 @@ function getInitialMap(
                
                 const webMerc = transformCoords(area.coords)
                 const point:{[k:string]:any} = new Point(webMerc)
+                // point.setId(uuidv4())
                 const { id } = area
                 point.id = id
+                const feature = new Feature(point)
+                feature.setId(id)
                 return (
                     new VectorLayer({
                         source: new VectorSource({
-                            features: [new Feature(point)]
+                            features: [feature]
                         }),
                         style: {
                             'circle-radius': 7,
                             'circle-fill-color': 'red',
                         },
-                        id: id,
-                        type: 'point'
+                        // id: id,
+                        // type: 'point'
                     })
                 )
             })
@@ -55,6 +59,7 @@ function getInitialMap(
             // zoom:true
         })]
         })
+    console.log(initialMap)
     return initialMap
 }
 

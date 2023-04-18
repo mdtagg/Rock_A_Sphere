@@ -1,6 +1,6 @@
 
 import { useState } from "react"
-import MapView from "./components/MapView"
+import { MapView } from "../MapView"
 import { CurrentAreaContainer } from "../CurrentAreaContainer"
 import { Form } from "./components/Form"
 import EarthViewContext from "./contexts/EarthViewContext"

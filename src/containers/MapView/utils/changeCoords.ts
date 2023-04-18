@@ -3,45 +3,30 @@ import { Point } from 'ol/geom.js';
 import { Collection, Overlay } from "ol";
 import { v4 as uuidv4 } from 'uuid'
 import { Map } from "ol";
-import { ReactSetter } from "../../../../App";
-import { SyntheticEvent } from "react";
+import { ReactSetter } from "../../App";
 import { MapBrowserEvent } from "ol";
 
 
 export type TCoords = [ latitude: number, longitude: number]
 
-
-
-// type MapBrowserEvent = typeof MapBrowserEvent
-
-// interface TChangeCoords {
-//     e: SyntheticEvent<MapBrowserEvent>
-//     mapRef: React.MutableRefObject<Map>
-//     popupElement: React.MutableRefObject<HTMLFormElement>
-//     setClickCoords: ReactSetter<TCoords>
-//     setAreaId: ReactSetter<string>
-//     setCurrentFeature: ReactSetter<string>
-// }
-
 function changeCoords(
     e: MapBrowserEvent<any>,
-    mapRef: any,
+    mapRef: React.MutableRefObject<Map>,
     popupElement: React.MutableRefObject<HTMLFormElement>,
     setClickCoords: ReactSetter<TCoords>,
     setAreaId: ReactSetter<string>,
-    setCurrentFeature: ReactSetter<string>) {
-    // const { e,mapRef,popupElement,setClickCoords,setAreaId,setCurrentFeature } = props
-    console.log(mapRef.current)
-    const overlays = mapRef.current.getOverlays().array_
-    console.log({overlays})
-    // .array_
-    if(overlays) return
-    // .length
+    setCurrentFeature: ReactSetter<string>
+    ) {
     
-    const feature = mapRef.current.getFeaturesAtPixel(e.pixel)[0];
-    if(feature) {
+    const overlays = mapRef.current.getOverlays()
+    if(overlays.getArray().length) return
+    
+    const feature = mapRef.current.getFeaturesAtPixel(e.pixel)[0] 
+    // console.log(typeof feature.getId() === 'string')
+    if(typeof feature.getId() === 'string') {
         //when a point on the map is clicked the location state is changed to that area
-        setCurrentFeature(feature.getGeometry().id)
+        const featureId = feature.getId() as string
+        setCurrentFeature(featureId)
         return
     }
 
@@ -66,3 +51,14 @@ function changeCoords(
 }
 
 export { changeCoords }
+
+// type MapBrowserEvent = typeof MapBrowserEvent
+
+// interface TChangeCoords {
+//     e: SyntheticEvent<MapBrowserEvent>
+//     mapRef: React.MutableRefObject<Map>
+//     popupElement: React.MutableRefObject<HTMLFormElement>
+//     setClickCoords: ReactSetter<TCoords>
+//     setAreaId: ReactSetter<string>
+//     setCurrentFeature: ReactSetter<string>
+// }

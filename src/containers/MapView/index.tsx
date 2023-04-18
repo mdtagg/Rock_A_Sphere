@@ -10,10 +10,11 @@ import { transform } from 'ol/proj';
 import { transformCoords } from './utils/transformCoords';
 import TileLayer from 'ol/layer/Tile'
 import XYZ from 'ol/source/XYZ'
-import CurrentInfoContext from '../../../App/contexts/CurrentInfoContext';
-import EarthViewContext from '../../contexts/EarthViewContext';
+import CurrentInfoContext from '../App/contexts/CurrentInfoContext';
+import EarthViewContext from '../CurrentInfoDisplay/contexts/EarthViewContext';
 import { Map } from 'ol';
-import { TClimbingArea } from '../../../App';
+import { FeatureLike } from 'ol/Feature';
+import { TClimbingArea } from '../App';
 import { TCoords } from './utils/changeCoords';
 // import { TClimbingAreas } from '../../../App/hooks/UseLocalStorage';
 
@@ -23,7 +24,7 @@ const MapView = () => {
     const { location, setLocation, climbingAreas, setClimbingAreas } = useContext(CurrentInfoContext)!
     const { earthView, setEarthView } = useContext(EarthViewContext)!
 
-    const [ map,setMap ] = useState<Map | null>(null)
+    const [ map, setMap ] = useState<Map>(null!)
     const [ clickCoords, setClickCoords ] = useState<any>('')
     const [ areaName, setAreaName ] = useState('')
     const [ areaId, setAreaId ] = useState('')
@@ -34,13 +35,12 @@ const MapView = () => {
             })
         })
     )
-    const [ currentFeature, setCurrentFeature ] = useState('')
-
+    const [ currentFeature, setCurrentFeature ] = useState<string>('')
     const mapElement = useRef<HTMLElement>(null!)
     const popupElement = useRef<HTMLFormElement>(null!)
     const popupContainer = useRef<HTMLDivElement>(null!)
     const mapChange = useRef<HTMLDivElement>(null!)
-    const mapRef = useRef<Map | null>(null)
+    const mapRef = useRef<Map>(null!)
     if(!mapRef.current) {
         mapRef.current = map
     }
@@ -96,12 +96,13 @@ const MapView = () => {
     useEffect(() => {
         const initialMap = getInitialMap(mapElement,climbingAreas,mapChange,tileLayer)
         initialMap.on('click',(e) => changeCoords(e,mapRef,popupElement,setClickCoords,setAreaId,setCurrentFeature))
+        
         initialMap.on('pointermove', function (e) {
-            if(mapRef.current) {
-                const type = mapRef.current.hasFeatureAtPixel(e.pixel) ? 'pointer' : 'inherit';
-                mapRef.current.getViewport().style.cursor = type;
-            }
-            });
+        if(mapRef.current) {
+            const type = mapRef.current.hasFeatureAtPixel(e.pixel) ? 'pointer' : 'inherit';
+            mapRef.current.getViewport().style.cursor = type;
+        }
+        });
         setMap(initialMap)
     },[])
 
@@ -182,5 +183,5 @@ const MapView = () => {
     )
 }
 
-export default MapView
+export { MapView }
 
