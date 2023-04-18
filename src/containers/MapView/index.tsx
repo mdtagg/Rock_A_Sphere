@@ -7,7 +7,8 @@ import { changeCoords } from './utils/changeCoords';
 import { cancelPoint } from './utils/cancelPoint';
 import { removeOverlays } from './utils/removeOverlays';
 import { transform } from 'ol/proj';
-import { transformCoords } from './utils/transformCoords';
+// import { transformCoords } from './utils/transformCoordinates';
+import { transformCoordinates } from './utils/transformCoordinates'
 import TileLayer from 'ol/layer/Tile'
 import XYZ from 'ol/source/XYZ'
 import CurrentInfoContext from '../App/contexts/CurrentInfoContext';
@@ -47,7 +48,9 @@ const MapView = () => {
 
     function handleSubmit(e:SyntheticEvent) {
         e.preventDefault()
-        removeOverlays(mapRef)
+        // removeOverlays(mapRef)
+        mapRef.current.getOverlays().clear()
+
         const transformedCoords = transform(clickCoords,'EPSG:3857','EPSG:4326')
         setClimbingAreas((prevAreas) => {
             return [
@@ -109,8 +112,9 @@ const MapView = () => {
     useEffect(() => {
 
         if(!map) return
-        const webMerc = transformCoords(location.coords)
-        recenterMap(mapRef,webMerc)
+        // console.log(location.coords)
+        const coordinates = transformCoordinates(location.coords)
+        recenterMap(mapRef,coordinates)
         map.render()
         
     },[location])

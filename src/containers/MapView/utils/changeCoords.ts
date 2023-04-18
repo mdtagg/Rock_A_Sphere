@@ -7,7 +7,7 @@ import { ReactSetter } from "../../App";
 import { MapBrowserEvent } from "ol";
 
 
-export type TCoords = [ latitude: number, longitude: number]
+export type TCoords = { latitude: string, longitude: string }
 
 function changeCoords(
     e: MapBrowserEvent<any>,
