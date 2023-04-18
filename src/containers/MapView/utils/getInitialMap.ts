@@ -9,8 +9,6 @@ import { transformCoordinates } from './transformCoordinates';
 import { TClimbingAreas } from '../../App/hooks/UseLocalStorage';
 import TileLayer from 'ol/layer/Tile';
 import XYZ from 'ol/source/XYZ';
-import { v4 as uuidv4 } from 'uuid'
-// import { changeCoords } from './changeCoords';
 
 function getInitialMap(
     mapElement:React.MutableRefObject<HTMLElement>,
@@ -22,43 +20,27 @@ function getInitialMap(
     const initialMap = new Map({
         target: mapElement.current,
         layers: [
-                
             tileLayer,
             ...climbingAreas.map(area => {
                
                 const webMerc = transformCoordinates(area.coords)
                 const point:{[k:string]:any} = new Point(webMerc)
-                // point.setId(uuidv4())
                 const { id } = area
-                // point.id = id
-                // const feature = new Feature(point)
-                // feature.setId(id)
+                const feature = new Feature(point)
+                feature.setId(id)
                 const vectorLayer = 
                 new VectorLayer({
                     source: new VectorSource({
-                        features: [new Feature(point)]
+                        features: [feature]
                     }),
                     style: {
                         'circle-radius': 7,
                         'circle-fill-color': 'red',
                     },
-                    // id: id,
-                    // type: 'point'
                 })
                 vectorLayer.setProperties({'id':id,'type':'point'})
                 return (
                     vectorLayer
-                    // new VectorLayer({
-                    //     source: new VectorSource({
-                    //         features: [new Feature(point)]
-                    //     }),
-                    //     style: {
-                    //         'circle-radius': 7,
-                    //         'circle-fill-color': 'red',
-                    //     },
-                    //     // id: id,
-                    //     // type: 'point'
-                    // })
                 )
             })
         ],
@@ -70,17 +52,9 @@ function getInitialMap(
         }),
         controls:[new Control({
             element: mapChange.current,
-            // zoom:true
         })]
         })
-    console.log(initialMap)
     return initialMap
 }
 
 export { getInitialMap }
-
-// mapRef:any,
-//     popupElement:any,
-//     setClickCoords:any,
-//     setAreaId:any,
-//     setCurrentFeature:any

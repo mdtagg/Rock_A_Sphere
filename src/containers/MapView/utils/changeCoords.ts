@@ -18,11 +18,11 @@ function changeCoords(
     
     const overlays = mapRef.current.getOverlays()
     if(overlays.getArray().length) return
-    
     const feature = mapRef.current.getFeaturesAtPixel(e.pixel)[0] 
     if(feature) {
         //when a point on the map is clicked the location state is changed to that area
         const featureId = feature.getId() as string
+        console.log(featureId)
         setCurrentFeature(featureId)
         return
     }

@@ -12,7 +12,6 @@ function transformCoordinates(coords:numCoords):Coordinate {
     const place = [ longitude, latitude ].map(item => {
         return parseFloat(item)
     }) as Coordinate
-    // console.log({place})
     
     return fromLonLat(place)
     

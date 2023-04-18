@@ -56,9 +56,9 @@ const NavArrows = (props) => {
     },[dataFocus])
 
     return (
-        <div class='flex justify-center items-center'>
+        <div className='flex justify-center items-center'>
             <LeftCaret 
-                class={`h-4 w-4 cursor-pointer rounded-full relative ${bumpLeft}`}
+                className={`h-4 w-4 cursor-pointer rounded-full relative ${bumpLeft}`}
                 onClick={() => {
                     handlePageBack()
                     setMoveRight(false)
@@ -69,7 +69,7 @@ const NavArrows = (props) => {
                 }}
             />
             <RightCaret 
-                class={`h-4 w-4 cursor-pointer rounded-full relative ${bumpRight}`}
+                className={`h-4 w-4 cursor-pointer rounded-full relative ${bumpRight}`}
                 onClick={() => {
                     handlePageForward()
                     setMoveLeft(false)
