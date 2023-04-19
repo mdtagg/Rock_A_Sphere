@@ -3,12 +3,12 @@ import { getDefaultAreas } from "./helpers/getDefaultAreas"
 import WeatherDataService from "../../services/WeatherDataService"
 import UseLocalStorage from "./hooks/UseLocalStorage"
 import { CurrentInfoDisplay } from "../CurrentInfoDisplay"
-// import { TableContainer } from "../TableContainer"
+import { TableContainer } from "../TableContainer"
 // import { RainReadout } from "../RainReadout"
 // import Footer from "./components/Footer/Index"
 import { parseWeatherData } from "./helpers/parseWeatherData"
 import CurrentInfoContext from "./contexts/CurrentInfoContext"
-// import WeatherContext from "./contexts/WeatherContext"
+import WeatherContext from "./contexts/WeatherContext"
 import { TClimbingAreas } from "./hooks/UseLocalStorage"
 
 
@@ -63,6 +63,13 @@ export interface CurrentInfoContextType {
     setClimbingAreas: ReactSetter<TClimbingAreas>
 }
 
+export interface WeatherContextType {
+    location: TClimbingArea
+    weatherData: IWeatherData | undefined
+    buttonTitle: string
+    setButtonTitle: ReactSetter<string>
+}
+
 const App = () => {
 
     const [ climbingAreas, setClimbingAreas ] = UseLocalStorage('climbing-areas',getDefaultAreas())
@@ -106,14 +113,14 @@ const App = () => {
 
             </CurrentInfoContext.Provider>
 
-            {/* <WeatherContext.Provider value={weatherContextValues}>
+            <WeatherContext.Provider value={weatherContextValues}>
 
                 <TableContainer />
-                <RainReadout />
+                {/* <RainReadout /> */}
 
             </WeatherContext.Provider>
             
-            <Footer/> */}
+            {/* <Footer/> */}
         </main>
     )
 }
