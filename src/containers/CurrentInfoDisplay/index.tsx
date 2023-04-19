@@ -44,11 +44,11 @@ const CurrentInfoDisplay = () => {
                 <MapView />
             </EarthViewContext.Provider>
             }       
-            {/* {toggleForm &&
+            {toggleForm &&
             <FormContext.Provider value={formContextValues}>
                 <Form />
             </FormContext.Provider>
-            } */}
+            }
             
         </section>
         

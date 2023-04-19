@@ -52,7 +52,6 @@ const MapView = () => {
             mapRef.current.getViewport().style.cursor = type;
         }
         });
-
         setMap(initialMap)
     },[])
 
