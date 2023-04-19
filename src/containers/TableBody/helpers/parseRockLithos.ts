@@ -1,8 +1,14 @@
 
+import { TRockType } from ".."
 
-function parseRockLithos(rockTypes,rockClasses) {
-    let kindsOfRock = []
-    const rockDataArray = []
+interface TKindsOfRock {
+    name:string 
+    color:string
+}
+
+function parseRockLithos(rockTypes:TRockType,rockClasses:string[]) {
+    let kindsOfRock:TKindsOfRock[] = []
+    const rockDataArray:string[] = []
     rockTypes.forEach(type => {
         if(
             !rockDataArray.includes(type.name) && 

@@ -1,22 +1,30 @@
 import axios from "axios";
 
-// type RockServiceType = {
-//     b_age:number
-//     b_int_age:number 
-//     b_int_id:number 
-//     b_int_name:string 
-//     best_int_name:string
-//     color:string
-//     comments:string
-//     descrip:string
-//     lith:string
-//     liths:string[]
-//     macro_units
-// }
+type RockServiceType = {
+    b_age:number
+    b_int_age:number 
+    b_int_id:number 
+    b_int_name:string 
+    best_int_name:string
+    color:string
+    comments:string
+    descrip:string
+    lith:string
+    liths:string[]
+    macro_units:[]
+    map_id:number 
+    name:string 
+    source_id:number 
+    strat_name:string 
+    strat_names:string[]
+    t_age:number 
+    t_int_id:number
+    t_int_name:number
+}
 
 class RockDataService {
-    async getRockData(lat:string,long:string):Promise<Array<string>> {
-        const response = await axios.get('https://macrostrat.org/api/v2/geologic_units/map?', 
+    async getRockData(lat:string,long:string):Promise<Array<RockServiceType>> {
+        const response = await axios('https://macrostrat.org/api/v2/geologic_units/map?', 
         {
             params: {
                 lat:lat,
@@ -24,8 +32,6 @@ class RockDataService {
             }
         })
         const { data } = response.data.success
-        // console.log({data})
-
         return data
     }
 

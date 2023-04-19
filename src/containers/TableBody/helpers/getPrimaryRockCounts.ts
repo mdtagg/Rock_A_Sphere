@@ -1,7 +1,16 @@
+import { TRockType } from ".."
 
+export interface TRockClasses {
+    [key:string]:number
+}
 
-function getPrimaryRockCounts(rockTypeData) {
-    const rockData = {
+interface TRockData {
+    rockClasses:TRockClasses
+    rockClassesArray:string[]
+}
+
+function getPrimaryRockCounts(rockTypeData:TRockType) {
+    const rockData:TRockData = {
         rockClasses: {},
         rockClassesArray: []
     }

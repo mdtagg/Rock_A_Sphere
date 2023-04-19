@@ -1,14 +1,19 @@
 
+interface TDailyWeather {
+    days: string[];
+    pastSevenRain: number[];
+    pastThreeRain: number[];
+}
 
-function parseRainData(weatherData) {
+function parseRainData(weatherData:TDailyWeather) {
     const { pastSevenRain, pastThreeRain } = weatherData
     const rainData = [ pastSevenRain, pastThreeRain ]
     const parsedData = rainData.map(data => {
         return data.reduce((total,amt) => {
             return total + amt
-        }).toFixed(2)
+        })
     })
-
+    console.log(parsedData)
     return {
         pastSevenTotal:parsedData[0],
         pastSevenColor:getColor(parsedData[0],2,0),
@@ -17,7 +22,7 @@ function parseRainData(weatherData) {
     }
 }
 
-function getColor(dataFocus,upperLimit,lowerLimit) {
+function getColor(dataFocus:number,upperLimit:number,lowerLimit:number) {
 
     return (
     dataFocus >= upperLimit ? 'text-red-600' :

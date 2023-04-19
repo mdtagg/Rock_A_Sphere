@@ -15,14 +15,15 @@ import { PrimaryRockType } from "./components/PrimaryRockType";
 import { KindsOfRock } from "./components/KindsOfRock";
 import { DaysToClimb } from "./components/DaysToClimb";
 
-interface TableContextType {
-    
+export interface TableContextType {
+    totalRain: TotalRainType | undefined;
+    rockData: RockDataType | undefined;
 }
 
 interface TotalRainType {
-    pastSevenTotal:string
+    pastSevenTotal:number
     pastSevenColor:string
-    pastThreeTotal:string
+    pastThreeTotal:number
     pastThreeColor:string
 }
 
@@ -36,7 +37,7 @@ export interface RockDataType {
     kindsOfRock: KindOfRockType[]
 }
 
-interface TRockType {
+export type TRockType = {
     class:string 
     color:string 
     fill:number 
@@ -45,16 +46,14 @@ interface TRockType {
     name:string 
     t_units:string 
     type:string 
-}
+}[]
 
 const TableBody = () => {
 
     const { weatherData, location } = useContext(WeatherContext)!
     const [ totalRain, setTotalRain ] = useState<TotalRainType | undefined>(undefined)
     const [ rockTypes ,setRockTypes ] = useState<TRockType | undefined>(undefined)
-    // console.log(rockTypes)
     const [ rockData, setRockData ] = useState<RockDataType | undefined>(undefined)
-    // console.log(rockData)
 
     const tableContextValues = 
     {
@@ -82,12 +81,10 @@ const TableBody = () => {
                 location.coords.latitude,
                 location.coords.longitude
             )
-            // console.log({rockData})
             const lithoCodes = rockData.map(entry => {
                 const [ liths ] = entry.liths 
                 return liths
             })
-            console.log({lithoCodes,rockTypes})
             const allRockTypes = filterRockTypes(lithoCodes,rockTypes)
             const primaryRockCounts = getPrimaryRockCounts(allRockTypes)
             const primaryRockClass = getPrimaryRockClass(primaryRockCounts.rockClasses,primaryRockCounts.rockClassesArray)

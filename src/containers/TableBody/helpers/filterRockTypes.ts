@@ -1,6 +1,6 @@
+import { TRockType } from ".."
 
-
-function filterRockTypes(lithoCodes,rockTypes) {
+function filterRockTypes(lithoCodes:string[],rockTypes:TRockType) {
     let rockTypeData = []
     for(let i = 0;i < lithoCodes.length;i++) {
         for(let j = 0;j < rockTypes.length;j++) {

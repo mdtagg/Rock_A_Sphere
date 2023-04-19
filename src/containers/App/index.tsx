@@ -12,7 +12,7 @@ import WeatherContext from "./contexts/WeatherContext"
 import { TClimbingAreas } from "./hooks/UseLocalStorage"
 
 
-interface IWeatherData {
+export interface IWeatherData {
     currentWeather: {
         currentDate:string,
         currentTemp:number,
