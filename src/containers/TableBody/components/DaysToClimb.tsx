@@ -3,11 +3,11 @@ import TableContext from "../contexts/TableContext"
 
 const DaysToClimb = () => {
 
-    const [ daysToClimb, setDaysToClimb ] = useState(0)
-    const { rockData,totalRain } = useContext(TableContext)
+    const [ daysToClimb, setDaysToClimb ] = useState('0')
+    const { rockData,totalRain } = useContext(TableContext)!
 
     function getDaysToClimb() {
-        const kindsOfRock = rockData.kindsOfRock.map(rock => {
+        const kindsOfRock = rockData!.kindsOfRock.map(rock => {
             return rock.name
         })
         const sensitiveRockTypes = ['sandstone','basalt','mudstone','siltstone','breccia','andesite','conglomerate','siltstone','dolomite']
@@ -17,12 +17,12 @@ const DaysToClimb = () => {
                 susceptible = true
             }
         })
-
-        const lastThree = parseFloat(totalRain.pastThreeTotal)
-        const lastSeven = parseFloat(totalRain.pastSevenTotal)
+        
+        const lastThree = totalRain!.pastThreeTotal
+        const lastSeven = totalRain!.pastSevenTotal
 
         if(
-            rockData.primaryRockClass === 'sedimentary' ||
+            rockData!.primaryRockClass === 'sedimentary' ||
             susceptible
         ) {
             if(lastThree >= 6 || lastSeven >= 9) {
@@ -53,10 +53,10 @@ useEffect(() => {
 },[totalRain,rockData])
     
     return (
-        <td class='w-1/5'>
-            <div class='flex flex-col items-center justify-center'>
-                <p class='text-3xl'>{daysToClimb}</p>
-                <p class='text-[.7rem] leading-none font-bold sm:text-[.4rem]'>
+        <td className='w-1/5'>
+            <div className='flex flex-col items-center justify-center'>
+                <p className='text-3xl'>{daysToClimb}</p>
+                <p className='text-[.7rem] leading-none font-bold sm:text-[.4rem]'>
                     Always make sure the ground by your climb is dry,
                     if it is not wait another day or two!
                 </p>

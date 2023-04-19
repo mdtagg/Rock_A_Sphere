@@ -27,7 +27,7 @@ interface TotalRainType {
     pastThreeColor:string
 }
 
-type KindOfRockType = {
+export type KindOfRockType = {
     name:string
     color:string
 }
@@ -101,11 +101,11 @@ const TableBody = () => {
             {weatherData &&
             <TableContext.Provider value={tableContextValues}>
                 <tr className='flex items-center border-t-2 border-black h-full sm:h-[100px] wide:h-[100px] wide:text-sm'>
-                    {/* <PastSevenRain />
+                    <PastSevenRain />
                     <PastThreeRain />
                     <PrimaryRockType />
                     <KindsOfRock />
-                    <DaysToClimb /> */}
+                    <DaysToClimb />
                 </tr>
             </TableContext.Provider>
             }

@@ -3,15 +3,16 @@ import { useState,useEffect,useContext } from 'react';
 import { getPageData } from '../../../components/NavArrows/utils/getPageData';
 import TableContext from '../contexts/TableContext';
 import { NavArrows } from '../../../components/NavArrows';
+import { KindOfRockType } from '..';
 
 const KindsOfRock = () => {
 
-    const [ rockDisplay, setRockDisplay ] = useState([])
-    const { rockData } = useContext(TableContext)
-    const [currentPageIndex,setCurrentPageIndex] = useState(0)
+    const [ rockDisplay, setRockDisplay ] = useState<Array<KindOfRockType>>([])
+    const { rockData } = useContext(TableContext)!
+    const [currentPageIndex, setCurrentPageIndex] = useState(0)
 
     useEffect(() => {
-        const { kindsOfRock } = rockData
+        const { kindsOfRock } = rockData!
         if(kindsOfRock.length > 3) {
             getPageData(currentPageIndex,kindsOfRock,setRockDisplay,3)
         }else {
@@ -20,12 +21,12 @@ const KindsOfRock = () => {
         
     },[rockData,currentPageIndex])
     return (
-        <td class={`flex flex-col justify-end items-center  border-r-2 border-black w-1/5 h-full gap-1`}>
-            <div class='flex flex-col w-full gap-1 p-1 items-center justify-center h-full sm:p-0 wide:text-xs'>
+        <td className={`flex flex-col justify-end items-center  border-r-2 border-black w-1/5 h-full gap-1`}>
+            <div className='flex flex-col w-full gap-1 p-1 items-center justify-center h-full sm:p-0 wide:text-xs'>
                 {rockDisplay.map(item => {
                 return (
                     <button 
-                        class="text-center rounded font-bold w-full border-2 text-clip overflow-hidden border-black sm:text-xs " 
+                        className="text-center rounded font-bold w-full border-2 text-clip overflow-hidden border-black sm:text-xs " 
                         style=
                         {{
                             backgroundColor: `${item.color}`, 
@@ -38,10 +39,10 @@ const KindsOfRock = () => {
                 )
                 })}
             </div>
-            {rockData.kindsOfRock.length > 3 &&
+            {rockData!.kindsOfRock.length > 3 &&
                 <NavArrows
                     currentPageIndex={currentPageIndex}
-                    dataFocus={rockData.kindsOfRock}
+                    dataFocus={rockData!.kindsOfRock}
                     setCurrentPageIndex={setCurrentPageIndex}
                     pageLength={3}
                 />
