@@ -7,9 +7,10 @@ import { getPageData } from "../../components/NavArrows/utils/getPageData"
 import { NavArrows } from "../../components/NavArrows"
 import { TRainReadout } from "../RainReadout"
 import { THourly } from "./helpers/parseHourly"
+import { DailyWeatherType } from "./helpers/parseDailyRain"
 
 interface WeatherOptionsProps {
-    setDailyData:React.Dispatch<React.SetStateAction<TRainReadout[]>>
+    setDailyData:React.Dispatch<React.SetStateAction<Array<any>>>
 }
 
 const WeatherOptionsButton = (props:WeatherOptionsProps) => {

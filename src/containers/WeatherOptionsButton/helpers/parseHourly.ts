@@ -9,7 +9,7 @@ export interface THourly {
     weathercode: number[],
     windspeed_10m_max: number[],
     [key:string]:any[]
-}
+}[]
 
 function parseHourly(data:THourly) {
     const parsedData = []

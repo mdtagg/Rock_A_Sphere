@@ -3,12 +3,11 @@ export interface DailyWeatherType {
     days: string[];
     pastSevenRain: number[];
     pastThreeRain: number[];
-    [key:string]:any[]
+    [key:string]: (string | number) []
 }
 
 function parseDailyRain(dailyData:DailyWeatherType) {
-
-    const { days,pastSevenRain } = dailyData
+    const { days, pastSevenRain } = dailyData
     let parsedData:any[] = []
     
     days.forEach((day,index) => {

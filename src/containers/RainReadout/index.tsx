@@ -3,10 +3,12 @@ import { WeatherSquare } from "../WeatherSquare";
 import { v4 as uuidv4 } from 'uuid';
 import WeatherContext from "../App/contexts/WeatherContext";
 import { WeatherOptionsButton } from "../WeatherOptionsButton";
+import { DailyWeatherType } from "../WeatherOptionsButton/helpers/parseDailyRain";
+import { THourly } from "../WeatherOptionsButton/helpers/parseHourly";
 
 export type TRainReadout = {
     [key:number]: string | number
-}
+}[]
 
 const RainReadout = () => {
 
@@ -14,6 +16,7 @@ const RainReadout = () => {
     const [ dailyData, setDailyData ] = useState<Array<TRainReadout>>([])
 
     function findToday(data:TRainReadout,index:number,buttonTitle:string) {
+       
         if(
             (index === 6 && buttonTitle === 'Wet Rock') ||
             (index === 0 && buttonTitle === 'Forecast')

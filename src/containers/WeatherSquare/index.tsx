@@ -2,19 +2,28 @@
 import { RainInfo } from './components/RainInfo';
 import { ForecastInfo } from './components/ForecastInfo';
 import { HourlyInfo } from './components/HourlyInfo';
+import { TRainReadout } from '../RainReadout';
+import { ReactNode } from 'react';
 
 interface WeatherSquareProps {
-    data:any[]
+    data: TRainReadout
     key:string 
     buttonTitle:string
+}
+
+interface TRainInfo {
+    rainInfo: (string | number)[]
+    [key:number] : string | number
 }
 
 const WeatherSquare = (props:WeatherSquareProps) => {
 
     const { data,buttonTitle } = props
+    
     const color = 
     buttonTitle === 'Wet Rock' ? data[2] :
     data[data.length - 1]
+    const day = data[0] as ReactNode
 
     return (
         <div 
@@ -23,7 +32,7 @@ const WeatherSquare = (props:WeatherSquareProps) => {
             <p
                 className='text-3xl gap-3 font-bold sm:text-xl wide:text-sm wide:font-bold '
             >
-                {data[0]}
+                {day}
             </p>
             
             {buttonTitle === 'Wet Rock' &&

@@ -1,6 +1,9 @@
-import { TRainReadout } from "../../RainReadout"
-import { DailyWeatherType } from "./parseDailyRain"
+
 import { THourly } from "./parseHourly"
+
+// export type TForecast<Array<number>> = {
+//     [key:number]: string | number
+// }
 
 function parseForecast(data:THourly) {
     const parsedData = []
@@ -21,7 +24,7 @@ function parseForecast(data:THourly) {
             return data
         }
     })
-    console.log(parsedData)
+    console.log('forecast',parsedData)
     return parsedData
 }
 

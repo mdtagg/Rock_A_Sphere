@@ -5,7 +5,7 @@ import UseLocalStorage from "./hooks/UseLocalStorage"
 import { CurrentInfoDisplay } from "../CurrentInfoDisplay"
 import { TableContainer } from "../TableContainer"
 import { RainReadout } from "../RainReadout"
-// import Footer from "./components/Footer/Index"
+import Footer from "./components/Footer/Index"
 import { parseWeatherData } from "./helpers/parseWeatherData"
 import CurrentInfoContext from "./contexts/CurrentInfoContext"
 import WeatherContext from "./contexts/WeatherContext"
@@ -120,7 +120,7 @@ const App = () => {
 
             </WeatherContext.Provider>
             
-            {/* <Footer/> */}
+            <Footer/>
         </main>
     )
 }

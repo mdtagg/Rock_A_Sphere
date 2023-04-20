@@ -1,4 +1,4 @@
-import GetWeatherIcon from "../../CurrentAreaContainer/utils/getWeatherIcon"
+import { GetWeatherIcon } from "../../CurrentAreaContainer/utils/getWeatherIcon"
 
 const ForecastInfo = (props) => {
 
