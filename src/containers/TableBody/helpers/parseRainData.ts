@@ -13,7 +13,6 @@ function parseRainData(weatherData:TDailyWeather) {
             return total + amt
         })
     })
-    console.log(parsedData)
     return {
         pastSevenTotal:parsedData[0],
         pastSevenColor:getColor(parsedData[0],2,0),

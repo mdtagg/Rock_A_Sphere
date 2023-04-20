@@ -4,12 +4,16 @@ import { v4 as uuidv4 } from 'uuid';
 import WeatherContext from "../App/contexts/WeatherContext";
 import { WeatherOptionsButton } from "../WeatherOptionsButton";
 
+export type TRainReadout = {
+    [key:number]: string | number
+}
+
 const RainReadout = () => {
 
-    const { buttonTitle } = useContext(WeatherContext)
-    const [ dailyData, setDailyData ] = useState([])
+    const { buttonTitle } = useContext(WeatherContext)!
+    const [ dailyData, setDailyData ] = useState<Array<TRainReadout>>([])
 
-    function findToday(data,index,buttonTitle) {
+    function findToday(data:TRainReadout,index:number,buttonTitle:string) {
         if(
             (index === 6 && buttonTitle === 'Wet Rock') ||
             (index === 0 && buttonTitle === 'Forecast')
@@ -20,13 +24,13 @@ const RainReadout = () => {
 
     return (
         <section 
-            class='flex flex-col gap-2 pl-10 sm:p-0 wide:gap-0 wide:p-0'
+            className='flex flex-col gap-2 pl-10 sm:p-0 wide:gap-0 wide:p-0'
         >
             <WeatherOptionsButton
                 setDailyData={setDailyData}
             />
             <div 
-                class='flex justify-between text-black w-full pr-10 sm:grid sm:grid-cols-3 sm:grid-flow-row sm:p-0 wide:p-0'
+                className='flex justify-between text-black w-full pr-10 sm:grid sm:grid-cols-3 sm:grid-flow-row sm:p-0 wide:p-0'
             >
                 {
                 dailyData.map((data,index) => {
@@ -34,6 +38,7 @@ const RainReadout = () => {
                     findToday(data,index,buttonTitle)
 
                     return (
+                        // <></>
                         <WeatherSquare
                             data={data}
                             key={uuidv4()}
