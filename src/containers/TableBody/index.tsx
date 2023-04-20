@@ -81,12 +81,7 @@ const TableBody = () => {
                 location.coords.latitude,
                 location.coords.longitude
             )
-            // const lithoCodes = rockData.map(entry => {
-            //     const [ liths ] = entry.liths 
-            //     return liths
-            // })
             const lithoCodes = getLithoCodes(rockData)
-            console.log({lithoCodes})
             const allRockTypes = filterRockTypes(lithoCodes,rockTypes)
             const primaryRockCounts = getPrimaryRockCounts(allRockTypes)
             const primaryRockClass = getPrimaryRockClass(primaryRockCounts.rockClasses,primaryRockCounts.rockClassesArray)
