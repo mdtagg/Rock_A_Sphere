@@ -2,7 +2,14 @@ import { ReactComponent as LeftCaret } from '../../assets/svg/left-caret.svg'
 import { ReactComponent as RightCaret } from '../../assets/svg/right-caret.svg'
 import { useState,useEffect } from 'react'
 
-const NavArrows = (props) => {
+interface NavArrowProps {
+    currentPageIndex:number 
+    dataFocus:any[]
+    setCurrentPageIndex: React.Dispatch<React.SetStateAction<number>>
+    pageLength:number
+}
+
+const NavArrows = (props:NavArrowProps) => {
 
     const { dataFocus,currentPageIndex,setCurrentPageIndex,pageLength } = props
     const [totalPages,setTotalPages] = useState(1)
@@ -30,7 +37,7 @@ const NavArrows = (props) => {
     }
 
     function handlePageForward() {
-        if(!dataFocus.length > pageLength || 
+        if(dataFocus.length < pageLength || 
             !dataFocus.length ||
             currentPageIndex === totalPages - 1) {
                 return

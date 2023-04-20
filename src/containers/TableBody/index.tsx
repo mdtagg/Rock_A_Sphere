@@ -1,6 +1,6 @@
 
 import RockDataService from "../../services/RockDataService";
-// import { getLithoCodes } from "./helpers/getLithoCodes";
+import { getLithoCodes } from "./helpers/getLithoCodes";
 import { filterRockTypes } from "./helpers/filterRockTypes";
 import { getPrimaryRockCounts } from "./helpers/getPrimaryRockCounts"
 import { getPrimaryRockClass } from "./helpers/getPrimaryRockClass";
@@ -81,10 +81,12 @@ const TableBody = () => {
                 location.coords.latitude,
                 location.coords.longitude
             )
-            const lithoCodes = rockData.map(entry => {
-                const [ liths ] = entry.liths 
-                return liths
-            })
+            // const lithoCodes = rockData.map(entry => {
+            //     const [ liths ] = entry.liths 
+            //     return liths
+            // })
+            const lithoCodes = getLithoCodes(rockData)
+            console.log({lithoCodes})
             const allRockTypes = filterRockTypes(lithoCodes,rockTypes)
             const primaryRockCounts = getPrimaryRockCounts(allRockTypes)
             const primaryRockClass = getPrimaryRockClass(primaryRockCounts.rockClasses,primaryRockCounts.rockClassesArray)

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-type RockServiceType = {
+export type RockServiceType = {
     b_age:number
     b_int_age:number 
     b_int_id:number 
