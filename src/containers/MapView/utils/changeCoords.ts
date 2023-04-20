@@ -26,7 +26,6 @@ function changeCoords(props:ChangeCoordsProps) {
     if(feature) {
         //when a point on the map is clicked the location state is changed to that area
         const featureId = feature.getId() as string
-        console.log(featureId)
         setCurrentFeature(featureId)
         return
     }

@@ -8,7 +8,6 @@ interface THourlyInfo {
 }
 
 const HourlyInfo = (props:THourlyInfo) => {
-    console.log({props})
     const { hourlyInfo } = props
     const weatherCode = hourlyInfo[8] as unknown as number
     const WeatherIcon = GetWeatherIcon(weatherCode)

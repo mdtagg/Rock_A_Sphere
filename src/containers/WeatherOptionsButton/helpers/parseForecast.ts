@@ -24,7 +24,6 @@ function parseForecast(data:THourly) {
             return data
         }
     })
-    console.log('forecast',parsedData)
     return parsedData
 }
 

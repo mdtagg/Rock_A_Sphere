@@ -18,12 +18,10 @@ export type LatLong = {
 function handleSubmit(e:React.FormEvent,submitProps:submitProps) {
     e.preventDefault()
     const { setToggleForm,setClimbingAreas,setError } = submitProps
-    console.log(e)
     const target = e.target as HTMLFormElement
     const input = target[0] as HTMLInputElement
     const areaName = target[1] as HTMLInputElement
     const value = input.value
-    console.log({value})
 
     let latLong:LatLong
     

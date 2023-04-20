@@ -36,7 +36,6 @@ function parseHourly(data:THourly) {
         parsedData.splice(0,12)
     }
     parsedData.splice(0,parseInt(currentHour[0]))
-    console.log({parsedData})
     return parsedData
 }
 
