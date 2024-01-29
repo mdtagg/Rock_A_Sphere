@@ -63,13 +63,17 @@ const App = () => {
                 wide:justify-center
             "
         >
-            <CurrentInfoContext.Provider value={currentInfoContextValues}>
+            <CurrentInfoContext.Provider 
+                value={currentInfoContextValues}
+            >
 
                 <CurrentInfoDisplay />
 
             </CurrentInfoContext.Provider>
 
-            <WeatherContext.Provider value={weatherContextValues}>
+            <WeatherContext.Provider 
+                value={weatherContextValues}
+            >
 
                 <TableContainer />
                 <RainReadout />
