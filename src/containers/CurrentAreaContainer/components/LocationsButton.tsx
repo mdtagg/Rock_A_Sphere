@@ -5,7 +5,6 @@ import { useContext } from "react"
 import CurrentInfoContext from "../../App/contexts/CurrentInfoContext"
 import EarthViewContext from "../../CurrentInfoDisplay/contexts/MapViewContext"
 import DropDownContext from '../contexts/DropDownContext'
-import { ReactSetter } from '../../App/types/app'
 
 const LocationsButton = () => {
 
