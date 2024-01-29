@@ -1,9 +1,11 @@
 
 
 function parseForecast(data:any) {
+    
     const dayOptions:Intl.DateTimeFormatOptions = { weekday:'short',day:'numeric' }
     const hourOptions:Intl.DateTimeFormatOptions = {hour: "numeric"}
     const forecastData:any = {}
+
     for(let key in data) {
         forecastData[key] = data[key].slice(7)
     }
