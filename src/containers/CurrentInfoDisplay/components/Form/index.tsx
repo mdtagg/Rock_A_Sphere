@@ -44,7 +44,8 @@ const Form = () => {
                 <input 
                     className={`${errorBorder} placeholder:text-xs sm:w-fit wide:h-fit`} 
                     placeholder='copy + paste from google maps' 
-                    type='text' id='coords' 
+                    type='text' 
+                    id='coords' 
                     name='coords' 
                     required
                 >
