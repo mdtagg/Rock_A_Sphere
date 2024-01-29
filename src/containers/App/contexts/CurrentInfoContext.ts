@@ -1,5 +1,5 @@
 import { createContext } from "react"
-import { CurrentInfoContextType } from ".."
+import { CurrentInfoContextType } from "../types/app"
 
 const CurrentInfoContext = createContext<null | CurrentInfoContextType>(null)
 
