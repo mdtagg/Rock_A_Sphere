@@ -1,11 +1,12 @@
 import { useState,useEffect } from "react"
-import { ReactSetter } from ".."
+import { TClimbingAreas,ReactSetter } from "../types/app"
+// import { ReactSetter } from ".."
 
-export type TClimbingAreas = {
-    title: string,
-    coords: { latitude: string, longitude: string },
-    id: string
-}[]
+// export type TClimbingAreas = {
+//     title: string,
+//     coords: { latitude: string, longitude: string },
+//     id: string
+// }[]
 
 const UseLocalStorage = (key: string, initialValue: TClimbingAreas): [TClimbingAreas,ReactSetter<TClimbingAreas>] => {
     const [ value, setValue ] = useState<TClimbingAreas>(() => {
