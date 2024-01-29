@@ -42,12 +42,3 @@ export const getDefaultAreas = () => {
 
     ]
 }
-
-
-
-
-
-
- 
-
-
