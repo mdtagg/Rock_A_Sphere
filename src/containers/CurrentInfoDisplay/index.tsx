@@ -11,27 +11,23 @@ const CurrentInfoDisplay = () => {
     const [ earthView, setEarthView ] = useState<boolean>(false)
     const [ toggleForm, setToggleForm ] = useState<boolean>(false)
 
-    const earthViewContextValues = 
-    { 
-        earthView, 
-        setEarthView 
-    }
-
-    const formContextValues = 
-    {
-        setToggleForm
-    }
-
     return (
         
-        <section className='flex gap-10 sm:gap-2 wide:gap-1'>
+        <section 
+            className='
+                flex 
+                gap-10
+                sm:gap-2 
+                wide:gap-1
+            '
+            >
             {!toggleForm &&
             <MapViewContext.Provider 
-                value={earthViewContextValues}
+                value={{earthView,setEarthView}}
             >
 
                 <FormContext.Provider 
-                    value={formContextValues}
+                    value={{setToggleForm}}
                 >
                     <CurrentAreaContainer />
                 </FormContext.Provider>
