@@ -56,8 +56,8 @@ const App = () => {
                 w-screen 
                 flex 
                 flex-col 
-                pt-10 
                 justify-between 
+                pt-5
                 sm:p-0 
                 wide:p-0 
                 wide:justify-center
