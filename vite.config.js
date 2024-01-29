@@ -5,5 +5,5 @@ import viteSvgr from 'vite-plugin-svgr'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react(),viteSvgr()],
-  base:'/Rock_Climbing_Weather_App/'
+  base:'/Rock_A_Sphere/'
 })
