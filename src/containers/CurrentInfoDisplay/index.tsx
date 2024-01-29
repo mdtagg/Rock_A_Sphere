@@ -3,17 +3,8 @@ import { useState } from "react"
 import { MapView } from "../MapView"
 import { CurrentAreaContainer } from "../CurrentAreaContainer"
 import { Form } from "./components/Form"
-import EarthViewContext from "./contexts/EarthViewContext"
+import MapViewContext from "./contexts/MapViewContext"
 import FormContext from "./contexts/FormContext"
-
-export interface earthViewContextType {
-    earthView:boolean
-    setEarthView: React.Dispatch<React.SetStateAction<boolean>>
-}
-
-export interface toggleFormContextType {
-    setToggleForm: React.Dispatch<React.SetStateAction<boolean>>
-}
 
 const CurrentInfoDisplay = () => {
 
@@ -35,17 +26,23 @@ const CurrentInfoDisplay = () => {
         
         <section className='flex gap-10 sm:gap-2 wide:gap-1'>
             {!toggleForm &&
-            <EarthViewContext.Provider value={earthViewContextValues}>
+            <MapViewContext.Provider 
+                value={earthViewContextValues}
+            >
 
-                <FormContext.Provider value={formContextValues}>
+                <FormContext.Provider 
+                    value={formContextValues}
+                >
                     <CurrentAreaContainer />
                 </FormContext.Provider>
                 
                 <MapView />
-            </EarthViewContext.Provider>
+            </MapViewContext.Provider>
             }       
             {toggleForm &&
-            <FormContext.Provider value={formContextValues}>
+            <FormContext.Provider 
+                value={formContextValues}
+            >
                 <Form />
             </FormContext.Provider>
             }
