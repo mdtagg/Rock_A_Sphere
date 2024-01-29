@@ -8,7 +8,7 @@ import { transformCoordinates } from './utils/transformCoordinates'
 import TileLayer from 'ol/layer/Tile'
 import XYZ from 'ol/source/XYZ'
 import CurrentInfoContext from '../App/contexts/CurrentInfoContext';
-import EarthViewContext from '../CurrentInfoDisplay/contexts/EarthViewContext';
+import MapViewContext from '../CurrentInfoDisplay/contexts/MapViewContext';
 import { Map } from 'ol';
 import { Coordinate } from 'ol/coordinate';
 import { MapChangeControls } from './components/MapChangeControls';
@@ -17,7 +17,7 @@ import { MapForm } from './components/MapForm';
 const MapView = () => {
     
     const { location, setLocation, climbingAreas } = useContext(CurrentInfoContext)!
-    const { earthView, setEarthView } = useContext(EarthViewContext)!
+    const { earthView, setEarthView } = useContext(MapViewContext)!
     const [ map, setMap ] = useState<Map>(null!)
     const [ clickCoords, setClickCoords ] = useState<Coordinate>(null!)
     const [ areaId, setAreaId ] = useState('')
