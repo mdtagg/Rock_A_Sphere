@@ -3,9 +3,9 @@ import { ReactComponent as DownCaret } from '../../../assets/svg/downCaret.svg'
 import { ReactComponent as Earth } from '../../../assets/svg/earth.svg'
 import { useContext } from "react"
 import CurrentInfoContext from "../../App/contexts/CurrentInfoContext"
-import EarthViewContext from "../../CurrentInfoDisplay/contexts/EarthViewContext"
+import EarthViewContext from "../../CurrentInfoDisplay/contexts/MapViewContext"
 import DropDownContext from '../contexts/DropDownContext'
-import { ReactSetter } from '../../App'
+import { ReactSetter } from '../../App/types/app'
 
 const LocationsButton = () => {
 
