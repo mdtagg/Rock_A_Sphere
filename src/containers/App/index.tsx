@@ -79,12 +79,12 @@ const App = () => {
                     }   
                 </FormContext.Provider>
 
-            <TableInfoContext.Provider
-                value={tableInfoContextValues}
-            >
-                <TableContainer />
-                <RainReadout />
-            </TableInfoContext.Provider>
+                <TableInfoContext.Provider
+                    value={tableInfoContextValues}
+                >
+                    <TableContainer />
+                    <RainReadout />
+                </TableInfoContext.Provider>
 
             </LocationContext.Provider>
             
