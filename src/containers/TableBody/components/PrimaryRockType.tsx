@@ -1,12 +1,11 @@
 import { useContext } from "react"
 import TableContext from "../contexts/TableContext"
-import WeatherContext from "../../App/contexts/WeatherContext"
-import { RockDataType } from ".."
+import { LocationContext } from "../../App/contexts/FormContext"
 
 const PrimaryRockType = () => {
 
     const { rockData } = useContext(TableContext)!
-    const { location } = useContext(WeatherContext)!
+    const { location } = useContext(LocationContext)!
     const { latitude, longitude } = location.coords
    
     const { color } = getColor(rockData!.primaryRockClass)

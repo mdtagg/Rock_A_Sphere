@@ -1,7 +1,7 @@
-import { SyntheticEvent ,MouseEventHandler, useContext } from "react";
-import CurrentInfoContext from "../../App/contexts/CurrentInfoContext";
+import { useContext } from "react";
 import DropDownContext from "../../CurrentAreaContainer/contexts/DropDownContext";
-import { TClimbingArea } from "../../App";
+import { TClimbingArea } from "../../App/types/app";
+import { FormContext,LocationContext } from "../../App/contexts/FormContext";
 
 interface TArea {
     area:TClimbingArea
@@ -10,7 +10,8 @@ interface TArea {
 
 const ClimbingArea = (props:TArea) => {
     const { area }:TArea = props
-    const { setLocation,setClimbingAreas,climbingAreas } = useContext(CurrentInfoContext)!
+    const { setClimbingAreas,climbingAreas } = useContext(FormContext)!
+    const {setLocation} = useContext(LocationContext)!
     const { setDropdown } = useContext(DropDownContext)!
 
     function handleAreaChange(area:TClimbingArea) {

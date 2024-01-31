@@ -2,16 +2,16 @@
 import { useState,useEffect,useContext } from 'react';
 import { AddAreaButton } from './components/AddAreaButton';
 import { NavArrows } from '../../components/NavArrows';
-import CurrentInfoContext from '../App/contexts/CurrentInfoContext';
 import DropDownContext from '../CurrentAreaContainer/contexts/DropDownContext';
 import { ClimbingArea } from './components/ClimbingArea';
 import { getPageData } from '../../components/NavArrows/utils/getPageData';
 import { v4 as uuidv4 } from 'uuid';
-import { TClimbingAreas } from '../App/hooks/UseLocalStorage';
+import { TClimbingAreas } from '../App/types/app';
+import { FormContext } from '../App/contexts/FormContext';
 
 const LocationsContainer = () => {
 
-    const { climbingAreas } = useContext(CurrentInfoContext)!
+    const { climbingAreas } = useContext(FormContext)!
     const [ areaDisplay, setAreaDisplay ] = useState<TClimbingAreas>([])
     const [ currentPageIndex, setCurrentPageIndex ] = useState(0)
     const { dropdown } = useContext(DropDownContext)!

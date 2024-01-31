@@ -1,10 +1,11 @@
 import { useState,useContext } from "react"
 import { WeatherSquare } from "../WeatherSquare";
 import { v4 as uuidv4 } from 'uuid';
-import WeatherContext from "../App/contexts/WeatherContext";
+// import WeatherContext from "../App/contexts/WeatherContext";
 import { WeatherOptionsButton } from "../WeatherOptionsButton";
 import { DailyWeatherType } from "../WeatherOptionsButton/helpers/parseDailyRain";
 import { THourly } from "../WeatherOptionsButton/helpers/parseHourly";
+import { TableInfoContext } from "../App/contexts/FormContext";
 
 export type TRainReadout = {
     [key:number]: string | number
@@ -12,7 +13,7 @@ export type TRainReadout = {
 
 const RainReadout = () => {
 
-    const { buttonTitle } = useContext(WeatherContext)!
+    const { buttonTitle } = useContext(TableInfoContext)!
     const [ dailyData, setDailyData ] = useState<Array<TRainReadout>>([])
 
     function findToday(data:TRainReadout,index:number,buttonTitle:string) {
@@ -41,7 +42,6 @@ const RainReadout = () => {
                     findToday(data,index,buttonTitle)
 
                     return (
-                        // <></>
                         <WeatherSquare
                             data={data}
                             key={uuidv4()}

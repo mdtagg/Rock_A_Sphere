@@ -7,16 +7,17 @@ import { changeCoords } from './utils/changeCoords';
 import { transformCoordinates } from './utils/transformCoordinates'
 import TileLayer from 'ol/layer/Tile'
 import XYZ from 'ol/source/XYZ'
-import CurrentInfoContext from '../App/contexts/CurrentInfoContext';
 import MapViewContext from '../CurrentInfoDisplay/contexts/MapViewContext';
 import { Map } from 'ol';
 import { Coordinate } from 'ol/coordinate';
 import { MapChangeControls } from './components/MapChangeControls';
 import { MapForm } from './components/MapForm';
+import { LocationContext,FormContext } from '../App/contexts/FormContext';
 
 const MapView = () => {
     
-    const { location, setLocation, climbingAreas } = useContext(CurrentInfoContext)!
+    const { location, setLocation } = useContext(LocationContext)!
+    const { climbingAreas } = useContext(FormContext)!
     const { earthView, setEarthView } = useContext(MapViewContext)!
     const [ map, setMap ] = useState<Map>(null!)
     const [ clickCoords, setClickCoords ] = useState<Coordinate>(null!)

@@ -1,13 +1,12 @@
-import WeatherContext from "../App/contexts/WeatherContext"
+
 import { useState,useEffect,useContext } from "react"
 import { parseDailyRain } from "./helpers/parseDailyRain"
 import { parseForecast } from "./helpers/parseForecast"
 import { parseHourly } from "./helpers/parseHourly"
 import { getPageData } from "../../components/NavArrows/utils/getPageData"
 import { NavArrows } from "../../components/NavArrows"
-import { TRainReadout } from "../RainReadout"
 import { THourly } from "./helpers/parseHourly"
-import { DailyWeatherType } from "./helpers/parseDailyRain"
+import { LocationContext,TableInfoContext } from "../App/contexts/FormContext"
 
 interface WeatherOptionsProps {
     setDailyData:React.Dispatch<React.SetStateAction<Array<any>>>
@@ -15,7 +14,8 @@ interface WeatherOptionsProps {
 
 const WeatherOptionsButton = (props:WeatherOptionsProps) => {
 
-    const { buttonTitle,setButtonTitle,weatherData } = useContext(WeatherContext)!
+    const { buttonTitle,setButtonTitle } = useContext(TableInfoContext)!
+    const { weatherData } = useContext(LocationContext)!
     const [ buttonPosition, setButtonPosition ] = useState('')
     const [ hourlyData, setHourlyData ] = useState<THourly[][]>([])
     const [ currentPageIndex, setCurrentPageIndex ] = useState(0)

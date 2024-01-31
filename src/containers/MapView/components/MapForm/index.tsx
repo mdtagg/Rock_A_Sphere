@@ -2,7 +2,8 @@ import { useState,useContext,SyntheticEvent } from "react"
 import { cancelPoint } from "./helpers/cancelPoint"
 import { Map } from "ol"
 import { Coordinate } from "ol/coordinate"
-import CurrentInfoContext from "../../../App/contexts/CurrentInfoContext"
+// import CurrentInfoContext from "../../../App/contexts/CurrentInfoContext"
+import { FormContext } from "../../../App/contexts/FormContext"
 import { transform } from 'ol/proj';
 
 type MapFormProps = {
@@ -15,7 +16,7 @@ type MapFormProps = {
 
 const MapForm = (props:MapFormProps) => {
     const { mapRef,popupElement,clickCoords,areaId,map } = props
-    const { setClimbingAreas } = useContext(CurrentInfoContext)!
+    const { setClimbingAreas } = useContext(FormContext)!
     const [ areaName, setAreaName ] = useState('')
 
     function handleSubmit(e:SyntheticEvent) {

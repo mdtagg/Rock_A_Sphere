@@ -7,13 +7,13 @@ import { getPrimaryRockClass } from "./helpers/getPrimaryRockClass";
 import { parseRockLithos } from "./helpers/parseRockLithos";
 import { useState,useEffect,useContext } from 'react';
 import { parseRainData } from './helpers/parseRainData';
-import WeatherContext from '../App/contexts/WeatherContext';
 import TableContext from "./contexts/TableContext";
 import { PastSevenRain } from "./components/PastSevenRain";
 import { PastThreeRain } from "./components/PastThreeRain";
 import { PrimaryRockType } from "./components/PrimaryRockType";
 import { KindsOfRock } from "./components/KindsOfRock";
 import { DaysToClimb } from "./components/DaysToClimb";
+import { LocationContext } from "../App/contexts/FormContext";
 
 export interface TableContextType {
     totalRain: TotalRainType | undefined;
@@ -50,7 +50,7 @@ export type TRockType = {
 
 const TableBody = () => {
 
-    const { weatherData, location } = useContext(WeatherContext)!
+    const { weatherData, location } = useContext(LocationContext)!
     const [ totalRain, setTotalRain ] = useState<TotalRainType | undefined>(undefined)
     const [ rockTypes ,setRockTypes ] = useState<TRockType | undefined>(undefined)
     const [ rockData, setRockData ] = useState<RockDataType | undefined>(undefined)
