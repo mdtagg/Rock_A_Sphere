@@ -1,7 +1,6 @@
 import { useContext } from "react"
 import { TableHead } from "./components/TableHead";
 import { TableBody } from "../TableBody";
-// import WeatherContext from "../App/contexts/WeatherContext";
 import { TableInfoContext } from "../App/contexts/FormContext";
 
 const TableContainer = () => {
