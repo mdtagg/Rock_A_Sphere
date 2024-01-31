@@ -1,11 +1,12 @@
 
-import CurrentInfoContext from "../../App/contexts/CurrentInfoContext"
+// import CurrentInfoContext from "../../App/contexts/CurrentInfoContext"
+import { LocationContext } from "../../App/contexts/FormContext"
 import { GetWeatherIcon } from "../utils/getWeatherIcon"
 import { useContext } from "react"
 
 const CurrentWeather = () => {
 
-    const { weatherData } = useContext(CurrentInfoContext)!
+    const { weatherData } = useContext(LocationContext)!
     let WeatherIcon: React.FC<React.SVGProps<SVGElement>> | undefined
 
     if(weatherData) {
