@@ -12,7 +12,8 @@ function parseRainData(weatherData:TDailyWeather) {
     const { pastSevenRain, pastThreeRain } = weatherData
 
     const [pastSevenTotal,pastThreeTotal] = [pastSevenRain,pastThreeRain].map(value => {
-        return value.reduce((total,amt) => total + amt)
+        const total = value.reduce((total,amt) => total + amt)
+        return parseFloat(total.toFixed(2))
     })
     
     return {
@@ -26,7 +27,7 @@ function parseRainData(weatherData:TDailyWeather) {
 function getColor(amtRain:number,upperLimit:number) {
 
     return (
-        amtRain === 0 ? 'text-green-500' :
+        amtRain == 0 ? 'text-green-500' :
         amtRain < upperLimit ? 'text-yellow-300' : 
         'text-red-600'
     )
