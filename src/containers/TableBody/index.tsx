@@ -63,6 +63,7 @@ const TableBody = () => {
 
     useEffect(() => {
         if(!weatherData) return
+        console.log(weatherData)
         const parsedRainData = parseRainData(weatherData.dailyWeather)
         setTotalRain(parsedRainData)
     },[weatherData])

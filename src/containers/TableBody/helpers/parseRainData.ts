@@ -6,27 +6,29 @@ interface TDailyWeather {
 }
 
 function parseRainData(weatherData:TDailyWeather) {
+   
+    //returns an object with the past 7 day and past 3 day rain totals
+    //as well as their associated colors (red,yellow,green)
     const { pastSevenRain, pastThreeRain } = weatherData
-    const rainData = [ pastSevenRain, pastThreeRain ]
-    const parsedData = rainData.map(data => {
-        return data.reduce((total,amt) => {
-            return total + amt
-        })
+
+    const [pastSevenTotal,pastThreeTotal] = [pastSevenRain,pastThreeRain].map(value => {
+        return value.reduce((total,amt) => total + amt)
     })
+    
     return {
-        pastSevenTotal:parsedData[0],
-        pastSevenColor:getColor(parsedData[0],2,0),
-        pastThreeTotal:parsedData[1],
-        pastThreeColor:getColor(parsedData[1],1,0)
+        pastSevenTotal,
+        pastSevenColor:getColor(pastSevenTotal,2),
+        pastThreeTotal,
+        pastThreeColor:getColor(pastThreeTotal,1)
     }
 }
 
-function getColor(dataFocus:number,upperLimit:number,lowerLimit:number) {
+function getColor(amtRain:number,upperLimit:number) {
 
     return (
-    dataFocus >= upperLimit ? 'text-red-600' :
-    dataFocus < upperLimit && dataFocus > lowerLimit ? 'text-orange-400':
-    'text-green-500'
+        amtRain === 0 ? 'text-green-500' :
+        amtRain < upperLimit ? 'text-yellow-300' : 
+        'text-red-600'
     )
 }
 
