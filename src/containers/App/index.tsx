@@ -7,9 +7,9 @@ import { TableContainer } from "../TableContainer"
 import { RainReadout } from "../RainReadout"
 import Footer from "./components/Footer/Index"
 import { parseWeatherData } from "./helpers/parseWeatherData"
-import CurrentInfoContext from "./contexts/CurrentInfoContext"
-import WeatherContext from "./contexts/WeatherContext"
 import { IWeatherData } from "./types/app"
+import { Form } from "../CurrentInfoDisplay/components/Form"
+import { FormContext,LocationContext,TableInfoContext } from "./contexts/FormContext"
 
 const App = () => {
 
@@ -17,22 +17,25 @@ const App = () => {
     const [ weatherData, setWeatherData ] = useState<IWeatherData | undefined>(undefined)
     const [ location, setLocation ] = useState(climbingAreas[0])
     const [ buttonTitle, setButtonTitle ] = useState('Wet Rock')
+    const [ toggleForm, setToggleForm ] = useState<boolean>(false)
 
-    const currentInfoContextValues = {
+    const locationContextValues = {
         location,
         setLocation,
-        weatherData,
+        weatherData
+    }
+
+    const fromContextValues = {
+        setToggleForm,
         climbingAreas,
         setClimbingAreas
     }
 
-    const weatherContextValues = {
-        location,
-        weatherData,
+    const tableInfoContextValues = {
         buttonTitle,
-        setButtonTitle,
+        setButtonTitle
     }
-
+    
     useEffect(() => {
         (async function (): Promise<void> {
             const weatherData = await WeatherDataService.getWeatherData(
@@ -63,22 +66,27 @@ const App = () => {
                 wide:justify-center
             "
         >
-            <CurrentInfoContext.Provider 
-                value={currentInfoContextValues}
+            <LocationContext.Provider
+                value={locationContextValues}
             >
+                <FormContext.Provider 
+                    value={fromContextValues}
+                >
+                    {!toggleForm ?
+                        <CurrentInfoDisplay/> 
+                        :
+                        <Form/>
+                    }   
+                </FormContext.Provider>
 
-                <CurrentInfoDisplay />
-
-            </CurrentInfoContext.Provider>
-
-            <WeatherContext.Provider 
-                value={weatherContextValues}
+            <TableInfoContext.Provider
+                value={tableInfoContextValues}
             >
-
                 <TableContainer />
                 <RainReadout />
+            </TableInfoContext.Provider>
 
-            </WeatherContext.Provider>
+            </LocationContext.Provider>
             
             <Footer/>
         </main>
