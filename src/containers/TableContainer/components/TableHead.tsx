@@ -2,7 +2,7 @@
 
 const TableHead = () => {
 
-    const tHeaderStyles = "flex-col border-r-2 border-black p-1 w-1/5 justify-center items-center"
+    const tHeaderStyles = "flex-col border-black p-1 w-1/5 justify-center items-center"
     const headerTitles = [
         "Past 7 Total Rain/Snow",
         "Past 3 Total Rain/Snow",
@@ -21,20 +21,21 @@ const TableHead = () => {
         )
     }
 
-    const Theader = (title:string) => {
+    const Theader = (title:string,idx:number) => {
 
         const moreInfo = 
         title === "Primary Rock Type" || title === "Other Rock Types" ? 
         moreInfoText() : 
         null
 
-        const noRBorder = title === "Days of Fragile Rock Left" ?
+        const rBorder = idx === headerTitles.length - 1 ?
         "border-r-0" : 
-        ""
+        "border-r-2"
 
         return (
             <th
-                className={`${tHeaderStyles} ${noRBorder}`}
+                key={title}
+                className={`${tHeaderStyles} ${rBorder}`}
             >
                 {title}
                 {moreInfo}
@@ -51,11 +52,7 @@ const TableHead = () => {
                     sm:text-xs
                 '
             >
-                {headerTitles.map(title => {
-                    return (
-                        Theader(title)
-                    )
-                })}
+                {headerTitles.map((title,idx) => Theader(title,idx))}
             </tr>
         </thead>
     )
