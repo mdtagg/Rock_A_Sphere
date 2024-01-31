@@ -2,14 +2,11 @@
 import { useState } from "react"
 import { MapView } from "../MapView"
 import { CurrentAreaContainer } from "../CurrentAreaContainer"
-import { Form } from "./components/Form"
 import MapViewContext from "./contexts/MapViewContext"
-import FormContext from "./contexts/FormContext"
 
 const CurrentInfoDisplay = () => {
 
     const [ earthView, setEarthView ] = useState<boolean>(false)
-    const [ toggleForm, setToggleForm ] = useState<boolean>(false)
 
     return (
         

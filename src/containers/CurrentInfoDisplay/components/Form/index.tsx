@@ -1,13 +1,12 @@
 
 import { handleSubmit } from "./utils/handleSubmit";
 import { useState, useEffect, useContext } from "react";
-import CurrentInfoContext from "../../../App/contexts/CurrentInfoContext";
-import FormContext from "../../contexts/FormContext";
+import { FormContext } from "../../../App/contexts/FormContext";
 
 const Form = () => {
 
-    const { setClimbingAreas } = useContext(CurrentInfoContext)!
-    const { setToggleForm } = useContext(FormContext)!
+    // const { setClimbingAreas } = useContext(CurrentInfoContext)!
+    const { setToggleForm,setClimbingAreas } = useContext(FormContext)!
     const [ error, setError ] = useState(false)
     const [ errorBorder, setErrorBorder ] = useState<string>()
 

@@ -2,14 +2,14 @@
 import { ReactComponent as DownCaret } from '../../../assets/svg/downCaret.svg'
 import { ReactComponent as Earth } from '../../../assets/svg/earth.svg'
 import { useContext } from "react"
-import CurrentInfoContext from "../../App/contexts/CurrentInfoContext"
 import EarthViewContext from "../../CurrentInfoDisplay/contexts/MapViewContext"
 import DropDownContext from '../contexts/DropDownContext'
+import { LocationContext } from '../../App/contexts/FormContext'
 
 const LocationsButton = () => {
 
     const { dropdown, setDropdown } = useContext(DropDownContext)!
-    const { location } = useContext(CurrentInfoContext)!
+    const { location } = useContext(LocationContext)!
     const { setEarthView } = useContext(EarthViewContext)!
 
     const rotate = dropdown ? 'animate-spinUp transform rotate-[540deg]' : 'animate-spinDown'
