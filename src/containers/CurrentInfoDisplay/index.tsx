@@ -18,27 +18,14 @@ const CurrentInfoDisplay = () => {
                 wide:gap-1
             '
             >
-            {!toggleForm &&
             <MapViewContext.Provider 
                 value={{earthView,setEarthView}}
             >
-
-                <FormContext.Provider 
-                    value={{setToggleForm}}
-                >
-                    <CurrentAreaContainer />
-                </FormContext.Provider>
                 
+                <CurrentAreaContainer />
                 <MapView />
+
             </MapViewContext.Provider>
-            }       
-            {toggleForm &&
-            <FormContext.Provider 
-                value={{setToggleForm}}
-            >
-                <Form />
-            </FormContext.Provider>
-            }
             
         </section>
         
