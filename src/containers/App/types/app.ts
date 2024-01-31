@@ -63,3 +63,20 @@ export interface WeatherContextType {
     buttonTitle: string
     setButtonTitle: ReactSetter<string>
 }
+
+export interface TLocationContext {
+    location: TClimbingArea
+    setLocation: ReactSetter<TClimbingArea>;
+    weatherData: IWeatherData | undefined
+}
+
+export interface TFormContext {
+    climbingAreas:TClimbingAreas
+    setClimbingAreas:ReactSetter<TClimbingAreas>
+    setToggleForm:ReactSetter<boolean>
+}
+
+export interface TTableInfoContext {
+    buttonTitle:string 
+    setButtonTitle:ReactSetter<string>
+}
