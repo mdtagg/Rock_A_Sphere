@@ -1,10 +1,5 @@
 
 import RockDataService from "../../services/RockDataService";
-import { getLithoCodes } from "./helpers/getLithoCodes";
-import { filterRockTypes } from "./helpers/filterRockTypes";
-import { getPrimaryRockCounts } from "./helpers/getPrimaryRockCounts"
-import { getPrimaryRockClass } from "./helpers/getPrimaryRockClass";
-import { parseRockLithos } from "./helpers/parseRockLithos";
 import { useState,useEffect,useContext } from 'react';
 import { parseRainData } from './helpers/parseRainData';
 import TableContext from "./contexts/TableContext";
@@ -14,6 +9,7 @@ import { PrimaryRockType } from "./components/PrimaryRockType";
 import { KindsOfRock } from "./components/KindsOfRock";
 import { DaysToClimb } from "./components/DaysToClimb";
 import { LocationContext } from "../App/contexts/FormContext";
+import { parseRockData } from "./helpers/parseRockData";
 
 export interface TableContextType {
     totalRain: TotalRainType | undefined;
@@ -33,7 +29,7 @@ export type KindOfRockType = {
 }
 
 export interface RockDataType {
-    primaryRockClass:string
+    primaryRockType:string
     kindsOfRock: KindOfRockType[]
 }
 
@@ -42,17 +38,17 @@ export type TRockType = {
     color:string 
     fill:number 
     group:string 
-    lith_id:string 
+    lith_id:number
     name:string 
-    t_units:string 
+    t_units:number
     type:string 
-}[]
+}
 
 const TableBody = () => {
 
     const { weatherData, location } = useContext(LocationContext)!
     const [ totalRain, setTotalRain ] = useState<TotalRainType | undefined>(undefined)
-    const [ rockTypes ,setRockTypes ] = useState<TRockType | undefined>(undefined)
+    const [ rockTypes ,setRockTypes ] = useState<Map<any,any> | undefined>(undefined)
     const [ rockData, setRockData ] = useState<RockDataType | undefined>(undefined)
 
     const tableContextValues = 
@@ -63,7 +59,6 @@ const TableBody = () => {
 
     useEffect(() => {
         if(!weatherData) return
-        console.log(weatherData)
         const parsedRainData = parseRainData(weatherData.dailyWeather)
         setTotalRain(parsedRainData)
     },[weatherData])
@@ -71,24 +66,21 @@ const TableBody = () => {
     useEffect(() => {
         (async function() {
             const rockTypes = await RockDataService.getRockTypes()
-            setRockTypes(rockTypes.success.data)
+            const rockTypeMap = new Map()
+            rockTypes.success.data.forEach((val:TRockType) => rockTypeMap.set(val.lith_id,val))
+            setRockTypes(rockTypeMap)
         })()
     },[])
 
     useEffect(() => {
         if(!rockTypes) return
         (async function() {
-            const rockData = await RockDataService.getRockData(
+            const currentLocationData = await RockDataService.getRockData(
                 location.coords.latitude,
                 location.coords.longitude
             )
-            const lithoCodes = getLithoCodes(rockData)
-            const allRockTypes = filterRockTypes(lithoCodes,rockTypes)
-            const primaryRockCounts = getPrimaryRockCounts(allRockTypes)
-            const primaryRockClass = getPrimaryRockClass(primaryRockCounts.rockClasses,primaryRockCounts.rockClassesArray)
-            const kindsOfRock = parseRockLithos(allRockTypes,primaryRockCounts.rockClassesArray)
-
-            setRockData({ primaryRockClass, kindsOfRock })
+            const rockData = parseRockData(currentLocationData,rockTypes)
+            setRockData(rockData)
         })()
     },[location,rockTypes])
     

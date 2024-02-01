@@ -8,7 +8,7 @@ const PrimaryRockType = () => {
     const { location } = useContext(LocationContext)!
     const { latitude, longitude } = location.coords
    
-    const { color } = getColor(rockData!.primaryRockClass)
+    const { color } = getColor(rockData!.primaryRockType)
     
     
     function getColor(data:string) {
@@ -30,10 +30,10 @@ const PrimaryRockType = () => {
                 >
                 <a 
                     className='text-clip' 
-                    href={`https://en.wikipedia.org/wiki/${rockData!.primaryRockClass}`} 
+                    href={`https://en.wikipedia.org/wiki/${rockData!.primaryRockType}`} 
                     target='_blank'
                 >
-                        {rockData!.primaryRockClass}
+                        {rockData!.primaryRockType}
                 </a>
                 </button>
             </div>

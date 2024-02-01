@@ -22,7 +22,7 @@ const DaysToClimb = () => {
         const lastSeven = totalRain!.pastSevenTotal
 
         if(
-            rockData!.primaryRockClass === 'sedimentary' ||
+            rockData!.primaryRockType === 'sedimentary' ||
             susceptible
         ) {
             if(lastThree >= 6 || lastSeven >= 9) {
