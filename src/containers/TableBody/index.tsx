@@ -116,7 +116,7 @@ const TableBody = () => {
         <tbody>
             {totalRain &&
             <TableContext.Provider value={tableContextValues}>
-                <tr className='flex items-center border-t-2 border-black h-32 sm:h-[100px] wide:h-[100px] wide:text-sm'>
+                <tr className='flex items-center h-32 sm:h-[100px] wide:h-[100px] wide:text-sm'>
                     <PastSevenRain />
                     <PastThreeRain />
                     <PrimaryRockType />

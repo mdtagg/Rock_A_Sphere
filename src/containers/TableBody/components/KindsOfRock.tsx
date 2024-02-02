@@ -21,7 +21,7 @@ const KindsOfRock = () => {
         
     },[rockData,currentPageIndex])
     return (
-        <td className={`flex flex-col justify-end items-center  border-r-2 border-black w-1/5 h-full gap-1`}>
+        <td className={`flex flex-col justify-end items-center border-r-2 border-b-2 border-black w-1/5 h-full`}>
             <div className='flex flex-col w-full gap-1 p-1 items-center justify-center h-full sm:p-0 wide:text-xs'>
                 {rockDisplay.map(item => {
                 return (

@@ -53,7 +53,7 @@ useEffect(() => {
 },[totalRain,rockData])
     
     return (
-        <td className='w-1/5'>
+        <td className='flex flex-col justify-center items-center h-full w-1/5 border-r-2 border-b-2 border-black'>
             <div className='flex flex-col items-center justify-center'>
                 <p className='text-3xl'>{daysToClimb}</p>
                 <p className='text-[.7rem] leading-none font-bold sm:text-[.4rem]'>

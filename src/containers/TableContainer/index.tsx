@@ -9,7 +9,6 @@ const TableContainer = () => {
     const hide = 
     buttonTitle !== 'Wet Rock' ? 'hidden' : 'flex'
 
-    const tHeaderStyles = "border-black p-1 w-1/5 "
     const headerTitles = [
         "Past 7 Total Rain/Snow",
         "Past 3 Total Rain/Snow",
@@ -28,22 +27,18 @@ const TableContainer = () => {
         )
     }
 
-    const Theader = (title:string,idx:number) => {
+    const Theader = (title:string) => {
 
         const moreInfo = 
         title === "Primary Rock Type" || title === "Other Rock Types" ? 
         moreInfoText() : 
         null
 
-        const rBorder = idx === headerTitles.length - 1 ?
-        "border-r-0" : 
-        "border-r-2"
-
         return (
             <th
                 key={title}
                 scope="col"
-                className={`${tHeaderStyles} ${rBorder}`}
+                className="border-black border-b-2 border-r-2 p-1 w-1/5"
             >
                 {title}
                 {moreInfo}
@@ -52,10 +47,10 @@ const TableContainer = () => {
     }
     
     return (
-        <table className={`${hide} flex-col w-2/5 bg-slate-200/50 border-2 border-black ml-11 sm:w-full sm:m-0 wide:w-screen wide:m-0 animate-fadeIn`}>
+        <table className={`${hide} flex-col w-2/5 bg-slate-200/50 border-t-2 border-l-2 border-black ml-11 sm:w-full sm:m-0 wide:w-screen wide:m-0 animate-fadeIn`}>
             <thead>
                 <tr className='flex wide:text-xs sm:text-xs'>
-                    {headerTitles.map((title,idx) => Theader(title,idx))}
+                    {headerTitles.map((title,idx) => Theader(title))}
                 </tr>
             </thead>
             <TableBody />
