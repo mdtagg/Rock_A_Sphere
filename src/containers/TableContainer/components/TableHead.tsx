@@ -2,7 +2,7 @@
 
 const TableHead = () => {
 
-    const tHeaderStyles = "flex-col border-black p-1 w-1/5 justify-center items-center"
+    const tHeaderStyles = "border-black p-1 w-1/5 "
     const headerTitles = [
         "Past 7 Total Rain/Snow",
         "Past 3 Total Rain/Snow",
