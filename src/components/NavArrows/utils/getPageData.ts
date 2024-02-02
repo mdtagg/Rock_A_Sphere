@@ -1,4 +1,4 @@
-import { ReactSetter } from "../../../containers/App"
+import { ReactSetter } from "../../../containers/App/types/app"
 
 function getPageData<T>(currentPageIndex:number,dataFocus:T[],setDataFocus:ReactSetter<T[]>,itemNum:number) {
     let areaStartIndex = currentPageIndex
