@@ -29,7 +29,7 @@ export type KindOfRockType = {
 }
 
 export interface RockDataType {
-    primaryRockType:string
+    primaryRockType:KindOfRockType[]
     kindsOfRock: KindOfRockType[]
 }
 
@@ -83,32 +83,6 @@ const TableBody = () => {
             setRockData(rockData)
         })()
     },[location,rockTypes])
-
-    const anchorNode = (link:string) => {
-        return (
-            <a 
-                className="text-black absolute text-[.2rem] font-extrabold"
-                href={link}
-                target="_blank"
-            >
-            </a>
-        )
-    }
-
-    const tableNode = (primary:Element,secondary?:Element) => {
-        return (
-            <td>
-                
-            </td>
-        )
-    }
-
-    const tableArray = [
-        // tableNode(`${totalRain?.pastSevenTotal}"`,anchorNode("https://open-meteo.com/")),
-        // tableNode(`${totalRain?.pastThreeTotal}`),
-        
-
-    ]
     
     return (
         <>
