@@ -80,3 +80,36 @@ export interface TTableInfoContext {
     buttonTitle:string 
     setButtonTitle:ReactSetter<string>
 }
+
+export interface TableContextType {
+    totalRain: TotalRainType | undefined;
+    rockData: RockDataType | undefined;
+}
+
+export interface TotalRainType {
+    pastSevenTotal:number
+    pastSevenColor:string
+    pastThreeTotal:number
+    pastThreeColor:string
+}
+
+export type KindOfRockType = {
+    name:string
+    color:string
+}
+
+export interface RockDataType {
+    primaryRockType:KindOfRockType[]
+    kindsOfRock: KindOfRockType[]
+}
+
+export type TRockType = {
+    class:string 
+    color:string 
+    fill:number 
+    group:string 
+    lith_id:number
+    name:string 
+    t_units:number
+    type:string 
+}
