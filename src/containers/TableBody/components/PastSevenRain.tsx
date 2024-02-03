@@ -1,12 +1,14 @@
-import TableContext from "../contexts/TableContext"
-import { useContext } from "react"
+// import TableContext from "../contexts/TableContext"
+// import { useContext } from "react"
+import { TotalRainType } from "../../App/types/app"
 
-const PastSevenRain = () => {
-
-    const { totalRain } = useContext(TableContext)!
+const PastSevenRain = (props:{totalRain:TotalRainType | undefined}) => {
+    const {totalRain} = props
+    // const { totalRain } = useContext(TableContext)!
 
     return (
-        <td className={`flex flex-col justify-end items-center border-r-2 border-b-2 border-black w-1/5 h-full`}>
+        // <td className={`flex flex-col justify-end items-center border-r-2 border-b-2 border-black w-1/5 h-full`}>
+            <>
             <p className={`text-xl flex items-center h-full font-bold ${totalRain!.pastSevenColor}`}>
                 {`${totalRain!.pastSevenTotal}"`}
             </p>
@@ -17,7 +19,8 @@ const PastSevenRain = () => {
             >
                 Weather data from Open-Medio
             </a>
-        </td>
+            </>
+        // </td>
     )
 }
 

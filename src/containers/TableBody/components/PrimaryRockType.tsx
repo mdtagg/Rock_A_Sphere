@@ -22,7 +22,8 @@ const PrimaryRockType = () => {
     }
 
     return (
-        <td className='flex flex-col border-r-2 border-b-2 border-black items-center justify-end w-1/5 p-1 h-full sm:p-0 '>
+        // <td className='flex flex-col border-r-2 border-b-2 border-black items-center justify-end w-1/5 p-1 h-full sm:p-0 '>
+            <>
             <div className='h-full w-full flex justify-center items-center'>
                 <button 
                     className='border-2 border-black rounded font-bold w-full text-center sm:text-xs sm:flex sm:justify-center sm:p-0  wide:text-xs' 
@@ -43,7 +44,8 @@ const PrimaryRockType = () => {
                 target='_blank'>
                     Geological data from MacroStrat
             </a>
-        </td>
+            </>
+        // </td>
     )
 }
 
