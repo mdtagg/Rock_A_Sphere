@@ -7,7 +7,7 @@ import { PastSevenRain } from "./components/PastSevenRain";
 import { PastThreeRain } from "./components/PastThreeRain";
 import { PrimaryRockType } from "./components/PrimaryRockType";
 import { KindsOfRock } from "./components/KindsOfRock";
-import { DaysToClimb } from "./components/DaysToClimb";
+import { DaysToClimb } from "../TableContainer/components/DaysToClimb";
 import { LocationContext } from "../App/contexts/FormContext";
 import { parseRockData } from "./helpers/parseRockData";
 

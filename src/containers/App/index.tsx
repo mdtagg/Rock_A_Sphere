@@ -45,6 +45,7 @@ const App = () => {
             )
             const parsedWeatherData = parseWeatherData(weatherData)
             setWeatherData(parsedWeatherData)
+                console.log("test")
         })()
         
     },[location])

@@ -1,7 +1,6 @@
 import RockDataService from "../../services/RockDataService";
 import { TotalRainType,RockDataType,TRockType } from "../App/types/app";
-import { parseRainData } from "./helpers/parseRainData";
-import { parseRockData } from "./helpers/parseRockData";
+import { parseRainData, parseRockData } from "./helpers"
 import { useState,useEffect,useContext } from "react"
 import { Header } from "./components/Header";
 import { LocationContext } from "../App/contexts/FormContext";
@@ -10,6 +9,7 @@ import { TextNode } from "./components/TextNode";
 import { AnchorNode } from "./components/AnchorNode";
 import { RockList } from "./components/RockList";
 import { ListWindow } from "./components/ListWindow";
+import { DaysToClimb } from "./components/DaysToClimb";
 
 const TableContainer = () => {
 
@@ -39,6 +39,7 @@ const TableContainer = () => {
                 text="Weather data from Open-Medio"
                 href="https://open-meteo.com/"
             />
+            
         </TextNode>,
 
         <TextNode
@@ -59,6 +60,10 @@ const TableContainer = () => {
             data={rockData.kindsOfRock}
             pages={3}
             MappingComponent={RockList}
+        />,
+        <DaysToClimb
+            rockData={rockData}
+            totalRain={totalRain}
         />
     ] : 
     []
