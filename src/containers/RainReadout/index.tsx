@@ -1,20 +1,12 @@
 import { useState,useContext } from "react"
 import { WeatherSquare } from "../WeatherSquare";
 import { v4 as uuidv4 } from 'uuid';
-// import WeatherContext from "../App/contexts/WeatherContext";
-import { WeatherOptionsButton } from "../WeatherOptionsButton";
-import { DailyWeatherType } from "../WeatherOptionsButton/helpers/parseDailyRain";
-import { THourly } from "../WeatherOptionsButton/helpers/parseHourly";
 import { TableInfoContext } from "../App/contexts/FormContext";
-
-export type TRainReadout = {
-    [key:number]: string | number
-}[]
+import { TRainReadout } from "../App/types/app";
 
 const RainReadout = () => {
 
-    const { buttonTitle } = useContext(TableInfoContext)!
-    const [ dailyData, setDailyData ] = useState<Array<TRainReadout>>([])
+    const { buttonTitle, dailyData } = useContext(TableInfoContext)!
 
     function findToday(data:TRainReadout,index:number,buttonTitle:string) {
        
@@ -28,32 +20,24 @@ const RainReadout = () => {
 
     return (
         <section 
-            className='flex flex-col gap-2 pl-10 sm:p-0 wide:gap-0 wide:p-0'
+            className='grid grid-cols-7 pr-11 h-full gap-10 text-black ml-11 sm:grid-cols-3 sm:grid-flow-row sm:p-0 sm:m-0 sm:gap-0 wide:gap-0 wide:p-0'
         >
-            <WeatherOptionsButton
-                setDailyData={setDailyData}
-            />
-            <div 
-                className='flex justify-between text-black w-full pr-10 sm:grid sm:grid-cols-3 sm:grid-flow-row sm:p-0 wide:p-0'
-            >
-                {
-                dailyData.map((data,index) => {
-                    
-                    findToday(data,index,buttonTitle)
+        {
+        dailyData.map((data,index) => {
+            
+            findToday(data,index,buttonTitle)
 
-                    return (
-                        <WeatherSquare
-                            data={data}
-                            key={uuidv4()}
-                            buttonTitle={buttonTitle}
-                        />
-                        )
-                    })
-                } 
-            </div>
+            return (
+                <WeatherSquare
+                    data={data}
+                    key={uuidv4()}
+                    buttonTitle={buttonTitle}
+                />
+                )
+            })
+        } 
         </section>
     )
-    
 }
 
 export { RainReadout }

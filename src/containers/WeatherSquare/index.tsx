@@ -2,18 +2,13 @@
 import { RainInfo } from './components/RainInfo';
 import { ForecastInfo } from './components/ForecastInfo';
 import { HourlyInfo } from './components/HourlyInfo';
-import { TRainReadout } from '../RainReadout';
+import { TRainReadout } from '../App/types/app';
 import { ReactNode } from 'react';
 
 interface WeatherSquareProps {
     data: TRainReadout
     key:string 
     buttonTitle:string
-}
-
-interface TRainInfo {
-    rainInfo: (string | number)[]
-    [key:number] : string | number
 }
 
 const WeatherSquare = (props:WeatherSquareProps) => {

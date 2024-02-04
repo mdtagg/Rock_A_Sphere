@@ -76,9 +76,15 @@ export interface TFormContext {
     setToggleForm:ReactSetter<boolean>
 }
 
+export type TRainReadout = {
+    [key:number]: string | number
+}[]
+
 export interface TTableInfoContext {
     buttonTitle:string 
     setButtonTitle:ReactSetter<string>
+    dailyData:TRainReadout[]
+    setDailyData:ReactSetter<TRainReadout[]>
 }
 
 export interface TableContextType {

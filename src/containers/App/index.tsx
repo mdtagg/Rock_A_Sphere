@@ -10,6 +10,8 @@ import { parseWeatherData } from "./helpers/parseWeatherData"
 import { IWeatherData } from "./types/app"
 import { Form } from "../CurrentInfoDisplay/components/Form"
 import { FormContext,LocationContext,TableInfoContext } from "./contexts/FormContext"
+import { WeatherOptionsButton } from "../WeatherOptionsButton"
+import { TRainReadout } from "./types/app"
 
 const App = () => {
 
@@ -18,6 +20,7 @@ const App = () => {
     const [ location, setLocation ] = useState(climbingAreas[0])
     const [ buttonTitle, setButtonTitle ] = useState('Wet Rock')
     const [ toggleForm, setToggleForm ] = useState<boolean>(false)
+    const [ dailyData, setDailyData ] = useState<Array<TRainReadout>>([])
 
     const locationContextValues = {
         location,
@@ -33,7 +36,9 @@ const App = () => {
 
     const tableInfoContextValues = {
         buttonTitle,
-        setButtonTitle
+        setButtonTitle,
+        dailyData,
+        setDailyData
     }
     
     useEffect(() => {
@@ -45,7 +50,6 @@ const App = () => {
             )
             const parsedWeatherData = parseWeatherData(weatherData)
             setWeatherData(parsedWeatherData)
-                console.log("test")
         })()
         
     },[location])
@@ -58,6 +62,7 @@ const App = () => {
                 bg-center 
                 h-screen 
                 w-screen 
+                gap-3
                 flex 
                 flex-col 
                 justify-between 
@@ -83,8 +88,12 @@ const App = () => {
                 <TableInfoContext.Provider
                     value={tableInfoContextValues}
                 >
-                    <TableContainer />
-                    <RainReadout />
+                    <WeatherOptionsButton/>
+                    <div className="flex flex-col gap-3 h-full">
+                        <TableContainer />
+                        <RainReadout />
+                    </div>
+
                 </TableInfoContext.Provider>
 
             </LocationContext.Provider>

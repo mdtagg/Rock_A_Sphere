@@ -8,18 +8,13 @@ import { NavArrows } from "../../components/NavArrows"
 import { THourly } from "./helpers/parseHourly"
 import { LocationContext,TableInfoContext } from "../App/contexts/FormContext"
 
-interface WeatherOptionsProps {
-    setDailyData:React.Dispatch<React.SetStateAction<Array<any>>>
-}
+const WeatherOptionsButton = () => {
 
-const WeatherOptionsButton = (props:WeatherOptionsProps) => {
-
-    const { buttonTitle,setButtonTitle } = useContext(TableInfoContext)!
+    const { buttonTitle,setButtonTitle,setDailyData } = useContext(TableInfoContext)!
     const { weatherData } = useContext(LocationContext)!
     const [ buttonPosition, setButtonPosition ] = useState('')
     const [ hourlyData, setHourlyData ] = useState<THourly[][]>([])
     const [ currentPageIndex, setCurrentPageIndex ] = useState(0)
-    const { setDailyData } = props
 
     function handleButtonChange(position:string,title:string) {
         setButtonPosition(position)
@@ -48,7 +43,7 @@ const WeatherOptionsButton = (props:WeatherOptionsProps) => {
     },[weatherData,buttonTitle,currentPageIndex])
 
     return (
-        <div className='flex gap-1'>
+        <div className='flex gap-1 ml-11 sm:m-0'>
             <div className=' bg-black rounded-xl w-48 h-6 flex relative border border-white '>
                 <div 
                     className={`flex justify-center items-center bg-white rounded-full h-full w-1/3 absolute z-20 top-0 bottom-0 right-2/3 duration-300 text-xs ${buttonPosition} cursor-default border border-black font-bold`}
