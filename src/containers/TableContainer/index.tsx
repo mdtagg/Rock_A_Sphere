@@ -5,8 +5,6 @@ import { useState,useEffect,useContext } from "react"
 import { Header } from "./components/Header";
 import { LocationContext } from "../App/contexts/FormContext";
 import { TableInfoContext } from "../App/contexts/FormContext";
-import { TextNode } from "./components/TextNode";
-import { AnchorNode } from "./components/AnchorNode";
 import { RockList } from "./components/RockList";
 import { ListWindow } from "./components/ListWindow";
 import { DaysToClimb } from "./components/DaysToClimb";
@@ -19,6 +17,10 @@ const TableContainer = () => {
     const [ rockTypes ,setRockTypes ] = useState<Map<any,any> | undefined>(undefined)
     const [ rockData, setRockData ] = useState<RockDataType | undefined>(undefined)
 
+    const tableDataStyle = "flex flex-col border-r-2 border-b-2 border-black items-center justify-end w-1/5 p-1 h-full sm:p-0"
+    const tableRainTextStyle = `text-xl flex items-center h-full font-bold`
+    const tableAnchorStyle = "text-black absolute text-[.2rem] font-extrabold"
+
     const hide = 
     buttonTitle !== 'Wet Rock' ? 'hidden' : 'flex'
 
@@ -29,44 +31,6 @@ const TableContainer = () => {
         "Other Rock Types",
         "Days of Fragile Rock Left"
     ]
-
-    const content = rockData ? [
-        <TextNode
-            text={`${totalRain?.pastSevenTotal}"`}
-            color={`${totalRain?.pastSevenColor}`}
-        >
-            <AnchorNode
-                text="Weather data from Open-Medio"
-                href="https://open-meteo.com/"
-            />
-            
-        </TextNode>,
-
-        <TextNode
-            text={`${totalRain?.pastThreeTotal}"`}
-            color={`${totalRain?.pastThreeColor}`}
-        />,
-        <>
-            <RockList
-                list={rockData!.primaryRockType}
-            />
-            <AnchorNode
-                text="Geological data from MacroStrat"
-                href={`https://macrostrat.org/map/loc/${location.coords.longitude}/${location.coords.latitude}#z=14`}
-            />
-        </>,
-        <ListWindow
-            reRenderData={rockData}
-            data={rockData.kindsOfRock}
-            pages={3}
-            MappingComponent={RockList}
-        />,
-        <DaysToClimb
-            rockData={rockData}
-            totalRain={totalRain}
-        />
-    ] : 
-    []
 
     useEffect(() => {
         if(!weatherData) return
@@ -105,13 +69,51 @@ const TableContainer = () => {
             {rockData && totalRain &&
             <tbody>
                 <tr className='flex items-center h-32 sm:h-[100px] wide:h-[100px] wide:text-sm'>
-                    {content.map(node => {
-                        return (
-                            <td className='flex flex-col border-r-2 border-b-2 border-black items-center justify-end w-1/5 p-1 h-full sm:p-0 '>
-                                {node}
-                            </td>
-                        )
-                    })}
+                    <td className={tableDataStyle}>
+                        <p
+                            className={`${tableRainTextStyle} ${totalRain?.pastSevenColor}`}
+                        >
+                            {totalRain?.pastSevenTotal}"
+                        </p>
+                        <a
+                            className={tableAnchorStyle}
+                            href="https://open-meteo.com/"
+                        >
+                            "Weather data from Open-Medio"
+                        </a>
+                    </td>
+                    <td className={tableDataStyle}>
+                        <p
+                            className={`${tableRainTextStyle} ${totalRain?.pastSevenColor}`}
+                        >
+                            {totalRain?.pastThreeTotal}"
+                        </p>
+                    </td>
+                    <td className={tableDataStyle}>
+                        <RockList
+                            list={rockData!.primaryRockType}
+                        />
+                        <a
+                            className={tableAnchorStyle}
+                            href={`https://macrostrat.org/map/loc/${location.coords.longitude}/${location.coords.latitude}#z=14`}
+                        >
+                            "Geological data from MacroStrat"
+                        </a>
+                    </td>
+                    <td className={tableDataStyle}>
+                        <ListWindow
+                            reRenderData={rockData}
+                            data={rockData.kindsOfRock}
+                            pages={3}
+                            MappingComponent={RockList}
+                        />
+                    </td>
+                    <td className={tableDataStyle}>
+                        <DaysToClimb
+                            rockData={rockData}
+                            totalRain={totalRain}
+                        />
+                    </td>
                 </tr>
             </tbody>}
         </table>

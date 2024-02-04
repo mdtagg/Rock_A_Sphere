@@ -16,7 +16,7 @@ export const parseRainData = (weatherData:TDailyWeather) => {
     function getColor(amtRain:number,upperLimit:number) {
         return (
             amtRain == 0 ? 'text-green-500' :
-            amtRain < upperLimit ? 'text-yellow-300' : 
+            amtRain < upperLimit ? 'text-yellow-500' : 
             'text-red-600'
         )
     }
