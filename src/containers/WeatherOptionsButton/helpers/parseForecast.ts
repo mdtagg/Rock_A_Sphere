@@ -1,10 +1,6 @@
 
 import { THourly } from "./parseHourly"
 
-// export type TForecast<Array<number>> = {
-//     [key:number]: string | number
-// }
-
 function parseForecast(data:THourly) {
     const parsedData = []
     let index = 0

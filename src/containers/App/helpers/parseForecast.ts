@@ -9,17 +9,18 @@ function parseForecast(data:any) {
     for(let key in data) {
         forecastData[key] = data[key].slice(7)
     }
-    for(let key in forecastData) {
-        if(key === 'time') {
-            forecastData[key] = forecastData[key].map((date:any) => {
-                return Intl.DateTimeFormat(undefined,dayOptions).format(date * 1000)
-            })
-        }else if(key === 'sunrise' || key === 'sunset') {
-            forecastData[key] = forecastData[key].map((date:any) => {
-                return Intl.DateTimeFormat(undefined,hourOptions).format(date * 1000)
-            })
-        }
-    }
+    forecastData["time"] = forecastData["time"].map((date:any) => {
+        return Intl.DateTimeFormat(undefined,dayOptions).format(date * 1000)
+    })
+
+    forecastData["sunrise"] = forecastData["sunrise"].map((date:any) => {
+        return Intl.DateTimeFormat(undefined,hourOptions).format(date * 1000)
+    })
+
+    forecastData["sunset"] = forecastData["sunset"].map((date:any) => {
+        return Intl.DateTimeFormat(undefined,hourOptions).format(date * 1000)
+    })
+    
     return forecastData
 }   
 

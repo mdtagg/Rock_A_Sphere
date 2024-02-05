@@ -1,6 +1,7 @@
 
 
 function parseHourlyWeather(data:any) {
+    console.log({data})
     const hourOptions:Intl.DateTimeFormatOptions = { hour: "numeric" }
     const hourlyData:any = {}
     for(let key in data) {
@@ -11,6 +12,7 @@ function parseHourlyWeather(data:any) {
             })
         }
     }
+    console.log({hourlyData})
     return hourlyData
 }
 
