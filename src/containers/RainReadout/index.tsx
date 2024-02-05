@@ -6,7 +6,7 @@ import { TRainReadout } from "../App/types/app";
 
 const RainReadout = () => {
 
-    const { buttonTitle, dailyData } = useContext(TableInfoContext)!
+    const { dailyData, rainData } = useContext(TableInfoContext)!
 
     function findToday(data:TRainReadout,index:number,buttonTitle:string) {
        
@@ -23,15 +23,15 @@ const RainReadout = () => {
             className='grid grid-cols-7 pr-11 h-full gap-10 text-black ml-11 sm:grid-cols-3 sm:grid-flow-row sm:p-0 sm:m-0 sm:gap-0 wide:gap-0 wide:p-0'
         >
         {
-        dailyData.map((data,index) => {
+        rainData.dailyData.map((data,index) => {
             
-            findToday(data,index,buttonTitle)
+            findToday(data,index,rainData.title)
 
             return (
                 <WeatherSquare
                     data={data}
                     key={uuidv4()}
-                    buttonTitle={buttonTitle}
+                    buttonTitle={rainData.buttonTitle}
                 />
                 )
             })

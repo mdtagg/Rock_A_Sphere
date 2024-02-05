@@ -31,10 +31,10 @@ const WeatherSquare = (props:WeatherSquareProps) => {
                 {day}
             </p>
             
-            {/* {buttonTitle === 'Wet Rock' &&
+            {buttonTitle === 'Wet Rock' &&
                 <RainInfo
                     rainInfo={data}
-                />} */}
+                />}
             {buttonTitle === 'Forecast' &&
                 <ForecastInfo
                     forecastInfo={data}

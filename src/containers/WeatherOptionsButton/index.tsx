@@ -10,40 +10,40 @@ import { LocationContext,TableInfoContext } from "../App/contexts/FormContext"
 
 const WeatherOptionsButton = () => {
 
-    const { buttonTitle,setButtonTitle,setDailyData } = useContext(TableInfoContext)!
+    const { rainData,setRainData } = useContext(TableInfoContext)!
     const { weatherData } = useContext(LocationContext)!
     const [ buttonPosition, setButtonPosition ] = useState('')
     const [ hourlyData, setHourlyData ] = useState<THourly[][]>([])
     const [ currentPageIndex, setCurrentPageIndex ] = useState(0)
 
-    function handleButtonChange(position:string,title:string) {
+    function handleButtonChange(position:string,buttonTitle:string) {
+
         setButtonPosition(position)
-        setButtonTitle(title)
+        const { forecast,hourlyWeather } = weatherData
+        const { pastSevenVals } = weatherData!.dailyWeather
+        
+
+        switch(buttonTitle) {
+            case 'Wet Rock':
+                setRainData({buttonTitle:'Wet Rock',dailyData:pastSevenVals})
+                break;
+            case 'Forecast':
+                setRainData({buttonTitle:"Forecast",dailyData:forecast})
+                break;
+            case 'Hourly':
+                // const hourlyData = parseHourly(hourlyWeather)
+                // setHourlyData(hourlyData)
+                // getPageData(currentPageIndex,hourlyData,setDailyData,7)
+                setRainData({buttonTitle:"Hourly",dailyData:hourlyWeather})
+                break;
+        }
     }
 
     useEffect(() => {
         if(!weatherData) return
-        const { dailyWeather, forecast, hourlyWeather } = weatherData
-        const { pastSevenVals } = weatherData.dailyWeather
-        // const { parsedForecast } = weatherData.forecast
-        switch(buttonTitle) {
-            case 'Wet Rock':
-                // const parsedRainData = parseDailyRain(dailyWeather)
-                // setDailyData(parsedRainData)
-                setDailyData(pastSevenVals)
-                break;
-            case 'Forecast':
-                // const forecastData = parseForecast(forecast)
-                setDailyData(forecast)
-                break;
-            case 'Hourly':
-                const hourlyData = parseHourly(hourlyWeather)
-                setHourlyData(hourlyData)
-                getPageData(currentPageIndex,hourlyData,setDailyData,7)
-                break;
-        }
-        
-    },[buttonTitle])
+        const { pastSevenVals } = weatherData!.dailyWeather
+        setRainData({buttonTitle:"Wet Rock",dailyData:pastSevenVals})
+    },[weatherData])
 
     return (
         <div className='flex gap-1 ml-11 sm:m-0'>
@@ -51,7 +51,7 @@ const WeatherOptionsButton = () => {
                 <div 
                     className={`flex justify-center items-center bg-white rounded-full h-full w-1/3 absolute z-20 top-0 bottom-0 right-2/3 duration-300 text-xs ${buttonPosition} cursor-default border border-black font-bold`}
                 >
-                    {`${buttonTitle}`}
+                    {rainData.buttonTitle}
                 </div>
                 <button 
                     className='text-white rounded-full h-full w-1/3 relative z-10 text-xs font-semibold' 
@@ -72,7 +72,7 @@ const WeatherOptionsButton = () => {
                     Hourly
                 </button>
             </div>
-            {buttonTitle === 'Hourly' &&
+            {rainData.title === 'Hourly' &&
             <div 
                 className='bg-slate-200/75 border border-black rounded-full flex justify-center items-center animate-fadeIn'
             >

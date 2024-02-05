@@ -11,7 +11,7 @@ import { DaysToClimb } from "./components/DaysToClimb";
 
 const TableContainer = () => {
 
-    const { buttonTitle } = useContext(TableInfoContext)!
+    const { rainData } = useContext(TableInfoContext)!
     const { weatherData, location } = useContext(LocationContext)!
     const [ rockTypes ,setRockTypes ] = useState<Map<any,any> | undefined>(undefined)
     const [ rockData, setRockData ] = useState<RockDataType | undefined>(undefined)
@@ -22,7 +22,7 @@ const TableContainer = () => {
     const tableAnchorStyle = "text-black absolute text-[.2rem] font-extrabold"
 
     const hide = 
-    buttonTitle !== 'Wet Rock' ? 'hidden' : 'flex'
+    rainData.buttonTitle !== 'Wet Rock' ? 'hidden' : 'flex'
 
     const headerTitles = [
         "Past 7 Total Rain/Snow",

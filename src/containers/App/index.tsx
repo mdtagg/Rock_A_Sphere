@@ -19,12 +19,10 @@ const App = () => {
     const [ climbingAreas, setClimbingAreas ] = UseLocalStorage('climbing-areas',getDefaultAreas())
     const [ weatherData, setWeatherData ] = useState<IWeatherData | undefined>(undefined)
     const [ location, setLocation ] = useState(climbingAreas[0])
-    const [ buttonTitle, setButtonTitle ] = useState('Wet Rock')
+    const [ rainData,setRainData ] = useState({buttonTitle:"Wet Rock",dailyData:[]})
+    console.log({rainData})
     const [ toggleForm, setToggleForm ] = useState<boolean>(false)
-    const [ dailyData, setDailyData ] = useState<Array<TRainReadout>>([])
     const [ earthView, setEarthView ] = useState<boolean>(false)
-    console.log({dailyData,buttonTitle})
-
 
     const locationContextValues = {
         location,
@@ -39,10 +37,8 @@ const App = () => {
     }
 
     const tableInfoContextValues = {
-        buttonTitle,
-        setButtonTitle,
-        dailyData,
-        setDailyData
+        rainData,
+        setRainData,
     }
     
     useEffect(() => {
