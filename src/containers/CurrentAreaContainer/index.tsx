@@ -1,5 +1,4 @@
-import { useState,useContext } from "react"
-import { LocationsContainer } from '../LocationsContainer'
+import { useState, useContext } from "react"
 import { ReactComponent as DownCaret } from '../../assets/svg/downCaret.svg'
 import { ReactComponent as EarthIcon } from '../../assets/svg/earth.svg'
 import { FormContext, LocationContext } from "../App/contexts/FormContext"
@@ -8,8 +7,6 @@ import { useDelayUnmount } from "./Hooks/useDelayUnmount"
 import DropDownContext from "./contexts/DropDownContext"
 import { GetWeatherIcon } from "./utils/getWeatherIcon"
 import { ListWindow } from "../TableContainer/components/ListWindow"
-import { TClimbingAreas } from "../App/types/app"
-import { ClimbingArea } from "../LocationsContainer/components/ClimbingArea"
 import { ClimbingAreasList } from "./components/ClimbingAreasList"
 
 export interface IDropDownContext {

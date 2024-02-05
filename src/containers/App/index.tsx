@@ -1,11 +1,11 @@
 import { useState,useEffect } from "react"
+import { ReactComponent as GitHubImg } from '../../assets/svg/github.svg'
 import { getDefaultAreas } from "./helpers/getDefaultAreas"
 import WeatherDataService from "../../services/WeatherDataService"
 import UseLocalStorage from "./hooks/UseLocalStorage"
 import { CurrentInfoDisplay } from "../CurrentInfoDisplay"
 import { TableContainer } from "../TableContainer"
 import { RainReadout } from "../RainReadout"
-import Footer from "./components/Footer/Index"
 import { parseWeatherData } from "./helpers/parseWeatherData"
 import { IWeatherData } from "./types/app"
 import { Form } from "../CurrentInfoDisplay/components/Form"
@@ -55,22 +55,9 @@ const App = () => {
     },[location])
 
     return (
+        <div className="h-screen w-screen">
         <main 
-            className="
-                bg-[url('./assets/images/redRock.jpg')]
-                bg-cover 
-                bg-center 
-                h-screen 
-                w-screen 
-                gap-3
-                flex 
-                flex-col 
-                justify-between 
-                pt-5
-                sm:p-0 
-                wide:p-0 
-                wide:justify-center
-            "
+            className="bg-[url('./assets/images/redRock.jpg')] bg-cover bg-center h-[95%] w-screen gap-3 flex flex-col justify-between py-5 sm:p-0 wide:p-0 wide:justify-center"
         >
             <LocationContext.Provider
                 value={locationContextValues}
@@ -97,9 +84,31 @@ const App = () => {
                 </TableInfoContext.Provider>
 
             </LocationContext.Provider>
-            
-            <Footer/>
         </main>
+        <footer 
+            className='flex items-center justify-between h-[5%] bg-gray-300/75 wide:h-6 wide:hidden'
+        >
+            <a 
+                className='flex justify-center text-2xl font-medium m-auto items-center gap-2 sm:text-sm sm:font-medium wide:text-sm'
+                href='https://github.com/mdtagg/Rock_Climbing_Weather_App'
+                target='_blank'
+            >
+                Developed by Michael Tagg
+                <GitHubImg
+                    className='h-5 w-5 wide:h-3 wide:w-3'
+                />
+            </a>
+            <a
+                className='text-black text-right text-[8px] italic leading-3 flex flex-col items-end'
+                href='https://unsplash.com/@aaronburden'
+                target="_blank"
+            >
+                Background Photo By: 
+                <br/>
+                Aaron Burden
+            </a>
+        </footer>
+    </div>
     )
 }
 
