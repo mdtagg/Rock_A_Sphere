@@ -1,35 +1,42 @@
 
-import { handleSubmit } from "../CurrentAreaContainer/utils/handleSubmit";
-import { useState, useEffect, useContext } from "react";
+import { useState, useContext } from "react";
 import { FormContext } from "../App/contexts/FormContext";
 
 const Form = () => {
 
-    const { setToggleForm,setClimbingAreas } = useContext(FormContext)!
+    const { setToggleForm, setClimbingAreas } = useContext(FormContext)!
     const [ error, setError ] = useState(false)
-    const [ errorBorder, setErrorBorder ] = useState<string>()
+    const [ areaName,setAreaName ] = useState("")
+    const [ coords,setCoords ] = useState("")
+    const errorBorder = error ? "border-red-500" : "border-black"
 
-    const submitProps = 
-    { 
-        setClimbingAreas, 
-        setToggleForm, 
-        setError 
-    }
-
-    function handleCancel() {
+    const handleSubmit = (e:React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
+        const coordinateRegex = /^[-+]?([1-8]?\d(\.\d+)?|90(\.0+)?),\s*[-+]?(180(\.0+)?|((1[0-7]\d)|([1-9]?\d))(\.\d+)?)$/
+        const coordTest = coordinateRegex.test(coords)
+        if(!coordTest) {
+            setError(true)
+            alert('Incorrect GPS coordinate format, correct example:\n\n34.12564779384274, -118.92728653222501\n\ntwo digits followed by a decimal point and up to 14 other digits. \n\nA comma separating the coordinates')
+            return
+        }
+        let [latitude,longitude] = coords.split(",")
+        setError(false)
         setToggleForm(false)
+        setClimbingAreas((prevAreas) => {
+            return [
+                ...prevAreas,
+                {
+                    title:areaName,
+                    coords: {latitude,longitude},
+                    id:coords
+                }
+            ]
+        })
     }
-
-    useEffect(() => {
-        const border =
-        error ? 'border-2 border-red-600' :
-        'border-2 border-black'
-        setErrorBorder(border)
-    },[error])
 
     return (
         <form 
-            onSubmit={(e) => handleSubmit(e,submitProps)} 
+            onSubmit={(e) => handleSubmit(e)} 
             className='flex flex-col justify-center items-center p-3 gap-2 border-2 border-black rounded w-full wide:gap-4 xl:h-full'
         >
             <div className='flex gap-2 sm:flex-col sm:gap-0 xl:flex-col xl:w-1/3' >
@@ -40,12 +47,13 @@ const Form = () => {
                     Latitude/Longitude: 
                 </label>
                 <input 
-                    className={`${errorBorder} placeholder:text-xs sm:w-fit wide:h-fit`} 
+                    className={`${errorBorder} border-2 placeholder:text-xs sm:w-fit wide:h-fit`} 
                     placeholder='copy + paste from google maps' 
                     type='text' 
                     id='coords' 
                     name='coords' 
                     required
+                    onChange={(e) => setCoords(e.target.value)}
                 >
                 </input>
                 <label 
@@ -59,7 +67,9 @@ const Form = () => {
                     type='text' 
                     id='name' 
                     name='title' 
-                    required>
+                    required
+                    onChange={(e) => setAreaName(e.target.value)}
+                >
                 </input>
             </div>
             <div className='flex gap-3 justify-center items-center sm:h-1/5 wide:h-1/3 xl:w-1/4'>
@@ -71,7 +81,7 @@ const Form = () => {
                 </button>
                 <button 
                     className='bg-red-500 rounded text-white border-2 border-black p-1 w-1/5 sm:w-1/2 wide:flex wide:justify-center wide:items-center wide:h-8 wide:w-20' 
-                    onClick={handleCancel}
+                    onClick={() => setToggleForm(false)}
                 >
                     Cancel
                 </button>

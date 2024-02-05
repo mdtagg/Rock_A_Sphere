@@ -46,14 +46,13 @@ export const ClimbingAreasList = (props:{list:TClimbingAreas}) => {
             )
         })
         }
-        <button
-            className="w-full border-2 font-medium hover:bg-green-500 border-black col-start-1 col-end-3 bg-white rounded sm:text-[9px]"
-            onClick={() => setToggleForm(true)}
-        >
-            Add Area
-        </button>
+            <button
+                className="w-full border-2 font-medium hover:bg-green-500 border-black col-start-1 col-end-3 bg-white rounded sm:text-[9px]"
+                onClick={() => setToggleForm(true)}
+            >
+                Add Area
+            </button>
         </div>
-        
     )
 }
 

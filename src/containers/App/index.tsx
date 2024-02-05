@@ -59,9 +59,7 @@ const App = () => {
 
     return (
         <div className="h-screen w-screen">
-            <main 
-                className="bg-[url('./assets/images/redRock.jpg')] bg-cover bg-center h-[95%] w-screen gap-3 flex flex-col justify-between py-5 sm:p-0 wide:p-0 wide:justify-center"
-            >
+            <main className="bg-[url('./assets/images/redRock.jpg')] bg-cover bg-center h-[95%] w-screen gap-3 flex flex-col justify-between py-5 sm:p-0 wide:p-0 wide:justify-center">
                 <LocationContext.Provider
                     value={locationContextValues}
                 >
@@ -69,9 +67,7 @@ const App = () => {
                         value={fromContextValues}
                     >
                         {!toggleForm ?
-                            <section 
-                                className='flex gap-10 sm:gap-2 wide:gap-1'
-                            >
+                            <section className='flex gap-10 sm:gap-2 wide:gap-1'>
                                 <CurrentAreaContainer
                                     setEarthView={setEarthView}
                                 />
