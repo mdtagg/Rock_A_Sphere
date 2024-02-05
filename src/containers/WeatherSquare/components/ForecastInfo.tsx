@@ -1,6 +1,6 @@
 import { ReactNode } from "react"
 import { GetWeatherIcon } from "../../CurrentAreaContainer/utils/getWeatherIcon"
-import { TRainReadout } from "../../RainReadout"
+import { TRainReadout } from "../../App/types/app"
 
 interface TForecastInfo {
     forecastInfo: TRainReadout

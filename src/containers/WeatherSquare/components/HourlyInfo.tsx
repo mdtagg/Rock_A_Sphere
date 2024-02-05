@@ -1,6 +1,6 @@
 /// <reference types="../../../../svg.d.ts" />
 import { GetWeatherIcon } from "../../CurrentAreaContainer/utils/getWeatherIcon"
-import { TRainReadout } from "../../RainReadout"
+import { TRainReadout } from "../../App/types/app"
 import { ReactNode } from "react"
 
 interface THourlyInfo {

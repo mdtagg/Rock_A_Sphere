@@ -1,7 +1,7 @@
 /// <reference types="../../../../svg.d.ts" />
 import { ReactNode } from 'react'
 import { ReactComponent as RainImg } from '../../../assets/svg/rain.svg'
-import { TRainReadout } from '../../RainReadout'
+import { TRainReadout } from '../../App/types/app'
 
 interface TRainInfo {
     rainInfo: TRainReadout
