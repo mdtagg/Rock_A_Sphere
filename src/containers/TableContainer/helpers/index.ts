@@ -1,5 +1,5 @@
 import { RockServiceType } from "../../../services/RockDataService"
-import { KindOfRockType } from "../../TableBody"
+import { KindOfRockType } from "../../App/types/app"
 
 interface TDailyWeather {
     days: string[];
