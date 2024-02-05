@@ -7,7 +7,6 @@ import { changeCoords } from './utils/changeCoords';
 import { transformCoordinates } from './utils/transformCoordinates'
 import TileLayer from 'ol/layer/Tile'
 import XYZ from 'ol/source/XYZ'
-import MapViewContext from '../CurrentInfoDisplay/contexts/MapViewContext';
 import { Map } from 'ol';
 import { Coordinate } from 'ol/coordinate';
 import { MapChangeControls } from './components/MapChangeControls';
@@ -20,7 +19,6 @@ const MapView = (props:TZoomOut) => {
     const { earthView,setEarthView } = props
     const { location, setLocation } = useContext(LocationContext)!
     const { climbingAreas } = useContext(FormContext)!
-    // const { earthView, setEarthView } = useContext(MapViewContext)!
     const [ map, setMap ] = useState<Map>(null!)
     const [ clickCoords, setClickCoords ] = useState<Coordinate>(null!)
     const [ areaId, setAreaId ] = useState('')
