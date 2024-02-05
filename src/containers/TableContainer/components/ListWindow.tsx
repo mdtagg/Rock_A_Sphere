@@ -6,10 +6,10 @@ export const ListWindow = (props:{reRenderData:any,data:any,pages:number,Mapping
    
     const {reRenderData,data,MappingComponent,pages} = props
     const List = MappingComponent
-    const [ currentPageIdx,setCurrentPageIdx ] = useState([0,pages])
-    const [ dataWindow,setDataWindow ] = useState(props.data.slice(0,pages))
-    const [moveRight,setMoveRight] = useState(false)
-    const [moveLeft,setMoveLeft] = useState(false)
+    const [ currentPageIdx, setCurrentPageIdx ] = useState([0,pages])
+    const [ dataWindow, setDataWindow ] = useState(props.data.slice(0,pages))
+    const [ moveRight, setMoveRight ] = useState(false)
+    const [ moveLeft, setMoveLeft ] = useState(false)
 
     const bumpRight = 
     moveRight ? 'animate-bumpRight' : ''
@@ -36,35 +36,36 @@ export const ListWindow = (props:{reRenderData:any,data:any,pages:number,Mapping
     },[currentPageIdx,reRenderData])
 
     return (
-        <div className='flex flex-col h-full w-full justify-center items-center'>
+        <>
+        <div className='flex flex-col justify-center h-full w-full items-center gap-2'>
             <List
                 list={dataWindow}
             />
-            <div className='flex'>
-                <LeftCaret 
-                    className={`h-4 w-4 cursor-pointer rounded-full relative ${bumpLeft}`}
-                    onClick={() => {
-                        handlePageBack()
-                        setMoveRight(false)
-                        setMoveLeft(true)
-                    }}
-                    onAnimationEnd={() => {
-                        setMoveLeft(false)
-                    }}
-                />
-                <RightCaret 
-                    className={`h-4 w-4 cursor-pointer rounded-full relative ${bumpRight}`}
-                    onClick={() => {
-                        handlePageForward()
-                        setMoveLeft(false)
-                        setMoveRight(true)
-                    }}
-                    onAnimationEnd={() => {
-                        setMoveRight(false)
-                    }}
-                />
-            </div>
-            
         </div>
+        <div className='flex'>
+            <LeftCaret 
+                className={`h-4 w-4 cursor-pointer rounded-full relative ${bumpLeft}`}
+                onClick={() => {
+                    handlePageBack()
+                    setMoveRight(false)
+                    setMoveLeft(true)
+                }}
+                onAnimationEnd={() => {
+                    setMoveLeft(false)
+                }}
+            />
+            <RightCaret 
+                className={`h-4 w-4 cursor-pointer rounded-full relative ${bumpRight}`}
+                onClick={() => {
+                    handlePageForward()
+                    setMoveLeft(false)
+                    setMoveRight(true)
+                }}
+                onAnimationEnd={() => {
+                    setMoveRight(false)
+                }}
+            />
+            </div>
+        </>
     )
 }
