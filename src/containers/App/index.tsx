@@ -3,7 +3,6 @@ import { ReactComponent as GitHubImg } from '../../assets/svg/github.svg'
 import { getDefaultAreas } from "./helpers/getDefaultAreas"
 import WeatherDataService from "../../services/WeatherDataService"
 import UseLocalStorage from "./hooks/UseLocalStorage"
-import { CurrentInfoDisplay } from "../CurrentInfoDisplay"
 import { TableContainer } from "../TableContainer"
 import { RainReadout } from "../RainReadout"
 import { parseWeatherData } from "./helpers/parseWeatherData"
@@ -12,6 +11,8 @@ import { Form } from "../CurrentInfoDisplay/components/Form"
 import { FormContext,LocationContext,TableInfoContext } from "./contexts/FormContext"
 import { WeatherOptionsButton } from "../WeatherOptionsButton"
 import { TRainReadout } from "./types/app"
+import { CurrentAreaContainer } from "../CurrentAreaContainer"
+import { MapView } from "../MapView"
 
 const App = () => {
 
@@ -21,6 +22,8 @@ const App = () => {
     const [ buttonTitle, setButtonTitle ] = useState('Wet Rock')
     const [ toggleForm, setToggleForm ] = useState<boolean>(false)
     const [ dailyData, setDailyData ] = useState<Array<TRainReadout>>([])
+    const [ earthView, setEarthView ] = useState<boolean>(false)
+
 
     const locationContextValues = {
         location,
@@ -56,58 +59,68 @@ const App = () => {
 
     return (
         <div className="h-screen w-screen">
-        <main 
-            className="bg-[url('./assets/images/redRock.jpg')] bg-cover bg-center h-[95%] w-screen gap-3 flex flex-col justify-between py-5 sm:p-0 wide:p-0 wide:justify-center"
-        >
-            <LocationContext.Provider
-                value={locationContextValues}
+            <main 
+                className="bg-[url('./assets/images/redRock.jpg')] bg-cover bg-center h-[95%] w-screen gap-3 flex flex-col justify-between py-5 sm:p-0 wide:p-0 wide:justify-center"
             >
-                <FormContext.Provider 
-                    value={fromContextValues}
+                <LocationContext.Provider
+                    value={locationContextValues}
                 >
-                    {!toggleForm ?
-                        <CurrentInfoDisplay/> 
-                        :
-                        <Form/>
-                    }   
-                </FormContext.Provider>
+                    <FormContext.Provider 
+                        value={fromContextValues}
+                    >
+                        {!toggleForm ?
+                            <section 
+                                className='flex gap-10 sm:gap-2 wide:gap-1'
+                            >
+                                <CurrentAreaContainer
+                                    setEarthView={setEarthView}
+                                />
+                                <MapView
+                                    earthView={earthView}
+                                    setEarthView={setEarthView}
+                                />
+                            </section> 
+                            :
+                            <Form/>
+                        }   
+                    </FormContext.Provider>
 
-                <TableInfoContext.Provider
-                    value={tableInfoContextValues}
+                    <TableInfoContext.Provider
+                        value={tableInfoContextValues}
+                    >
+                        <WeatherOptionsButton/>
+                        <div className="flex flex-col gap-3 h-full">
+                            <TableContainer />
+                            <RainReadout />
+                        </div>
+
+                    </TableInfoContext.Provider>
+
+                </LocationContext.Provider>
+            </main>
+            <footer 
+                className='flex items-center justify-between h-[5%] bg-gray-300/75 wide:h-6 wide:hidden'
+            >
+                <a 
+                    className='flex justify-center text-2xl font-medium m-auto items-center gap-2 sm:text-sm sm:font-medium wide:text-sm'
+                    href='https://github.com/mdtagg/Rock_Climbing_Weather_App'
+                    target='_blank'
                 >
-                    <WeatherOptionsButton/>
-                    <div className="flex flex-col gap-3 h-full">
-                        <TableContainer />
-                        <RainReadout />
-                    </div>
-
-                </TableInfoContext.Provider>
-
-            </LocationContext.Provider>
-        </main>
-        <footer 
-            className='flex items-center justify-between h-[5%] bg-gray-300/75 wide:h-6 wide:hidden'
-        >
-            <a 
-                className='flex justify-center text-2xl font-medium m-auto items-center gap-2 sm:text-sm sm:font-medium wide:text-sm'
-                href='https://github.com/mdtagg/Rock_Climbing_Weather_App'
-                target='_blank'
-            >
-                Developed by Michael Tagg
-                <GitHubImg
-                    className='h-5 w-5 wide:h-3 wide:w-3'
-                />
-            </a>
-            <a
-                className='text-black text-right text-[8px] italic leading-3 flex flex-col items-end'
-                href='https://unsplash.com/@aaronburden'
-                target="_blank"
-            >
-                Background Photo By: 
-                <br/>
-                Aaron Burden
-            </a>
-        </footer>
+                    Developed by Michael Tagg
+                    <GitHubImg
+                        className='h-5 w-5 wide:h-3 wide:w-3'
+                    />
+                </a>
+                <a
+                    className='text-black text-right text-[8px] italic leading-3 flex flex-col items-end'
+                    href='https://unsplash.com/@aaronburden'
+                    target="_blank"
+                >
+                    Background Photo By: 
+                    <br/>
+                    Aaron Burden
+                </a>
+            </footer>
     </div>
     )
 }

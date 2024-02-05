@@ -1,11 +1,13 @@
+import React from "react"
 
+export type TCurrentWeather ={
+    currentDate:string,
+    currentTemp:number,
+    weatherCode:number
+}
 
 export interface IWeatherData {
-    currentWeather: {
-        currentDate:string,
-        currentTemp:number,
-        weatherCode:number
-    }
+    currentWeather: TCurrentWeather
     dailyWeather: {
         days: string[],
         pastSevenRain: number[],
@@ -118,4 +120,9 @@ export type TRockType = {
     name:string 
     t_units:number
     type:string 
+}
+
+export type TZoomOut = {
+    earthView:boolean
+    setEarthView:ReactSetter<boolean>
 }

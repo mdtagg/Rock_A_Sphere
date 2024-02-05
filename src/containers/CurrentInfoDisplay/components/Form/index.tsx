@@ -1,5 +1,5 @@
 
-import { handleSubmit } from "./utils/handleSubmit";
+import { handleSubmit } from "../../../CurrentAreaContainer/utils/handleSubmit";
 import { useState, useEffect, useContext } from "react";
 import { FormContext } from "../../../App/contexts/FormContext";
 

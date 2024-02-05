@@ -1,12 +1,12 @@
 import { useContext } from "react"
 import { FormContext } from "../../App/contexts/FormContext"
 import { LocationContext } from "../../App/contexts/FormContext"
-import { ReactSetter, TClimbingAreas,TClimbingArea } from "../../App/types/app"
+import { TClimbingAreas,TClimbingArea } from "../../App/types/app"
 import DropDownContext from "../contexts/DropDownContext"
 
 export const ClimbingAreasList = (props:{list:TClimbingAreas}) => {
 
-    const { setClimbingAreas, climbingAreas } = useContext(FormContext)!
+    const { setClimbingAreas, climbingAreas,setToggleForm } = useContext(FormContext)!
     const { setLocation } = useContext(LocationContext)!
     const { setDropdown } = useContext(DropDownContext)!
     const { list } = props
@@ -46,6 +46,12 @@ export const ClimbingAreasList = (props:{list:TClimbingAreas}) => {
             )
         })
         }
+        <button
+            className="w-full border-2 font-medium hover:bg-green-500 border-black col-start-1 col-end-3 bg-white rounded sm:text-[9px]"
+            onClick={() => setToggleForm(true)}
+        >
+            Add Area
+        </button>
         </div>
         
     )

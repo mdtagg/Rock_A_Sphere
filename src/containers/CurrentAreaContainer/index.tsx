@@ -2,28 +2,27 @@ import { useState, useContext } from "react"
 import { ReactComponent as DownCaret } from '../../assets/svg/downCaret.svg'
 import { ReactComponent as EarthIcon } from '../../assets/svg/earth.svg'
 import { FormContext, LocationContext } from "../App/contexts/FormContext"
-import EarthViewContext from "../CurrentInfoDisplay/contexts/MapViewContext"
 import { useDelayUnmount } from "./Hooks/useDelayUnmount"
 import DropDownContext from "./contexts/DropDownContext"
 import { GetWeatherIcon } from "./utils/getWeatherIcon"
 import { ListWindow } from "../TableContainer/components/ListWindow"
 import { ClimbingAreasList } from "./components/ClimbingAreasList"
+import { ReactSetter } from "../App/types/app"
 
 export interface IDropDownContext {
     dropdown: boolean
     setDropdown: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const CurrentAreaContainer = () => {
+const CurrentAreaContainer = (props:{setEarthView:ReactSetter<boolean>}) => {
     
+    const { setEarthView } = props
+    const { location, weatherData } = useContext(LocationContext)!
+    const { climbingAreas } = useContext(FormContext)!
     const [ dropdown, setDropdown ] = useState<boolean>(false);
     const showDiv = useDelayUnmount(dropdown,250)
-    const { location,weatherData } = useContext(LocationContext)!
-    const { climbingAreas } = useContext(FormContext)!
-    const { setEarthView } = useContext(EarthViewContext)!
     const rotate = dropdown ? 'animate-spinUp transform rotate-[540deg]' : 'animate-spinDown'
-    const WeatherIcon = weatherData ? GetWeatherIcon(weatherData.currentWeather.weatherCode) : undefined
-
+    const WeatherIcon = weatherData ? GetWeatherIcon(weatherData!.currentWeather.weatherCode) : undefined
 
     const dropdownContextValues = 
     {
@@ -66,6 +65,7 @@ const CurrentAreaContainer = () => {
                         <WeatherIcon
                             className='w-8 sm:h-5 wide:h-5 wide:w-5 '
                         />
+                        
                     </p>
                 </div>
                 :

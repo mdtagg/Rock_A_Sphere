@@ -11,13 +11,8 @@ const CurrentInfoDisplay = () => {
     return (
         
         <section 
-            className='
-                flex 
-                gap-10
-                sm:gap-2 
-                wide:gap-1
-            '
-            >
+            className='flex gap-10 sm:gap-2 wide:gap-1'
+        >
             <MapViewContext.Provider 
                 value={{earthView,setEarthView}}
             >

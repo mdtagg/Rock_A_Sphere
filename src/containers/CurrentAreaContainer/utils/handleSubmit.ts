@@ -1,7 +1,6 @@
 import { parseLatLong } from "./parseLatLong"
 import { v4 as uuidv4 } from 'uuid';
-import { ReactSetter } from "../../../../App";
-import { TClimbingAreas } from "../../../../App/hooks/UseLocalStorage";
+import { ReactSetter,TClimbingAreas } from "../../App/types/app";
 
 type submitProps = {
     setClimbingAreas: ReactSetter<TClimbingAreas>
@@ -13,7 +12,6 @@ export type LatLong = {
     latitude: string,
     longitude: string
 }
-
 
 function handleSubmit(e:React.FormEvent,submitProps:submitProps) {
     e.preventDefault()

@@ -13,12 +13,14 @@ import { Coordinate } from 'ol/coordinate';
 import { MapChangeControls } from './components/MapChangeControls';
 import { MapForm } from './components/MapForm';
 import { LocationContext,FormContext } from '../App/contexts/FormContext';
+import { TZoomOut } from '../App/types/app';
 
-const MapView = () => {
+const MapView = (props:TZoomOut) => {
     
+    const { earthView,setEarthView } = props
     const { location, setLocation } = useContext(LocationContext)!
     const { climbingAreas } = useContext(FormContext)!
-    const { earthView, setEarthView } = useContext(MapViewContext)!
+    // const { earthView, setEarthView } = useContext(MapViewContext)!
     const [ map, setMap ] = useState<Map>(null!)
     const [ clickCoords, setClickCoords ] = useState<Coordinate>(null!)
     const [ areaId, setAreaId ] = useState('')
