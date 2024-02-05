@@ -2,12 +2,12 @@ import { useState,useEffect } from "react"
 import { KindOfRockType,RockDataType } from "../../App/types/app"
 import { TotalRainType } from "../../App/types/app"
 
-const DaysToClimb = (props:{rockData:RockDataType,totalRain:TotalRainType | undefined}) => {
+const DaysToClimb = (props:{rockData:RockDataType,weatherData:any}) => {
 
     const [ daysToClimb, setDaysToClimb ] = useState('0')
-    const { rockData,totalRain } = props
+    const { rockData,weatherData } = props
     const { name } = rockData!.primaryRockType as unknown as KindOfRockType
-    const { pastThreeTotal,pastSevenTotal } = totalRain!
+    const { pastThreeTotal,pastSevenTotal } = weatherData.dailyWeather.rainTotals
 
     function getDaysToClimb() {
 
@@ -43,9 +43,9 @@ const DaysToClimb = (props:{rockData:RockDataType,totalRain:TotalRainType | unde
 }
 
 useEffect(() => {
-    if(!totalRain || !rockData) return 
+    if(!weatherData || !rockData) return 
     getDaysToClimb()
-},[totalRain,rockData])
+},[weatherData,rockData])
     
     return (
         <div className='flex flex-col items-center justify-center'>

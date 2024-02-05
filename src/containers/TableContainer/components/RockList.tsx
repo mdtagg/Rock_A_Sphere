@@ -13,6 +13,7 @@ export const RockList = (props:{list:KindOfRockType[]}) => {
                     <button 
                         className={`border-2 border-black rounded font-bold w-full text-center sm:text-xs sm:flex sm:justify-center sm:p-0  wide:text-xs`}
                         style={{backgroundColor:color}}
+                        key={name}
                     >
                         <a 
                             className='text-clip' 

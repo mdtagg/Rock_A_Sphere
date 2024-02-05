@@ -14,10 +14,11 @@ interface WeatherSquareProps {
 const WeatherSquare = (props:WeatherSquareProps) => {
 
     const { data,buttonTitle } = props
-    
     const color = 
-    buttonTitle === 'Wet Rock' ? data[2] :
-    data[data.length - 1]
+    buttonTitle === 'Wet Rock' ? 
+    data[2] :
+    data[1].color
+
     const day = data[0] as ReactNode
 
     return (
@@ -30,10 +31,10 @@ const WeatherSquare = (props:WeatherSquareProps) => {
                 {day}
             </p>
             
-            {buttonTitle === 'Wet Rock' &&
+            {/* {buttonTitle === 'Wet Rock' &&
                 <RainInfo
                     rainInfo={data}
-                />}
+                />} */}
             {buttonTitle === 'Forecast' &&
                 <ForecastInfo
                     forecastInfo={data}

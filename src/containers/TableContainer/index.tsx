@@ -13,9 +13,9 @@ const TableContainer = () => {
 
     const { buttonTitle } = useContext(TableInfoContext)!
     const { weatherData, location } = useContext(LocationContext)!
-    const [ totalRain, setTotalRain ] = useState<TotalRainType | undefined>(undefined)
     const [ rockTypes ,setRockTypes ] = useState<Map<any,any> | undefined>(undefined)
     const [ rockData, setRockData ] = useState<RockDataType | undefined>(undefined)
+    const weatherValues = !weatherData ? null : weatherData.dailyWeather.rainTotals
 
     const tableDataStyle = "flex flex-col border-r-2 border-b-2 border-black items-center justify-end w-1/5 p-1 h-full sm:p-0"
     const tableRainTextStyle = `text-xl flex items-center h-full font-bold`
@@ -31,12 +31,6 @@ const TableContainer = () => {
         "Other Rock Types",
         "Days of Fragile Rock Left"
     ]
-
-    useEffect(() => {
-        if(!weatherData) return
-        const parsedRainData = parseRainData(weatherData.dailyWeather)
-        setTotalRain(parsedRainData)
-    },[weatherData])
 
     useEffect(() => {
         (async function() {
@@ -58,7 +52,7 @@ const TableContainer = () => {
             setRockData(rockData)
         })()
     },[location,rockTypes])
-    
+
     return (
         <table className={`${hide} flex-col w-2/5 bg-slate-200/50 border-t-2 border-l-2 border-black ml-11 sm:w-full sm:m-0 wide:w-screen wide:m-0 animate-fadeIn`}>
             <thead>
@@ -66,14 +60,14 @@ const TableContainer = () => {
                     {headerTitles.map((title) => Header(title))}
                 </tr>
             </thead>
-            {rockData && totalRain &&
+            {rockData && weatherData &&
             <tbody>
                 <tr className='flex items-center h-32 sm:h-[100px] wide:h-[100px] wide:text-sm'>
                     <td className={tableDataStyle}>
                         <p
-                            className={`${tableRainTextStyle} ${totalRain?.pastSevenColor}`}
+                            className={`${tableRainTextStyle} ${weatherValues.pastSevenColor}`}
                         >
-                            {totalRain?.pastSevenTotal}"
+                            {weatherValues.pastSevenTotal}"
                         </p>
                         <a
                             className={tableAnchorStyle}
@@ -84,9 +78,9 @@ const TableContainer = () => {
                     </td>
                     <td className={tableDataStyle}>
                         <p
-                            className={`${tableRainTextStyle} ${totalRain?.pastSevenColor}`}
+                            className={`${tableRainTextStyle} ${weatherValues.pastThreeColor}`}
                         >
-                            {totalRain?.pastThreeTotal}"
+                            {weatherValues.pastThreeTotal}"
                         </p>
                     </td>
                     <td className={tableDataStyle}>
@@ -111,7 +105,7 @@ const TableContainer = () => {
                     <td className={tableDataStyle}>
                         <DaysToClimb
                             rockData={rockData}
-                            totalRain={totalRain}
+                            weatherData={weatherData}
                         />
                     </td>
                 </tr>

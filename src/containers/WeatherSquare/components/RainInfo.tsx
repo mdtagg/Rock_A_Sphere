@@ -9,7 +9,6 @@ interface TRainInfo {
 
 const RainInfo = (props:TRainInfo) => {
     const rainInfo = props.rainInfo[1] as ReactNode
-
     return (
         <div className='flex gap-2 items-center'>
             <RainImg

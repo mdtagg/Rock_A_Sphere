@@ -23,6 +23,7 @@ const App = () => {
     const [ toggleForm, setToggleForm ] = useState<boolean>(false)
     const [ dailyData, setDailyData ] = useState<Array<TRainReadout>>([])
     const [ earthView, setEarthView ] = useState<boolean>(false)
+    console.log({dailyData,buttonTitle})
 
 
     const locationContextValues = {

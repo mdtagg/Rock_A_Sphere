@@ -22,7 +22,6 @@ export const parseRainData = (weatherData:TDailyWeather) => {
     }
 
     const [pastSevenTotal,pastThreeTotal] = [pastSevenRain,pastThreeRain].map(value => {
-        console.log(pastThreeRain)
         const total = value.reduce((total,amt) => total + amt)
         return parseFloat(total.toFixed(2))
     })

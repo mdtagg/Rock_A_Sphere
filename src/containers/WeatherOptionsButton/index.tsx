@@ -24,14 +24,17 @@ const WeatherOptionsButton = () => {
     useEffect(() => {
         if(!weatherData) return
         const { dailyWeather, forecast, hourlyWeather } = weatherData
+        const { pastSevenVals } = weatherData.dailyWeather
+        // const { parsedForecast } = weatherData.forecast
         switch(buttonTitle) {
             case 'Wet Rock':
-                const parsedRainData = parseDailyRain(dailyWeather)
-                setDailyData(parsedRainData)
+                // const parsedRainData = parseDailyRain(dailyWeather)
+                // setDailyData(parsedRainData)
+                setDailyData(pastSevenVals)
                 break;
             case 'Forecast':
-                const forecastData = parseForecast(forecast)
-                setDailyData(forecastData)
+                // const forecastData = parseForecast(forecast)
+                setDailyData(forecast)
                 break;
             case 'Hourly':
                 const hourlyData = parseHourly(hourlyWeather)
@@ -40,7 +43,7 @@ const WeatherOptionsButton = () => {
                 break;
         }
         
-    },[weatherData,buttonTitle,currentPageIndex])
+    },[buttonTitle])
 
     return (
         <div className='flex gap-1 ml-11 sm:m-0'>
