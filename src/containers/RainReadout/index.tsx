@@ -9,8 +9,6 @@ const RainReadout = () => {
     const { rainData } = useContext(TableInfoContext)!
     const { buttonTitle,dailyData } = rainData
 
-    console.log({dailyData})
-
     return (
         
         <section 

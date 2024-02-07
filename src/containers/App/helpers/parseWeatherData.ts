@@ -36,6 +36,7 @@ interface WeatherData {
 }
 
 function parseDates(data) {
+    console.log({data})
     const { current_weather,daily,hourly } = data
     const currentOptions:Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' }
     const dayOptions:Intl.DateTimeFormatOptions = { weekday:'short',day:'numeric' }
