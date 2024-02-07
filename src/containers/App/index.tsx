@@ -19,7 +19,6 @@ const App = () => {
     const [ weatherData, setWeatherData ] = useState<test | undefined>(undefined)
     const [ location, setLocation ] = useState(climbingAreas[0])
     const [ rainData,setRainData ] = useState<TRainData>({buttonTitle:"Wet Rock",dailyData:[]})
-    console.log({rainData})
     const [ toggleForm, setToggleForm ] = useState<boolean>(false)
     const [ earthView, setEarthView ] = useState<boolean>(false)
 

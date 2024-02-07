@@ -11,23 +11,11 @@ function getColor(precip:number) {
 
 function parseForecast(data:numArrayObj) {
     
-    const dayOptions:Intl.DateTimeFormatOptions = { weekday:'short',day:'numeric' }
-    const hourOptions:Intl.DateTimeFormatOptions = {hour: "numeric"}
-    const forecastData = {} as IHourly
-
-    for(let key in data) {
-        forecastData[key] = data[key].slice(7)
-        
-        if(key === "time" || key === "sunrise" || key === "sunset") {
-            const options = key === "time" ? dayOptions : hourOptions
-            const forecastKey = forecastData[key] as number[]
-            forecastData[key] = parseDate(forecastKey,options)
-        }
-    }
+    // const forecastData = {} as IHourly
     
     const parsedData = []
     for(let i = 0;i <= 6;i++) {
-        const { time,weathercode,apparent_temperature_max,sunrise,sunset,precipitation_sum,precipitation_hours,precipitation_probability_max,windspeed_10m_max,snowfall_sum } = forecastData
+        const { time,weathercode,apparent_temperature_max,sunrise,sunset,precipitation_sum,precipitation_hours,precipitation_probability_max,windspeed_10m_max,snowfall_sum } = data
         const day = []
 
         day[0] = i == 0 ? "Today": time[i]

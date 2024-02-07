@@ -17,14 +17,12 @@ function getRainBgColor(data:number) {
 
 const parseDailyWeather = (data:numArrayObj) => {
  
-    const days = data.time.map((date:number) => {
-        return Intl.DateTimeFormat(undefined,{ weekday:'short',day:'numeric' })
-        .format(date * 1000)})
-        .slice(1,8)
-
+    //grabbing the date time and parsing it into weekday,am or pm 
+    const days = data.time.slice(1,8)
     const pastSevenRain = data.precipitation_sum.slice(1,8)
     const pastThreeRain = data.precipitation_sum.slice(5,8)
 
+    //getting the total amt of rain for past seven and past three
     const [pastSevenTotal,pastThreeTotal] = [pastSevenRain,pastThreeRain].map(value => {
         const total = value.reduce((total:number,amt:number) => total + amt)
         return parseFloat(total.toFixed(2))
@@ -32,6 +30,8 @@ const parseDailyWeather = (data:numArrayObj) => {
 
     const rainReadoutVals:[string,number,string,number][] = []
 
+    //gettig the colors for the past seven and past three, changing the current date to today
+    //getting the values for the rain readout component
     days.forEach((day:string,index:number) => {
         const color = getRainBgColor(pastSevenRain[index])
         const isToday = index == 6 ? "Today" : day

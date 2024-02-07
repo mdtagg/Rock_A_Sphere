@@ -2,6 +2,7 @@ import { parseCurrentWeather } from "./parseCurrentWeather"
 import { parseDailyWeather } from "./parseDailyWeather"
 import { parseHourlyWeather } from "./parseHourlyWeather"
 import { parseForecast } from "./parseForecast"
+import { parseDate } from "../utils"
 
 export type numObj = {
     [key:string] : number
@@ -32,8 +33,22 @@ interface WeatherData {
 
 }
 
+function parseDates(data) {
+    const { current_weather,daily,hourly } = data
+    const currentOptions = { year: 'numeric', month: 'long', day: 'numeric' }
+    const dayOptions:Intl.DateTimeFormatOptions = { weekday:'short',day:'numeric' }
+    const hourOptions:Intl.DateTimeFormatOptions = {hour: "numeric"}
+
+    current_weather.time = parseDate([current_weather.time],currentOptions)
+    daily.time = parseDate(daily.time,dayOptions)
+    daily.sunrise = parseDate(daily.sunrise,hourOptions)
+    daily.sunset = parseDate(daily.sunset,hourOptions)
+    hourly.time = parseDate(hourly.time,hourOptions)
+}
+
 const parseWeatherData = (data:WeatherData) => {
-  
+    
+    parseDates(data)
     const { current_weather, daily , hourly } = data
     const currentWeather = parseCurrentWeather(current_weather)
     const dailyWeather = parseDailyWeather(daily)
@@ -44,3 +59,7 @@ const parseWeatherData = (data:WeatherData) => {
 }
 
 export { parseWeatherData }
+
+/*
+should be current daily and hourly weather 
+*/
