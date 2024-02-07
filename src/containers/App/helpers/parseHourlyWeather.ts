@@ -1,3 +1,5 @@
+import { numArrayObj } from "./parseWeatherData"
+import { IHourly } from "../types/app"
 
 function getColor(precip:number) {
     return precip === 0 ? 'bg-green-200/70' :
@@ -5,10 +7,10 @@ function getColor(precip:number) {
     'bg-red-400/70'
 }
 
-function parseHourlyWeather(data:any) {
+function parseHourlyWeather(data:numArrayObj) {
     
     const hourOptions:Intl.DateTimeFormatOptions = { hour: "numeric" }
-    const hourlyData:any = {}
+    const hourlyData = {} as IHourly
     for(let key in data) {
         hourlyData[key] = data[key].slice(168)
         if(key === 'time') {
@@ -22,6 +24,7 @@ function parseHourlyWeather(data:any) {
     for(let i = 0;i <= 167;i++) {
         const { time,weathercode,precipitation,snowfall,apparent_temperature,windspeed_10m } = hourlyData
         const day = []
+        const precip = precipitation[i] as number
 
         day[0] = time[i]
         day[1] = {
@@ -30,7 +33,7 @@ function parseHourlyWeather(data:any) {
             snow_fall:snowfall[i],
             apparent_temperature:apparent_temperature[i],
             windspeed_10m:windspeed_10m[i],
-            color:getColor(precipitation[i])
+            color:getColor(precip)
         }
         parsedData[i] = day
     }

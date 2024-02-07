@@ -7,7 +7,7 @@ const DaysToClimb = (props:{rockData:RockDataType,weatherData:any}) => {
     const [ daysToClimb, setDaysToClimb ] = useState('0')
     const { rockData,weatherData } = props
     const { name } = rockData!.primaryRockType as unknown as KindOfRockType
-    const { pastThreeTotal,pastSevenTotal } = weatherData.dailyWeather.rainTotals
+    const { pastThreeTotal,pastSevenTotal } = weatherData.dailyWeather
 
     function getDaysToClimb() {
 

@@ -1,5 +1,7 @@
 
-function getColor(amtRain:number,upperLimit:number) {
+import { numArrayObj } from "./parseWeatherData"
+
+function getRainTextColor(amtRain:number,upperLimit:number) {
     return (
         amtRain == 0 ? 'text-green-500' :
         amtRain < upperLimit ? 'text-yellow-500' : 
@@ -7,8 +9,14 @@ function getColor(amtRain:number,upperLimit:number) {
     )
 }
 
-const parseDailyWeather = (data:any) => {
-    // const dayOptions: Intl.DateTimeFormatOptions = { weekday:'short',day:'numeric' }
+function getRainBgColor(data:number) {
+    return data == 0 ? 'bg-green-200/70' : 
+    data > 0 && data <= 0.5 ? 'bg-yellow-200/70' : 
+    'bg-red-400/70'
+}
+
+const parseDailyWeather = (data:numArrayObj) => {
+ 
     const days = data.time.map((date:number) => {
         return Intl.DateTimeFormat(undefined,{ weekday:'short',day:'numeric' })
         .format(date * 1000)})
@@ -21,36 +29,22 @@ const parseDailyWeather = (data:any) => {
         const total = value.reduce((total:number,amt:number) => total + amt)
         return parseFloat(total.toFixed(2))
     })
-    const rainTotals = {
-        pastSevenTotal,
-        pastSevenColor:getColor(pastSevenTotal,2),
-        pastThreeTotal,
-        pastThreeColor:getColor(pastThreeTotal,1)
-    }
 
-    let pastSevenVals:any[] = []
+    const rainReadoutVals:[string,number,string,number][] = []
 
-    function getColorDaily(index:number) {
-        const rainAmt = pastSevenRain[index]
-        return rainAmt == 0 ? 'bg-green-200/70' : 
-        rainAmt > 0 && rainAmt <= 0.5 ? 'bg-yellow-200/70' : 
-        'bg-red-400/70'
-    }
-   
     days.forEach((day:string,index:number) => {
-        const color = getColorDaily(index)
-        pastSevenVals[index] = [day,pastSevenRain[index],color]
+        const color = getRainBgColor(pastSevenRain[index])
+        const isToday = index == 6 ? "Today" : day
+        rainReadoutVals[index] = [isToday,pastSevenRain[index],color,pastSevenTotal]
     })
 
-    return {days,pastSevenRain,pastThreeRain,rainTotals,pastSevenVals}
+    return {
+        pastSevenTotal,
+        pastSevenColor:getRainTextColor(pastSevenTotal,2),
+        pastThreeTotal,
+        pastThreeColor:getRainTextColor(pastThreeTotal,1),
+        rainReadoutVals
+    }
 }
 
 export { parseDailyWeather }
-
-/*
-{
-    rainTotals
-    pastSevenRainInfo ([day,amt,color])
-
-}
-*/

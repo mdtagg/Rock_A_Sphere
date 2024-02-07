@@ -1,18 +1,20 @@
 
-import { RainInfo } from './components/RainInfo';
-import { ForecastInfo } from './components/ForecastInfo';
-import { HourlyInfo } from './components/HourlyInfo';
-import { TRainReadout } from '../App/types/app';
+import { RainInfo } from '../RainReadout/components/RainInfo';
+import { ForecastInfo } from '../RainReadout/components/ForecastInfo';
+import { HourlyInfo } from '../RainReadout/components/HourlyInfo';
+import { TRainData, TRainReadout } from '../App/types/app';
 import { ReactNode } from 'react';
+import { ListWindow } from '../TableContainer/components/ListWindow';
 
 interface WeatherSquareProps {
-    data: TRainReadout
+    data: TRainData
     key:string 
     buttonTitle:string
 }
 
 const WeatherSquare = (props:WeatherSquareProps) => {
 
+    
     const { data,buttonTitle } = props
     const color = 
     buttonTitle === 'Wet Rock' ? 

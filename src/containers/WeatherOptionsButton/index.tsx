@@ -13,36 +13,31 @@ const WeatherOptionsButton = () => {
     const { rainData,setRainData } = useContext(TableInfoContext)!
     const { weatherData } = useContext(LocationContext)!
     const [ buttonPosition, setButtonPosition ] = useState('')
-    const [ hourlyData, setHourlyData ] = useState<THourly[][]>([])
-    const [ currentPageIndex, setCurrentPageIndex ] = useState(0)
 
     function handleButtonChange(position:string,buttonTitle:string) {
 
         setButtonPosition(position)
-        const { forecast,hourlyWeather } = weatherData
-        const { pastSevenVals } = weatherData!.dailyWeather
+        const { forecast } = weatherData!
+        const { rainReadoutVals } = weatherData!.dailyWeather
         
-
         switch(buttonTitle) {
             case 'Wet Rock':
-                setRainData({buttonTitle:'Wet Rock',dailyData:pastSevenVals})
+                setRainData({buttonTitle:'Wet Rock',dailyData:rainReadoutVals})
                 break;
             case 'Forecast':
                 setRainData({buttonTitle:"Forecast",dailyData:forecast})
                 break;
             case 'Hourly':
-                // const hourlyData = parseHourly(hourlyWeather)
-                // setHourlyData(hourlyData)
-                // getPageData(currentPageIndex,hourlyData,setDailyData,7)
-                setRainData({buttonTitle:"Hourly",dailyData:hourlyWeather})
+                const hourly = weatherData?.hourlyWeather.slice(1,8)
+                setRainData({buttonTitle:"Hourly",dailyData:hourly})
                 break;
         }
     }
 
     useEffect(() => {
         if(!weatherData) return
-        const { pastSevenVals } = weatherData!.dailyWeather
-        setRainData({buttonTitle:"Wet Rock",dailyData:pastSevenVals})
+        const { rainReadoutVals} = weatherData!.dailyWeather
+        setRainData({buttonTitle:"Wet Rock",dailyData:rainReadoutVals})
     },[weatherData])
 
     return (
@@ -72,15 +67,15 @@ const WeatherOptionsButton = () => {
                     Hourly
                 </button>
             </div>
-            {rainData.title === 'Hourly' &&
+            {rainData.buttonTitle === 'Hourly' &&
             <div 
                 className='bg-slate-200/75 border border-black rounded-full flex justify-center items-center animate-fadeIn'
             >
                 <NavArrows
-                    dataFocus={hourlyData}
-                    currentPageIndex={currentPageIndex}
-                    setCurrentPageIndex={setCurrentPageIndex}
-                    pageLength={7}
+                    fullData={weatherData?.hourlyWeather}
+                    setData={setRainData}
+                    data={rainData}
+                    pages={7}
                 />
             </div>}
         </div>

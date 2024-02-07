@@ -1,12 +1,12 @@
 import { ReactNode } from "react"
 import { GetWeatherIcon } from "../../CurrentAreaContainer/utils/getWeatherIcon"
-import { TRainReadout } from "../../App/types/app"
+import { TForecast, TRainReadout } from "../../App/types/app"
 
 interface TForecastInfo {
     forecastInfo: TRainReadout
 }
 
-const ForecastInfo = (props:TForecastInfo) => {
+const ForecastInfo = (props:TForecast) => {
 
     const { apparent_temperature_max,precipitation_sum,snowfall_sum,sunrise,sunset,weathercode } = props.forecastInfo[1]
     const WeatherIcon = GetWeatherIcon(weathercode)

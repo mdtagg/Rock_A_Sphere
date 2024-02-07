@@ -1,20 +1,15 @@
 /// <reference types="../../../../svg.d.ts" />
 import { GetWeatherIcon } from "../../CurrentAreaContainer/utils/getWeatherIcon"
-import { TRainReadout } from "../../App/types/app"
-import { ReactNode } from "react"
+import { IHourly, TRainReadout } from "../../App/types/app"
 
 interface THourlyInfo {
     hourlyInfo: TRainReadout
 }
 
-const HourlyInfo = (props:THourlyInfo) => {
+const HourlyInfo = (props:IHourly) => {
+
     const { weathercode,precipitation,snowfall,apparent_temperature,windspeed_10m } = props.hourlyInfo[1]
-    // const weatherCode = hourlyInfo[8] as unknown as number
     const WeatherIcon = GetWeatherIcon(weathercode)
-    // const temp = hourlyInfo[2] as ReactNode
-    // const rain = hourlyInfo[4] as ReactNode
-    // const snow = hourlyInfo[7] as ReactNode
-    // const wind = hourlyInfo[9] as ReactNode
 
     return (
         <div className='flex flex-col'>
