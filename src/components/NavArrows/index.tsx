@@ -1,20 +1,24 @@
 import { ReactComponent as LeftCaret } from '../../assets/svg/left-caret.svg'
 import { ReactComponent as RightCaret } from '../../assets/svg/right-caret.svg'
 import { useState,useEffect } from 'react'
+import { ReactSetter } from '../../containers/App/types/app'
 
 interface NavArrowProps {
-    currentPageIndex:number 
-    dataFocus:any[]
-    setCurrentPageIndex: React.Dispatch<React.SetStateAction<number>>
-    pageLength:number
+    data:any[]
+    setData:ReactSetter<any>
+    pages:number
+    fullData:any
 }
 
 const NavArrows = (props:NavArrowProps) => {
 
-    const { dataFocus,currentPageIndex,setCurrentPageIndex,pageLength } = props
-    const [totalPages,setTotalPages] = useState(1)
+    const { data,setData,pages,fullData } = props
+    
+    const [ currentPageIdx, setCurrentPageIdx ] = useState([0,pages])
     const [moveRight,setMoveRight] = useState(false)
     const [moveLeft,setMoveLeft] = useState(false)
+    const [start,end] = currentPageIdx
+
 
     const bumpRight = 
     moveRight ? 'animate-bumpRight' : ''
@@ -23,44 +27,21 @@ const NavArrows = (props:NavArrowProps) => {
     moveLeft ? 'animate-bumpLeft' : ''
 
     function handlePageBack() {
-        if(
-            dataFocus.length <= pageLength  || 
-            !dataFocus ||
-            currentPageIndex === 0
-            ) {
-                return
-            }
-        setCurrentPageIndex((prevPage) => {
-            prevPage -= 1
-            return prevPage
-        })
+        if(start > 0) {
+            setCurrentPageIdx([start - pages,end - pages])
+        }
     }
 
     function handlePageForward() {
-        if(dataFocus.length < pageLength || 
-            !dataFocus.length ||
-            currentPageIndex === totalPages - 1) {
-                return
-            }
-        setCurrentPageIndex((prevPage) => {
-            prevPage += 1
-            return prevPage
-        })
+        if(end <= fullData.length) {
+            setCurrentPageIdx([start + pages,end + pages])
+        }
     }
 
     useEffect(() => {
-
-        if(!dataFocus.length) return 
-        const pageNumbers = Math.ceil(dataFocus.length / pageLength)
-        if(currentPageIndex === pageNumbers) {
-            setCurrentPageIndex((prevIndex) => {
-                prevIndex -= 1
-                return prevIndex
-            })
-        }
-        setTotalPages(pageNumbers)
-
-    },[dataFocus])
+        const slice = fullData.slice(currentPageIdx[0],currentPageIdx[1])
+        setData({...data,dailyData:slice})
+    },[currentPageIdx])
 
     return (
         <div className='flex justify-center items-center'>
