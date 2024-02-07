@@ -22,7 +22,7 @@ const CurrentAreaContainer = (props:{setEarthView:ReactSetter<boolean>}) => {
     const [ dropdown, setDropdown ] = useState<boolean>(false);
     const showDiv = useDelayUnmount(dropdown,250)
     const rotate = dropdown ? 'animate-spinUp transform rotate-[540deg]' : 'animate-spinDown'
-    const WeatherIcon = weatherData ? GetWeatherIcon(weatherData!.currentWeather.weatherCode) : undefined
+    const WeatherIcon = weatherData ? GetWeatherIcon(weatherData!.currentWeather.weathercode) : undefined
 
     const dropdownContextValues = 
     {
@@ -56,12 +56,12 @@ const CurrentAreaContainer = (props:{setEarthView:ReactSetter<boolean>}) => {
             {!showDiv && weatherData && WeatherIcon ?
                 <div className='flex flex-col gap-2 h-fit sm:gap-0 wide:gap-0 sm:text-xs wide:text-sm'>
 
-                    {weatherData.currentWeather.currentDate}
+                    {weatherData.currentWeather.time}
                   
                     <p
                         className='flex justify-center text-4xl items-center gap-3 sm:text-2xl sm:gap-2 wide:gap-3 wide:text-xl '                
                     >
-                        {`${weatherData.currentWeather.currentTemp}\u00b0F`}
+                        {`${weatherData.currentWeather.temperature}\u00b0F`}
                         <WeatherIcon
                             className='w-8 sm:h-5 wide:h-5 wide:w-5 '
                         />

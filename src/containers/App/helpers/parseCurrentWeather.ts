@@ -4,8 +4,8 @@ import { numObj } from "./parseWeatherData";
 
 function parseCurrentWeather(data:numObj) {
     
-    const { currentTemp,currentDate,weatherCode } = data
-    return {currentTemp,currentDate,weatherCode}
+    const { temperature,time,weathercode } = data
+    return {temperature,time,weathercode}
 }
 
 export { parseCurrentWeather }

@@ -17,7 +17,6 @@ function getRainBgColor(data:number) {
 
 const parseDailyWeather = (data:numArrayObj) => {
  
-    //grabbing the date time and parsing it into weekday,am or pm 
     const days = data.time.slice(1,8)
     const pastSevenRain = data.precipitation_sum.slice(1,8)
     const pastThreeRain = data.precipitation_sum.slice(5,8)

@@ -65,9 +65,9 @@ const TableContainer = () => {
                 <tr className='flex items-center h-32 sm:h-[100px] wide:h-[100px] wide:text-sm'>
                     <td className={tableDataStyle}>
                         <p
-                            className={`${tableRainTextStyle} ${weatherValues.pastSevenColor}`}
+                            className={`${tableRainTextStyle} ${weatherData.tableVals.pastSevenVals.color}`}
                         >
-                            {weatherValues.pastSevenTotal}"
+                            {weatherData.tableVals.pastSevenVals.total}"
                         </p>
                         <a
                             className={tableAnchorStyle}
@@ -78,9 +78,9 @@ const TableContainer = () => {
                     </td>
                     <td className={tableDataStyle}>
                         <p
-                            className={`${tableRainTextStyle} ${weatherValues.pastThreeColor}`}
+                            className={`${tableRainTextStyle} ${weatherData.tableVals.pastThreeVals.color}`}
                         >
-                            {weatherValues.pastThreeTotal}"
+                            {weatherData.tableVals.pastThreeVals.total}"
                         </p>
                     </td>
                     <td className={tableDataStyle}>
