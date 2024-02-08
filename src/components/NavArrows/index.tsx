@@ -38,7 +38,7 @@ const NavArrows = (props:NavArrowProps) => {
     }
 
     useEffect(() => {
-        const slice = fullData.slice(currentPageIdx[0],currentPageIdx[1])
+        const slice = fullData.slice(start,end)
         setData({...data,dailyData:slice})
     },[currentPageIdx])
 
