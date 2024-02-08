@@ -22,7 +22,7 @@ const CurrentAreaContainer = (props:{setEarthView:ReactSetter<boolean>}) => {
     const [ dropdown, setDropdown ] = useState<boolean>(false);
     const showDiv = useDelayUnmount(dropdown,250)
     const rotate = dropdown ? 'animate-spinUp transform rotate-[540deg]' : 'animate-spinDown'
-    const WeatherIcon = weatherData ? GetWeatherIcon(weatherData!.currentWeather.weathercode) : undefined
+    const WeatherIcon = weatherData ? GetWeatherIcon(weatherData!.currentWeather.weathercode as number) : undefined
 
     const dropdownContextValues = 
     {
