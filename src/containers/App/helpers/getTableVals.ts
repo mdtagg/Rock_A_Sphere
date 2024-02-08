@@ -1,4 +1,9 @@
-    
+
+interface ITableVals {
+    total:string | number
+    color:string
+}
+
 function getRainTextColor(amtRain:number,upperLimit:number) {
     return (
         amtRain == 0 ? 'text-green-500' :
@@ -7,20 +12,21 @@ function getRainTextColor(amtRain:number,upperLimit:number) {
     )
 }
 
-export const getTableVals = (data) => { 
+export const getTableVals = (data:number[]) => { 
 
-    const pastSevenVals = {total:0,color:""}
-    const pastThreeVals = {total:0,color:""}
+    const pastSevenVals:ITableVals = {total:0,color:""}
+    const pastThreeVals:ITableVals = {total:0,color:""}
 
     data.forEach((value,idx) => {
-        pastSevenVals.total += value
-        if(idx > 4) pastThreeVals.total += value
+        pastSevenVals.total = pastSevenVals.total as number + value 
+        if(idx > 4) pastThreeVals.total = pastThreeVals.total as number + value
     })
 
-    pastSevenVals.total = parseFloat(pastSevenVals.total).toFixed(2) 
-    pastThreeVals.total = parseFloat(pastThreeVals.total).toFixed(2)
-    pastSevenVals.color = getRainTextColor(pastSevenVals.total,2)
-    pastThreeVals.color = getRainTextColor(pastThreeVals.total,1)
+    pastSevenVals.color = getRainTextColor(pastSevenVals.total as number,2)
+    pastThreeVals.color = getRainTextColor(pastThreeVals.total as number,1)
+    pastSevenVals.total = parseFloat(pastSevenVals.total as string).toFixed(2) 
+    pastThreeVals.total = parseFloat(pastThreeVals.total as string).toFixed(2)
+    
 
     return {pastSevenVals,pastThreeVals}
     

@@ -31,7 +31,8 @@ const parseDailyWeather = (data:numArrayObj) => {
 
     //gettig the colors for the past seven and past three, changing the current date to today
     //getting the values for the rain readout component
-    days.forEach((day:string,index:number) => {
+    // @ts-ignore
+    days.forEach((day:string,index:number) => { 
         const color = getRainBgColor(pastSevenRain[index])
         const isToday = index == 6 ? "Today" : day
         rainReadoutVals[index] = [isToday,pastSevenRain[index],color,pastSevenTotal]

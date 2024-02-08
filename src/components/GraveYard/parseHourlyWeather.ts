@@ -1,5 +1,4 @@
 import { numArrayObj } from "../../containers/App/helpers/parseWeatherData"
-import { IHourly } from "../../containers/App/types/app"
 
 function getColor(precip:number) {
     return precip === 0 ? 'bg-green-200/70' :
@@ -28,6 +27,7 @@ function parseHourlyWeather(data:numArrayObj) {
     }
     
     const currentHour = new Intl.DateTimeFormat(undefined,{hour:'numeric'}).format(new Date())
+    // @ts-ignore
     while(currentHour !== parsedData[0][0]) parsedData.shift();
    
     return parsedData

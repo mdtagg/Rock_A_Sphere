@@ -1,5 +1,6 @@
 {
   "include": ["**/*"],
+  "exclude":["src/GraveYard"],
   "compilerOptions": {
     "allowJs": false,
     "target": "ESNext",                                 

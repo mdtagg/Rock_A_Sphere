@@ -1,98 +1,90 @@
 import React from "react"
 
-export type TCurrentWeather ={
-    currentDate:string,
-    currentTemp:number,
-    weatherCode:number
-}
-
-// export type TForecast = {
-//     [key:string]:number[]
+// export type TCurrentWeather ={
+//     currentDate:string,
+//     currentTemp:number,
+//     weatherCode:number
 // }
 
-export interface IHourly {
-    apparent_temperature_max: number[],
-    precipitation_hours: number[],
-    precipitation_probability_max: number[],
-    precipitation_sum: number[],
-    snowfall_sum:number[],
-    time: string[],
-    weathercode: number[],
-    windspeed_10m_max: number[],
+export interface IDaily {
+    apparent_temperature_max:number[]
+    precipitation_sum:number[]
+    sunrise:string[]
+    sunset:string[]
+    time:string[]
+    weathercode:number[]
     [key:string] : Array<number | string> 
 }
 
-type TDailyWeather = {
-    pastSevenColor:string,
-    pastSevenTotal:number,
-    pastThreeColor:string,
-    pastThreeTotal:number,
-    rainReadoutVals:[string,number,string,string][]
-
+export interface IHourly {
+    apparent_temperature:number[]
+    precipitation:number[]
+    time:string[]
+    weathercode:number[]
+    snowfall:number[]
+    windspeed_10m:number[]
+    [key:string] : Array<number | string> 
 }
+
+// type TDailyWeather = {
+//     pastSevenColor:string,
+//     pastSevenTotal:number,
+//     pastThreeColor:string,
+//     pastThreeTotal:number,
+//     rainReadoutVals:[string,number,string,string][]
+
+// }
 
 export type TForecast = {
     [key:number]:[string,IHourly]
 }
-
-// export type 
-// {
-//         apparent_temperature_max: number[],
-//         precipitation_hours: number[],
-//         precipitation_probability_max: number[],
-//         precipitation_sum: number[],
-//         snowfall_sum:number[],
-//         time: string[],
-//         weathercode: number[],
-//         windspeed_10m_max: number[]
-//     }
  
 
-export interface IWeatherData {
-    currentWeather: TCurrentWeather
-    dailyWeather: TDailyWeather
-    forecast: TForecast
-    hourlyWeather: TForecast
-}
+// export interface IWeatherData {
+//     currentWeather: TCurrentWeather
+//     dailyWeather: TDailyWeather
+//     forecast: TForecast
+//     hourlyWeather: TForecast
+// }
 
 
-export interface test {
-    currentWeather: {
-        currentTemp: number;
-        currentDate: string;
-        weatherCode: number;
-    }
+// export interface test {
+//     currentWeather: {
+//         currentTemp: number;
+//         currentDate: string;
+//         weatherCode: number;
+//     }
 
-    dailyWeather: {
-        pastSevenTotal: number;
-        pastSevenColor: string;
-        pastThreeTotal: number;
-        pastThreeColor: string;
-        rainReadoutVals: [string, number, string, number][];
-    }
+//     dailyWeather: {
+//         pastSevenTotal: number;
+//         pastSevenColor: string;
+//         pastThreeTotal: number;
+//         pastThreeColor: string;
+//         rainReadoutVals: [string, number, string, number][];
+//     }
 
-    hourlyWeather:(string | {
-        weathercode: number;
-        precipitation: string | number;
-        snow_fall: string | number;
-        apparent_temperature: string | number;
-        windspeed_10m: string | number;
-        color: string;
-    })[][]
+//     hourlyWeather:(string | {
+//         weathercode: number;
+//         precipitation: string | number;
+//         snow_fall: string | number;
+//         apparent_temperature: string | number;
+//         windspeed_10m: string | number;
+//         color: string;
+//     })[][]
 
-    forecast:(string | {
-        weathercode: number;
-        apparent_temperature_max: number;
-        sunrise: string | number;
-        sunset: string | number;
-        precipitation_sum: number;
-        precipitation_hours: number;
-        precipitation_probability_max: number;
-        windspeed_10m_max: number;
-        snowfall_sum: number;
-        color: string;
-    })[][]
-}
+//     forecast:(string | {
+//         weathercode: number;
+//         apparent_temperature_max: number;
+//         sunrise: string | number;
+//         sunset: string | number;
+//         precipitation_sum: number;
+//         precipitation_hours: number;
+//         precipitation_probability_max: number;
+//         windspeed_10m_max: number;
+//         snowfall_sum: number;
+//         color: string;
+//     })[][]
+// }
 
 export type TClimbingArea = {
     title: string,
