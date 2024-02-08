@@ -1,12 +1,13 @@
 import { IHourly,IDaily } from "../types/app"
 
-type test = {
-    [key:string] : Array<number | string> 
+type TDataLayerVal = {
+    [key:string] : Array<string | number>
 }
 
 interface IDataLayer {
     time:string
-    vals:test
+    vals:TDataLayerVal
+    [key:string]:any
 }
 
 function getRainBgColor(data:number) {
@@ -15,9 +16,10 @@ function getRainBgColor(data:number) {
     'bg-red-400/70'
 }
 
-function populateData(data:test,i:number) {
+function populateData(data:TDataLayerVal,i:number) {
    
-    let newObj = {} 
+    let newObj = {} as IDataLayer
+    
     let colorData = data.precipitation_sum ? data.precipitation_sum[i] : data.precipitation[i] 
     let keys = Object.keys(data)
 
@@ -25,25 +27,26 @@ function populateData(data:test,i:number) {
         newObj[key] = data[key][i] 
     }
     newObj["color"] = getRainBgColor(colorData as number)
+    console.log({newObj,data})
     return newObj
 }
 
-function dateToData(data:test,start:number,end:number) {
+function dateToData(data:TDataLayerVal,start:number,end:number) {
     let newData = []
     for(let i = start;i < end;i++) {
         let dataLayer = {} as IDataLayer
         dataLayer["time"] = data.time[i] as string
-        dataLayer["vals"] = populateData(data,i) as test
+        dataLayer["vals"] = populateData(data,i) as TDataLayerVal
         newData.push(dataLayer)
     }
     return newData
 }
 
 export const getRainReadoutVals = (daily:IDaily,hourly:IHourly) => {
-    console.log({daily,hourly})
+   
     const currentHour = new Intl.DateTimeFormat(undefined,{hour:'numeric'}).format(new Date())
 
-    const wetRockVals = dateToData(daily,1,8)
+    const wetRockVals = dateToData(daily,0,7)
     wetRockVals[0].time = "Today"
 
     const forecastVals = dateToData(daily,7,14)
