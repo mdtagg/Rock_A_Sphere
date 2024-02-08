@@ -22,7 +22,6 @@ const WeatherOptionsButton = () => {
                 setRainData({buttonTitle:"Forecast",dailyData:forecastVals})
                 break;
             case 'Hourly':
-                // const hourly = weatherData?.hourlyWeather.slice(1,8)
                 setRainData({buttonTitle:"Hourly",dailyData:hourlyVals})
                 break;
         }
