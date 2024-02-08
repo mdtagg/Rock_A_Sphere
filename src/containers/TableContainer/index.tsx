@@ -15,7 +15,6 @@ const TableContainer = () => {
     const { weatherData, location } = useContext(LocationContext)!
     const [ rockTypes ,setRockTypes ] = useState<Map<any,any> | undefined>(undefined)
     const [ rockData, setRockData ] = useState<RockDataType | undefined>(undefined)
-    const weatherValues = !weatherData ? null : weatherData.dailyWeather
 
     const tableDataStyle = "flex flex-col border-r-2 border-b-2 border-black items-center justify-end w-1/5 p-1 h-full sm:p-0"
     const tableRainTextStyle = `text-xl flex items-center h-full font-bold`
