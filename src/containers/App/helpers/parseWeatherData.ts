@@ -13,10 +13,10 @@ function parseDates(data:WeatherData) {
     const hourOptions:Intl.DateTimeFormatOptions = {hour: "numeric"}
 
     current_weather.time = Intl.DateTimeFormat(undefined,currentOptions).format(current_weather.time as number * 1000)
-    daily.time = parseDate(daily.time as number[],dayOptions)
-    daily.sunrise = parseDate(daily.sunrise as number[],hourOptions)
-    daily.sunset = parseDate(daily.sunset as number[],hourOptions)
-    hourly.time = parseDate(hourly.time as number[],hourOptions)
+    daily.time = parseDate(daily.time as unknown as number[],dayOptions)
+    daily.sunrise = parseDate(daily.sunrise as unknown as number[],hourOptions)
+    daily.sunset = parseDate(daily.sunset as unknown as number[],hourOptions)
+    hourly.time = parseDate(hourly.time as unknown as number[],hourOptions)
 }
 
 const parseWeatherData = (data:WeatherData) => {
