@@ -1,5 +1,5 @@
-import { numArrayObj } from "./parseWeatherData"
-import { IHourly } from "../types/app"
+import { numArrayObj } from "../../containers/App/helpers/parseWeatherData"
+import { IHourly } from "../../containers/App/types/app"
 
 function getColor(precip:number) {
     return precip === 0 ? 'bg-green-200/70' :
@@ -8,17 +8,6 @@ function getColor(precip:number) {
 }
 
 function parseHourlyWeather(data:numArrayObj) {
-    
-    // const hourOptions:Intl.DateTimeFormatOptions = { hour: "numeric" }
-    // const hourlyData = {} as IHourly
-    // for(let key in data) {
-    //     hourlyData[key] = data[key].slice(168)
-    //     if(key === 'time') {
-    //         hourlyData[key] = hourlyData[key].map((date:any) => {
-    //             return Intl.DateTimeFormat(undefined,hourOptions).format(date * 1000)
-    //         })
-    //     }
-    // }
     
     const parsedData = []
     for(let i = 0;i <= 167;i++) {

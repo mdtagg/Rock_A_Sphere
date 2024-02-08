@@ -1,4 +1,4 @@
-import { numObj } from "./parseWeatherData";
+import { numObj } from "../../containers/App/helpers/parseWeatherData";
 
 
 

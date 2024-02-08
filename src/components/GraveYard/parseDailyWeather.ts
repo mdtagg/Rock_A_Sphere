@@ -1,5 +1,5 @@
 
-import { numArrayObj } from "./parseWeatherData"
+import { numArrayObj } from "../../containers/App/helpers/parseWeatherData"
 
 function getRainTextColor(amtRain:number,upperLimit:number) {
     return (

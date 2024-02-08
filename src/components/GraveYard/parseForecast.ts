@@ -1,7 +1,7 @@
 
-import { parseDate } from "../utils"
-import { numArrayObj } from "./parseWeatherData"
-import { IHourly } from "../types/app"
+import { parseDate } from "../../containers/App/utils"
+import { numArrayObj } from "../../containers/App/helpers/parseWeatherData"
+import { IHourly } from "../../containers/App/types/app"
 
 function getColor(precip:number) {
     return precip === 0 ? 'bg-green-200/70' :
