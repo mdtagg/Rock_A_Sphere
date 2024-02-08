@@ -1,10 +1,29 @@
 import React from "react"
 
-// export type TCurrentWeather ={
-//     currentDate:string,
-//     currentTemp:number,
-//     weatherCode:number
-// }
+export interface ITableVals {
+    total:string | number
+    color:string
+}
+
+export type TDataLayerVal = {
+    [key:string] : Array<string | number>
+}
+
+export interface IDataLayer {
+    time:string
+    vals:TDataLayerVal
+    [key:string]:any
+}
+
+type parsedTableVals = {
+    [key:string] : ITableVals
+}
+
+export interface IParsedWeather {
+    currentWeather: {[key:string] : number | string};
+    tableVals: parsedTableVals
+    rainReadoutVals: rainReadoutVals
+}
 
 export interface IDaily {
     apparent_temperature_max:number[]
@@ -26,65 +45,21 @@ export interface IHourly {
     [key:string] : Array<number | string> 
 }
 
-// type TDailyWeather = {
-//     pastSevenColor:string,
-//     pastSevenTotal:number,
-//     pastThreeColor:string,
-//     pastThreeTotal:number,
-//     rainReadoutVals:[string,number,string,string][]
-
-// }
-
-export type TForecast = {
-    [key:number]:[string,IHourly]
+export interface WeatherData {
+    current_weather:{[key:string] : number | string},
+    current_weather_units:{[key:string] : string},
+    daily:IDaily,
+    daily_units:{[key:string] : string},
+    elevation:number,
+    generationtime_ms:number,
+    hourly:IHourly,
+    hourly_units:{[key:string] : string},
+    latitude:number,
+    longitude:number,
+    timezone:string,
+    timezone_abbreviation:string,
+    utc_offset_seconds:number
 }
- 
-
-// export interface IWeatherData {
-//     currentWeather: TCurrentWeather
-//     dailyWeather: TDailyWeather
-//     forecast: TForecast
-//     hourlyWeather: TForecast
-// }
-
-
-// export interface test {
-//     currentWeather: {
-//         currentTemp: number;
-//         currentDate: string;
-//         weatherCode: number;
-//     }
-
-//     dailyWeather: {
-//         pastSevenTotal: number;
-//         pastSevenColor: string;
-//         pastThreeTotal: number;
-//         pastThreeColor: string;
-//         rainReadoutVals: [string, number, string, number][];
-//     }
-
-//     hourlyWeather:(string | {
-//         weathercode: number;
-//         precipitation: string | number;
-//         snow_fall: string | number;
-//         apparent_temperature: string | number;
-//         windspeed_10m: string | number;
-//         color: string;
-//     })[][]
-
-//     forecast:(string | {
-//         weathercode: number;
-//         apparent_temperature_max: number;
-//         sunrise: string | number;
-//         sunset: string | number;
-//         precipitation_sum: number;
-//         precipitation_hours: number;
-//         precipitation_probability_max: number;
-//         windspeed_10m_max: number;
-//         snowfall_sum: number;
-//         color: string;
-//     })[][]
-// }
 
 export type TClimbingArea = {
     title: string,
@@ -94,63 +69,66 @@ export type TClimbingArea = {
 
 export type ReactSetter<T> = React.Dispatch<React.SetStateAction<T>>
 
-export type TClimbingAreas = {
-    title: string,
-    coords: { latitude: string, longitude: string },
-    id: string
-}[]
-
 export interface CurrentInfoContextType {
     location:TClimbingArea
     setLocation: ReactSetter<TClimbingArea>;
-    weatherData: IWeatherData | undefined
-    climbingAreas:TClimbingAreas
-    setClimbingAreas: ReactSetter<TClimbingAreas>
+    weatherData: IParsedWeather| undefined
+    climbingAreas:TClimbingArea[]
+    setClimbingAreas: ReactSetter<TClimbingArea[]>
 }
 
 export interface WeatherContextType {
     location: TClimbingArea
-    weatherData: IWeatherData | undefined
+    weatherData: IParsedWeather| undefined
     buttonTitle: string
     setButtonTitle: ReactSetter<string>
 }
 
-export interface TLocationContext {
-    location: TClimbingArea
-    setLocation: ReactSetter<TClimbingArea>;
-    weatherData: test | undefined
+export interface TForecast {
+    
+    apparent_temperature_max:number 
+    color:string 
+    precipitation_hours:number 
+    precipitation_probability_max:number 
+    precipitation_sum:number 
+    snowfall_sum:number
+    sunrise:string 
+    sunset:string 
+    time:string 
+    weathercode:number
+    windspeed_10m_max:number
+    
 }
 
-export interface TFormContext {
-    climbingAreas:TClimbingAreas
-    setClimbingAreas:ReactSetter<TClimbingAreas>
-    setToggleForm:ReactSetter<boolean>
+export interface THourly {
+    apparent_temperature:number 
+    color:string 
+    precipitation:number 
+    rain:number 
+    showers:number 
+    snowfall:number 
+    temperature_2m:number 
+    time:string 
+    weathercode:number
+    windspeed_10m:number
 }
 
-export type TRainReadout = {
-    [key:number]: string | number
-}[]
+export type TDailyDataVals = {
+    [key:string] : any
+}
+
+interface dailyDataTest {
+    time:string 
+    vals:TDailyDataVals
+}
 
 export type TRainData = {
     buttonTitle:string,
-    dailyData:[string,number,string,number][] | [] | IHourly[] 
+    dailyData: dailyDataTest[] | []
 }
 
-export interface TTableInfoContext {
-    rainData:TRainData
-    setRainData:ReactSetter<TRainData>
-}
-
-export interface TableContextType {
-    totalRain: TotalRainType | undefined;
-    rockData: RockDataType | undefined;
-}
-
-export interface TotalRainType {
-    pastSevenTotal:number
-    pastSevenColor:string
-    pastThreeTotal:number
-    pastThreeColor:string
+type rainReadoutVals = {
+    [key:string] : IDataLayer[]
 }
 
 export type KindOfRockType = {
