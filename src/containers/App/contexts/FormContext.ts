@@ -1,8 +1,25 @@
 import { createContext } from "react";
-import { TFormContext,TLocationContext,TTableInfoContext } from "../types/app";
+import { TClimbingArea,ReactSetter,IParsedWeather, TRainData} from "../types/app";
 
-export const FormContext = createContext<null | TFormContext>(null)
+export interface ILocationContext {
+    location: TClimbingArea
+    setLocation: ReactSetter<TClimbingArea>;
+    weatherData: IParsedWeather | undefined
+}
 
-export const LocationContext = createContext<null | TLocationContext>(null)
+export interface IFormContext {
+    climbingAreas:TClimbingArea[]
+    setClimbingAreas:ReactSetter<TClimbingArea[]>
+    setToggleForm:ReactSetter<boolean>
+}
 
-export const TableInfoContext = createContext<null | TTableInfoContext>(null) 
+export interface ITableInfoContext {
+    rainData:TRainData
+    setRainData:ReactSetter<TRainData>
+}
+
+export const FormContext = createContext<null | IFormContext>(null)
+
+export const LocationContext = createContext<null | ILocationContext>(null)
+
+export const TableInfoContext = createContext<null | ITableInfoContext>(null) 

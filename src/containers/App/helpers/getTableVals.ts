@@ -1,8 +1,5 @@
+import { ITableVals } from "../types/app"
 
-interface ITableVals {
-    total:string | number
-    color:string
-}
 
 function getRainTextColor(amtRain:number,upperLimit:number) {
     return (

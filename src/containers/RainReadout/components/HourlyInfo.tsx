@@ -1,12 +1,9 @@
 /// <reference types="../../../../svg.d.ts" />
 import { GetWeatherIcon } from "../../CurrentAreaContainer/utils/getWeatherIcon"
-import { IHourly, TRainReadout } from "../../App/types/app"
+import { THourly } from "../../App/types/app"
 
-interface THourlyInfo {
-    hourlyInfo: TRainReadout
-}
 
-const HourlyInfo = (props:IHourly) => {
+const HourlyInfo = (props:{hourlyInfo:THourly}) => {
 
     const { weathercode,precipitation,snowfall,apparent_temperature,windspeed_10m } = props.hourlyInfo.vals
     const WeatherIcon = GetWeatherIcon(weathercode)

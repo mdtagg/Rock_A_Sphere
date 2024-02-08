@@ -3,6 +3,7 @@ import { TableInfoContext } from "../App/contexts/FormContext";
 import { HourlyInfo } from "./components/HourlyInfo";
 import { ForecastInfo } from "./components/ForecastInfo";
 import { ReactComponent as RainImg } from '../../assets/svg/rain.svg'
+import { TForecast, THourly } from "../App/types/app";
 
 const RainReadout = () => {
 

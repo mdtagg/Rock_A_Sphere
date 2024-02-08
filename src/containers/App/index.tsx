@@ -6,17 +6,18 @@ import UseLocalStorage from "./hooks/UseLocalStorage"
 import { TableContainer } from "../TableContainer"
 import { RainReadout } from "../RainReadout"
 import { parseWeatherData } from "./helpers/parseWeatherData"
-import { IWeatherData, TRainData, test } from "./types/app"
+import { IParsedWeather, TRainData } from "./types/app"
 import { Form } from "../Form"
 import { FormContext,LocationContext,TableInfoContext } from "./contexts/FormContext"
 import { WeatherOptionsButton } from "../WeatherOptionsButton"
 import { CurrentAreaContainer } from "../CurrentAreaContainer"
 import { MapView } from "../MapView"
 
+
 const App = () => {
 
     const [ climbingAreas, setClimbingAreas ] = UseLocalStorage('climbing-areas',getDefaultAreas())
-    const [ weatherData, setWeatherData ] = useState<test | undefined>(undefined)
+    const [ weatherData, setWeatherData ] = useState<IParsedWeather | undefined>(undefined)
     const [ location, setLocation ] = useState(climbingAreas[0])
     const [ rainData,setRainData ] = useState<TRainData>({buttonTitle:"Wet Rock",dailyData:[]})
     const [ toggleForm, setToggleForm ] = useState<boolean>(false)
@@ -46,7 +47,7 @@ const App = () => {
                 location.coords.longitude,
                 "auto"
             )
-            const parsedWeatherData = parseWeatherData(weatherData)
+            const parsedWeatherData = parseWeatherData(weatherData) 
             setWeatherData(parsedWeatherData)
         })()
         

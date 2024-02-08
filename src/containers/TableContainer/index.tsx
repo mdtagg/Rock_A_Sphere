@@ -1,6 +1,6 @@
 import RockDataService from "../../services/RockDataService";
-import { TotalRainType,RockDataType,TRockType } from "../App/types/app";
-import { parseRainData, parseRockData } from "./helpers"
+import { RockDataType,TRockType } from "../App/types/app";
+import { parseRockData } from "./helpers"
 import { useState,useEffect,useContext } from "react"
 import { Header } from "./components/Header";
 import { LocationContext } from "../App/contexts/FormContext";

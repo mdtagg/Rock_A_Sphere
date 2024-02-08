@@ -1,43 +1,9 @@
 import { parseDate } from "../utils"
 import { getTableVals } from "./getTableVals"
 import { getRainReadoutVals } from "./getRainReadoutVals"
+import { WeatherData } from "../types/app"
 
-export type numObj = {
-    [key:string] : number
-}
 
-export type numOrStrObj = {
-    [key:string] : number | string
-}
-
-export type strOrNumArray = {
-    [key:string] : number[] | string[]
-}
-
-export type strObj = {
-    [key:string] : string
-}
-
-export type numArrayObj = {
-    [key:string] : number[]
-}
-
-interface WeatherData {
-    current_weather:numOrStrObj,
-    current_weather_units:strObj,
-    daily:strOrNumArray,
-    daily_units:strObj,
-    elevation:number,
-    generationtime_ms:number,
-    hourly:strOrNumArray,
-    hourly_units:strObj,
-    latitude:number,
-    longitude:number,
-    timezone:string,
-    timezone_abbreviation:string,
-    utc_offset_seconds:number
-
-}
 
 function parseDates(data:WeatherData) {
 

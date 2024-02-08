@@ -1,14 +1,4 @@
-import { IHourly,IDaily } from "../types/app"
-
-type TDataLayerVal = {
-    [key:string] : Array<string | number>
-}
-
-interface IDataLayer {
-    time:string
-    vals:TDataLayerVal
-    [key:string]:any
-}
+import { IHourly,IDaily, IDataLayer, TDataLayerVal } from "../types/app"
 
 function getRainBgColor(data:number) {
     return data == 0 ? 'bg-green-200/70' : 

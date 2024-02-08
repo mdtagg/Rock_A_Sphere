@@ -1,6 +1,5 @@
 import { useState,useEffect } from "react"
 import { KindOfRockType,RockDataType } from "../../App/types/app"
-import { TotalRainType } from "../../App/types/app"
 
 const DaysToClimb = (props:{rockData:RockDataType,weatherData:any}) => {
 

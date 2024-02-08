@@ -1,11 +1,6 @@
 
 import { useState,useEffect,useContext } from "react"
-import { parseDailyRain } from "./helpers/parseDailyRain"
-import { parseForecast } from "./helpers/parseForecast"
-import { parseHourly } from "./helpers/parseHourly"
-import { getPageData } from "../../components/NavArrows/utils/getPageData"
 import { NavArrows } from "../../components/NavArrows"
-import { THourly } from "./helpers/parseHourly"
 import { LocationContext,TableInfoContext } from "../App/contexts/FormContext"
 
 const WeatherOptionsButton = () => {
