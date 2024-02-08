@@ -8,7 +8,9 @@ interface TForecastInfo {
 
 const ForecastInfo = (props:TForecast) => {
 
-    const { apparent_temperature_max,precipitation_sum,snowfall_sum,sunrise,sunset,weathercode } = props.forecastInfo[1]
+    // const { apparent_temperature_max,precipitation_sum,snowfall_sum,sunrise,sunset,weathercode } = props.forecastInfo[1]
+    const { apparent_temperature_max,precipitation_sum,snowfall_sum,sunrise,sunset,weathercode } = props.forecastInfo.vals
+
     const WeatherIcon = GetWeatherIcon(weathercode)
 
     return (

@@ -25,7 +25,3 @@ export const getTableVals = (data) => {
     return {pastSevenVals,pastThreeVals}
     
 }
-
-/*
-[{pastSevenTotal,pastThreeTotal,pastSevenColor,pastThreeColor}]
-*/

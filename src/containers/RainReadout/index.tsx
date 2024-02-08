@@ -14,19 +14,16 @@ const RainReadout = () => {
         <section 
             className='grid grid-cols-7 pr-11 h-full gap-10 text-black ml-11 sm:grid-cols-3 sm:grid-flow-row sm:p-0 sm:m-0 sm:gap-0 wide:gap-0 wide:p-0'
         >
-        {dailyData.map((data,idx) => {
-
-            const day = data[0] as unknown as string
-            const color = buttonTitle === 'Wet Rock' ? data[2] : data[1].color
-
+        {dailyData.map((data) => {
+          
             return (
                 <div 
-                    className={`flex flex-col justify-center items-center border-2 border-black p-6 ${color} gap-3 sm:gap-1 sm:p-2 sm:items-center wide:gap-0 wide:p-2 animate-fadeIn`}
+                    className={`${data.vals.color} flex flex-col justify-center items-center border-2 border-black p-6 gap-3 sm:gap-1 sm:p-2 sm:items-center wide:gap-0 wide:p-2 animate-fadeIn`}
                 >
                     <p
                         className='text-3xl gap-3 font-bold sm:text-xl wide:text-sm wide:font-bold '
                     >
-                        {day}
+                        {data.time}
                     </p>
                     
                     {buttonTitle === 'Wet Rock' &&
@@ -37,7 +34,7 @@ const RainReadout = () => {
                             <p
                                 className='text-xl font-bold sm:text-base wide:text-xs'
                             >
-                                {dailyData[idx][1]}
+                                {data.vals.precipitation_sum}
                             </p>
                             <p
                                 className='text-xl font-bold sm:text-base wide:text-xs italic'

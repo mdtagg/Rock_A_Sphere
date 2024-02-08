@@ -8,7 +8,7 @@ interface THourlyInfo {
 
 const HourlyInfo = (props:IHourly) => {
 
-    const { weathercode,precipitation,snowfall,apparent_temperature,windspeed_10m } = props.hourlyInfo[1]
+    const { weathercode,precipitation,snowfall,apparent_temperature,windspeed_10m } = props.hourlyInfo.vals
     const WeatherIcon = GetWeatherIcon(weathercode)
 
     return (

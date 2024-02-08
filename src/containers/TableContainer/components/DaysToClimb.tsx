@@ -7,7 +7,9 @@ const DaysToClimb = (props:{rockData:RockDataType,weatherData:any}) => {
     const [ daysToClimb, setDaysToClimb ] = useState('0')
     const { rockData,weatherData } = props
     const { name } = rockData!.primaryRockType as unknown as KindOfRockType
-    const { pastThreeTotal,pastSevenTotal } = weatherData.dailyWeather
+    const pastSevenTotal  = weatherData.tableVals.pastSevenVals.total
+    const pastThreeTotal = weatherData.tableVals.pastThreeVals.total
+    
 
     function getDaysToClimb() {
 
@@ -21,13 +23,13 @@ const DaysToClimb = (props:{rockData:RockDataType,weatherData:any}) => {
 
         if(name === 'sedimentary' || susceptible) {
 
-            if(pastThreeTotal >= 6 || pastSevenTotal >= 9) {
-                setDaysToClimb('5-7')
+            if(pastThreeTotal >= 6 || pastSevenTotal >= 7) {
+                setDaysToClimb('7')
             }
             else if((pastThreeTotal < 6 && pastThreeTotal >= 3) || (pastSevenTotal < 7 && pastSevenTotal >= 5)) {
                 setDaysToClimb('4-5')
             }
-            else if((pastThreeTotal < 3 && pastThreeTotal >= 1) || pastSevenTotal < 5 && pastSevenTotal >= 2.5) {
+            else if((pastThreeTotal < 3 && pastThreeTotal >= 1) || (pastSevenTotal < 5 && pastSevenTotal >= 2.5)) {
                 setDaysToClimb('3-4')
             }else if((pastThreeTotal < 1 && pastThreeTotal >= 0.5) || (pastSevenTotal < 2.5 && pastSevenTotal >= 1.5)) {
                 setDaysToClimb('2-3')
@@ -49,6 +51,7 @@ useEffect(() => {
     
     return (
         <div className='flex flex-col items-center justify-center'>
+            <p className="sm:text-lg font-bold leading-none">At least</p>
             <p className='text-3xl'>{daysToClimb}</p>
             <p className='text-[.7rem] leading-none font-bold sm:text-[.4rem]'>
                 Always make sure the ground by your climb is dry,

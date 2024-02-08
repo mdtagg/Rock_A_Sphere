@@ -17,27 +17,26 @@ const WeatherOptionsButton = () => {
     function handleButtonChange(position:string,buttonTitle:string) {
 
         setButtonPosition(position)
-        const { forecast } = weatherData!
-        const { rainReadoutVals } = weatherData!.dailyWeather
+        const { wetRockVals,forecastVals,hourlyVals  } = weatherData!.rainReadoutVals
         
         switch(buttonTitle) {
             case 'Wet Rock':
-                setRainData({buttonTitle:'Wet Rock',dailyData:rainReadoutVals})
+                setRainData({buttonTitle:'Wet Rock',dailyData:wetRockVals})
                 break;
             case 'Forecast':
-                setRainData({buttonTitle:"Forecast",dailyData:forecast})
+                setRainData({buttonTitle:"Forecast",dailyData:forecastVals})
                 break;
             case 'Hourly':
-                const hourly = weatherData?.hourlyWeather.slice(1,8)
-                setRainData({buttonTitle:"Hourly",dailyData:hourly})
+                // const hourly = weatherData?.hourlyWeather.slice(1,8)
+                setRainData({buttonTitle:"Hourly",dailyData:hourlyVals})
                 break;
         }
     }
 
     useEffect(() => {
         if(!weatherData) return
-        const { rainReadoutVals} = weatherData!.dailyWeather
-        setRainData({buttonTitle:"Wet Rock",dailyData:rainReadoutVals})
+        const { wetRockVals } = weatherData!.rainReadoutVals
+        setRainData({buttonTitle:"Wet Rock",dailyData:wetRockVals})
     },[weatherData])
 
     return (
@@ -72,7 +71,7 @@ const WeatherOptionsButton = () => {
                 className='bg-slate-200/75 border border-black rounded-full flex justify-center items-center animate-fadeIn'
             >
                 <NavArrows
-                    fullData={weatherData?.hourlyWeather}
+                    fullData={weatherData?.rainReadoutVals.hourlyVals}
                     setData={setRainData}
                     data={rainData}
                     pages={7}

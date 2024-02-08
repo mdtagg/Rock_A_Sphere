@@ -1,7 +1,3 @@
-import { parseCurrentWeather } from "./parseCurrentWeather"
-import { parseDailyWeather } from "./parseDailyWeather"
-import { parseHourlyWeather } from "./parseHourlyWeather"
-import { parseForecast } from "./parseForecast"
 import { parseDate } from "../utils"
 import { getTableVals } from "./getTableVals"
 import { getRainReadoutVals } from "./getRainReadoutVals"
@@ -36,7 +32,7 @@ interface WeatherData {
 }
 
 function parseDates(data) {
-    console.log({data})
+
     const { current_weather,daily,hourly } = data
     const currentOptions:Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' }
     const dayOptions:Intl.DateTimeFormatOptions = { weekday:'short',day:'numeric' }
@@ -52,19 +48,13 @@ function parseDates(data) {
 const parseWeatherData = (data:WeatherData) => {
 
     parseDates(data)
-    const { current_weather, daily , hourly } = data
-    const currentWeather = parseCurrentWeather(current_weather)
+    const { daily , hourly } = data
+
+    const currentWeather = data.current_weather
     const tableVals = getTableVals(data.daily.precipitation_sum)
     const rainReadoutVals = getRainReadoutVals(daily,hourly)
-    const dailyWeather = parseDailyWeather(daily)
-    const hourlyWeather = parseHourlyWeather(hourly)
-    const forecast = parseForecast(daily)
     
-    return {currentWeather,dailyWeather,hourlyWeather,forecast,tableVals}
+    return {currentWeather,tableVals,rainReadoutVals}
 }
-
+//forecast,dailyWeather,hourlyWeather
 export { parseWeatherData }
-
-/*
-should be current daily and hourly weather 
-*/
