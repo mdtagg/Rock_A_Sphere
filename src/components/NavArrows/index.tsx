@@ -1,10 +1,10 @@
 import { ReactComponent as LeftCaret } from '../../assets/svg/left-caret.svg'
 import { ReactComponent as RightCaret } from '../../assets/svg/right-caret.svg'
 import { useState,useEffect } from 'react'
-import { ReactSetter } from '../../containers/App/types/app'
+import { IDataLayer, ReactSetter, TRainData } from '../../containers/App/types/app'
 
 interface NavArrowProps {
-    data:any[]
+    data:TRainData
     setData:ReactSetter<any>
     pages:number
     fullData:any
@@ -13,7 +13,6 @@ interface NavArrowProps {
 const NavArrows = (props:NavArrowProps) => {
 
     const { data,setData,pages,fullData } = props
-    
     const [ currentPageIdx, setCurrentPageIdx ] = useState([0,pages])
     const [moveRight,setMoveRight] = useState(false)
     const [moveLeft,setMoveLeft] = useState(false)
