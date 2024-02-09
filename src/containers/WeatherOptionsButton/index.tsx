@@ -30,7 +30,12 @@ const WeatherOptionsButton = () => {
     useEffect(() => {
         if(!weatherData) return
         const { wetRockVals } = weatherData!.rainReadoutVals
-        setRainData({buttonTitle:"Wet Rock",dailyData:wetRockVals})
+        setRainData(
+            {
+                buttonTitle:rainData.buttonTitle ? rainData.buttonTitle : "Wet Rock",
+                dailyData:wetRockVals
+            }
+            )
     },[weatherData])
 
     return (
