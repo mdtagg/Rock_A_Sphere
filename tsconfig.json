@@ -6,7 +6,7 @@
     "target": "ESNext",                                 
     // "lib": ["DOM", "DOM.Iterable", "ESNext"],                                    
     "jsx": "react-jsx",                               
-    "watch":true,
+    // "watch":true,
     "module": "ESNext",                             
     // "rootDir": "./src",                                /* Specify the root folder within your source files. */
     "moduleResolution": "node",                     /* Specify how TypeScript looks up a file from a given module specifier. */
